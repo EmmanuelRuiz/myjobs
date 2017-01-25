@@ -1,0 +1,109 @@
+BackendBundle\Entity\Company :
+    type: entity
+    table: companies
+    indexes:
+        fk_companies_users:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        tradename:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        businessname:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        rfc:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+        logo:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        businesssector:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        contacname:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+        position:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+        telephoneext:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+        businessemail:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+        status:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        document:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
