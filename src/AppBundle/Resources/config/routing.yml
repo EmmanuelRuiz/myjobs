@@ -1,0 +1,11 @@
+app_user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix: /
+    
+app_company:
+    resource: "@AppBundle/Resources/config/routing/company.yml"
+    prefix: /
+    
+app_homepage:
+    path: /
+    defaults: { _controller: AppBundle:User:login }

@@ -1,0 +1,3 @@
+home_companies:
+    path: /home
+    defaults: { _controller: AppBundle:Company:index }
