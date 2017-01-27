@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %} MyJobsAdvisor {%endblock%}</title>
+        
+        {% block stylesheet %}
+            <!-- estilos css -->
+        {%endblock%}
+        
+        {% block javascripts %}
+            <!-- JS -->
+        {%endblock%}
+    </head>
+    <body>
+        <header>
+            <h1> My Jobs Advisor</h1>
+        </header>
+        <section id="content">
+            {% block content %}
+                <!-- todo el contenido de la web -->
+                Content default
+            {%endblock%}
+        </section>
+        
+        <footer>
+            <p>My Jobs Advisor.</p>
+        </footer>
+    </body>
+</html>
