@@ -3,9 +3,9 @@
 namespace BackendBundle\Entity;
 
 /**
- * Like
+ * Following
  */
-class Like
+class Following
 {
     /**
      * @var integer
@@ -13,9 +13,9 @@ class Like
     private $id;
 
     /**
-     * @var \BackendBundle\Entity\Company
+     * @var \BackendBundle\Entity\User
      */
-    private $company;
+    private $followed;
 
     /**
      * @var \BackendBundle\Entity\User
@@ -34,27 +34,27 @@ class Like
     }
 
     /**
-     * Set company
+     * Set followed
      *
-     * @param \BackendBundle\Entity\Company $company
+     * @param \BackendBundle\Entity\User $followed
      *
-     * @return Like
+     * @return Following
      */
-    public function setCompany(\BackendBundle\Entity\Company $company = null)
+    public function setFollowed(\BackendBundle\Entity\User $followed = null)
     {
-        $this->company = $company;
+        $this->followed = $followed;
 
         return $this;
     }
 
     /**
-     * Get company
+     * Get followed
      *
-     * @return \BackendBundle\Entity\Company
+     * @return \BackendBundle\Entity\User
      */
-    public function getCompany()
+    public function getFollowed()
     {
-        return $this->company;
+        return $this->followed;
     }
 
     /**
@@ -62,7 +62,7 @@ class Like
      *
      * @param \BackendBundle\Entity\User $user
      *
-     * @return Like
+     * @return Following
      */
     public function setUser(\BackendBundle\Entity\User $user = null)
     {
@@ -81,3 +81,4 @@ class Like
         return $this->user;
     }
 }
+

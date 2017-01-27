@@ -3,14 +3,19 @@
 namespace BackendBundle\Entity;
 
 /**
- * Image
+ * Comment
  */
-class Image
+class Comment
 {
     /**
      * @var integer
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $body;
 
     /**
      * @var string
@@ -28,9 +33,9 @@ class Image
     private $updatedAt;
 
     /**
-     * @var \BackendBundle\Entity\Company
+     * @var \BackendBundle\Entity\Opinion
      */
-    private $company;
+    private $opinion;
 
     /**
      * @var \BackendBundle\Entity\User
@@ -49,11 +54,35 @@ class Image
     }
 
     /**
+     * Set body
+     *
+     * @param string $body
+     *
+     * @return Comment
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
      * Set image
      *
      * @param string $image
      *
-     * @return Image
+     * @return Comment
      */
     public function setImage($image)
     {
@@ -77,7 +106,7 @@ class Image
      *
      * @param \DateTime $createdAt
      *
-     * @return Image
+     * @return Comment
      */
     public function setCreatedAt($createdAt)
     {
@@ -101,7 +130,7 @@ class Image
      *
      * @param \DateTime $updatedAt
      *
-     * @return Image
+     * @return Comment
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -121,27 +150,27 @@ class Image
     }
 
     /**
-     * Set company
+     * Set opinion
      *
-     * @param \BackendBundle\Entity\Company $company
+     * @param \BackendBundle\Entity\Opinion $opinion
      *
-     * @return Image
+     * @return Comment
      */
-    public function setCompany(\BackendBundle\Entity\Company $company = null)
+    public function setOpinion(\BackendBundle\Entity\Opinion $opinion = null)
     {
-        $this->company = $company;
+        $this->opinion = $opinion;
 
         return $this;
     }
 
     /**
-     * Get company
+     * Get opinion
      *
-     * @return \BackendBundle\Entity\Company
+     * @return \BackendBundle\Entity\Opinion
      */
-    public function getCompany()
+    public function getOpinion()
     {
-        return $this->company;
+        return $this->opinion;
     }
 
     /**
@@ -149,7 +178,7 @@ class Image
      *
      * @param \BackendBundle\Entity\User $user
      *
-     * @return Image
+     * @return Comment
      */
     public function setUser(\BackendBundle\Entity\User $user = null)
     {
@@ -168,3 +197,4 @@ class Image
         return $this->user;
     }
 }
+

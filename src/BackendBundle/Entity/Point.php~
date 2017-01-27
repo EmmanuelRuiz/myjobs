@@ -3,9 +3,9 @@
 namespace BackendBundle\Entity;
 
 /**
- * Image
+ * Point
  */
-class Image
+class Point
 {
     /**
      * @var integer
@@ -15,7 +15,7 @@ class Image
     /**
      * @var string
      */
-    private $image;
+    private $valu;
 
     /**
      * @var \DateTime
@@ -49,27 +49,27 @@ class Image
     }
 
     /**
-     * Set image
+     * Set valu
      *
-     * @param string $image
+     * @param string $valu
      *
-     * @return Image
+     * @return Point
      */
-    public function setImage($image)
+    public function setValu($valu)
     {
-        $this->image = $image;
+        $this->valu = $valu;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Get valu
      *
      * @return string
      */
-    public function getImage()
+    public function getValu()
     {
-        return $this->image;
+        return $this->valu;
     }
 
     /**
@@ -77,7 +77,7 @@ class Image
      *
      * @param \DateTime $createdAt
      *
-     * @return Image
+     * @return Point
      */
     public function setCreatedAt($createdAt)
     {
@@ -101,7 +101,7 @@ class Image
      *
      * @param \DateTime $updatedAt
      *
-     * @return Image
+     * @return Point
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -125,7 +125,7 @@ class Image
      *
      * @param \BackendBundle\Entity\Company $company
      *
-     * @return Image
+     * @return Point
      */
     public function setCompany(\BackendBundle\Entity\Company $company = null)
     {
@@ -149,7 +149,7 @@ class Image
      *
      * @param \BackendBundle\Entity\User $user
      *
-     * @return Image
+     * @return Point
      */
     public function setUser(\BackendBundle\Entity\User $user = null)
     {
@@ -168,3 +168,4 @@ class Image
         return $this->user;
     }
 }
+

@@ -458,3 +458,4 @@ class Company
         return $this->user;
     }
 }
+

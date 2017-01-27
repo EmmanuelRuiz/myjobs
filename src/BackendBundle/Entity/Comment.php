@@ -197,4 +197,3 @@ class Comment
         return $this->user;
     }
 }
-

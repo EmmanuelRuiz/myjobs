@@ -544,33 +544,5 @@ class User
     {
         return $this->updatedAt;
     }
-    /**
-     * @var string
-     */
-    private $anonimo;
-
-
-    /**
-     * Set anonimo
-     *
-     * @param string $anonimo
-     *
-     * @return User
-     */
-    public function setAnonimo($anonimo)
-    {
-        $this->anonimo = $anonimo;
-
-        return $this;
-    }
-
-    /**
-     * Get anonimo
-     *
-     * @return string
-     */
-    public function getAnonimo()
-    {
-        return $this->anonimo;
-    }
 }
+

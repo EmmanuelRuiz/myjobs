@@ -458,3 +458,4 @@ class Opinion
         return $this->user;
     }
 }
+
