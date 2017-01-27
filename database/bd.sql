@@ -150,3 +150,7 @@ CONSTRAINT pk_images PRIMARY KEY(id),
 CONSTRAINT fk_image_company FOREIGN KEY(company_id) REFERENCES companies(id),
 CONSTRAINT fk_image_user FOREIGN KEY(user_id) REFERENCES users(id)
 )ENGINE=InnoDb;
+
+
+ALTER TABLE `users` ADD `anonimo` VARCHAR(2) NOT NULL AFTER `role`;
+
