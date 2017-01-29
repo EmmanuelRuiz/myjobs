@@ -1,6 +1,5 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
-
 security:
     encoders:
         BackendBundle\Entity\User:
