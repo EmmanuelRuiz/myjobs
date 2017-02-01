@@ -19,6 +19,61 @@ class UserController extends Controller{
 		$user = new User();
 		$form = $this->createForm(RegisterType::class, $user);
 		
+		/*recoger la request del formulario*/
+		$form->handleRequest($request);
+		/*comprobar si el formularion se ha enviado*/
+		if($form->isSubmitted()){
+			if($form->isValid()){
+				
+				/*conseguir el entitiManager*/
+				$em = $this->getDoctrine()->getManager();
+				//$user_repo = $em->getRepository("BackendBundle:User");
+				
+				/*
+				 * usar entiti manager para consultas				
+				 * hacer comprobacion de que el usuario se quiere registrar
+				 * no este en la bd	
+				 * :valor significa que es el parametro que recibimos			 
+				 */
+				
+				$query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email OR u.nick = :nick')
+						->setParameter('email', $form->get("email")->getData())
+						->setParameter('nick', $form->get("nick")->getData());
+				$user_isset = $query->getResult();
+				/*si user_isset es = 0 crea el usuario, si no no se registra por que ya existe*/
+				if(count($user_isset) == 0){
+					$factory = $this->get("security.encoder_factory");
+					$encoder = $factory->getEncoder($user);
+					$password = $encoder->encodePassword($form->get("password")->getData(), $user->getSalt());
+					/*metodos set necesarios para guardar la informacion*/
+					$user->setPassword($password);
+					$user->setRole("ROLE_USER");
+					$user->setImage(null);
+					/*volcar el objeto y persistir en doctrine*/
+					$em->persist($user);
+					/*pasar los objetos persistidos a la bd*/
+					$flush = $em->flush();
+					/*comprobar que se guarda*/
+					if($flush == null){
+						$status = "Te has registrado correctamente";
+						
+						return $this->redirect("login");
+					} else {
+						$status = "No te has registrado correctamente";
+					}
+				}else{
+					$status = "el usuario ya existe";
+				}
+				
+			} else {
+				$status = "No te has registrado correctamente";
+			}
+			var_dump($status);
+			die();
+		}
+		
+		
+		
 		return $this->render('AppBundle:User:register.html.twig', array(
 			"form" => $form->createView()
 		));

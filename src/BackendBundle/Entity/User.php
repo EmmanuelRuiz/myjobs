@@ -102,8 +102,30 @@ class User
      */
     private $updatedAt;
 
+	/*que campo de la base de datos va a ser el username*/
+	public function getUsername(){
+		return $this->email;
+	}
+	/*obtener la salt */
+	public function getSalt(){
+		return null;
+	}
+	/*nos permite devolver el rol del usuario*/
+	public function getRoles(){
+		return $this->getRole();
+	}
+	
+	public function eraseCredentials(){
 
-    /**
+	}
+
+	/*cuando usemos un objeto como si fuera estring esto lo va a tratar como si fuera entero*/
+	public function __toString() {
+		return $this->name;
+	}
+
+
+	/**
      * Get id
      *
      * @return integer
