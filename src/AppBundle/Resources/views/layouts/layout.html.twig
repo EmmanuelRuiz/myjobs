@@ -43,7 +43,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{path("login")}}">
+                                <a href="{{path("register")}}">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Crear cuenta
                                 </a>
                             </li>
@@ -53,6 +53,15 @@
             </nav>
         </header>
         <section id="content">
+            <div class="container">
+                <div class="col-lg-11">
+                    {%for message in app.session.flashbag().get('status')%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {%endfor%}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            
             {% block content %}
                 <!-- todo el contenido de la web -->
                 Content default
