@@ -37,6 +37,14 @@ class RegisterType extends AbstractType
 			->add('active')
 			->add('createdAt')
 			->add('updatedAt'
+		 * 
+		 * 			->add('nick', TextType::class, array(
+				'label' => 'Nick ',
+				'required' => 'required',
+				'attr' => array(
+					'class' => 'form-nick form-control nick-input'
+				)
+			))
 		 */
         $builder
 			->add('name', TextType::class, array(
@@ -60,22 +68,14 @@ class RegisterType extends AbstractType
 					'class' => 'form-lastname form-control'
 				)
 			))
-			->add('nick', TextType::class, array(
-				'label' => 'Nick ',
-				'required' => 'required',
-				'attr' => array(
-					'class' => 'form-nick form-control nick-input'
-				)
-			))
-			->add('age')
+			
 			->add('email', EmailType::class, array(
 				'label' => 'Correo electronico',
 				'required' => 'required',
 				'attr' => array(
-					'class' => 'form-name form-control'
+					'class' => 'form-name form-control email-input'
 				)
 			))
-			->add('telephone')
 			->add('password', PasswordType::class, array(
 				'label' => 'Contraseña',
 				'required' => 'required',
@@ -83,6 +83,9 @@ class RegisterType extends AbstractType
 					'class' => 'form-password form-control'
 				)
 			))
+			->add('age')
+			->add('telephone')
+			
 			->add('termscondition')
 			->add('datejob')
 			->add('privacy')

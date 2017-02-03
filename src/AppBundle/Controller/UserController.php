@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use BackendBundle\Entity\User;
@@ -45,9 +47,8 @@ class UserController extends Controller{
 				 * :valor significa que es el parametro que recibimos			 
 				 */
 				
-				$query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email OR u.nick = :nick')
-						->setParameter('email', $form->get("email")->getData())
-						->setParameter('nick', $form->get("nick")->getData());
+				$query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email')
+						->setParameter('email', $form->get("email")->getData());
 				$user_isset = $query->getResult();
 				/*si user_isset es = 0 crea el usuario, si no no se registra por que ya existe*/
 				if(count($user_isset) == 0){
@@ -86,5 +87,22 @@ class UserController extends Controller{
 		return $this->render('AppBundle:User:register.html.twig', array(
 			"form" => $form->createView()
 		));
+	}
+	
+	public function emailTestAction(Request $request){
+		$email = $request->get("email");
+		
+		$em = $this->getDoctrine()->getManager();
+		$user_repo = $em->getRepository("BackendBundle:User");
+		/*si el nick es igual al de la bd es que ya existe*/
+		$user_isset = $user_repo->findOneBy(array("email" => $email));
+		
+		$result = "used";
+		if(count($user_isset) >= 1 && is_object($user_isset)){
+			$result = "used";
+		} else {
+			$result = "unused";
+		}
+		return new Response($result);
 	}
 }
