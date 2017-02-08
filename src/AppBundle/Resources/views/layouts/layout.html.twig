@@ -54,7 +54,7 @@
                             {% endif %}
                         <ul>
                         
-                        
+                    {% if app.user != null %}   
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -64,34 +64,33 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="">
-                                            <span class="glyphicon plyphicon-user" aria-hidden="true"></span> 
+                                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
                                             &nbsp; Mi perfil
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{path("user_edit")}}">>
-                                            <span class="glyphicon plyphicon-cog" aria-hidden="true"></span>     
+                                        <a href="{{path("user_edit")}}">
+                                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>     
                                             &nbsp; Mi datos
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{path('logout')}}">
-                                            <span class="glyphicon plyphicon-logout" aria-hidden="true"></span> 
+                                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 
                                             &nbsp; Salir
                                         </a>
                                     </li>
                                     <li>
                                         <a href="">
-                                            <span class="glyphicon plyphicon-exclamation-sign" aria-hidden="true"></span> 
+                                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
                                             &nbsp; Ayuda
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        
-                            
+                    {% endif %}  
                     </div>
                 </div>
             </nav>
@@ -115,7 +114,7 @@
         <footer class="col-lg-12">
             <hr>
             <div class="container">
-                <p class="text-muted">My Jobs Advisor.</p>
+                <p class="text-muted">MyJobsAdvisor.</p>
             </div>
         </footer>
     </body>

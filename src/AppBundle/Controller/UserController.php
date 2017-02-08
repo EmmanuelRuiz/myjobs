@@ -119,6 +119,7 @@ class UserController extends Controller {
     
     public function editUserAction(Request $request){
         echo "accion editar usuario mis datos";
+        die();
     }
 
 }

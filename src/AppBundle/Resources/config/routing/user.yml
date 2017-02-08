@@ -17,6 +17,6 @@ user_email_test:
     defaults: { _controller: AppBundle:User:emailTest }
     methods: [POST]
 
-user-edit:
+user_edit:
     path: /my-data
-    defaults: { _controller: AppBundle:User:editUser}
+    defaults: { _controller: AppBundle:User:editUser }
