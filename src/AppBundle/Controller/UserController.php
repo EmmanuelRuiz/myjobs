@@ -7,8 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 use BackendBundle\Entity\User;
 use AppBundle\Form\RegisterType;
+use AppBundle\Form\UserType;
 
 class UserController extends Controller {
 
@@ -96,9 +98,9 @@ class UserController extends Controller {
 
 
         return $this->render('AppBundle:User:register.html.twig', array(
-                    "form" => $form->createView()
-        ));
-    }
+					"form" => $form->createView()
+		));
+	}
 
     public function emailTestAction(Request $request) {
         $email = $request->get("email");
@@ -118,8 +120,17 @@ class UserController extends Controller {
     }
     
     public function editUserAction(Request $request){
-        echo "accion editar usuario mis datos";
-        die();
+		
+		// creamos un objeto  usuario que ya esta logeado
+		
+		$user = $this->getUser();
+		
+		// creamos variable para la instancia del formulario
+		$form = $this->createForm(UserType::class, $user);
+		return $this->render('AppBundle:User:edit_user.html.twig', array(
+			'form' => $form->createView()
+		));
+		
     }
 
 }

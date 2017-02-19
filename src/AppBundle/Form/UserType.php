@@ -8,9 +8,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class RegisterType extends AbstractType
+class UserType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -76,13 +78,25 @@ class RegisterType extends AbstractType
 					'class' => 'form-name form-control email-input'
 				)
 			))
-			->add('password', PasswordType::class, array(
-				'label' => 'Contraseña',
-				'required' => 'required',
+			// textarea para la biografia del usuario
+			->add('biography', TextareaType::class, array(
+				'label' => 'Biografia',
+				'required' => null,
 				'attr' => array(
-					'class' => 'form-password form-control'
+					'class' => 'form-bio form-control '
 				)
 			))
+				
+			//campo para imagen del usuario
+			->add('image', FileType::class, array(
+                'label' => 'Foto',
+                'required' => false,
+                'data_class' => null,
+                'attr' => array(
+                    'class' => 'form-image form-control'
+                )
+            ))
+				
 			->add('age')
 			->add('telephone')
 			->add('termscondition')
@@ -90,7 +104,7 @@ class RegisterType extends AbstractType
 			->add('privacy')
 			->add('anonimo')
 				
-			->add('Registrarse', SubmitType::class, array(
+			->add('Editar', SubmitType::class, array(
 				"attr" => array(
 					"class" => "form-submit btn btn-success"
 				)
