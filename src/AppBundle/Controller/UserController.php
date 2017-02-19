@@ -150,7 +150,7 @@ class UserController extends Controller {
 				$user_isset = $query->getResult();
 				
 				/* si user_isset es = 0 crea el usuario, si no no se registra por que ya existe */
-                if (($user->getEmail() == $user_isset[0]->getEmail()) || count($user_isset) == 0) {
+                if ((count($user_isset) == 0 || $user->getEmail() == $user_isset[0]->getEmail())) {
                     
 					// upload archivo
 					$file = $form["image"]->getData();
@@ -203,7 +203,7 @@ class UserController extends Controller {
 		$em = $this->getDoctrine()->getManager();
 		
 		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-		$dql = "SELECT u FROM BackendBundle:Company u";
+		$dql = "SELECT u FROM BackendBundle:Company u ORDER BY u.id ASC";
 		$query = $em->createQuery($dql);
 		
 		$paginator = $this->get('knp_paginator');
