@@ -5,7 +5,6 @@ BackendBundle\Entity\User:
         users_uniques_fields:
             columns:
                 - email
-                - nick
     id:
         id:
             type: integer
@@ -32,12 +31,6 @@ BackendBundle\Entity\User:
             type: string
             nullable: false
             length: 255
-            options:
-                fixed: false
-        nick:
-            type: string
-            nullable: false
-            length: 50
             options:
                 fixed: false
         age:

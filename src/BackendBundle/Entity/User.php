@@ -27,10 +27,7 @@ class User implements UserInterface
      */
     private $mlastname;
 
-    /**
-     * @var string
-     */
-    private $nick;
+
 
     /**
      * @var integer
@@ -207,29 +204,6 @@ class User implements UserInterface
         return $this->mlastname;
     }
 
-    /**
-     * Set nick
-     *
-     * @param string $nick
-     *
-     * @return User
-     */
-    public function setNick($nick)
-    {
-        $this->nick = $nick;
-
-        return $this;
-    }
-
-    /**
-     * Get nick
-     *
-     * @return string
-     */
-    public function getNick()
-    {
-        return $this->nick;
-    }
 
     /**
      * Set age
