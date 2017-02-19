@@ -197,5 +197,23 @@ class UserController extends Controller {
 		));
 		
     }
+	
+	// metodo para buscar empresas. DEBE ESTAR EN OTRO CONTROLADOR
+	public function companiesAction(Request $request){
+		$em = $this->getDoctrine()->getManager();
+		
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+		$dql = "SELECT u FROM BackendBundle:Company u";
+		$query = $em->createQuery($dql);
+		
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
+		
+		return $this->render('AppBundle:Companies:companies.html.twig', array(
+			'pagination' => $pagination
+		));
+	}
 
 }

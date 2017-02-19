@@ -21,7 +21,8 @@ body{
 }
 
 /*Registro*/
-.box-form{
+.box-form,
+.box-default{
     background: white;
     border: 1px solid #ccc;
     padding: 20px;
@@ -32,4 +33,25 @@ body{
 
 .box-form input{
     margin-bottom: 10px;
+}
+
+/* Empresas */
+.user-item .avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    float: left;
+}
+
+.user-item .avatar img{
+    height: 100%;
+    text-align: center;
+}
+
+.user-item .user-item-content{
+    padding: 5px;
+    margin-left: 85px;
+    
 }
