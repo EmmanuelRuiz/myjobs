@@ -20,7 +20,7 @@ role                varchar(20) not null,
 active				varchar(2),
 created_at          datetime,
 updated_at			datetime,
-CONSTRAINT users_uniques_fields UNIQUE (email, nick),
+CONSTRAINT users_uniques_fields UNIQUE (email),
 CONSTRAINT pk_users PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
