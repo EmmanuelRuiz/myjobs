@@ -81,7 +81,7 @@ class UserType extends AbstractType
 			// textarea para la biografia del usuario
 			->add('biography', TextareaType::class, array(
 				'label' => 'Biografia',
-				'required' => null,
+				'required' => false,
 				'attr' => array(
 					'class' => 'form-bio form-control '
 				)

@@ -95,8 +95,6 @@ class UserController extends Controller {
             $this->session->getFlashBag()->add("status", $status);
         }
 
-
-
         return $this->render('AppBundle:User:register.html.twig', array(
 					"form" => $form->createView()
 		));
@@ -122,11 +120,78 @@ class UserController extends Controller {
     public function editUserAction(Request $request){
 		
 		// creamos un objeto  usuario que ya esta logeado
-		
 		$user = $this->getUser();
+		
+		// guardamos la imagen por defecto
+		$user_image = $user->getImage();
 		
 		// creamos variable para la instancia del formulario
 		$form = $this->createForm(UserType::class, $user);
+		
+		/* recoger la request del formulario */
+        $form->handleRequest($request);
+        /* comprobar si el formularion se ha enviado */
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                /* conseguir el entitiManager */
+                $em = $this->getDoctrine()->getManager();
+
+                /*
+                 * usar entiti manager para consultas				
+                 * hacer comprobacion de que el usuario se quiere registrar
+                 * no este en la bd	
+                 * valor significa que es el parametro que recibimos			 
+                 */
+
+                $query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email')
+						->setParameter('email', $form->get("email")->getData());
+				
+				// almacenamos el usuario existente
+				$user_isset = $query->getResult();
+				
+				/* si user_isset es = 0 crea el usuario, si no no se registra por que ya existe */
+                if (($user->getEmail() == $user_isset[0]->getEmail()) || count($user_isset) == 0) {
+                    
+					// upload archivo
+					$file = $form["image"]->getData();
+					if (!empty($file) && $file != null) {
+						// comprobamos que sea un formato de imagen
+						$ext = $file->guessExtension();
+						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
+							// creamos el nombre del archivo nuevo
+							$file_name = $user->getId().time().'.'.$ext;
+							//carpeta en la que se guardara
+							$file->move("uploads/users", $file_name);
+							$user->setImage($file_name);
+						}
+					} else {
+						$user->setImage($user_image);
+					}
+					
+                
+					
+                    /* volcar el objeto y persistir en doctrine */
+                    $em->persist($user);
+                    /* pasar los objetos persistidos a la bd */
+                    $flush = $em->flush();
+					
+					
+                    // mensajes de comprobación 
+                    if ($flush == null) {
+                        $status = "Has modificado tus datos correctamente";
+                    } else {
+                        $status = "No has modificado tus datos";
+                    }
+                } else {
+                    $status = "El usuario ya existe";
+                }
+            } else {
+                $status = "No se han actualizado tus datos";
+            }
+            $this->session->getFlashBag()->add("status", $status);
+			return $this->redirect('my-data');
+        }
+
 		return $this->render('AppBundle:User:edit_user.html.twig', array(
 			'form' => $form->createView()
 		));
