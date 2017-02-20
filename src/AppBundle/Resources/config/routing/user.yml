@@ -20,13 +20,3 @@ user_email_test:
 user_edit:
     path: /my-data
     defaults: { _controller: AppBundle:User:editUser }
-
-#esta ruta debe pertenecer a empresas, de momento se usara aqui para avanzar
-companies_list:
-    path: /companies
-    defaults: { _controller: AppBundle:User:companies }
-    
-#esta ruta debe pertenecer a empresas, de momento se usara aqui para avanzar
-companies_search:
-    path: /search
-    defaults: { _controller: AppBundle:User:search }
