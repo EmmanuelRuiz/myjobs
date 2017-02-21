@@ -195,5 +195,28 @@ class UserController extends Controller {
 		));
 		
     }
+	
+	public function userAction(Request $request){
+		
+		$em = $this->getDoctrine()->getManager();
+		
+		//Sacamos todos los objetos de tipo usuario desde la base de datos
+		$dql = "SELECT u FROM BackendBundle:User u ORDER BY u.id ASC";
+		$query = $em->createQuery($dql);
+		
+		//Sacamos los registros paginados
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
+
+		//Pasamos información a la vista
+		return $this->render('AppBundle:User:users.html.twig', array(
+			'pagination' => $pagination
+		));
+
+		var_dump("User action");
+		die();
+	}
 
 }
