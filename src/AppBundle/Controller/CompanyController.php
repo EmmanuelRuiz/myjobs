@@ -13,6 +13,10 @@ use BackendBundle\Entity\User;
 
 class CompanyController extends Controller{
 
+	public function indexAction(Request $request){
+		return $this->render('AppBundle:Company:home.html.twig');
+	}
+	
 	// metodo para buscar empresas. DEBE ESTAR EN OTRO CONTROLADOR
 	public function companiesAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
@@ -26,7 +30,7 @@ class CompanyController extends Controller{
 				$query, $request->query->getInt('page', 1), 5
 		);
 		
-		return $this->render('AppBundle:Companies:companies.html.twig', array(
+		return $this->render('AppBundle:Company:companies.html.twig', array(
 			'pagination' => $pagination
 		));
 	}
@@ -53,7 +57,7 @@ class CompanyController extends Controller{
 				$query, $request->query->getInt('page', 1), 5
 		);
 		
-		return $this->render('AppBundle:Companies:companies.html.twig', array(
+		return $this->render('AppBundle:Company:companies.html.twig', array(
 			'pagination' => $pagination
 		));
 	}
