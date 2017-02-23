@@ -41,6 +41,10 @@ $(document).ready(function(){
 //logica para el boton de follow
 function followButton(){
 	$(".btn-follow").unbind("click").click(function(){
+		
+		$(this).addClass("hidden");
+		$(this).parent().find(".btn-unfollow").removeClass("hidden");
+		
 		$.ajax({
 			url: URL+'/follow',
 			type: 'POST',
@@ -52,6 +56,10 @@ function followButton(){
 	});
 	
 	$(".btn-unfollow").unbind("click").click(function(){
+		
+		$(this).addClass("hidden");
+		$(this).parent().find(".btn-follow").removeClass("hidden");
+		
 		$.ajax({
 			url: URL+'/unfollow',
 			type: 'POST',
