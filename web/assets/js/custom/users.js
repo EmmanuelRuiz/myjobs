@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	
 	//alert('entro');
@@ -42,9 +41,19 @@ $(document).ready(function(){
 //logica para el boton de follow
 function followButton(){
 	$(".btn-follow").unbind("click").click(function(){
-		alert('hola');
 		$.ajax({
 			url: URL+'/follow',
+			type: 'POST',
+			data: {followed: $(this).attr("data-followed")},
+			success: function(response){
+				console.log(response);
+			}
+		});
+	});
+	
+	$(".btn-unfollow").unbind("click").click(function(){
+		$.ajax({
+			url: URL+'/unfollow',
 			type: 'POST',
 			data: {followed: $(this).attr("data-followed")},
 			success: function(response){
