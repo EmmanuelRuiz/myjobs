@@ -92,8 +92,11 @@ class CompanyController extends Controller{
 			return $this->redirectToRoute('home_companies');
 		} 
 		
+		$opinion = $this->getOpinions($request);
+		
 		return $this->render('AppBundle:Company:home.html.twig', array(
-			'form' => $form->createView()
+			'form' => $form->createView(),
+			'pagination' => $opinion
 		));
 	}
 	
@@ -119,7 +122,7 @@ class CompanyController extends Controller{
 	public function searchAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
 		
-		$search	= $request->query->get("search", null);
+		$search	= trim($request->query->get("search", null));
 		
 		if ($search == null) {
 			return $this->redirect($this->generateURL('home_publication'));
@@ -140,5 +143,50 @@ class CompanyController extends Controller{
 		return $this->render('AppBundle:Company:companies.html.twig', array(
 			'pagination' => $pagination
 		));
+	}
+	
+	
+	public function getOpinions($request){
+		$em = $this->getDoctrine()->getManager();
+		
+		// Obtenemos el usuario logeado
+		$user = $this->getUser();
+		
+		$opinions_repo = $em->getRepository('BackendBundle:Opinion');
+		$following_repo = $em->getRepository('BackendBundle:Following');
+		
+		/*
+		SELECT generalcomment FROM opinions WHERE user_id = 1 OR user_id 
+		IN (SELECT followed FROM following WHERE user = 1 );
+		 */
+		
+		$following = $following_repo->findBy(array(
+			'user' => $user
+		));
+		
+		$following_array = array();
+		foreach($following as $follow){
+			$following_array[] = $follow->getFollowed();
+		}
+		
+		// query comentada arriba
+		$query = $opinions_repo->createQueryBuilder('o')
+				->where('o.user = (:user_id) OR o.user IN (:following)')
+				->setParameter('user_id', $user->getId())
+				->setParameter('following', $following_array)
+				->orderBy('o.id', 'DESC')
+				->getQuery();
+		
+		// obtenemos el elemento de paginacion
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+					$query,
+					$request->query->getInt('page', 1),
+					5
+				);
+		
+		return $pagination;
+		
+		
 	}
 }

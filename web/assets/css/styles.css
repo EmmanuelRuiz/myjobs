@@ -35,8 +35,9 @@ body{
     margin-bottom: 10px;
 }
 
-/* Empresas */
-.user-item .avatar{
+/* Empresas y timeline */
+.user-item .avatar,
+.opinion-item .avatar{
     background: #eee;
     border-radius: 500px;
     width: 75px;
@@ -45,7 +46,8 @@ body{
     float: left;
 }
 
-.user-item .avatar img{
+.user-item .avatar img,
+.opinion-item .avatar img{
     height: 100%;
     text-align: center;
 }

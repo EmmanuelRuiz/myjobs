@@ -4,7 +4,35 @@
         <div id="timeline" class="col-lg-7 box-default  pull-left">
             <h1 class="box-header">Timeline</h1>
             <div class="box-content">
-                PUBLICACIONES LIST
+                {% for opinions in pagination %}
+                    <div class="media">
+                        <div class="media-left opinion-item">
+                          <a href="#">
+                            <div class="avatar">
+                                {% if opinions.user.image == null%}
+                                    <img src="{{ asset('assets/images/default.jpg') }}"/>
+                                {% else %}
+                                    <img src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                {% endif %}
+                            </div>
+                          </a>
+                        </div>
+                            
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                                <span>{{opinions.createdAt|date('d-m-y')}}</span>
+                            </h4>
+                            
+                            <p>{{opinions.generalcomment}}</p>
+                        </div>
+                    </div>
+                    
+                    <hr />
+                {% endfor %}
+                
+                <div class="pagination">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
         </div>
         <div id="user-card" class="col-lg-4 box-default pull-left">
