@@ -11,13 +11,93 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
 
-class CompanyController extends Controller{
+// clases de la entidad opinion
+use BackendBundle\Entity\Opinion;
+use AppBundle\Form\OpinionType;
 
+class CompanyController extends Controller{
+	
+	private $session;
+
+    public function __construct() {
+        $this->session = new Session();
+    }
+	
+	/* Este metodo debe ser colocado en su controlador indicado
+	 * Es para cargar el formulario de la opinion general en donde van las preguntas
+	 */
 	public function indexAction(Request $request){
-		return $this->render('AppBundle:Company:home.html.twig');
+		$em = $this->getDoctrine()->getManager();
+		
+		$user = $this->getUser();
+		
+		//creamos objeto de la entidad
+		$opinion = new Opinion();
+		// cargamos el formulario
+		$form = $this->createForm(OpinionType::class, $opinion);
+		
+		$form->handleRequest($request);
+		if ($form->isSubmitted()) {
+			if ($form->isValid()) {
+				/*//upload image
+				$file = $form['image']->getData();
+				if (!empty($file) && $file != null) {
+					$ext = $file->getExtension();
+					if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
+						$file_name = $user->getId().time().".".$ext;
+						$file->move("uploads/opinins/images", $file_name)
+								
+						$opinion->setImage($file_name);
+					} else {
+						$opinion->setImage(null);
+					}
+				} else {
+					$opinion->setImage(null);
+				}
+				
+				//upload document
+				$doc = $form['document']->getData();
+				if (!empty($doc) && $doc != null) {
+					$ext = $doc->getExtension();
+					if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
+						$file_name = $user->getId().time().".".$ext;
+						$doc->move("uploads/opinins/documents", $file_name)
+								
+						$opinion->setDocument($file_name);
+					} else {
+						$opinion->setDocument(null);
+					}
+				} else {
+					$opinion->setDocument(null);
+				}*/
+				
+				
+				$opinion->setUser($user);
+				$opinion->setCreatedAt(new \DateTime("now"));
+				
+				$em->persist($opinion);
+				$flush = $em->flush();
+				
+				if ($flush == null) {
+					$status = "La publicacion se ha creado correctamente";
+				} else {
+					$status = "Error al añadir la publicacion";
+				}
+				
+			} else {
+				$status = "La publicación no se ha creado";
+			}
+			
+			$this->session->getFlashBag()->add("status", $status);
+			return $this->redirectToRoute('home_companies');
+		} 
+		
+		return $this->render('AppBundle:Company:home.html.twig', array(
+			'form' => $form->createView()
+		));
 	}
 	
-	// metodo para buscar empresas. DEBE ESTAR EN OTRO CONTROLADOR
+	
 	public function companiesAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
 		
@@ -35,7 +115,7 @@ class CompanyController extends Controller{
 		));
 	}
 	
-	// metodo para buscar empresas. DEBE ESTAR EN OTRO CONTROLADOR
+	
 	public function searchAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
 		
