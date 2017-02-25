@@ -1,7 +1,5 @@
 $(document).ready(function(){
 	
-	alert('entro');
-
 	// Instanciamos el objeto IAS
 	var ias = jQuery.ias({
 		container: '#timeline .box-content',
@@ -38,7 +36,22 @@ $(document).ready(function(){
 });
 
 function buttons(){
+	$(".btn-img").unbind("click").click(function(){
+		$(this).parent().find('.pub-image').fadeToggle();
+	});
 	
+	$(".btn-delete-pub").unbind('click').click(function(){
+		
+		//$('.opinion-item').addClass('hidden');
+		
+		$.ajax({
+			url: URL+'/opinion/remove/'+$(this).attr('data-id'),
+			type: 'GET',
+			success: function(response){
+				console.log(response);
+			}
+		});
+	});
 }
 
 

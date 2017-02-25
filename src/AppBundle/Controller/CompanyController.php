@@ -185,8 +185,30 @@ class CompanyController extends Controller{
 					5
 				);
 		
-		return $pagination;
+		return $pagination;	
+	}
+	
+	// metodo para eliminar la opinion
+	public function removeOpinionAction(Request $request, $id){
+		$em = $this->getDoctrine()->getManager();
+		
+		$opinions_repo = $em->getRepository('BackendBundle:Opinion');
+		$opinions = $opinions_repo->find($id);
+		$user = $this->getUser();
+		if ($user->getId() == $opinions->getUser()->getId()) {
+			$em->remove($opinions);
+			$flush = $em->flush();
+
+			if ($flush == null) {
+				$status = "La publicación se ha borrado correctamente";
+			} else {
+				$status = "La publicación no se ha borrado";
+			}
+		} else {
+			$status = "La publicación no se ha borrado";
+		}
 		
 		
+		return new Response($status);
 	}
 }
