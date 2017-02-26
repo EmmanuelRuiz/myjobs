@@ -9,7 +9,7 @@
             <h1 class="box-header">Opiniones</h1>
             <div class="box-content">
                 {% for opinions in pagination %}
-                    <div class="media opinion-item">
+                    <div class=" opinion-item">
                         <div class="media-left ">
                             <a href="#">
                               <div class="avatar">
@@ -40,7 +40,8 @@
                                 
                             </h5>
                             <p>{{opinions.generalcomment}}</p>
-                             
+                            
+                            
                             {#  
                                 Esta condicion es para cuando en los comentarios publiquen imagenes o documentos
                                 Falta agregar a la base de datos el campo document y images.
@@ -50,6 +51,10 @@
                             {#{% if(opinions.document is defined ) and (opinions.document != null) %}
                                 <a href="{{ asset('assets/opinions/documment'~opinions.document)}}" class="btn-doc glyphicon glyphicon-save" aria-hidden="true" target="_blank"></a>
                             {% endif %}#}
+                            
+                            <div class="like">
+                                <span data-id="{{opinions.id}}" class="btn-like glyphicon glyphicon-heart" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Me gusta"></span>
+                            </div>
                              
                         </div>
                         <hr />

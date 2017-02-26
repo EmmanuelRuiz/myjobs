@@ -3,6 +3,11 @@ body{
     background: #eee;
 }
 
+hr{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
 /* Header */
 .navbar-collapse .avatar{
     background: #fff;
@@ -66,8 +71,25 @@ body{
     
 }
 
+.caret{
+    margin-top: -10px;
+}
 .btn-delete-pub:hover{
     cursor: pointer;
+}
+
+.like .btn-like{
+   color: grey;
+   
+}
+
+.like .btn-like:hover{
+   color: red;
+   cursor: pointer;
+}
+
+.like .active{
+    color: red;
 }
 
 /* Home */
