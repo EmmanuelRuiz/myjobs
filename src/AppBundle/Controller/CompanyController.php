@@ -207,8 +207,6 @@ class CompanyController extends Controller{
 		} else {
 			$status = "La publicación no se ha borrado";
 		}
-		
-		
 		return new Response($status);
 	}
 }

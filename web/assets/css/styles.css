@@ -36,12 +36,20 @@ body{
 }
 
 /* Empresas y timeline */
-.user-item .avatar,
-.opinion-item .avatar{
+.user-item .avatar{
     background: #eee;
     border-radius: 500px;
     width: 75px;
     height: 75px;
+    overflow: hidden;
+    float: left;
+}
+
+.opinion-item .avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 35px;
+    height: 35px;
     overflow: hidden;
     float: left;
 }
@@ -56,6 +64,10 @@ body{
     padding: 5px;
     margin-left: 85px;
     
+}
+
+.btn-delete-pub:hover{
+    cursor: pointer;
 }
 
 /* Home */

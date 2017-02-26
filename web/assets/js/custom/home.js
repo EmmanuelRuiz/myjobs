@@ -36,13 +36,15 @@ $(document).ready(function(){
 });
 
 function buttons(){
+	
 	$(".btn-img").unbind("click").click(function(){
 		$(this).parent().find('.pub-image').fadeToggle();
 	});
 	
 	$(".btn-delete-pub").unbind('click').click(function(){
+		//alert(URL+'/opinion/remove/'+$(this).attr('data-id'));
 		
-		//$('.opinion-item').addClass('hidden');
+		$(this).parent().parent().parent().parent().parent().parent().addClass('hidden');
 		
 		$.ajax({
 			url: URL+'/opinion/remove/'+$(this).attr('data-id'),
