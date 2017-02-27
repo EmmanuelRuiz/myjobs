@@ -1,0 +1,4 @@
+like_opinion:
+    path: /like/{id}
+    defaults: { _controller: AppBundle:Like:like, id:null}
+    
