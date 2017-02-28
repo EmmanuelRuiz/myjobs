@@ -209,4 +209,40 @@ class CompanyController extends Controller{
 		}
 		return new Response($status);
 	}
+	
+	// metodo para el perfil de la empresa
+	
+	public function profileAction(Request $request, $tradename = null){
+		$em = $this->getDoctrine()->getManager();
+		
+		if ($tradename != null) {
+			$company_repo = $em->getRepository('BackendBundle:Company');
+			
+			$company = $company_repo->findOneBy(array(
+				'tradename' => $tradename
+			));
+			
+		} else {
+			$company = $this->get('tradename');
+		}
+		
+		if (empty($company) || !is_object($company)) {
+			return $this->redirect($this->generateUrl('home_companies'));
+		}
+		
+		// Obtenemos el usuario logeado
+		$user = $this->getUser();
+		$user_id = $user->getId();
+		$dql = "SELECT o FROM BackendBundle:Opinion o WHERE o.user = $user_id ORDER BY o.id DESC";
+		$query = $em->createQuery($dql);
+		
+		$paginator = $this->get('knp_paginator');
+		$publications = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
+		
+		return $this->render('AppBundle:Company:profile.html.twig', array(
+			'company' => $company,
+			'pagination' => $publications
+		));
+	}
+	
 }

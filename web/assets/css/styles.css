@@ -175,5 +175,24 @@ hr{
     margin-bottom: 10px;
 }
 
+/* Perfiles */
+
+.profile-box{
+    padding: 20px;
+    margin: 0px auto;
+    float: none;
+}
+.profile-box > .avatar{
+    background: #eee;
+    border-radius: 700px;
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.profile-box > .avatar img{
+    height: 100%;
+}
 
 

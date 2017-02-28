@@ -15,3 +15,7 @@ companies_search:
 remove_opinion:
     path: /opinion/remove/{id}
     defaults: { _controller: AppBundle:Company:removeOpinion, id:null }
+    
+company_profile:
+    path: /company/{tradename}
+    defaults: { _controller: AppBundle:Company:profile, tradename:null }
