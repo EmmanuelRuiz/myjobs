@@ -153,3 +153,4 @@ CONSTRAINT fk_image_user FOREIGN KEY(user_id) REFERENCES users(id)
 
 ALTER TABLE `users` ADD `anonimo` VARCHAR(2) NOT NULL AFTER `role`;
 
+/*Tabla actualizada*/
