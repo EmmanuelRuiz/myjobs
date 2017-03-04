@@ -1,4 +1,4 @@
-BackendBundle\Entity\Likes:
+BackendBundle\Entity\Like:
     type: entity
     table: likes
     indexes:
