@@ -154,7 +154,7 @@ CONSTRAINT fk_image_user FOREIGN KEY(user_id) REFERENCES users(id)
 
 ALTER TABLE `users` ADD `anonimo` VARCHAR(2) NOT NULL AFTER `role`;
 
-/* referencia para dar like a opiniones */
+/*referencia para dar like a opiniones*/
 ALTER TABLE `likes` ADD `opinions_id` int(255) AFTER `company`;
 ALTER TABLE likes ADD CONSTRAINT fk_like_opinion FOREIGN KEY (opinions_id) REFERENCES opinions(id);
 
