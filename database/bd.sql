@@ -74,6 +74,7 @@ CREATE TABLE likes(
 id  		int(255) auto_increment not null,
 user  		int(255),
 company 	int(255),
+opinions_id int(255)
 CONSTRAINT pk_likes PRIMARY KEY(id),
 CONSTRAINT fk_likes_users FOREIGN KEY (user) REFERENCES users(id),
 CONSTRAINT fk_likes_company FOREIGN KEY (company) REFERENCES companies(id)
@@ -152,6 +153,12 @@ CONSTRAINT fk_image_user FOREIGN KEY(user_id) REFERENCES users(id)
 
 
 ALTER TABLE `users` ADD `anonimo` VARCHAR(2) NOT NULL AFTER `role`;
+
+/* referencia para dar like a opiniones */
+ALTER TABLE `likes` ADD `opinions_id` int(255) AFTER `company`;
+ALTER TABLE likes ADD CONSTRAINT fk_like_opinion FOREIGN KEY (opinions_id) REFERENCES opinions(id);
+
+
 
 
 

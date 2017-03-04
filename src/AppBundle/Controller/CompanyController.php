@@ -121,7 +121,6 @@ class CompanyController extends Controller{
 	
 	public function searchAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
-		
 		$search	= trim($request->query->get("search", null));
 		
 		if ($search == null) {
@@ -141,7 +140,7 @@ class CompanyController extends Controller{
 		);
 		
 		return $this->render('AppBundle:Company:companies.html.twig', array(
-			'pagination' => $pagination
+			'pagination' => $pagination,
 		));
 	}
 	
