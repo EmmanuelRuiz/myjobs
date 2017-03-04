@@ -1,4 +1,4 @@
-BackendBundle\Entity\Like:
+BackendBundle\Entity\Likes:
     type: entity
     table: likes
     indexes:
@@ -8,6 +8,9 @@ BackendBundle\Entity\Like:
         fk_likes_company:
             columns:
                 - company
+        fk_like_opinion:
+            columns:
+                - opinions_id
     id:
         id:
             type: integer
@@ -18,8 +21,18 @@ BackendBundle\Entity\Like:
             generator:
                 strategy: IDENTITY
     manyToOne:
+        opinions:
+            targetEntity: Opinions
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                opinions_id:
+                    referencedColumnName: id
+            orphanRemoval: false
         company:
-            targetEntity: Company
+            targetEntity: Companies
             cascade: {  }
             fetch: LAZY
             mappedBy: null
@@ -29,7 +42,7 @@ BackendBundle\Entity\Like:
                     referencedColumnName: id
             orphanRemoval: false
         user:
-            targetEntity: User
+            targetEntity: Users
             cascade: {  }
             fetch: LAZY
             mappedBy: null
