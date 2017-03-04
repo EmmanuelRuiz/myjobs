@@ -18,7 +18,7 @@ class LikeController extends Controller{
 	
 	public function likeAction($id = null){
 		
-		/*$user = $this->getUser();
+		$user = $this->getUser();
 		
 		$em = $this->getDoctrine()->getManager();
 		
@@ -29,18 +29,18 @@ class LikeController extends Controller{
 		// Creamo un objeto de tipo Like
 		$like = new Like();
 		$like->setUser($user);
-		$like->setCompany($opinion);
+		$like->setOpinion($opinion);
 		
 		$em->persist($like);
 		$flush = $em->flush();
 		
 		if ($flush == null) {
-			$status = "Te gusta esta publicación";
+			$status = "Te gusta esta opinions";
 		} else {
 			$status = "No se ha podido guardar el me gusta";
 		}
 		
-		return new Response($status);*/
+		return new Response($status);
 	}
 	
 }
