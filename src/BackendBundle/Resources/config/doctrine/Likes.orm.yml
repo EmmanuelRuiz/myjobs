@@ -22,7 +22,7 @@ BackendBundle\Entity\Likes:
                 strategy: IDENTITY
     manyToOne:
         opinions:
-            targetEntity: Opinions
+            targetEntity: Opinion
             cascade: {  }
             fetch: LAZY
             mappedBy: null
@@ -32,7 +32,7 @@ BackendBundle\Entity\Likes:
                     referencedColumnName: id
             orphanRemoval: false
         company:
-            targetEntity: Companies
+            targetEntity: Company
             cascade: {  }
             fetch: LAZY
             mappedBy: null
@@ -42,7 +42,7 @@ BackendBundle\Entity\Likes:
                     referencedColumnName: id
             orphanRemoval: false
         user:
-            targetEntity: Users
+            targetEntity: User
             cascade: {  }
             fetch: LAZY
             mappedBy: null
