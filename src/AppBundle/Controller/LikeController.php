@@ -29,7 +29,7 @@ class LikeController extends Controller{
 		// Creamo un objeto de tipo Like
 		$like = new Like();
 		$like->setUser($user);
-		$like->setOpin	ions($opinion);
+		$like->setOpinions($opinion);
 		
 		$em->persist($like);
 		$flush = $em->flush();
@@ -38,6 +38,31 @@ class LikeController extends Controller{
 			$status = "Te gusta esta opinions";
 		} else {
 			$status = "No se ha podido guardar el me gusta";
+		}
+		
+		return new Response($status);
+	}
+	
+	public function unlikeAction($id = null){
+		
+		$user = $this->getUser();
+		
+		$em = $this->getDoctrine()->getManager();
+		
+		$like_repo = $em->getRepository('BackendBundle:Like');
+		// Buscamos la opinion que estamos dando like
+		$like = $like_repo->findOneBy(array(
+			'user' => $user,
+			'opinions' => $id
+		));
+		
+		$em->remove($like);
+		$flush = $em->flush();
+		
+		if ($flush == null) {
+			$status = "Ya no te gusta";
+		} else {
+			$status = "No se ha podido eliminar el me gusta";
 		}
 		
 		return new Response($status);

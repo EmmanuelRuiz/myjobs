@@ -53,7 +53,27 @@
                             {% endif %}#}
                             
                             <div class="like">
-                                <span data-id="{{opinions.id}}" class="btn-like glyphicon glyphicon-heart" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Me gusta"></span>
+                                <span data-id="{{opinions.id}}" class="
+                                      {% if app.user|liked(opinions) == true%}
+                                          hidden
+                                      {% endif %}
+                                      btn-like glyphicon glyphicon-heart" 
+                                      aria-hidden="true" 
+                                      data-toggle="tooltip" 
+                                      data-placement="left" 
+                                      title="Me gusta">
+                                </span>
+                                
+                                <span data-id="{{opinions.id}}" class="
+                                      {% if app.user|liked(opinions) == false%}
+                                          hidden
+                                      {% endif %}
+                                      btn-unlike active glyphicon glyphicon-heart" 
+                                      aria-hidden="true" 
+                                      data-toggle="tooltip" 
+                                      data-placement="left" 
+                                      title="Ya no me gusta">
+                                </span>
                             </div>
                              
                         </div>
