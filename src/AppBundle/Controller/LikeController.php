@@ -29,7 +29,7 @@ class LikeController extends Controller{
 		// Creamo un objeto de tipo Like
 		$like = new Like();
 		$like->setUser($user);
-		$like->setOpinion($opinion);
+		$like->setOpin	ions($opinion);
 		
 		$em->persist($like);
 		$flush = $em->flush();
