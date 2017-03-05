@@ -80,4 +80,33 @@ class Like
     {
         return $this->user;
     }
+    /**
+     * @var \BackendBundle\Entity\Opinion
+     */
+    private $opinions;
+
+
+    /**
+     * Set opinions
+     *
+     * @param \BackendBundle\Entity\Opinion $opinions
+     *
+     * @return Like
+     */
+    public function setOpinions(\BackendBundle\Entity\Opinion $opinions = null)
+    {
+        $this->opinions = $opinions;
+
+        return $this;
+    }
+
+    /**
+     * Get opinions
+     *
+     * @return \BackendBundle\Entity\Opinion
+     */
+    public function getOpinions()
+    {
+        return $this->opinions;
+    }
 }
