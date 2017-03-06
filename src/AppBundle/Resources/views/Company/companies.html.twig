@@ -29,7 +29,7 @@
                         
                         <div class="user-item-content">
                             {# enlace al perfil de la empresa #}
-                            <p><a href="">{{ company.businessname }}</a> | {{ company.businesssector}}</p>
+                            <p><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.businessname }}</a> | {{ company.businesssector}}</p>
                             <p>{{ company.description }}</p>
                             
                         </div>

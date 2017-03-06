@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
 use BackendBundle\Entity\Opinion;
+use AppBundle\Form\OpinionType;
 
 class CompanyController extends Controller{
 	

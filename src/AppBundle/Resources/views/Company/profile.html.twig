@@ -1,23 +1,62 @@
 {% extends "AppBundle:Layouts:layout.html.twig"%}
 {% block javascripts %}
     {{parent()}}
-    
+    <script src="{{ asset('assets/js/custom/profile.js') }}"></script>
 {% endblock javascripts %}
 {% block content %}
     {# con esto obtenemos el del usuario app.user.name #}
-    <div class="box-content">
+    <div class="col-lg-10 box-default profile-box">
         <div class="avatar">
             {% if company.logo == null%}
                 <img src="{{ asset('assets/images/company-logo.png') }}"/>
+                
             {% else %}
                 <img src="{{ asset('uploads/users/'~company.logo) }}"/>
             {% endif %}
         </div>
         
+        <div class="company-name">
+            <h2>{{ company.tradename }} | {{ company.businesssector}}</h2>
+            <p>{{ company.description }}</p>
+        </div>
+        
+        <div id="company-stats">
+            
+            {#set user_stats = app.user|user_stats#}
+            
+            <div class="following-data">
+                <a href="#">
+                    <span class="label-stat">Seguidores</span>
+                    <span class="number-stat">0</span>
+                </a>
+            </div>
+            <div class="following-data">
+                <a href="#">
+                    <span class="label-stat">Opiniones</span>
+                    <span class="number-stat">0</span>
+                </a>
+            </div>
+            
+            <div class="following-data">
+                <a href="#">
+                    <span class="label-stat">Me gusta</span>
+                    <span class="number-stat">0</span>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+            
+        <div class="manager-name">
+            <h4>Encargado: </h4>
+            <p>Nombre: {{ company.contacname }}</p>
+            <p>Cargo: {{ company.position }}</p>
+            <p>Contacto: {{ company.businessemail }}</p>
+        </div>
+        
        
         
         {% for opinions in pagination %}
-            <div class=" opinion-item">
+            <div class="opinion-item">
                 <div class="media-left ">
                     <a href="#">
                         <div class="avatar">
