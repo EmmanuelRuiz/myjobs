@@ -189,6 +189,8 @@ class CompanyController extends Controller{
 	
 	// metodo para eliminar la opinion
 	public function removeOpinionAction(Request $request, $id){
+		
+		
 		$em = $this->getDoctrine()->getManager();
 		
 		$opinions_repo = $em->getRepository('BackendBundle:Opinion');
@@ -210,9 +212,43 @@ class CompanyController extends Controller{
 	}
 	
 	// metodo para el perfil de la empresa
-	public function profileAction(Request $request, $tradename = null){
-	
+	public function profileAction(Request $request, $id = null){
 		
+		$em = $this->getDoctrine()->getManager();
+		
+		$opinions_repo = $em->getRepository('BackendBundle:Opinion');
+				
+		
+		if ($id != null) {
+			$company_repo = $em->getRepository('BackendBundle:Company');		
+			$company = $company_repo->findOneBy(array(
+				'id' => $id
+			));
+		} else {
+			$company = $this->getUser();
+		}
+		
+		if (empty($company) || !is_object($company)) {
+			return $this->redirect($this->generateUrl('home_companies'));
+		}
+		
+		
+		// en esta query se debe sacar las opiniones que se le hayan hecho unicamente a la compañia
+		$company_id = $company->getId();
+		$dql = "SELECT * FROM BackendBundle:Opinion o INNER JOIN BackendBundle:Company c ON o.$company_id = c.$company_id";
+		$query = $em->createQuery($dql);
+		
+		$paginator = $this->get('knp_paginator');
+		$opinions = $paginator->paginate(array(
+			$query,
+			$request->query->getInt('page', 1), 5
+		));
+		
+		return $this->render('AppBundle:Company:profile.html.twig', array(
+			'company' => $company,
+			'opinions' => $opinions,
+			'pagination' => $opinions
+		));
 	}
 	
 }

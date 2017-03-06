@@ -15,4 +15,8 @@ remove_opinion:
     path: /opinion/remove/{id}
     defaults: { _controller: AppBundle:Company:removeOpinion, id:null }
     
+company_profile:
+    path: /company/{id}
+    defaults: { _controller: AppBundle:Company:profile, id:null }
+    
 
