@@ -10,10 +10,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
-
-// clases de la entidad opinion
 use BackendBundle\Entity\Opinion;
-use AppBundle\Form\OpinionType;
 
 class CompanyController extends Controller{
 	
@@ -212,22 +209,23 @@ class CompanyController extends Controller{
 	}
 	
 	// metodo para el perfil de la empresa
-	public function profileAction(Request $request, $id = null){
-		
+	public function profileAction(Request $request, $id = null){	
 		$em = $this->getDoctrine()->getManager();
 		
-		$opinions_repo = $em->getRepository('BackendBundle:Opinion');
-				
-		
+		// Si el ID no es nulo
 		if ($id != null) {
-			$company_repo = $em->getRepository('BackendBundle:Company');		
+			// Cargamos el repositorio de la empresa
+			$company_repo = $em->getRepository('BackendBundle:Company');
+			// buscamos por la ID
 			$company = $company_repo->findOneBy(array(
 				'id' => $id
 			));
-		} else {
-			$company = $this->getUser();
+		} else { // en caso de no obtener nulo
+			//obtenemos el ID de la empresa
+			$company = $this->getId();
 		}
 		
+		// si la empresa viene vacia o no es un objeto
 		if (empty($company) || !is_object($company)) {
 			return $this->redirect($this->generateUrl('home_companies'));
 		}
@@ -235,18 +233,15 @@ class CompanyController extends Controller{
 		
 		// en esta query se debe sacar las opiniones que se le hayan hecho unicamente a la compañia
 		$company_id = $company->getId();
-		$dql = "SELECT * FROM BackendBundle:Opinion o INNER JOIN BackendBundle:Company c ON o.$company_id = c.$company_id";
+		$dql = "SELECT o FROM BackendBundle:Opinion o WHERE o.company = $company_id ORDER BY o.id DESC";
 		$query = $em->createQuery($dql);
 		
 		$paginator = $this->get('knp_paginator');
-		$opinions = $paginator->paginate(array(
-			$query,
-			$request->query->getInt('page', 1), 5
-		));
+		$opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 		
 		return $this->render('AppBundle:Company:profile.html.twig', array(
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar				
 			'company' => $company,
-			'opinions' => $opinions,
 			'pagination' => $opinions
 		));
 	}
