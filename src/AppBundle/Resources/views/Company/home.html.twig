@@ -108,13 +108,13 @@
             {% set user_stats = app.user|user_stats%}
             
             <div class="following-data">
-                <a href="#">
+                <a href="{{ path('following_users', {'email':app.user.email})}}">
                     <span class="label-stat">Siguiendo</span>
                     <span class="number-stat">{{ user_stats.following}}</span>
                 </a>
             </div>
             <div class="following-data">
-                <a href="#">
+                <a href="{{ path('followed_users', {'email':app.user.email})}}">
                     <span class="label-stat">Seguidores</span>
                     <span class="number-stat">{{user_stats.followers}}</span>
                 </a>

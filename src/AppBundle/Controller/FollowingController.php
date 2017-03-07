@@ -77,7 +77,82 @@ class FollowingController extends Controller {
 		}
 		
 		return new Response($status);
+	}
+	
+	public function followingAction(Request $request, $email = null){
+		$em = $this->getDoctrine()->getManager();
 		
+		// Si el ID no es nulo
+		if ($email != null) {
+			// Cargamos el repositorio de la empresa
+			$user_repo = $em->getRepository('BackendBundle:User');
+			// buscamos por la ID
+			$user = $user_repo->findOneBy(array(
+				'email' => $email
+			));
+		} else { // en caso de no obtener nulo
+			//obtenemos el ID de la empresa
+			$user = $this->getUser();
+		}
+		
+		// si la empresa viene vacia o no es un objeto
+		if (empty($user) || !is_object($user)) {
+			return $this->redirect($this->generateUrl('home_companies'));
+		}
+		
+		
+		// en esta query se debe sacar las opiniones que se le hayan hecho unicamente a la compañia
+		$user_id = $user->getId();
+		$dql = "SELECT f FROM BackendBundle:Following f WHERE f.user = $user_id ORDER BY f.id DESC";
+		$query = $em->createQuery($dql);
+		
+		$paginator = $this->get('knp_paginator');
+		$following = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
+		
+		return $this->render('AppBundle:Following:following.html.twig', array(
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar		
+			'type' => 'following',
+			'profile_user' => $user,
+			'pagination' => $following
+		));	
+	}
+	
+	public function followedAction(Request $request, $email = null){
+		$em = $this->getDoctrine()->getManager();
+		
+		// Si el ID no es nulo
+		if ($email != null) {
+			// Cargamos el repositorio de la empresa
+			$user_repo = $em->getRepository('BackendBundle:User');
+			// buscamos por la ID
+			$user = $user_repo->findOneBy(array(
+				'email' => $email
+			));
+		} else { // en caso de no obtener nulo
+			//obtenemos el ID de la empresa
+			$user = $this->getUser();
+		}
+		
+		// si la empresa viene vacia o no es un objeto
+		if (empty($user) || !is_object($user)) {
+			return $this->redirect($this->generateUrl('home_companies'));
+		}
+		
+		
+		// en esta query se debe sacar las opiniones que se le hayan hecho unicamente a la compañia
+		$user_id = $user->getId();
+		$dql = "SELECT f FROM BackendBundle:Following f WHERE f.followed = $user_id ORDER BY f.id DESC";
+		$query = $em->createQuery($dql);
+		
+		$paginator = $this->get('knp_paginator');
+		$followed = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
+		
+		return $this->render('AppBundle:Following:following.html.twig', array(
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar		
+			'type' => 'followed',
+			'profile_user' => $user,
+			'pagination' => $followed
+		));	
 	}
     
 }

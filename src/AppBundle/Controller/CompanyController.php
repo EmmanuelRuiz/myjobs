@@ -247,4 +247,6 @@ class CompanyController extends Controller{
 		));
 	}
 	
+	
+	
 }
