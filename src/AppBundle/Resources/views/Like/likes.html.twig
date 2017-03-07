@@ -5,10 +5,20 @@
 {% endblock javascripts %}
 {% block content %}
     <div class="container">
-        <div id="timeline" class="col-lg-7 box-default pull-left">
-            <h1 class="box-header">Opiniones</h1>
+        <div id="timeline" class="col-lg-12 box-default pull-left">
+            <h1 class="box-header">Publicaciones que le gustan a {{ user.name }}</h1>
+            
+            <div class="count">
+                <span class="label label-primary">
+                    Total de opiniones que te gustan: {{pagination.getTotalItemCount}}
+                </span>
+                
+            </div>
+            <br/>
+            
             <div class="box-content">
-                {% for opinions in pagination %}
+                {% for like in pagination %}
+                    {% set opinions = like.opinions %}
                     <div class=" opinion-item">
                         <div class="media-left ">
                             <a href="#">
@@ -86,58 +96,6 @@
                     {{ knp_pagination_render(pagination) }}
                 </div>
             </div>
-        </div>
-        <div id="user-card" class="col-lg-4 box-default pull-left">
-            <div class="avatar">
-                {% if app.user.image == null%}
-                    <img src="{{ asset('assets/images/default.jpg') }}"/>
-                {% else %}
-                    <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
-                {% endif %}
-            </div>
-            
-            <div class="name-surname">
-                <a href="#">{{ app.user.name }} {{ app.user.plastname }}</a>
-                <div class="clearfix"></div>
-                <span class="email">
-                    {{ app.user.email }}
-                </span>
-            </div>
-            <div class="clearfix"></div>
-            
-            {% set user_stats = app.user|user_stats%}
-            
-            <div class="following-data">
-                <a href="{{ path('following_users', {'email':app.user.email})}}">
-                    <span class="label-stat">Siguiendo</span>
-                    <span class="number-stat">{{ user_stats.following}}</span>
-                </a>
-            </div>
-            <div class="following-data">
-                <a href="{{ path('followed_users', {'email':app.user.email})}}">
-                    <span class="label-stat">Seguidores</span>
-                    <span class="number-stat">{{user_stats.followers}}</span>
-                </a>
-            </div>
-            <div class="following-data">
-                <a href="#">
-                    <span class="label-stat">Opiniones</span>
-                    <span class="number-stat">{{user_stats.opinions}}</span>
-                </a>
-            </div>
-            
-            <div class="following-data">
-                <a href="{{ path('user_likes', {'email':app.user.email})}}">
-                    <span class="label-stat">Me gusta</span>
-                    <span class="number-stat">{{user_stats.likes}}</span>
-                </a>
-            </div>
-        </div>
-                
-        <div id="new-opinion" class="col-lg-4 box-default pull-left">
-            <h1 class="box-header">Crear publicacion</h1>
-            {{form_start(form, {action: '', 'method': 'POST' })}}
-            {{form_end(form)}}
         </div>
     </div>
 {% endblock %}

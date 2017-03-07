@@ -68,4 +68,41 @@ class LikeController extends Controller{
 		return new Response($status);
 	}
 	
+	public function likesAction(Request $request, $email = null){
+		$em = $this->getDoctrine()->getManager();
+		
+		// Si el ID no es nulo
+		if ($email != null) {
+			// Cargamos el repositorio de la empresa
+			$user_repo = $em->getRepository('BackendBundle:User');
+			// buscamos por la ID
+			$user = $user_repo->findOneBy(array(
+				'email' => $email
+			));
+		} else { // en caso de no obtener nulo
+			//obtenemos el ID de la empresa
+			$user = $this->getUser();
+		}
+		
+		// si la empresa viene vacia o no es un objeto
+		if (empty($user) || !is_object($user)) {
+			return $this->redirect($this->generateUrl('home_companies'));
+		}
+		
+		
+		// en esta query se debe sacar las opiniones que se le hayan hecho unicamente a la compañia
+		$user_id = $user->getId();
+		$dql = "SELECT l FROM BackendBundle:Like l WHERE l.user = $user_id ORDER BY l.id DESC";
+		$query = $em->createQuery($dql);
+		
+		$paginator = $this->get('knp_paginator');
+		$likes = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
+		
+		return $this->render('AppBundle:Like:likes.html.twig', array(
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar		
+			'user' => $user,
+			'pagination' => $likes
+		));	
+	}
+	
 }

@@ -6,4 +6,9 @@ unlike_opinion:
     path: /unlike/{id}
     defaults: { _controller: AppBundle:Like:unlike, id:null}
     
+user_likes:
+    path: /likes/{email}
+    defaults: { _controller: AppBundle:Like:likes, email:null }
+    
+    
     
