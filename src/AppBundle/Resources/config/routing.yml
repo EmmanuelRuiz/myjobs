@@ -17,3 +17,4 @@ app_like:
 app_homepage:
     path: /
     defaults: { _controller: AppBundle:User:login }
+    
