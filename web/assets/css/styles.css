@@ -1,150 +1,160 @@
-/*Generales*/
-body{
-    background: #eee;
+html,
+body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
-hr{
-    margin-top: 10px;
-    margin-bottom: 15px;
+/* general */
+.how-we-work-for-you-section,
+.companies-from-myjobsadvisor,
+.recent-opinion{
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
-/* Header */
-.navbar-collapse .avatar{
-    background: #fff;
-    border-radius: 500px;
-    width: 30px;
-    height: 30px;
-    overflow: hidden;
-    float: left;
-    margin-right: 12px;
-    margin-top: -5px;
+
+/* navbar */
+.navbar-default {
+  background-color: transparent;
+  border-color: transparent;
 }
 
-.navbar-collapse .avatar img{
-    height: 100%;
-    text-align: center;
+.navbar-default .navbar-brand{
+  float: left;
+  height: 50px;
+  padding: 0;
+  font-size: 18px;
+  line-height: 20px;
 }
 
-/*Registro*/
-.box-form,
-.box-default{
-    background: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    padding-top: 0px;
-    margin: 0px auto;
-    float: none;
+.navbar-default .navbar-right>li>a{
+  color: #fff;
 }
 
-.box-form input{
+.topnav{
+  padding-top: 35px;
+}
+
+.navbar-default-register-companie{
+  background-color: white;
+  height: 80px;
+}
+
+.btn-login,
+.btn-register{
+  margin-top: 10px;
+}
+
+/* welcome-header */
+
+.welcome-header {
+  background-image: url("../images/myjobsadvisor-welcome-picture.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+}
+
+.intro-message{
+  margin-top: 13%;
+  margin-bottom: 20%;
+  color: #f8f8f8;
+}
+
+.intro-message h1{
+  font-size: 65px;
+  font-weight:700;
+}
+
+.search-input,
+.search-btn{
+  width: 60px;
+  height: 45px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.navbar-form .form-control {
+  width: 600px;;
+}
+
+.navbar-form {
+  margin-left: 230px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
+}
+
+/* register companie*/
+.register-header{
+  background-color: #eee;
+  height: 700px;
+}
+
+/* login */
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
     margin-bottom: 10px;
 }
-
-/* Empresas y timeline */
-.user-item .avatar{
-    background: #eee;
-    border-radius: 500px;
-    width: 75px;
-    height: 75px;
-    overflow: hidden;
-    float: left;
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
 }
 
-.opinion-item .avatar{
-    background: #eee;
-    border-radius: 500px;
-    width: 35px;
-    height: 35px;
-    overflow: hidden;
-    float: left;
+
+/* how we work section */
+
+/* footer */
+footer{
+  background-color: grey;
+  color: white;
+  padding-top: 2%;
+  padding-bottom: 1%;
 }
 
-.user-item .avatar img,
-.opinion-item .avatar img{
-    height: 100%;
-    text-align: center;
+/* profile user */
+.profile-user-header{
+  background-color: #eee;
+  height: 350px;
 }
-
-.user-item .user-item-content{
-    padding: 5px;
-    margin-left: 85px;
-    
-}
-
-.caret{
-    margin-top: -10px;
-}
-.btn-delete-pub:hover{
-    cursor: pointer;
-}
-
-/* likes */
-
-.like .btn-like{
-   color: grey;
-   
-}
-
-.like .btn-like:hover{
-   color: red;
-   cursor: pointer;
-}
-
-.like .active{
-    color: red;
-}
-
-/* Home */
-
-#timeline{
-    margin-right: 20px;
-    min-height: 750px;
-    padding-bottom: 20px;
-}
-
-#user-card{
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-#user-card .avatar{
-    background: #eee;
-    border-radius: 500px;
-    width: 75px;
-    height: 75px;
-    overflow: hidden;
-    float: left
-}
-
-#user-card .avatar img{
-    height: 100%;
-    text-align: center;
-}
-
-#user-card .avatar img.default{
-    opacity: 0.5;
-}
-#user-card .name-surname{
-    float: left;
-    font-size: 20px;
-    padding: 10px;
-}
-
-#user-card .name-surname a{
-    color: black;
-}
-
-#user-card .email{
-    opacity: 0.5;
-    font-size: 15px;
-}
-
 #user-card .following-data{
-    width: 25%;
+    width: 15%;
     float: left;
     text-align: center;
-    border-top: 1px solid #ccc;
-    padding: 5px;
     margin-top: 10px;
 }
 
@@ -166,71 +176,28 @@ hr{
     font-weight: bold;
 }
 
-.box-header{
-    border-bottom: 1px solid #ccc;
-    padding: 10px;
-    padding-top: 0px;
-    font-size: 25px;
+.opinions-section{
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
-#new-opinion textarea{
-    margin-bottom: 10px;
-}
+/* profile company */
 
-/* Perfiles */
-
-.profile-box{
-    padding: 20px;
-    margin: 0px auto;
-    float: none;
-}
-.profile-box > .avatar{
-    background: #eee;
-    border-radius: 700px;
-    width: 180px;
-    height: 180px;
-    overflow: hidden;
-    margin: 0px auto;
-}
-
-.profile-box > .avatar img{
-    height: 100%;
-}
-
-.profile-box .company-name{
-    margin: 0px auto;
-    text-align: center;
-}
-
-.profile-box #company-stats .following-data{
-    float: left;
-}
-.profile-box #company-stats{
-    margin: 0px auto;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    width: 35%;
-    text-align: center;
-    padding-top: 20px;
-}
-.profile-box #company-stats a{
-    color: #444;
-    
-}
-
-.profile-box #company-stats .label-stat{
-    display: block;
-    font-size: 18px;
-    margin-right: 20px;
-    margin-left: 20px;
-    text-align: center;
-}
-
-.profile-box #company-stats .number-stat{
-    font-weight: bold;
-    
+.modal-body span{
+  font-size: 20px;
+  color: blue;
 }
 
 
+/* responsive para login */
+
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}

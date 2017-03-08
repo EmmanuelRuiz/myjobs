@@ -1,0 +1,236 @@
+/*Generales*/
+body{
+    background: #eee;
+}
+
+hr{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* Header */
+.navbar-collapse .avatar{
+    background: #fff;
+    border-radius: 500px;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    float: left;
+    margin-right: 12px;
+    margin-top: -5px;
+}
+
+.navbar-collapse .avatar img{
+    height: 100%;
+    text-align: center;
+}
+
+/*Registro*/
+.box-form,
+.box-default{
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    padding-top: 0px;
+    margin: 0px auto;
+    float: none;
+}
+
+.box-form input{
+    margin-bottom: 10px;
+}
+
+/* Empresas y timeline */
+.user-item .avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    float: left;
+}
+
+.opinion-item .avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    float: left;
+}
+
+.user-item .avatar img,
+.opinion-item .avatar img{
+    height: 100%;
+    text-align: center;
+}
+
+.user-item .user-item-content{
+    padding: 5px;
+    margin-left: 85px;
+    
+}
+
+.caret{
+    margin-top: -10px;
+}
+.btn-delete-pub:hover{
+    cursor: pointer;
+}
+
+/* likes */
+
+.like .btn-like{
+   color: grey;
+   
+}
+
+.like .btn-like:hover{
+   color: red;
+   cursor: pointer;
+}
+
+.like .active{
+    color: red;
+}
+
+/* Home */
+
+#timeline{
+    margin-right: 20px;
+    min-height: 750px;
+    padding-bottom: 20px;
+}
+
+#user-card{
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#user-card .avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    float: left
+}
+
+#user-card .avatar img{
+    height: 100%;
+    text-align: center;
+}
+
+#user-card .avatar img.default{
+    opacity: 0.5;
+}
+#user-card .name-surname{
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#user-card .name-surname a{
+    color: black;
+}
+
+#user-card .email{
+    opacity: 0.5;
+    font-size: 15px;
+}
+
+#user-card .following-data{
+    width: 25%;
+    float: left;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+#user-card .following-data a{
+    color: #444;
+}
+#user-card .following-data a:hover{
+    color: black;
+    text-decoration: none;
+}
+
+#user-card .following-data .label-stat{
+    display: block;
+}
+
+#user-card .following-data .number-stat{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.box-header{
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    padding-top: 0px;
+    font-size: 25px;
+}
+
+#new-opinion textarea{
+    margin-bottom: 10px;
+}
+
+/* Perfiles */
+
+.profile-box{
+    padding: 20px;
+    margin: 0px auto;
+    float: none;
+}
+.profile-box > .avatar{
+    background: #eee;
+    border-radius: 700px;
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.profile-box > .avatar img{
+    height: 100%;
+}
+
+.profile-box .company-name{
+    margin: 0px auto;
+    text-align: center;
+}
+
+.profile-box #company-stats .following-data{
+    float: left;
+}
+.profile-box #company-stats{
+    margin: 0px auto;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 35%;
+    text-align: center;
+    padding-top: 20px;
+}
+.profile-box #company-stats a{
+    color: #444;
+    
+}
+
+.profile-box #company-stats .label-stat{
+    display: block;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.profile-box #company-stats .number-stat{
+    font-weight: bold;
+    
+}
+
+
