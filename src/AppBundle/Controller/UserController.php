@@ -29,7 +29,7 @@ class UserController extends Controller {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('AppBundle:User:login.html.twig', array(
+        return $this->render('AppBundle:User:home.html.twig', array(
                     'last_username' => $lastUsername,
                     'error' => $error
         ));
