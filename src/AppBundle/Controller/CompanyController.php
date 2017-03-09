@@ -92,7 +92,7 @@ class CompanyController extends Controller{
 		
 		$opinion = $this->getOpinions($request);
 		
-		return $this->render('AppBundle:Company:home.html.twig', array(
+		return $this->render('AppBundle:User:home.html.twig', array(
 			'form' => $form->createView(),
 			'pagination' => $opinion
 		));
