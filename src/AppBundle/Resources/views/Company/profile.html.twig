@@ -1,4 +1,4 @@
-{% extends "AppBundle:Layouts:layout.html.twig"%}
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 {% block javascripts %}
     {{parent()}}
     <script src="{{ asset('assets/js/custom/profile.js') }}"></script>
@@ -71,17 +71,16 @@
 
                 <div class="media-body">
                     <h5 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
-                        {% if(opinions.user.id is defined) and (opinions.user.id == app.user.id) %}
+                        
                             <div class="btn-group pull-right">
                                 <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
-
                                 </ul>
                             </div>
-                        {% endif %}
+                        
 
                         <span class="pull-right">{{opinions.createdAt|long_time}}</span>
 
@@ -100,17 +99,24 @@
                     {% endif %}#}
 
                     <div class="like">
+                        {% if app.user == null%}
+                        
+                        {% else %}
                         <span data-id="{{opinions.id}}" class="
-                              {% if app.user|liked(opinions) == true%}
-                                          hidden
-                              {% endif %}
-                                      btn-like glyphicon glyphicon-heart" 
-                              aria-hidden="true" 
-                              data-toggle="tooltip" 
-                              data-placement="left" 
-                              title="Me gusta">
+                            {% if app.user|liked(opinions) == true%}
+                                        hidden
+                            {% endif %}
+                                    btn-like glyphicon glyphicon-heart" 
+                            aria-hidden="true" 
+                            data-toggle="tooltip" 
+                            data-placement="left" 
+                            title="Me gusta">
                         </span>
-
+                        {% endif %}
+                        
+                        {% if app.user == null%}
+                        
+                        {% else %}    
                         <span data-id="{{opinions.id}}" class="
                               {% if app.user|liked(opinions) == false%}
                                           hidden
@@ -121,6 +127,7 @@
                               data-placement="left" 
                               title="Ya no me gusta">
                         </span>
+                        {% endif %}
                     </div>
 
                 </div>

@@ -1,310 +1,106 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>{% block title %} MyJobsAdvisor | Sitio Oficial {%endblock%}</title>
-
-    {% block stylesheet %}
-        <!-- estilos css -->
-        <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
-        <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
-        <link href="{{ asset('assets/css/styles1.css')}}" type="text/css" rel="stylesheet">
-    {%endblock%}
-
-    {% block fonts %}
-        <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
-    {%endblock%}
+{% extends "AppBundle:Layouts:layout.html.twig"%}
 
     {% block javascripts %}
-        <script type="text/javascript">
-            var URL = "{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/app_dev.php";
-        </script>
-        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+        {{ parent() }}
+         <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
     {% endblock %}
-</head>
-<body>
-    <header class="welcome-header">
-        <!-- Navigation -->
-        <nav class="navbar navbar-default topnav" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if app.user == null %}
-                        <li><a href="">Inicio</a></li>
-                        <li><a href="#categorias">Categorias</a></li>
-                        <li><a href="#contact">Contacto</a></li>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <button type="button" class="btn btn-default dropdown-toggle btn-login" data-toggle="dropdown">Iniciar sesion</button>
-                                    <ul id="login-dp" class="dropdown-menu">
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    Entrar con
-                                                    <div class="social-buttons">
-                                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                                                    </div>
-                                                     o ingresa tus datos
-                                                    <br />
-                                                    <form action="{{path('login_check')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="inputEmail">Correo electronico</label>
-                                                            <input type="email" id="username" name="_username"  class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="inputPassword">Contraseña</label>
-                                                            <input type="password" id="password" name="_password" class="form-control">
-                                                            <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Recuerdame
-                                                            </label>
-                                                        </div>
-                                                     </form>
-                                                </div>
-                                                <div class="bottom text-center">
-                                                    ¿No tienes una cuenta? <a href="{{path("register")}}"><b>Registrate</b></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        
                             
-                        {% else %}
-                        <li>
-                            <a href="{{path("app_homepage")}}" >
-                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
-                            </a>
-                        </li>
-                        <li><a href="#categorias">Categorias</a></li>
-                        <li>
-                            <a href="{{path("companies_list")}}" >Empresas</a>
-                        </li>
-                        <li>
-                            <a href="{{path("user_list")}}" >Usuarios</a>
-                        </li>
-                        {% endif%}
-                    </ul>
-                        
-                    {% if app.user != null %}
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <div class="avatar">
-                                    {% if app.user.image == null%}
-                                        <img src="{{ asset('assets/images/default.jpg') }}"/>
-                                    {% else %}
-                                        <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
-                                    {% endif %}
-                                </div>
+    {% block content %}
+    <section class="how-we-work-for-you-section">
+        <div class="container">
+            <div class="col-lg-12 text-center">
+                <h4>Nuestro proceso</h4>
+                <h1>¿Cómo trabajamos para ti?</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <h4>Aqui va un punto</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <h4>Aqui va un punto</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <h4>Aqui va un punto</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
+            </div>
+        </div>
+    </section><hr>
 
-                                {{app.user.name}} {{app.user.plastname}}
-                                <span class="caret"></span> 
-                            </a> 
-                            <ul class="dropdown-menu">
-                                <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Mi perfil</a></li>
-                                <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Mis datos</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{path('logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
-                                <li><a href=""><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbspAyuda</a></li>
-                            </ul>
-                        </li>   
-                    </ul>
-                    {% endif %} 
-                </div>
-            </div>         
-        </nav>
-                
+    <section class="companies-from-myjobsadvisor">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message text-center">
-                        <h1>Bienvenido</h1>
-                        <h4>Encuentra opiniones de las empresas en Playa del Carmen y el mundo</h4>
-                            <form action="{{ path('companies_search') }}" class="navbar-form navbar-left">
-                                <div class="form-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar empresa..." name="search" />
-
-                                </div>
-                                <button type="submit" class="btn btn-default search-btn">
-                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                </button>
-                            </form>
-                    </div>
+                <div class="col-lg-12 text-center">
+                  <h4>Empresas</h4>
+                  <h1>Algunas empresas registradas en MyJobsAdvisor</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
+                </div>
+                <div class="col-lg-2">
+                    <a href="#" class="thumbnail">
+                        <img src="img/company-logo.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="#" class="thumbnail">
+                        <img src="img/company-logo.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="#" class="thumbnail">
+                        <img src="img/company-logo.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="#" class="thumbnail">
+                        <img src="img/company-logo.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="#" class="thumbnail">
+                        <img src="img/company-logo.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="#" class="thumbnail">
+                        <img src="img/company-logo.png" alt="...">
+                    </a>
                 </div>
             </div>
         </div>
-    </header>
-                            
-    {% block content %}
-        <section class="how-we-work-for-you-section">
-            <div class="container">
-                <div class="col-lg-12 text-center">
-                    <h4>Nuestro proceso</h4>
-                    <h1>¿Cómo trabajamos para ti?</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <h4>Aqui va un punto</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <h4>Aqui va un punto</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <h4>Aqui va un punto</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
-                </div>
-            </div>
-        </section><hr>
+    </section><hr>
 
-        <section class="companies-from-myjobsadvisor">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                      <h4>Empresas</h4>
-                      <h1>Algunas empresas registradas en MyJobsAdvisor</h1>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
-                    </div>
-                    <div class="col-lg-2">
-                        <a href="#" class="thumbnail">
-                            <img src="img/company-logo.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a href="#" class="thumbnail">
-                            <img src="img/company-logo.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a href="#" class="thumbnail">
-                            <img src="img/company-logo.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a href="#" class="thumbnail">
-                            <img src="img/company-logo.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a href="#" class="thumbnail">
-                            <img src="img/company-logo.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a href="#" class="thumbnail">
-                            <img src="img/company-logo.png" alt="...">
-                        </a>
-                    </div>
-                </div>
+    <section class="recent-opinion">
+        <div class="container">
+            <div class="col-lg-12 text-center">
+                <h4>Opiniones</h4>
+                <h1>Se parte de cientos de opiniones</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
             </div>
-        </section><hr>
-
-        <section class="recent-opinion">
-            <div class="container">
-                <div class="col-lg-12 text-center">
-                    <h4>Opiniones</h4>
-                    <h1>Se parte de cientos de opiniones</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
-                </div>
-                <div class="col-lg-8">
-                    <table class="table table-hover">
-                        <tr>
-                            <th>Imagen</th>
-                            <th>Empresa</th>
-                            <th>Opinado por</th>
-                            <th>Cantidad de opiniones</th>
-                        </tr>
-                        <tr>
-                            <td><img src="img/company-logo.png" class="img-responsive" width="50" alt=""></td>
-                            <td>Hotel Vidanta SA de CV</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td><img src="img/company-logo.png" class="img-responsive" width="50" alt=""></td>
-                            <td>Liverpool</td>
-                            <td>Jackson</td>
-                            <td>94</td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="col-lg-8">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Empresa</th>
+                        <th>Opinado por</th>
+                        <th>Cantidad de opiniones</th>
+                    </tr>
+                    <tr>
+                        <td><img src="img/company-logo.png" class="img-responsive" width="50" alt=""></td>
+                        <td>Hotel Vidanta SA de CV</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/company-logo.png" class="img-responsive" width="50" alt=""></td>
+                        <td>Liverpool</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>
+                </table>
             </div>
-        </section>
+        </div>
+    </section>
 
     {% endblock %}
     
-    <footer class="col-lg-12">
-        <div class="container">
-            <div class="row footer">
-                <div class="col-md-4">
-                    <div class="single-footer">
-                        <img src="{{ asset('assets/images/company-logo.png') }}" alt="" class="wow pulse" width="100" data-wow-delay="1s">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati architecto quaerat facere blanditiis tempora sequi nulla accusamus, possimus cum necessitatibus suscipit quia autem mollitia, similique quisquam molestias. Vel unde, blanditiis.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="single-footer">
-                        <h4>Twitter update</h4>
-                        <div class="twitter-updates">
-                            <div class="single-tweets">
-                                <h5>ABOUT 9 HOURS</h5>
-                                <p><strong>AGOMeet Aldous</strong> - a Brave New World for #rails with more cohesion, less coupling and greater dev speed <a href="http://t.co/rsekglotzs">http://t.co/rsekglotzs</a></p>
-                            </div>
-                            <div class="single-tweets">
-                                <h5>ABOUT 9 HOURS</h5>
-                                <p><strong>AGOMeet Aldous</strong> - a Brave New World for #rails with more cohesion, less coupling and greater dev speed <a href="http://t.co/rsekglotzs">http://t.co/rsekglotzs</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="single-footer">
-                        <h4>Useful lnks</h4>
-                        <div class="footer-links">
-                            <ul class="list-unstyled">
-                                <li><a href="">About Us</a></li>
-                                <li><a href="" class="active">Services</a></li>
-                                <li><a href="">Work</a></li>
-                                <li><a href="">Our Blog</a></li>
-                                <li><a href="">Customers Testimonials</a></li>
-                                <li><a href="">Affliate</a></li>
-                                <li><a href="">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row footer-copy">
-                <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span>  | <span> Creado con <span class="glyphicon glyphicon-heart"></span> por <a href="https://dribbble.com/siblu">CreaLab</a></span> </p>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
