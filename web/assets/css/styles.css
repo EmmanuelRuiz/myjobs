@@ -1,5 +1,6 @@
 html,
 body {
+  background-color: #F7F7F7;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
 }
@@ -90,7 +91,10 @@ body {
 /* register companie*/
 .register-header{
   background-color: #eee;
-  height: 700px;
+}
+
+.img-register{
+  margin-top: 20%;
 }
 
 /* login */

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+//use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class RegisterType extends AbstractType
 {
@@ -17,35 +18,7 @@ class RegisterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		/*
-		 * 			->add('name')
-			->add('plastname')
-			->add('mlastname')
-			->add('nick')
-			->add('age')
-			->add('email')
-			->add('telephone')
-			->add('password')
-			->add('connection')
-			->add('biography')
-			->add('image')
-			->add('termscondition')
-			->add('datejob')
-			->add('privacy')
-			->add('role')
-			->add('anonimo')
-			->add('active')
-			->add('createdAt')
-			->add('updatedAt'
-		 * 
-		 * 			->add('nick', TextType::class, array(
-				'label' => 'Nick ',
-				'required' => 'required',
-				'attr' => array(
-					'class' => 'form-nick form-control nick-input'
-				)
-			))
-		 */
+		
         $builder
 			->add('name', TextType::class, array(
 				'label' => 'Nombre',
