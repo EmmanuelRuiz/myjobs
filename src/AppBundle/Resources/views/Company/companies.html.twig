@@ -1,50 +1,56 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
-{% block javascripts %}
-    {{ parent() }}
-     <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
-{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="col-lg-8 box-default">
-            <h1>Empresas</h1>
-            <div class="count">
-                <span class="label label-primary">
-                    Total de resultados: {{ pagination.getTotalItemCount }}
-                </span>
-            </div>
-            <hr/>
-        
-            <div class="box-content box-users">
-                {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                {% for company in pagination %}
-                    <div class="col-lg-12 user-item">
-                        <div class="avatar">
-                            {% if company.logo == null%}
-                                <img src="{{ asset('assets/images/company-logo.png') }}"/>
-                            {% else %}
-                                <img src="{{ asset('uploads/users/'~company.logo) }}"/>
-                            {% endif %}
+    {% block javascripts %}
+        {{ parent() }}
+         <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
+    {% endblock %}
+    
+    {% block content %}
+        <section class="result-company-section">
+            <div class="row">
+                <div class="container">
+                    <div class="col-lg-12">
+                        <h1>Resultados de busqueda</h1>
+                        <div class="count">
+                            <span class="label label-primary">
+                                Total de resultados: {{ pagination.getTotalItemCount }}
+                            </span>
                         </div>
+                        <hr/>
+
+                    
+                        {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                        {% for company in pagination %}
+                            <div class="media">
+                                <div class="media-left">
+                                    {% if company.logo == null%}
+                                        <a href="{{ path('company_profile', {'id':company.id}) }}">
+                                            <img class="company-logo" src="{{ asset('assets/images/company-logo.png') }}"/>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('company_profile', {'id':company.id}) }}">
+                                            <img class="company-logo" src="{{ asset('uploads/users/'~company.logo) }}"/>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="media-body">
+                                    {# enlace al perfil de la empresa #}
+                                    <h4 class="media-heading"><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.businessname }}</a> <span class="glyphicon glyphicon-ok-circle"></span>  | 123 opiniones</h4>
+                                    <p>{{ company.description }}</p>
+                                    <p>www.sitioweb.com</p>
+                                  </div>
+                                <div class="clearfix"></div>
+                                <hr />
+                            </div>
+                        {% endfor %}
                         
-                        
-                        <div class="user-item-content">
-                            {# enlace al perfil de la empresa #}
-                            <p><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.businessname }}</a> | {{ company.businesssector}}</p>
-                            <p>{{ company.description }}</p>
-                            
+                        {# modificar el js para el scroll infinito #}
+                        <div class="navigation">
+                            {{ knp_pagination_render(pagination) }}
                         </div>
                         <div class="clearfix"></div>
-                        <hr />
                     </div>
-                {% endfor %}
+                </div>
             </div>
-            
-            <div class="navigation">
-                {{ knp_pagination_render(pagination) }}
-            </div>
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-    
-{% endblock %}
+        </section>
+    {% endblock %}

@@ -108,6 +108,7 @@
                         <li>
                             <a href="{{path("user_list")}}" >Usuarios</a>
                         </li>
+                        
                         {% endif%}
                         {% if app.user != null %}
                         <li class="dropdown">
@@ -132,31 +133,28 @@
                             </ul>
                         </li>   
                         {% endif %}
-                    </ul>
-                        
-                     
+                    </ul>     
                 </div>
             </div>         
         </nav>
     </header>
                 
-    <section id="content">
-        <div class="container">
-            <div class="col-lg-12">
-                {%for message in app.session.flashbag().get('status')%}
-                    <div class="alert alert-success">{{message}}</div>
-                {%endfor%}
-            </div>
-        </div>
-        <div class="clearfix"></div>
 
-        {% block content %}
-            <!-- todo el contenido de la web -->
-            Content default
-        {%endblock%}
-    </section>
-                
-                
+    <div class="container">
+        <div class="col-lg-12">
+            {%for message in app.session.flashbag().get('status')%}
+                <div class="alert alert-success">{{message}}</div>
+            {%endfor%}
+        </div>
+    </div>
+    <div class="clearfix"></div>
+   
+    {% block content %}
+        <!-- todo el contenido de la web -->
+        Content default
+    {%endblock%}
+   
+       
     <footer class="col-lg-12">
         <div class="container">
             <div class="row footer">

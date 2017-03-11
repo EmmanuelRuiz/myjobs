@@ -1,6 +1,5 @@
 html,
 body {
-  background-color: #F7F7F7;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
 }
@@ -13,8 +12,13 @@ body {
   padding-bottom: 5%;
 }
 
+.result-company-section{
+    padding-bottom: 30px;
+}
 
-/* navbar */
+
+/* navbar layouts */
+
 .navbar-default {
   background-color: transparent;
   border-color: transparent;
@@ -37,14 +41,29 @@ body {
 }
 
 .navbar-default-register-companie{
-  background-color: white;
-  height: 80px;
+    background-color: white;
+    height: 60px;
 }
 
 .btn-login,
 .btn-register{
   margin-top: 10px;
 }
+
+.navbar-collapse .avatar {
+    background: #fff;
+    border-radius: 500px;
+    overflow: hidden;
+    float: left;
+    margin-right: 12px;
+    margin-top: -5px;
+}
+
+.avatar img{
+    width: 30px;
+    height: 30px;
+}
+
 
 /* welcome-header */
 
@@ -185,11 +204,31 @@ footer{
   padding-bottom: 2%;
 }
 
+.avatar .user-logo-opinion{
+    width: 60px;
+    height: 60px;
+}
+
 /* profile company */
+
+.profile-company-header{
+  background-color: #eee;
+  padding-top: 40px;
+  padding-bottom: 5px;
+}
 
 .modal-body span{
   font-size: 20px;
   color: blue;
+}
+
+.company-logo{
+    width: 100px;
+}
+
+.profile-picture-company{
+    border-radius: 50%;
+    width: 200px;
 }
 
 

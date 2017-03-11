@@ -13,7 +13,7 @@
         <!-- estilos css -->
         <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
         <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
-        <link href="{{ asset('assets/css/styles1.css')}}" type="text/css" rel="stylesheet">
+        
     {%endblock%}
 
     {% block fonts %}
@@ -158,21 +158,21 @@
         </div>
     </header>
                     
-    <section id="content">
-        <div class="container">
-            <div class="col-lg-12">
-                {%for message in app.session.flashbag().get('status')%}
-                    <div class="alert alert-success">{{message}}</div>
-                {%endfor%}
-            </div>
+    
+    <div class="container">
+        <div class="col-lg-12">
+            {%for message in app.session.flashbag().get('status')%}
+                <div class="alert alert-success">{{message}}</div>
+            {%endfor%}
         </div>
-        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
 
-        {% block content %}
-            <!-- todo el contenido de la web -->
-            Content default
-        {%endblock%}
-    </section>
+    {% block content %}
+        <!-- todo el contenido de la web -->
+        Content default
+    {%endblock%}
+   
         
     <footer class="col-lg-12">
         <div class="container">
