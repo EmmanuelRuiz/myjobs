@@ -31,133 +31,137 @@
     {% endblock %}
 </head>
 <body>
+   
     <header class="welcome-header">
-        <!-- Navigation -->
-        <nav class="navbar navbar-default topnav" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if app.user == null %}
-                        <li><a href="">Inicio</a></li>
-                        <li><a href="#categorias">Categorias</a></li>
-                        <li><a href="#contact">Contacto</a></li>
+        <div class="pattern">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default topnav" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <button type="button" class="btn btn-default dropdown-toggle btn-login" data-toggle="dropdown">Iniciar sesion</button>
-                                    <ul id="login-dp" class="dropdown-menu">
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    Entrar con
-                                                    <div class="social-buttons">
-                                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                            {% if app.user == null %}
+                                <li><a href="#categorias">Categorias</a></li>
+                                <li><a href="#contact">Contacto</a></li>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <button type="button" class="btn btn-default dropdown-toggle btn-login" data-toggle="dropdown">Iniciar sesion</button>
+                                        <ul id="login-dp" class="dropdown-menu">
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        Entrar con
+                                                        <div class="social-buttons">
+                                                            <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                            <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                                        </div>
+                                                        o ingresa tus datos
+                                                        <br />
+                                                        <form action="{{path('login_check')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
+                                                            <div class="form-group">
+                                                                <label class="sr-only" for="inputEmail">Correo electronico</label>
+                                                                <input type="email" id="username" name="_username"  class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="sr-only" for="inputPassword">Contraseña</label>
+                                                                <input type="password" id="password" name="_password" class="form-control">
+                                                                <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox"> Recuerdame
+                                                                </label>
+                                                            </div>
+                                                        </form>
                                                     </div>
-                                                     o ingresa tus datos
-                                                    <br />
-                                                    <form action="{{path('login_check')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="inputEmail">Correo electronico</label>
-                                                            <input type="email" id="username" name="_username"  class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="inputPassword">Contraseña</label>
-                                                            <input type="password" id="password" name="_password" class="form-control">
-                                                            <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Recuerdame
-                                                            </label>
-                                                        </div>
-                                                     </form>
+                                                    <div class="bottom text-center">
+                                                        ¿No tienes una cuenta? <a href="{{path("register")}}"><b>Registrate</b></a>
+                                                    </div>
                                                 </div>
-                                                <div class="bottom text-center">
-                                                    ¿No tienes una cuenta? <a href="{{path("register")}}"><b>Registrate</b></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        
-                            
-                        {% else %}
-                        <li>
-                            <a href="{{path("app_homepage")}}" >
-                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
-                            </a>
-                        </li>
-                        <li><a href="#categorias">Categorias</a></li>
-                        <li>
-                            <a href="{{path("companies_list")}}" >Empresas</a>
-                        </li>
-                        <li>
-                            <a href="{{path("user_list")}}" >Usuarios</a>
-                        </li>
-                        {% endif%}
-                        {% if app.user != null %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <div class="avatar">
-                                    {% if app.user.image == null%}
-                                        <img src="{{ asset('assets/images/default.jpg') }}"/>
-                                    {% else %}
-                                        <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
-                                    {% endif %}
-                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-                                {{app.user.name}} {{app.user.plastname}}
-                                <span class="caret"></span> 
-                            </a> 
-                            <ul class="dropdown-menu">
-                                <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Mi perfil</a></li>
-                                <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Mis datos</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{path('logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
-                                <li><a href=""><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbspAyuda</a></li>
-                            </ul>
-                        </li>   
-                        {% endif %}
-                    </ul> 
-                </div>
-            </div>         
-        </nav>
-                
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message text-center">
-                        <h1>Bienvenido</h1>
-                        <h4>Encuentra opiniones de las empresas en Playa del Carmen y el mundo</h4>
+
+                            {% else %}
+                                <li>
+                                    <a href="{{path("app_homepage")}}" >
+                                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
+                                    </a>
+                                </li>
+                                <li><a href="#categorias">Categorias</a></li>
+                                <li>
+                                    <a href="{{path("companies_list")}}" >Empresas</a>
+                                </li>
+                                <li>
+                                    <a href="{{path("user_list")}}" >Usuarios</a>
+                                </li>
+                            {% endif%}
+                            {% if app.user != null %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <div class="avatar">
+                                            {% if app.user.image == null%}
+                                                <img src="{{ asset('assets/images/default.jpg') }}"/>
+                                            {% else %}
+                                                <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                            {% endif %}
+                                        </div>
+
+                                        {{app.user.name}} {{app.user.plastname}}
+                                        <span class="caret"></span> 
+                                    </a> 
+                                    <ul class="dropdown-menu">
+                                        <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Mi perfil</a></li>
+                                        <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Mis datos</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{{path('logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
+                                        <li><a href=""><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbspAyuda</a></li>
+                                    </ul>
+                                </li>   
+                            {% endif %}
+                        </ul> 
+                    </div>
+                </div>         
+            </nav>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="intro-message text-center">
+                            <h1>Bienvenido</h1>
+                            <h4>Encuentra opiniones de las empresas en Playa del Carmen y el mundo</h4>
                             <form action="{{ path('companies_search') }}" class="navbar-form navbar-left">
                                 <div class="form-group">
-                                    <input type="text" class="form-control search-input" placeholder="Buscar empresa..." name="search" />
+                                    <input type="text" class="form-control search-input" placeholder="Busca la empresa que requieres..." name="search" />
 
                                 </div>
                                 <button type="submit" class="btn btn-default search-btn">
-                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                 </button>
                             </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </header>
-                    
+
+        
     
     <div class="container">
         <div class="col-lg-12">
@@ -185,21 +189,6 @@
                 </div>
                 <div class="col-md-4">
                     <div class="single-footer">
-                        <h4>Twitter update</h4>
-                        <div class="twitter-updates">
-                            <div class="single-tweets">
-                                <h5>ABOUT 9 HOURS</h5>
-                                <p><strong>AGOMeet Aldous</strong> - a Brave New World for #rails with more cohesion, less coupling and greater dev speed <a href="http://t.co/rsekglotzs">http://t.co/rsekglotzs</a></p>
-                            </div>
-                            <div class="single-tweets">
-                                <h5>ABOUT 9 HOURS</h5>
-                                <p><strong>AGOMeet Aldous</strong> - a Brave New World for #rails with more cohesion, less coupling and greater dev speed <a href="http://t.co/rsekglotzs">http://t.co/rsekglotzs</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="single-footer">
                         <h4>Useful lnks</h4>
                         <div class="footer-links">
                             <ul class="list-unstyled">
@@ -214,9 +203,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="single-footer">
+                        
+                    </div>
+                </div>
             </div>
             <div class="row footer-copy">
-                <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span>  | <span> Creado con <span class="glyphicon glyphicon-heart"></span> por <a href="https://dribbble.com/siblu">CreaLab</a></span> </p>
+                <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span>  | <span> Creado con <span class="glyphicon glyphicon-heart"></span> por <a href="https://www.crealab.com.mx">CreaLab</a></span> </p>
             </div>
         </div>
     </footer>
