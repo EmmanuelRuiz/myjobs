@@ -9,7 +9,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-//use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class RegisterType extends AbstractType
 {
@@ -26,6 +29,7 @@ class RegisterType extends AbstractType
 				'attr' => array(
 					'class' => 'form-name form-control'
 				)
+				
 			))
 			->add('plastname', TextType::class, array(
 				'label' => 'Apellido paterno',
@@ -33,13 +37,15 @@ class RegisterType extends AbstractType
 				'attr' => array(
 					'class' => 'form-lastname form-control'
 				)
+				
 			))
 			->add('mlastname', TextType::class, array(
-				'label' => 'apellido materno',
+				'label' => 'Apellido materno',
 				'required' => 'required',
 				'attr' => array(
 					'class' => 'form-lastname form-control'
 				)
+				
 			))
 			
 			->add('email', EmailType::class, array(
@@ -48,6 +54,7 @@ class RegisterType extends AbstractType
 				'attr' => array(
 					'class' => 'form-name form-control email-input'
 				)
+				
 			))
 			->add('password', PasswordType::class, array(
 				'label' => 'Contraseña',
@@ -56,16 +63,54 @@ class RegisterType extends AbstractType
 					'class' => 'form-password form-control'
 				)
 			))
-			->add('age')
-			->add('telephone')
-			->add('termscondition')
-			->add('datejob')
-			->add('privacy')
-			->add('anonimo')
+			->add('age', NumberType::class, array(
+				'label' => 'Edad',
+				'required' => 'required',
+				'attr' => array(
+					'class' => 'form-control'
+				)
+			))
+			->add('telephone', TextType::class, array(
+				'label' => 'Numero telefonico',
+				'required' => 'required',
+				'attr' => array(
+					'class' => 'form-control'
+				)
+			))
+				
+			->add('termscondition', CheckboxType::class, array(
+				'label' => ' '
+			))
+			->add('datejob', DateType::class, array(
+				'label' => 'Fecha desde que labora',
+				'required' => null,
+				'attr' => array(
+					'class' => ''
+				)
+			))
+			/*->add('privacy', TextType::class, array(
+				'label' => 'Privacidad',
+				'required' => null,
+				'attr' => array(
+					'class' => ''
+				)
+			))*/
+			->add('anonimo', ChoiceType::class, array(
+				'choices' => array(
+					'Si' => 'Si',
+					'No' => 'No'
+				),
+				'label' => '¿Quieres ser un perfil privado?',
+				'required' => 'required',
+				'attr' => array(
+					'class' => 'form-control'
+				),
+				'placeholder' => 'Perfil'
+			))
 				
 			->add('Registrarse', SubmitType::class, array(
 				"attr" => array(
-					"class" => "form-submit btn btn-success"
+					"class" => "form-submit col-lg-12 btn btn-default"
 				)
 			))
 		;
