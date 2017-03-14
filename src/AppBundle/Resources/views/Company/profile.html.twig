@@ -32,10 +32,15 @@
                                 <span class="number-stat">0</span>
                             </a>
                         </div>
-                        <div class="following-data">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
-                        </div>
-                        
+                        {% if app.user == null%}
+                            <div class="following-data">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                            </div>
+                        {% else %} 
+                            <div class="following-data">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -43,8 +48,8 @@
             <!-- /.container --> 
         </section>
         
-        <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade bs-example-modal-lg" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form action="">
                         <div class="modal-header">
@@ -52,73 +57,107 @@
                             <h4 class="modal-title" id="exampleModalLabel">Tu opinion es importante</h4>
                         </div>
                         <div class="modal-body">
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>La empresa considera importante mi punto de vista en el desarrollo de mis actividades</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>En definitiva laborar aqui me ha permitido ser una mejor persona</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>Los valores de la empresa, como respeto y honestidad, son precabidos con el ejemplo</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>Me siento satisfecho con mi crecimiento profesional en la organización</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>Mis talentos y habilidades corresponden a las tareas y responsabilidades asignadas</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>Se me ha brindado la oportunidad de contribuir con mi talento de manera excepcional en beneficio de la organización</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>He logrado mis metas personales trabajando en esta organización</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>Considero que formo parte de un gran equipo de trabajo</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>Los compañeros facilitan que cualquier persona se adapte rapidamente a la organización</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
-                            <h5>¿Aqui va una pregunta para que las personas califiquen?</h5>
+                            <h5>Esta organización brinda las mejores oportunidades de desarrollar el talento de su gente</h5>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <div class="form-group">
-                                <label for="inputOpinion" class="control-label">Escribe tu opinion</label>
+                                <label for="inputOpinion" class="control-label">Por ultimo, en 120 caracteres, nos gustaria saber tu opinion personal</label>
                                 <textarea class="form-control" rows="2"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Opinar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ratingModalOffline" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="{{path('login_check')}}" method="post">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h4>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="sr-only" for="inputEmail">Correo electronico</label>
+                            <input type="email" id="username" name="_username"  class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="inputPassword">Contraseña</label>
+                            <input type="password" id="password" name="_password" class="form-control">
+                            <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Recuerdame
+                            </label>
+                        </div>
+                        <div class="bottom text-center">
+                            ¿No tienes una cuenta? <a href="{{path("register")}}"><b>Registrate</b></a>
                         </div>
                     </form>
                 </div>
