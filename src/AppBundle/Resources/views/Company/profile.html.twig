@@ -15,7 +15,7 @@
                         {% endif %}
                     </div>
                     <div class="col-lg-9 " id="user-card">
-                        <h1>{{ company.tradename }} | {{ company.businesssector}} <span class="glyphicon glyphicon-ok-circle"></span></h1>
+                        <h1>{{ company.tradename }} | {{ company.businesssector}} <span class="glyphicon glyphicon-ok-circle certify-sign"></span></h1>
                         <h5><b>Descripción</b></h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam nihil pariatur vitae cumque maxime suscipit asperiores quaerat quae ut veritatis quibusdam corrupti facere quisquam, excepturi, temporibus quidem autem, ducimus voluptatum.</p>
 
@@ -169,6 +169,7 @@
                 <div class="col-lg-8">
                     <h1>Opiniones</h1>
                     {% for opinions in pagination %}
+                        
                         <div class="media">
                             <div class="media-left ">
                                 <a href="#">
@@ -184,17 +185,21 @@
 
                             <div class="media-body">
                                 <h5 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                                        {% if app.user == null %}
+                                            
+                                        {% else %}
+                                            {% if opinions.user.id == app.user.id %}
+                                                <div class="btn-group pull-right">
+                                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
 
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
-                                        </ul>
-                                    </div>
-
-
+                                                    </ul>
+                                                </div> 
+                                            {% endif %}
+                                        {% endif%}
                                     <span class="pull-right">{{opinions.createdAt|long_time}}</span>
 
                                 </h5>

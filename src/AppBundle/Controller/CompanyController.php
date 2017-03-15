@@ -211,6 +211,8 @@ class CompanyController extends Controller{
 	
 	// metodo para el perfil de la empresa
 	public function profileAction(Request $request, $id = null){	
+		
+		$user = $this->getUser();
 		$em = $this->getDoctrine()->getManager();
 		
 		// Si el ID no es nulo
@@ -241,7 +243,7 @@ class CompanyController extends Controller{
 		$opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 		
 		return $this->render('AppBundle:Company:profile.html.twig', array(
-			// le pasamos a la vista una variable company donde estan todos los datos a mostrar				
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar	
 			'company' => $company,
 			'pagination' => $opinions
 		));
