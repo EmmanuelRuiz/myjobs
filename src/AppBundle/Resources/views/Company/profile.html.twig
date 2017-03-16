@@ -51,99 +51,89 @@
         <div class="modal fade bs-example-modal-lg" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form action="">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="exampleModalLabel">Tu opinion es importante</h4>
                         </div>
                         <div class="modal-body">
-                            <h5>La empresa considera importante mi punto de vista en el desarrollo de mis actividades</h5>
-                            <fieldset>
-                                <p class="clasificacion">
-                                       <input id="radio1" name="estrellas" value="5" type="radio"><!--
-                                    --><label for="radio1">★</label><!--
-                                    --><input id="radio2" name="estrellas" value="4" type="radio"><!--
-                                    --><label for="radio2">★</label><!--
-                                    --><input id="radio3" name="estrellas" value="3" type="radio"><!--
-                                    --><label for="radio3">★</label><!--
-                                    --><input id="radio4" name="estrellas" value="2" type="radio"><!--
-                                    --><label for="radio4">★</label><!--
-                                    --><input id="radio5" name="estrellas" value="1" type="radio"><!--
-                                    --><label for="radio5">★</label>
-                                </p>   
-                            </fieldset>
-                            <h5>En definitiva laborar aqui me ha permitido ser una mejor persona</h5>
-                            <fieldset>
-                                <p class="clasificacion">
-                                       <input id="radio1" name="estrellas" value="5" type="radio"><!--
-                                    --><label for="radio1">★</label><!--
-                                    --><input id="radio2" name="estrellas" value="4" type="radio"><!--
-                                    --><label for="radio2">★</label><!--
-                                    --><input id="radio3" name="estrellas" value="3" type="radio"><!--
-                                    --><label for="radio3">★</label><!--
-                                    --><input id="radio4" name="estrellas" value="2" type="radio"><!--
-                                    --><label for="radio4">★</label><!--
-                                    --><input id="radio5" name="estrellas" value="1" type="radio"><!--
-                                    --><label for="radio5">★</label>
-                                </p>   
-                            </fieldset>
-                            <h5>Los valores de la empresa, como respeto y honestidad, son precabidos con el ejemplo</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <h5>Me siento satisfecho con mi crecimiento profesional en la organización</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <h5>Mis talentos y habilidades corresponden a las tareas y responsabilidades asignadas</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <h5>Se me ha brindado la oportunidad de contribuir con mi talento de manera excepcional en beneficio de la organización</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <h5>He logrado mis metas personales trabajando en esta organización</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <h5>Considero que formo parte de un gran equipo de trabajo</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <h5>Los compañeros facilitan que cualquier persona se adapte rapidamente a la organización</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <h5>Esta organización brinda las mejores oportunidades de desarrollar el talento de su gente</h5>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <div class="form-group">
-                                <label for="inputOpinion" class="control-label">Por ultimo, en 120 caracteres, nos gustaria saber tu opinion personal</label>
-                                <textarea class="form-control" rows="2"></textarea>
-                            </div>
+                            <form class="form-rating" action="">
+                                <fieldset>
+                                    <legend>La empresa considera importante mi punto de vista en el desarrollo de mis actividades</legend>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques1" name="estrellas" value="5" type="radio"><label for="radio-ques1" >★</label>
+                                        <input id="radio-quest2" name="estrellas" value="4" type="radio"><label for="radio-quest2">★</label>
+                                        <input id="radio-quest3" name="estrellas" value="3" type="radio"><label for="radio-quest3">★</label>
+                                        <input id="radio-quest4" name="estrellas" value="2" type="radio"><label for="radio-quest4">★</label>
+                                        <input id="radio-quest5" name="estrellas" value="1" type="radio"><label for="radio-quest5">★</label>  
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>En definitiva laborar aqui me ha permitido ser una mejor persona</legend>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques6" name="estrellas2" value="5" type="radio"><label for="radio-ques6" >★</label>
+                                        <input id="radio-quest7" name="estrellas2" value="4" type="radio"><label for="radio-quest7">★</label>
+                                        <input id="radio-quest8" name="estrellas2" value="3" type="radio"><label for="radio-quest8">★</label>
+                                        <input id="radio-quest9" name="estrellas2" value="2" type="radio"><label for="radio-quest9">★</label>
+                                        <input id="radio-quest10" name="estrellas2" value="1" type="radio"><label for="radio-quest10">★</label> 
+                                    </p>
+                                    
+                                </fieldset>
+                                <h5>Los valores de la empresa, como respeto y honestidad, son precabidos con el ejemplo</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <h5>Me siento satisfecho con mi crecimiento profesional en la organización</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <h5>Mis talentos y habilidades corresponden a las tareas y responsabilidades asignadas</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <h5>Se me ha brindado la oportunidad de contribuir con mi talento de manera excepcional en beneficio de la organización</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <h5>He logrado mis metas personales trabajando en esta organización</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <h5>Considero que formo parte de un gran equipo de trabajo</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <h5>Los compañeros facilitan que cualquier persona se adapte rapidamente a la organización</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <h5>Esta organización brinda las mejores oportunidades de desarrollar el talento de su gente</h5>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <div class="form-group">
+                                    <label for="inputOpinion" class="control-label">Por ultimo, en 120 caracteres, nos gustaria saber tu opinion personal</label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary">Opinar</button>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Opinar</button>
-                        </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>

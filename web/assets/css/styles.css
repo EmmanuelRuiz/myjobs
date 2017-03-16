@@ -23,25 +23,20 @@ body {
 
 /* puntaje */
 
-#form {
-  width: 250px;
-  margin: 0 auto;
-  height: 50px;
-}
 
-#form p {
+.form-rating p {
   text-align: center;
 }
 
-#form label {
-  font-size: 20px;
+.form-rating label {
+  font-size: 30px;
 }
 
-input[type="radio"] {
+.form-rating input[type="radio"] {
   display: none;
 }
 
-label {
+.form-rating label {
   color: grey;
 }
 
@@ -50,16 +45,14 @@ label {
   unicode-bidi: bidi-override;
 }
 
-label:hover,
-label:hover ~ label {
+.form-rating label:hover,
+.form-rating label:hover ~ label {
   color: orange;
 }
 
-input[type="radio"]:checked ~ label {
+.form-rating input[type="radio"]:checked ~ label {
   color: orange;
 }
-
-
 
 
 
