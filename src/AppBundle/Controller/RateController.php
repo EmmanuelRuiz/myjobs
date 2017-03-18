@@ -11,6 +11,7 @@ use AppBundle\Form\OpinionType;
 class RateController extends Controller {
 	
 	public function indexAction(Request $request){
+	
 	}
 	
 }

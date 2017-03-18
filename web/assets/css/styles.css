@@ -28,15 +28,15 @@ body {
   text-align: center;
 }
 
-.form-rating label {
-  font-size: 30px;
+.form-rating .label-star {
+  font-size: 25px;
 }
 
 .form-rating input[type="radio"] {
   display: none;
 }
 
-.form-rating label {
+.form-rating .label-star {
   color: grey;
 }
 
@@ -45,13 +45,17 @@ body {
   unicode-bidi: bidi-override;
 }
 
-.form-rating label:hover,
-.form-rating label:hover ~ label {
+.form-rating .label-star:hover,
+.form-rating .label-star:hover ~ .label-star {
   color: orange;
 }
 
 .form-rating input[type="radio"]:checked ~ label {
   color: orange;
+}
+
+.form-rating h5 {
+  font-weight: bold;
 }
 
 

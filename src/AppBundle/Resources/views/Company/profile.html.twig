@@ -53,84 +53,118 @@
                 <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel">Tu opinion es importante</h4>
+                            <h3 class="modal-title" id="exampleModalLabel"><b>Tu opinion es importante</b></h3>
                         </div>
                         <div class="modal-body">
-                            <form class="form-rating" action="">
+                            <form class="form-rating" action="{{ path('rate') }}">
                                 <fieldset>
-                                    <legend>La empresa considera importante mi punto de vista en el desarrollo de mis actividades</legend>
+                                    <h5>La empresa considera importante mi punto de vista en el desarrollo de mis actividades</h5>
                                     <p class="clasificacion">
-                                        <input id="radio-ques1" name="estrellas" value="5" type="radio"><label for="radio-ques1" >★</label>
-                                        <input id="radio-quest2" name="estrellas" value="4" type="radio"><label for="radio-quest2">★</label>
-                                        <input id="radio-quest3" name="estrellas" value="3" type="radio"><label for="radio-quest3">★</label>
-                                        <input id="radio-quest4" name="estrellas" value="2" type="radio"><label for="radio-quest4">★</label>
-                                        <input id="radio-quest5" name="estrellas" value="1" type="radio"><label for="radio-quest5">★</label>  
+                                        <input id="radio-ques1" name="estrellas" value="5" type="radio"><label class="label-star" for="radio-ques1" >★</label>
+                                        <input id="radio-quest2" name="estrellas" value="4" type="radio"><label class="label-star" for="radio-quest2">★</label>
+                                        <input id="radio-quest3" name="estrellas" value="3" type="radio"><label class="label-star" for="radio-quest3">★</label>
+                                        <input id="radio-quest4" name="estrellas" value="2" type="radio"><label class="label-star" for="radio-quest4">★</label>
+                                        <input id="radio-quest5" name="estrellas" value="1" type="radio"><label class="label-star" for="radio-quest5">★</label>
                                     </p>
                                 </fieldset>
                                 <fieldset>
-                                    <legend>En definitiva laborar aqui me ha permitido ser una mejor persona</legend>
+                                    <h5>En definitiva laborar aqui me ha permitido ser una mejor persona</h5>
                                     <p class="clasificacion">
-                                        <input id="radio-ques6" name="estrellas2" value="5" type="radio"><label for="radio-ques6" >★</label>
-                                        <input id="radio-quest7" name="estrellas2" value="4" type="radio"><label for="radio-quest7">★</label>
-                                        <input id="radio-quest8" name="estrellas2" value="3" type="radio"><label for="radio-quest8">★</label>
-                                        <input id="radio-quest9" name="estrellas2" value="2" type="radio"><label for="radio-quest9">★</label>
-                                        <input id="radio-quest10" name="estrellas2" value="1" type="radio"><label for="radio-quest10">★</label> 
+                                        <input id="radio-ques6" name="estrellas2" value="5" type="radio"><label class="label-star" for="radio-ques6" >★</label>
+                                        <input id="radio-quest7" name="estrellas2" value="4" type="radio"><label class="label-star" for="radio-quest7">★</label>
+                                        <input id="radio-quest8" name="estrellas2" value="3" type="radio"><label class="label-star" for="radio-quest8">★</label>
+                                        <input id="radio-quest9" name="estrellas2" value="2" type="radio"><label class="label-star" for="radio-quest9">★</label>
+                                        <input id="radio-quest10" name="estrellas2" value="1" type="radio"><label class="label-star" for="radio-quest10">★</label>
                                     </p>
-                                    
+
                                 </fieldset>
-                                <h5>Los valores de la empresa, como respeto y honestidad, son precabidos con el ejemplo</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <h5>Me siento satisfecho con mi crecimiento profesional en la organización</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <h5>Mis talentos y habilidades corresponden a las tareas y responsabilidades asignadas</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <h5>Se me ha brindado la oportunidad de contribuir con mi talento de manera excepcional en beneficio de la organización</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <h5>He logrado mis metas personales trabajando en esta organización</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <h5>Considero que formo parte de un gran equipo de trabajo</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <h5>Los compañeros facilitan que cualquier persona se adapte rapidamente a la organización</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <h5>Esta organización brinda las mejores oportunidades de desarrollar el talento de su gente</h5>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
+
+                                <fieldset>
+                                    <h5>Los valores de la empresa, como respeto y honestidad, son precabidos con el ejemplo</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques11" name="estrellas3" value="5" type="radio"><label class="label-star" for="radio-ques11" >★</label>
+                                        <input id="radio-quest12" name="estrellas3" value="4" type="radio"><label class="label-star" for="radio-quest12">★</label>
+                                        <input id="radio-quest13" name="estrellas3" value="3" type="radio"><label class="label-star" for="radio-quest13">★</label>
+                                        <input id="radio-quest14" name="estrellas3" value="2" type="radio"><label class="label-star" for="radio-quest14">★</label>
+                                        <input id="radio-quest15" name="estrellas3" value="1" type="radio"><label class="label-star" for="radio-quest15">★</label>
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <h5>Me siento satisfecho con mi crecimiento profesional en la organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques16" name="estrellas4" value="5" type="radio"><label class="label-star" for="radio-ques16" >★</label>
+                                        <input id="radio-quest17" name="estrellas4" value="4" type="radio"><label class="label-star" for="radio-quest17">★</label>
+                                        <input id="radio-quest18" name="estrellas4" value="3" type="radio"><label class="label-star" for="radio-quest18">★</label>
+                                        <input id="radio-quest19" name="estrellas4" value="2" type="radio"><label class="label-star" for="radio-quest19">★</label>
+                                        <input id="radio-quest20" name="estrellas4" value="1" type="radio"><label class="label-star" for="radio-quest20">★</label>
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <h5>Mis talentos y habilidades corresponden a las tareas y responsabilidades asignadas</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques21" name="estrellas5" value="5" type="radio"><label class="label-star" for="radio-ques21" >★</label>
+                                        <input id="radio-quest22" name="estrellas5" value="4" type="radio"><label class="label-star" for="radio-quest22">★</label>
+                                        <input id="radio-quest23" name="estrellas5" value="3" type="radio"><label class="label-star" for="radio-quest23">★</label>
+                                        <input id="radio-quest24" name="estrellas5" value="2" type="radio"><label class="label-star" for="radio-quest24">★</label>
+                                        <input id="radio-quest25" name="estrellas5" value="1" type="radio"><label class="label-star" for="radio-quest25">★</label>
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <h5>Se me ha brindado la oportunidad de contribuir con mi talento de manera excepcional en beneficio de la organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques26" name="estrellas6" value="5" type="radio"><label class="label-star" for="radio-ques26" >★</label>
+                                        <input id="radio-quest27" name="estrellas6" value="4" type="radio"><label class="label-star" for="radio-quest27">★</label>
+                                        <input id="radio-quest28" name="estrellas6" value="3" type="radio"><label class="label-star" for="radio-quest28">★</label>
+                                        <input id="radio-quest29" name="estrellas6" value="2" type="radio"><label class="label-star" for="radio-quest29">★</label>
+                                        <input id="radio-quest30" name="estrellas6" value="1" type="radio"><label class="label-star" for="radio-quest30">★</label>
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <h5>He logrado mis metas personales trabajando en esta organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques31" name="estrellas7" value="5" type="radio"><label class="label-star" for="radio-ques31" >★</label>
+                                        <input id="radio-quest32" name="estrellas7" value="4" type="radio"><label class="label-star" for="radio-quest32">★</label>
+                                        <input id="radio-quest33" name="estrellas7" value="3" type="radio"><label class="label-star" for="radio-quest33">★</label>
+                                        <input id="radio-quest34" name="estrellas7" value="2" type="radio"><label class="label-star" for="radio-quest34">★</label>
+                                        <input id="radio-quest35" name="estrellas7" value="1" type="radio"><label class="label-star" for="radio-quest35">★</label>
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <h5>Considero que formo parte de un gran equipo de trabajo</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques36" name="estrellas8" value="5" type="radio"><label class="label-star" for="radio-ques36" >★</label>
+                                        <input id="radio-quest37" name="estrellas8" value="4" type="radio"><label class="label-star" for="radio-quest37">★</label>
+                                        <input id="radio-quest38" name="estrellas8" value="3" type="radio"><label class="label-star" for="radio-quest38">★</label>
+                                        <input id="radio-quest39" name="estrellas8" value="2" type="radio"><label class="label-star" for="radio-quest39">★</label>
+                                        <input id="radio-quest40" name="estrellas8" value="1" type="radio"><label class="label-star" for="radio-quest40">★</label>
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <h5>Los compañeros facilitan que cualquier persona se adapte rapidamente a la organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques41" name="estrellas9" value="5" type="radio"><label class="label-star" for="radio-ques41" >★</label>
+                                        <input id="radio-quest42" name="estrellas9" value="4" type="radio"><label class="label-star" for="radio-quest42">★</label>
+                                        <input id="radio-quest43" name="estrellas9" value="3" type="radio"><label class="label-star" for="radio-quest43">★</label>
+                                        <input id="radio-quest44" name="estrella9" value="2" type="radio"><label class="label-star" for="radio-quest44">★</label>
+                                        <input id="radio-quest45" name="estrellas9" value="1" type="radio"><label class="label-star" for="radio-quest45">★</label>
+                                    </p>
+                                </fieldset>
+                                <fieldset>
+                                    <h5>Esta organización brinda las mejores oportunidades de desarrollar el talento de su gente</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques46" name="estrellas10" value="5" type="radio"><label class="label-star" for="radio-ques46" >★</label>
+                                        <input id="radio-quest47" name="estrellas10" value="4" type="radio"><label class="label-star" for="radio-quest47">★</label>
+                                        <input id="radio-quest48" name="estrellas10" value="3" type="radio"><label class="label-star" for="radio-quest48">★</label>
+                                        <input id="radio-quest49" name="estrellas10" value="2" type="radio"><label class="label-star" for="radio-quest49">★</label>
+                                        <input id="radio-quest50" name="estrellas10" value="1" type="radio"><label class="label-star" for="radio-quest50">★</label>
+                                    </p>
+                                </fieldset><hr/>
                                 <div class="form-group">
                                     <label for="inputOpinion" class="control-label">Por ultimo, en 120 caracteres, nos gustaria saber tu opinion personal</label>
                                     <textarea class="form-control" rows="2"></textarea>
                                 </div>
-                                <button type="button" class="btn btn-primary">Opinar</button>
+                                <button type="submit" class="pull-right btn btn-primary">Opinar</button>
+                                <div class="clearfix"></div>
                             </form>
                         </div>
                     
