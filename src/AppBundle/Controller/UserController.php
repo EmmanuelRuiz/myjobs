@@ -22,7 +22,7 @@ class UserController extends Controller {
 
     public function loginAction(Request $request) {
         if (is_object($this->getUser())) {
-            return $this->redirect('');
+            return $this->redirect('home');
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');
