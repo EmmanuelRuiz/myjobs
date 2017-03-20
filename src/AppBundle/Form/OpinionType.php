@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+//use Symfony\Component\Form\Extension\Core\Type\RadioType;
 
 class OpinionType extends AbstractType
 {
@@ -29,6 +30,7 @@ class OpinionType extends AbstractType
 					'class' => 'form-control '
 				)
 			))
+			
 				
 			//Estos dos campos no sirven para las opiniones pero para comentarios si, falta adaptarlo
 				

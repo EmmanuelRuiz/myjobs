@@ -21,6 +21,6 @@ company_profile:
     
 rate:
     path: /rate
-    defaults: { _controller: AppBundle:Rate:index}
+    defaults: { _controller: AppBundle:Rate:rate}
     
 
