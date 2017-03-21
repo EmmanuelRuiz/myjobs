@@ -20,7 +20,7 @@ company_profile:
     defaults: { _controller: AppBundle:Company:profile, id:null }
     
 rate:
-    path: /rate
-    defaults: { _controller: AppBundle:Rate:rate}
+    path: /rate/{id}
+    defaults: { _controller: AppBundle:Rate:rate, id:null}
     
 

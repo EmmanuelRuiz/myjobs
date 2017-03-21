@@ -9,9 +9,11 @@ use BackendBundle\Entity\Opinion;
 
 class RateController extends Controller {
 	
-	public function rateAction(Request $request){
+	public function rateAction(Request $request, $id){
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
+		
+		var_dump($id);
 		
 		$var = $request->query->get("estrellas");
 		$var2 = $request->query->get("estrellas2");
