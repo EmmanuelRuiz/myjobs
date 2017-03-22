@@ -1,7 +1,11 @@
 home_companies:
     path: /home
     defaults: { _controller: AppBundle:Company:index }
-    
+
+register:
+    path: /register-company
+    defaults: { _controller: AppBundle:Company:register }
+
 companies_list:
     path: /companies
     defaults: { _controller: AppBundle:Company:companies }

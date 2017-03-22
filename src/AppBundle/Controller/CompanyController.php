@@ -7,248 +7,252 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
 use BackendBundle\Entity\Opinion;
+use AppBundle\Form\CompanyType;
 use AppBundle\Form\OpinionType;
 
-class CompanyController extends Controller{
-	
-	private $session;
+class CompanyController extends Controller {
+
+    private $session;
 
     public function __construct() {
         $this->session = new Session();
     }
-	
-	/* Este metodo debe ser colocado en su controlador indicado
-	 * Es para cargar el formulario de la opinion general en donde van las preguntas
-	 */
-	public function indexAction(Request $request){
-		$em = $this->getDoctrine()->getManager();
-		
-		$user = $this->getUser();
-		
-		//creamos objeto de la entidad
-		$opinion = new Opinion();
-		// cargamos el formulario
-		$form = $this->createForm(OpinionType::class, $opinion);
-		
-		$form->handleRequest($request);
-		if ($form->isSubmitted()) {
-			if ($form->isValid()) {
-				/*//upload image
-				$file = $form['image']->getData();
-				if (!empty($file) && $file != null) {
-					$ext = $file->getExtension();
-					if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
-						$file_name = $user->getId().time().".".$ext;
-						$file->move("uploads/opinins/images", $file_name)
-								
-						$opinion->setImage($file_name);
-					} else {
-						$opinion->setImage(null);
-					}
-				} else {
-					$opinion->setImage(null);
-				}
-				
-				//upload document
-				$doc = $form['document']->getData();
-				if (!empty($doc) && $doc != null) {
-					$ext = $doc->getExtension();
-					if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
-						$file_name = $user->getId().time().".".$ext;
-						$doc->move("uploads/opinins/documents", $file_name)
-								
-						$opinion->setDocument($file_name);
-					} else {
-						$opinion->setDocument(null);
-					}
-				} else {
-					$opinion->setDocument(null);
-				}*/
-				
-				
-				$opinion->setUser($user);
-				$opinion->setCreatedAt(new \DateTime("now"));
-				
-				$em->persist($opinion);
-				$flush = $em->flush();
-				
-				if ($flush == null) {
-					$status = "La publicacion se ha creado correctamente";
-				} else {
-					$status = "Error al añadir la publicacion";
-				}
-				
-			} else {
-				$status = "La publicación no se ha creado";
-			}
-			
-			$this->session->getFlashBag()->add("status", $status);
-			return $this->redirectToRoute('home_companies');
-		} 
-		
-		$opinion = $this->getOpinions($request);
-		
-		return $this->render('AppBundle:User:home.html.twig', array(
-			'form' => $form->createView(),
-			'pagination' => $opinion
-		));
-	}
-	
-	
-	public function companiesAction(Request $request){
-		$em = $this->getDoctrine()->getManager();
-		
-		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-		$dql = "SELECT u FROM BackendBundle:Company u ORDER BY u.id ASC";
-		$query = $em->createQuery($dql);
-		
-		$paginator = $this->get('knp_paginator');
-		$pagination = $paginator->paginate(
-				$query, $request->query->getInt('page', 1), 5
-		);
-		
-		return $this->render('AppBundle:Company:companies.html.twig', array(
-			'pagination' => $pagination
-		));
-	}
-	
-	
-	public function searchAction(Request $request){
-		$em = $this->getDoctrine()->getManager();
-		$search	= trim($request->query->get("search", null));
-		
-		if ($search == null) {
-			return $this->redirect($this->generateURL('home_publication'));
-		}
-		
-		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-		// La consulta nos devuelve resultados parecidos a la busqueda que se envia
-		$dql = "SELECT u FROM BackendBundle:Company u "
-				. "WHERE u.businessname LIKE :search OR u.tradename LIKE :search "
-				. "OR u.businesssector LIKE :search ORDER BY u.id ASC";
-		$query = $em->createQuery($dql)->setParameter('search', "%$search%");
-		
-		$paginator = $this->get('knp_paginator');
-		$pagination = $paginator->paginate(
-				$query, $request->query->getInt('page', 1), 5
-		);
-		
-		return $this->render('AppBundle:Company:companies.html.twig', array(
-			'pagination' => $pagination,
-		));
-	}
-	
-	
-	public function getOpinions($request){
-		$em = $this->getDoctrine()->getManager();
-		
-		// Obtenemos el usuario logeado
-		$user = $this->getUser();
-		
-		$opinions_repo = $em->getRepository('BackendBundle:Opinion');
-		$following_repo = $em->getRepository('BackendBundle:Following');
-		
-		/*
-		SELECT generalcomment FROM opinions WHERE user_id = 1 OR user_id 
-		IN (SELECT followed FROM following WHERE user = 1 );
-		 */
-		
-		$following = $following_repo->findBy(array(
-			'user' => $user
-		));
-		
-		$following_array = array();
-		foreach($following as $follow){
-			$following_array[] = $follow->getFollowed();
-		}
-		
-		// query comentada arriba
-		$query = $opinions_repo->createQueryBuilder('o')
-				->where('o.user = (:user_id) OR o.user IN (:following)')
-				->setParameter('user_id', $user->getId())
-				->setParameter('following', $following_array)
-				->orderBy('o.id', 'DESC')
-				->getQuery();
-		
-		// obtenemos el elemento de paginacion
-		$paginator = $this->get('knp_paginator');
-		$pagination = $paginator->paginate(
-					$query,
-					$request->query->getInt('page', 1),
-					5
-				);
-		
-		return $pagination;	
-	}
-	
-	// metodo para eliminar la opinion
-	public function removeOpinionAction(Request $request, $id){
-		
-		
-		$em = $this->getDoctrine()->getManager();
-		
-		$opinions_repo = $em->getRepository('BackendBundle:Opinion');
-		$opinions = $opinions_repo->find($id);
-		$user = $this->getUser();
-		if ($user->getId() == $opinions->getUser()->getId()) {
-			$em->remove($opinions);
-			$flush = $em->flush();
 
-			if ($flush == null) {
-				$status = "La publicación se ha borrado correctamente";
-			} else {
-				$status = "La publicación no se ha borrado";
-			}
-		} else {
-			$status = "La publicación no se ha borrado";
-		}
-		return new Response($status);
-	}
-	
-	// metodo para el perfil de la empresa
-	public function profileAction(Request $request, $id = null){	
-		
-		$user = $this->getUser();
-		$em = $this->getDoctrine()->getManager();
-		
-		// Si el ID no es nulo
-		if ($id != null) {
-			// Cargamos el repositorio de la empresa
-			$company_repo = $em->getRepository('BackendBundle:Company');
-			// buscamos por la ID
-			$company = $company_repo->findOneBy(array(
-				'id' => $id
-			));
-		} else { // en caso de no obtener nulo
-			//obtenemos el ID de la empresa
-			$company = $this->getId();
-		}
-		
-		// si la empresa viene vacia o no es un objeto
-		if (empty($company) || !is_object($company)) {
-			return $this->redirect($this->generateUrl('home_companies'));
-		}
-		
-		
-		// en esta query se debe sacar las opiniones que se le hayan hecho unicamente a la compañia
-		$company_id = $company->getId();
-		$dql = "SELECT o FROM BackendBundle:Opinion o WHERE o.company = $company_id ORDER BY o.id DESC";
-		$query = $em->createQuery($dql);
-		
-		$paginator = $this->get('knp_paginator');
-		$opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
-		
-		return $this->render('AppBundle:Company:profile.html.twig', array(
-			// le pasamos a la vista una variable company donde estan todos los datos a mostrar	
-			'company' => $company,
-			'pagination' => $opinions
-		));
-	}
-	
-	
-	
+    /* éste método es para registrar una compañia
+     */
+    public function registerAction(Request $request){
+        $company = new Company();
+        $form = $this->createForm(CompanyType::class, $company);
+        
+        return $this->render('AppBundle:Company:register-company.html.twig', array(
+            "form" => $form->createView()
+        ));
+    }
+    
+    /* Este metodo debe ser colocado en su controlador indicado
+     * Es para cargar el formulario de la opinion general en donde van las preguntas
+     */
+
+    public function indexAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+
+        //creamos objeto de la entidad
+        $opinion = new Opinion();
+        // cargamos el formulario
+        $form = $this->createForm(OpinionType::class, $opinion);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                /* //upload image
+                  $file = $form['image']->getData();
+                  if (!empty($file) && $file != null) {
+                  $ext = $file->getExtension();
+                  if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
+                  $file_name = $user->getId().time().".".$ext;
+                  $file->move("uploads/opinins/images", $file_name)
+
+                  $opinion->setImage($file_name);
+                  } else {
+                  $opinion->setImage(null);
+                  }
+                  } else {
+                  $opinion->setImage(null);
+                  }
+
+                  //upload document
+                  $doc = $form['document']->getData();
+                  if (!empty($doc) && $doc != null) {
+                  $ext = $doc->getExtension();
+                  if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
+                  $file_name = $user->getId().time().".".$ext;
+                  $doc->move("uploads/opinins/documents", $file_name)
+
+                  $opinion->setDocument($file_name);
+                  } else {
+                  $opinion->setDocument(null);
+                  }
+                  } else {
+                  $opinion->setDocument(null);
+                  } */
+
+
+                $opinion->setUser($user);
+                $opinion->setCreatedAt(new \DateTime("now"));
+
+                $em->persist($opinion);
+                $flush = $em->flush();
+
+                if ($flush == null) {
+                    $status = "La publicacion se ha creado correctamente";
+                } else {
+                    $status = "Error al añadir la publicacion";
+                }
+            } else {
+                $status = "La publicación no se ha creado";
+            }
+
+            $this->session->getFlashBag()->add("status", $status);
+            return $this->redirectToRoute('home_companies');
+        }
+
+        $opinion = $this->getOpinions($request);
+
+        return $this->render('AppBundle:User:home.html.twig', array(
+                    'form' => $form->createView(),
+                    'pagination' => $opinion
+        ));
+    }
+
+    public function companiesAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+        $dql = "SELECT u FROM BackendBundle:Company u ORDER BY u.id ASC";
+        $query = $em->createQuery($dql);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $query, $request->query->getInt('page', 1), 5
+        );
+
+        return $this->render('AppBundle:Company:companies.html.twig', array(
+                    'pagination' => $pagination
+        ));
+    }
+
+    public function searchAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $search = trim($request->query->get("search", null));
+
+        if ($search == null) {
+            return $this->redirect($this->generateURL('home_publication'));
+        }
+
+        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+        // La consulta nos devuelve resultados parecidos a la busqueda que se envia
+        $dql = "SELECT u FROM BackendBundle:Company u "
+                . "WHERE u.businessname LIKE :search OR u.tradename LIKE :search "
+                . "OR u.businesssector LIKE :search ORDER BY u.id ASC";
+        $query = $em->createQuery($dql)->setParameter('search', "%$search%");
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $query, $request->query->getInt('page', 1), 5
+        );
+
+        return $this->render('AppBundle:Company:companies.html.twig', array(
+                    'pagination' => $pagination,
+        ));
+    }
+
+    public function getOpinions($request) {
+        $em = $this->getDoctrine()->getManager();
+
+        // Obtenemos el usuario logeado
+        $user = $this->getUser();
+
+        $opinions_repo = $em->getRepository('BackendBundle:Opinion');
+        $following_repo = $em->getRepository('BackendBundle:Following');
+
+        /*
+          SELECT generalcomment FROM opinions WHERE user_id = 1 OR user_id
+          IN (SELECT followed FROM following WHERE user = 1 );
+         */
+
+        $following = $following_repo->findBy(array(
+            'user' => $user
+        ));
+
+        $following_array = array();
+        foreach ($following as $follow) {
+            $following_array[] = $follow->getFollowed();
+        }
+
+        // query comentada arriba
+        $query = $opinions_repo->createQueryBuilder('o')
+                ->where('o.user = (:user_id) OR o.user IN (:following)')
+                ->setParameter('user_id', $user->getId())
+                ->setParameter('following', $following_array)
+                ->orderBy('o.id', 'DESC')
+                ->getQuery();
+
+        // obtenemos el elemento de paginacion
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $query, $request->query->getInt('page', 1), 5
+        );
+
+        return $pagination;
+    }
+
+    // metodo para eliminar la opinion
+    public function removeOpinionAction(Request $request, $id) {
+
+
+        $em = $this->getDoctrine()->getManager();
+
+        $opinions_repo = $em->getRepository('BackendBundle:Opinion');
+        $opinions = $opinions_repo->find($id);
+        $user = $this->getUser();
+        if ($user->getId() == $opinions->getUser()->getId()) {
+            $em->remove($opinions);
+            $flush = $em->flush();
+
+            if ($flush == null) {
+                $status = "La publicación se ha borrado correctamente";
+            } else {
+                $status = "La publicación no se ha borrado";
+            }
+        } else {
+            $status = "La publicación no se ha borrado";
+        }
+        return new Response($status);
+    }
+
+    // metodo para el perfil de la empresa
+    public function profileAction(Request $request, $id = null) {
+
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        // Si el ID no es nulo
+        if ($id != null) {
+            // Cargamos el repositorio de la empresa
+            $company_repo = $em->getRepository('BackendBundle:Company');
+            // buscamos por la ID
+            $company = $company_repo->findOneBy(array(
+                'id' => $id
+            ));
+        } else { // en caso de no obtener nulo
+            //obtenemos el ID de la empresa
+            $company = $this->getId();
+        }
+
+        // si la empresa viene vacia o no es un objeto
+        if (empty($company) || !is_object($company)) {
+            return $this->redirect($this->generateUrl('home_companies'));
+        }
+
+
+        // en esta query se debe sacar las opiniones que se le hayan hecho unicamente a la compañia
+        $company_id = $company->getId();
+        $dql = "SELECT o FROM BackendBundle:Opinion o WHERE o.company = $company_id ORDER BY o.id DESC";
+        $query = $em->createQuery($dql);
+
+        $paginator = $this->get('knp_paginator');
+        $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
+
+        return $this->render('AppBundle:Company:profile.html.twig', array(
+                    // le pasamos a la vista una variable company donde estan todos los datos a mostrar	
+                    'company' => $company,
+                    'pagination' => $opinions
+        ));
+    }
+
 }
