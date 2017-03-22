@@ -68,10 +68,28 @@ class CompanyType extends AbstractType
                     'class' => 'form-position form-control'
                 )
             ))
-            ->add('telephoneext')
-            ->add('businessemail')
-            ->add('status')
-            ->add('document')
+            ->add('telephoneext', TextType::class, array(
+                'label' => 'Teléfono externo',
+                'required' => 'required',
+                'attr' => array(
+                    'class' => 'form-telefono form-control'
+                )
+            ))
+            ->add('businessemail', TextType::class, array(
+                'label' => 'Correo de negocio',
+                'required' => 'required',
+                'attr' => array(
+                    'class' => 'form-businessemail form-control'
+                )
+            ))
+            
+            ->add('document', TextType::class, array(
+                'label' => 'document',
+                'required' => 'required',
+                'attr' => array(
+                    'class' => 'form-document form-control'
+                )
+            ))
             ->add('createdAt')
             ->add('updatedAt')
             ->add('user')
@@ -83,27 +101,9 @@ class CompanyType extends AbstractType
         ;
     
         /*        $builder
-            ->add('tradename', TextType::class, array(
-                'label' => 'Nombre comercial',
-                'required' => 'required',
-                'attr' => array(
-                    'class' => 'form-tradename form-control'
-                )
-            ))
-            ->add('businessname', TextType::class, array(
-                'label' => 'Nombre del negocio',
-                'required' => 'required',
-                'attr' => array(
-                    'class' => 'form-businessname form-control'
-                )
-            ))
-            ->add('rfc', TextType::class, array(
-                'label' => 'RFC',
-                'required' => 'required',
-                'attr' => array(
-                    'class' => 'form-rfc form-control'
-                )
-            ))
+            ->add('tradename')
+            ->add('businessname')
+            ->add('rfc')
             ->add('logo')
             ->add('description')
             ->add('businesssector')
