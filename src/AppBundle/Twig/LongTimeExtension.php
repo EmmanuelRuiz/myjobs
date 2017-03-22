@@ -79,7 +79,7 @@ class LongTimeExtension extends \Twig_Extension{
 			}
 		}
 
-		return "Hace " . $result;
+		return "hace " . $result;
 	}
 	
 	public function getName(){

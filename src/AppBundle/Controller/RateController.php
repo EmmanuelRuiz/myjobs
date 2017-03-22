@@ -4,19 +4,27 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use BackendBundle\Entity\Opinion;
 
 class RateController extends Controller {
+	private $session;
+
+    public function __construct() {
+        $this->session = new Session();
+    }
 	
 	public function rateAction(Request $request, $id){
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
 		
+		//creamos objeto de la entidad
+		$opinion = new Opinion();
+		
 		$company_repo = $em->getRepository('BackendBundle:Company');
 		// Buscamos la opinion que estamos dando like
 		$company = $company_repo->find($id);
-		var_dump($company);
 		
 		$var = $request->query->get("estrellas");
 		$var2 = $request->query->get("estrellas2");
@@ -29,11 +37,8 @@ class RateController extends Controller {
 		$var9 = $request->query->get("estrellas9");
 		$var10 = $request->query->get("estrellas10");
 		$generalcomment = $request->query->get("generalcomment");
-		var_dump($var, $var2, $var3, $var4, $var5, $var6, $var7, $var8, $var9, $var10, $generalcomment);
-
-		//creamos objeto de la entidad
-		$opinion = new Opinion();
 		
+		// seteamos los datos
 		$opinion->setUser($user);
 		$opinion->setPoint1($var);
 		$opinion->setPoint2($var2);
@@ -47,13 +52,20 @@ class RateController extends Controller {
 		$opinion->setPoint10($var10);
 		$opinion->setGeneralcomment($generalcomment);
 		$opinion->setCompany($company);
+		$opinion->setCreatedAt(new \DateTime("now"));
 		
 		
 		$em->persist($opinion);
 		$flush = $em->flush();
+		if ($flush == null) {
+			$status = "Has opinado correctamente";
+		} else {
+			$status = "Error al añadir la opinion";
+		}
 		
-		var_dump($opinion); 
-		die();
+		$this->session->getFlashBag()->add("status", $status);
+		// /company/id 
+		return $this->redirectToRoute('company_profile', array('id' => $id));
 		
 		
 	}
