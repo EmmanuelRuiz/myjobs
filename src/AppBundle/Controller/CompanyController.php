@@ -49,7 +49,7 @@ class CompanyController extends Controller {
                         $status = "registro exitoso";
                         return $this->redirect("register-company");
                     } else {
-                        return $status = "la compañia ya existe";
+                        return $status = "registro fallido";
                     }
                 } else {
                     $status = "La compañía ya existe";
