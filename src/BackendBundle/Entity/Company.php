@@ -88,7 +88,26 @@ class Company
     private $user;
 
 
-    /**
+    /*aqui en el turorial usaron username*/
+    public function getBusiness(){
+        return $this->businessname;
+    }
+    
+    /*abajo uso doble s por que da error con una, ya que estyamos accediendo a 
+     * una funcion de esta clase     */
+    public function getStatuss(){
+        return $this->getStatus();
+    }
+    
+    public function eraseCredentials(){
+        
+    }
+    
+    public function __toString() {
+        return $this->businessname;
+    }
+
+        /**
      * Get id
      *
      * @return integer

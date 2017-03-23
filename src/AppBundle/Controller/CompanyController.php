@@ -27,6 +27,38 @@ class CompanyController extends Controller {
         $company = new Company();
         $form = $this->createForm(CompanyType::class, $company);
         
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            if($form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                //$user_repo = $em->getRepository("BackendBundle:Company");
+                $query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename OR u.businessname = :businessname')
+                            ->setParameter('tradename', $form->get("tradename")->getData())
+                            ->setParameter('businessname', $form->get("businessname")->getData());
+                
+                $company_isset = $query->getResult();
+                /*si company isset = 0 crea el usuario sino no lo hace por que ya existe el usuario*/
+                if(count($company_isset) == 0){
+                    //$factory = $this->get("security.encoder_factory");
+                    //$encoder = $factory->getEncoder($company);
+                    //$company->setStatus("STATUS_NO_DISPONIBLE");
+                    $company->setLogo(null);
+                    $em->persist($company);
+                    $flush = $em->flush();
+                    if($flush == null){
+                        $status = "registro exitoso";
+                        return $this->redirect("register-company");
+                    } else {
+                        return $status = "la compañia ya existe";
+                    }
+                } else {
+                    $status = "La compañía ya existe";
+                }
+            } else {
+                $status = "La empresa no fue registrada correctamente";
+            }
+        }
+        
         return $this->render('AppBundle:Company:register-company.html.twig', array(
             "form" => $form->createView()
         ));
