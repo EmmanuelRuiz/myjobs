@@ -127,9 +127,6 @@ class CompanyController extends Controller {
     }
 
     public function searchAction(Request $request) {
-        
-        $url = $request->getUri();
-        var_dump($url);
         $em = $this->getDoctrine()->getManager();
         $search = trim($request->query->get("search", null));
 

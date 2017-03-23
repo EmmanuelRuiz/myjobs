@@ -1,9 +1,9 @@
 login:
-    path: /login
+    path: /
     defaults: { _controller: AppBundle:User:login }
 
 login_check:
-   path: /login_check
+    path: /login_check
 
 logout:
     path: /logout

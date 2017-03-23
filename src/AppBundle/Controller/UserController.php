@@ -21,13 +21,12 @@ class UserController extends Controller {
     }
 
     public function loginAction(Request $request) {
-        //$url = $container->get('request')->get('_route');
-        //$route = $request->get('_route');
-        $url = $request->getUri();
-        var_dump($url);
+		//$url = $container->get('request')->get('_route');
+		//$route = $request->get('_route');
+		//$url = $request->getUri();
+		//var_dump($url);
         if (is_object($this->getUser())) {
-        
-            return $this->redirect('home');
+			return $this->redirect('home');
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');
@@ -37,8 +36,8 @@ class UserController extends Controller {
 		
 
         return $this->render('AppBundle:User:home.html.twig', array(
-            'last_username' => $lastUsername,
-            'error' => $error
+			'last_username' => $lastUsername,
+			'error' => $error
         ));
     }
 
