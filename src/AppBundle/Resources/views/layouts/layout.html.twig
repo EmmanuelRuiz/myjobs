@@ -45,7 +45,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
+                        {{ app.request.get('_route')}}<a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
