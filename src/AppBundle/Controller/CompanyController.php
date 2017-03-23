@@ -136,10 +136,12 @@ class CompanyController extends Controller {
         $opinion = $this->getOpinions($request);
 
         return $this->render('AppBundle:User:home.html.twig', array(
-                    'form' => $form->createView(),
-                    'pagination' => $opinion
+			'form' => $form->createView(),
+			'pagination' => $opinion
         ));
     }
+	
+	
 
     public function companiesAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
@@ -150,11 +152,11 @@ class CompanyController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+			$query, $request->query->getInt('page', 1), 5
         );
 
         return $this->render('AppBundle:Company:companies.html.twig', array(
-                    'pagination' => $pagination
+			'pagination' => $pagination
         ));
     }
 
@@ -175,11 +177,11 @@ class CompanyController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+			$query, $request->query->getInt('page', 1), 5
         );
 
         return $this->render('AppBundle:Company:companies.html.twig', array(
-                    'pagination' => $pagination,
+			'pagination' => $pagination,
         ));
     }
 
@@ -217,7 +219,7 @@ class CompanyController extends Controller {
         // obtenemos el elemento de paginacion
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+			$query, $request->query->getInt('page', 1), 5
         );
 
         return $pagination;
@@ -225,8 +227,6 @@ class CompanyController extends Controller {
 
     // metodo para eliminar la opinion
     public function removeOpinionAction(Request $request, $id) {
-
-
         $em = $this->getDoctrine()->getManager();
 
         $opinions_repo = $em->getRepository('BackendBundle:Opinion');
@@ -281,9 +281,9 @@ class CompanyController extends Controller {
         $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
         return $this->render('AppBundle:Company:profile.html.twig', array(
-                    // le pasamos a la vista una variable company donde estan todos los datos a mostrar	
-                    'company' => $company,
-                    'pagination' => $opinions
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar	
+			'company' => $company,
+			'pagination' => $opinions
         ));
     }
 

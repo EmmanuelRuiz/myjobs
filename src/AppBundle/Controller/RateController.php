@@ -66,8 +66,7 @@ class RateController extends Controller {
 		$this->session->getFlashBag()->add("status", $status);
 		// /company/id 
 		return $this->redirectToRoute('company_profile', array('id' => $id));
-		
-		
 	}
+	
 	
 }
