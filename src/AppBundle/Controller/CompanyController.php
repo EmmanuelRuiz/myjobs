@@ -7,11 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
-use BackendBundle\Entity\Opinion;
+use BackendBundle\Entity\Comment;
+
 use AppBundle\Form\CompanyType;
-use AppBundle\Form\OpinionType;
+use AppBundle\Form\CommentType;
 
 class CompanyController extends Controller {
 
@@ -20,6 +22,24 @@ class CompanyController extends Controller {
     public function __construct() {
         $this->session = new Session();
     }
+	
+	public function indexAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+
+        //creamos objeto de la entidad
+        $comment = new Comment();
+        // cargamos el formulario
+        $form = $this->createForm(CommentType::class, $comment);
+        //$form->handleRequest($request);
+        
+        //$opinion = $this->getOpinions($request);
+
+        return $this->render('AppBundle:User:home.html.twig', array(
+			'form' => $form->createView(),
+        ));
+    }	
 
     /* éste método es para registrar una compañia
      */
@@ -78,78 +98,7 @@ class CompanyController extends Controller {
      * Es para cargar el formulario de la opinion general en donde van las preguntas
      */
 
-    public function indexAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $this->getUser();
-
-        //creamos objeto de la entidad
-        $opinion = new Opinion();
-        // cargamos el formulario
-        $form = $this->createForm(OpinionType::class, $opinion);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                /* //upload image
-                  $file = $form['image']->getData();
-                  if (!empty($file) && $file != null) {
-                  $ext = $file->getExtension();
-                  if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
-                  $file_name = $user->getId().time().".".$ext;
-                  $file->move("uploads/opinins/images", $file_name)
-
-                  $opinion->setImage($file_name);
-                  } else {
-                  $opinion->setImage(null);
-                  }
-                  } else {
-                  $opinion->setImage(null);
-                  }
-
-                  //upload document
-                  $doc = $form['document']->getData();
-                  if (!empty($doc) && $doc != null) {
-                  $ext = $doc->getExtension();
-                  if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gifs') {
-                  $file_name = $user->getId().time().".".$ext;
-                  $doc->move("uploads/opinins/documents", $file_name)
-
-                  $opinion->setDocument($file_name);
-                  } else {
-                  $opinion->setDocument(null);
-                  }
-                  } else {
-                  $opinion->setDocument(null);
-                  } */
-
-
-                $opinion->setUser($user);
-                $opinion->setCreatedAt(new \DateTime("now"));
-
-                $em->persist($opinion);
-                $flush = $em->flush();
-
-                if ($flush == null) {
-                    $status = "La publicacion se ha creado correctamente";
-                } else {
-                    $status = "Error al añadir la publicacion";
-                }
-            } else {
-                $status = "La publicación no se ha creado";
-            }
-
-            $this->session->getFlashBag()->add("status", $status);
-            return $this->redirectToRoute('home_companies');
-        }
-
-        $opinion = $this->getOpinions($request);
-
-        return $this->render('AppBundle:User:home.html.twig', array(
-                    'form' => $form->createView(),
-                    'pagination' => $opinion
-        ));
-    }
+    
 
     public function companiesAction(Request $request) {
         $em = $this->getDoctrine()->getManager();

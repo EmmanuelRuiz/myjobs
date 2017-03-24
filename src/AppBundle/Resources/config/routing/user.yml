@@ -1,14 +1,14 @@
-login:
-    path: /
-    defaults: { _controller: AppBundle:User:login }
+user_login:
+    path: /login
 
-login_check:
-    path: /login_check
-
-logout:
+user_logout:
     path: /logout
+    
+user_loginerror:
+    path: /loginerror
+    defaults: {_controller: AppBundle:User:loginerror}
 
-register:
+user_register:
     path: /register
     defaults: { _controller: AppBundle:User:register }
 

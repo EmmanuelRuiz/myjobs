@@ -67,7 +67,7 @@
                                                     </div>
                                                      o ingresa tus datos
                                                     <br />
-                                                    <form action="{{path('login_check')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
+                                                    <form action="{{path('user_login')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="inputEmail">Correo electronico</label>
                                                             <input type="email" id="username" name="_username"  class="form-control">
@@ -88,7 +88,7 @@
                                                      </form>
                                                 </div>
                                                 <div class="bottom text-center">
-                                                    ¿No tienes una cuenta? <a href="{{path("register")}}"><b>Registrate</b></a>
+                                                    ¿No tienes una cuenta? <a href="{{path("user_register")}}"><b>Registrate</b></a>
                                                 </div>
                                             </div>
                                         </li>
@@ -134,7 +134,7 @@
                                 <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Mi perfil</a></li>
                                 <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Mis datos</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{path('logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
+                                <li><a href="{{path('user_logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
                                 <li><a href=""><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbspAyuda</a></li>
                             </ul>
                         </li>   

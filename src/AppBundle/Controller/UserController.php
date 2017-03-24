@@ -19,12 +19,12 @@ class UserController extends Controller {
     public function __construct() {
         $this->session = new Session();
     }
+	
+	public function indexAction(Request $request) {
+        return $this->render('AppBundle:User:home.html.twig');
+    }
 
-    public function loginAction(Request $request) {
-		//$url = $container->get('request')->get('_route');
-		//$route = $request->get('_route');
-		//$url = $request->getUri();
-		//var_dump($url);
+    public function loginerrorAction(Request $request) {
         if (is_object($this->getUser())) {
 			return $this->redirect('home');
         }
@@ -33,8 +33,6 @@ class UserController extends Controller {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 		
-		
-
         return $this->render('AppBundle:User:home.html.twig', array(
 			'last_username' => $lastUsername,
 			'error' => $error
