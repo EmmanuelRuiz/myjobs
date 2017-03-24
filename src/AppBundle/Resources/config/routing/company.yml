@@ -1,5 +1,3 @@
-
-
 register-company:
     path: /register-company
     defaults: { _controller: AppBundle:Company:register }

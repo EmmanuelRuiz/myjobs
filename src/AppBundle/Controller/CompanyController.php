@@ -23,27 +23,7 @@ class CompanyController extends Controller {
         $this->session = new Session();
     }
 	
-	public function indexAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $this->getUser();
-
-        //creamos objeto de la entidad
-        $comment = new Comment();
-        // cargamos el formulario
-        $form = $this->createForm(CommentType::class, $comment);
-        //$form->handleRequest($request);
-        
-        //$opinion = $this->getOpinions($request);
-
-        return $this->render('AppBundle:User:home.html.twig', array(
-			'form' => $form->createView(),
-        ));
-    }	
-
-    /* éste método es para registrar una compañia
-     */
-
+    /* éste método es para registrar una compañia*/
     public function registerAction(Request $request) {
         $company = new Company();
         $form = $this->createForm(CompanyType::class, $company);
@@ -90,16 +70,10 @@ class CompanyController extends Controller {
         }
 
         return $this->render('AppBundle:Company:register-company.html.twig', array(
-                    "form" => $form->createView()
+			"form" => $form->createView()
         ));
     }
-
-    /* Este metodo debe ser colocado en su controlador indicado
-     * Es para cargar el formulario de la opinion general en donde van las preguntas
-     */
-
-    
-
+  
     public function companiesAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
@@ -109,11 +83,11 @@ class CompanyController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+			$query, $request->query->getInt('page', 1), 5
         );
 
         return $this->render('AppBundle:Company:companies.html.twig', array(
-                    'pagination' => $pagination
+			'pagination' => $pagination
         ));
     }
 
@@ -138,7 +112,7 @@ class CompanyController extends Controller {
         );
 
         return $this->render('AppBundle:Company:companies.html.twig', array(
-                    'pagination' => $pagination,
+            'pagination' => $pagination,
         ));
     }
 
@@ -189,6 +163,8 @@ class CompanyController extends Controller {
         $opinions_repo = $em->getRepository('BackendBundle:Opinion');
         $opinions = $opinions_repo->find($id);
         $user = $this->getUser();
+		
+		
         if ($user->getId() == $opinions->getUser()->getId()) {
             $em->remove($opinions);
             $flush = $em->flush();
@@ -209,7 +185,7 @@ class CompanyController extends Controller {
 
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-
+		
         // Si el ID no es nulo
         if ($id != null) {
             // Cargamos el repositorio de la empresa
@@ -238,9 +214,9 @@ class CompanyController extends Controller {
         $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
         return $this->render('AppBundle:Company:profile.html.twig', array(
-                    // le pasamos a la vista una variable company donde estan todos los datos a mostrar	
-                    'company' => $company,
-                    'pagination' => $opinions
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar
+			'company' => $company,
+			'pagination' => $opinions
         ));
     }
 
