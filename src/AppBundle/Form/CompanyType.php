@@ -90,9 +90,7 @@ class CompanyType extends AbstractType
                     'class' => 'form-document form-control'
                 )
             ))
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('user')
+
             ->add('Registrarse', SubmitType::class, array(
                 "attr" => array(
                     "class" => "form-submit btn btn-success"

@@ -23,29 +23,39 @@ class CompanyController extends Controller {
 
     /* éste método es para registrar una compañia
      */
-    public function registerAction(Request $request){
+
+    public function registerAction(Request $request) {
         $company = new Company();
         $form = $this->createForm(CompanyType::class, $company);
-        
+
         $form->handleRequest($request);
-        if($form->isSubmitted()){
-            if($form->isValid()){
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+                $user = $this->getUser();
+
                 //$user_repo = $em->getRepository("BackendBundle:Company");
                 $query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename OR u.businessname = :businessname')
-                            ->setParameter('tradename', $form->get("tradename")->getData())
-                            ->setParameter('businessname', $form->get("businessname")->getData());
+                        ->setParameter('tradename', $form->get("tradename")->getData())
+                        ->setParameter('businessname', $form->get("businessname")->getData());
                 
                 $company_isset = $query->getResult();
-                /*si company isset = 0 crea el usuario sino no lo hace por que ya existe el usuario*/
-                if(count($company_isset) == 0){
+                /* si company isset es igual a 0 crea el usuario sino no lo hace por que ya existe el usuario */
+                if (count($company_isset) == 0) {
                     //$factory = $this->get("security.encoder_factory");
                     //$encoder = $factory->getEncoder($company);
-                    //$company->setStatus("STATUS_NO_DISPONIBLE");
+                    //$company->setStatus("NO");
+                    $createdAt = new \Datetime('now');
+                    $updatedAt = new \Datetime('now');
+                    $company->setUser($user);
                     $company->setLogo(null);
+                    $company->setCreatedAt($createdAt);
+                    $company->setUpdatedAt($updatedAt);
+                    
+                    
                     $em->persist($company);
                     $flush = $em->flush();
-                    if($flush == null){
+                    if ($flush == null) {
                         $status = "registro exitoso";
                         return $this->redirect("register-company");
                     } else {
@@ -58,12 +68,12 @@ class CompanyController extends Controller {
                 $status = "La empresa no fue registrada correctamente";
             }
         }
-        
+
         return $this->render('AppBundle:Company:register-company.html.twig', array(
-            "form" => $form->createView()
+                    "form" => $form->createView()
         ));
     }
-    
+
     /* Este metodo debe ser colocado en su controlador indicado
      * Es para cargar el formulario de la opinion general en donde van las preguntas
      */
@@ -136,12 +146,10 @@ class CompanyController extends Controller {
         $opinion = $this->getOpinions($request);
 
         return $this->render('AppBundle:User:home.html.twig', array(
-			'form' => $form->createView(),
-			'pagination' => $opinion
+                    'form' => $form->createView(),
+                    'pagination' => $opinion
         ));
     }
-	
-	
 
     public function companiesAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
@@ -152,11 +160,11 @@ class CompanyController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
+                $query, $request->query->getInt('page', 1), 5
         );
 
         return $this->render('AppBundle:Company:companies.html.twig', array(
-			'pagination' => $pagination
+                    'pagination' => $pagination
         ));
     }
 
@@ -177,11 +185,11 @@ class CompanyController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
+                $query, $request->query->getInt('page', 1), 5
         );
 
         return $this->render('AppBundle:Company:companies.html.twig', array(
-			'pagination' => $pagination,
+                    'pagination' => $pagination,
         ));
     }
 
@@ -219,7 +227,7 @@ class CompanyController extends Controller {
         // obtenemos el elemento de paginacion
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
+                $query, $request->query->getInt('page', 1), 5
         );
 
         return $pagination;
@@ -281,9 +289,9 @@ class CompanyController extends Controller {
         $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
         return $this->render('AppBundle:Company:profile.html.twig', array(
-			// le pasamos a la vista una variable company donde estan todos los datos a mostrar	
-			'company' => $company,
-			'pagination' => $opinions
+                    // le pasamos a la vista una variable company donde estan todos los datos a mostrar	
+                    'company' => $company,
+                    'pagination' => $opinions
         ));
     }
 
