@@ -14,6 +14,10 @@ app_like:
     resource: "@AppBundle/Resources/config/routing/like.yml"
     prefix: /
     
+app_comment:
+    resource: "@AppBundle/Resources/config/routing/comment.yml"
+    prefix: /
+    
 app_homepage:
     path: /
     defaults: { _controller: AppBundle:User:index }

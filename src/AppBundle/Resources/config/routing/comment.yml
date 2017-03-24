@@ -1,0 +1,4 @@
+comment_crate:
+    path: /createcomment
+    defaults: { _controller: AppBundle:Comment:create }
+
