@@ -1,4 +1,4 @@
 comment_crate:
-    path: /createcomment/{id}
-    defaults: { _controller: AppBundle:Comment:create, id:null }
+    path: /createcomment/{id}/{opinion_id}
+    defaults: { _controller: AppBundle:Comment:create, id:null, opinion_id:null }
 

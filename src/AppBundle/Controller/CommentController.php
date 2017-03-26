@@ -12,18 +12,22 @@ use BackendBundle\Entity\Company;
 
 class CommentController extends Controller{
    
-    public function createAction(Request $request, $id){
+    public function createAction(Request $request, $id, $opinion_id){
 		$comment = new Comment();
 		$user = $this->getUser();
-		
 	
-		$commentText = $request->request->get("comment");
+		
+		$commentText = trim($request->request->get("comment"));
 		
 		$em = $this->getDoctrine()->getManager();
 		
+		//$company_repo = $em->getRepository('BackendBundle:Company');
+		
+		//$company = $company_repo->find($id);
+		
 		$opinion_repo = $em->getRepository('BackendBundle:Opinion');
 		// buscamos la opinion a la que le estamos comentando
-		$opinion = $opinion_repo->find($id);
+		$opinion = $opinion_repo->find($opinion_id);
 		
 		// insertamos el comentario
 		$comment->setBody($commentText);
@@ -33,9 +37,7 @@ class CommentController extends Controller{
         $em->persist($comment);
 		
 		$em->flush(); //ejecturamos
-        $this->addFlash('msg', 'Thank you for commenting.');
-        return $this->redirectToRoute('company_profile', array('id' => $id));
-		
-		
+        $this->addFlash('msg', 'Gracias por comentar.');
+        return $this->redirectToRoute('company_profile', array('id' => $id ));	
 	}
 }

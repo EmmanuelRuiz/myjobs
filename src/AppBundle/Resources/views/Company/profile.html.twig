@@ -213,6 +213,7 @@
                     {%for message in app.session.flashbag().get('status')%}
                         <div class="alert alert-success">{{message}}</div>
                     {%endfor%}
+                    
                 </div>
                 <div class="col-lg-8">
                     <h1>Opiniones</h1>
@@ -296,6 +297,9 @@
                                     {% endif %}
                                 </div>
                                 <div class="media">
+                                    {%for message in app.session.flashbag().get('msg')%}
+                                        <div class="alert alert-success">{{message}}</div>
+                                    {%endfor%}
                                     <label for="nameInput">Comentarios</label>
                                     <div class="media-left">
                                         <a href="#">
@@ -309,7 +313,7 @@
                                         <p></p>
                                     </div>
                                     
-                                    <form action="{{ path('comment_crate', {'id':opinions.id}) }}" method="POST">
+                                    <form action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" method="POST">
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
                                             <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
