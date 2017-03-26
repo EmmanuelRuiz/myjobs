@@ -21,8 +21,10 @@ class UserController extends Controller {
     }
 	
 	public function indexAction(Request $request) {
+		
         if (is_object($this->getUser())) {
-			return $this->redirect('');
+			//return $this->redirectToRoute('app_homepage');
+
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');
@@ -37,7 +39,8 @@ class UserController extends Controller {
 
     public function loginerrorAction(Request $request) {
         if (is_object($this->getUser())) {
-			return $this->redirect('');
+			//return $this->redirectToRoute('app_homepage');
+
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');

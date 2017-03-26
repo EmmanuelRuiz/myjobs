@@ -13,7 +13,7 @@ use BackendBundle\Entity\User;
 use BackendBundle\Entity\Comment;
 
 use AppBundle\Form\CompanyType;
-use AppBundle\Form\CommentType;
+
 
 class CompanyController extends Controller {
 
@@ -185,6 +185,8 @@ class CompanyController extends Controller {
 
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+		
+		
 		
         // Si el ID no es nulo
         if ($id != null) {
