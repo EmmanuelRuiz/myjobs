@@ -21,12 +21,23 @@ class UserController extends Controller {
     }
 	
 	public function indexAction(Request $request) {
-        return $this->render('AppBundle:User:home.html.twig');
+        if (is_object($this->getUser())) {
+			return $this->redirect('');
+        }
+
+        $authenticationUtils = $this->get('security.authentication_utils');
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+		
+        return $this->render('AppBundle:User:home.html.twig', array(
+			'last_username' => $lastUsername,
+			'error' => $error
+        ));
     }
 
     public function loginerrorAction(Request $request) {
         if (is_object($this->getUser())) {
-			return $this->redirect('home');
+			return $this->redirect('');
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');

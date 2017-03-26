@@ -23,7 +23,7 @@ class RateController extends Controller {
 		$opinion = new Opinion();
 		
 		$company_repo = $em->getRepository('BackendBundle:Company');
-		// Buscamos la opinion que estamos dando like
+		
 		$company = $company_repo->find($id);
 		
 		$var = $request->query->get("estrellas");

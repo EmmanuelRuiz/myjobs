@@ -305,14 +305,14 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Media heading</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos, voluptatibus, repellendus! Ullam enim libero dignissimos, atque tenetur assumenda, qui iure harum in, voluptatibus saepe quam repellendus. Fuga cupiditate pariatur ut.</p>
+                                        <h4 class="media-heading"></h4>
+                                        <p></p>
                                     </div>
                                     
-                                    <form action="{{ path('comment_crate') }}">
+                                    <form action="{{ path('comment_crate', {'id':opinions.id}) }}" method="POST">
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
-                                            <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="name" rows="2" cols="80"></textarea>
+                                            <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
                                             <br>
                                             <button type="submit" class="btn btn-default pull-right">Comentar</button>
                                         </div>
