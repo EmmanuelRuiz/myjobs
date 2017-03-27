@@ -214,6 +214,9 @@
                         <div class="alert alert-success">{{message}}</div>
                     {%endfor%}
                     
+                    {%for message in app.session.flashbag().get('msg')%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {%endfor%}
                 </div>
                 <div class="col-lg-8">
                     <h1>Opiniones</h1>
@@ -249,7 +252,7 @@
                                             </div> 
                                         {% endif %}
                                     {% endif%}
-                                    <span class="pull-right">{{opinions.createdAt|long_time}}</span>
+                                    <span class="pull-right text-muted">{{opinions.createdAt|long_time}}</span>
 
                                 </h5>
                                 <p>{{opinions.generalcomment}}</p>
@@ -297,39 +300,51 @@
                                     {% endif %}
                                 </div><hr>
                                 
-                                <h5><b>Comentarios</b></h5>
-                                {% for comments in comments %}
                                 <div class="media">
-                                    {%for message in app.session.flashbag().get('msg')%}
-                                        <div class="alert alert-success">{{message}}</div>
-                                    {%endfor%}
                                     
                                     
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <div class="avatar">
-                                                <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% for comments in comments%}
+                                        {% if comments.opinion.id == opinions.id %}
+                                            <div class="media-left">
+                                                <div class="avatar">
+                                                    {% if comments.user.image == null%}
+                                                        <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    {% else %}
+                                                        <img class="user-logo-opinion" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                    {% endif %}
+                                                </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="media-body">
-                                        <h4 class="media-heading">{{ comments.user.name}}</h4>
-                                        <p>{{comments.body}}</p>
-                                    </div>
+                                                       
+                                            <div class="media-body">
+                                                
+                                                <h5 class="media-heading"><a href="#">{{comments.user.name}} {{comments.user.plastname}}</a>
+                                                    <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
+                                                </h5>
+                                                <p>{{ comments.body }}</p>
+                                                
+                                            </div>
+                                            
+                                            <div class="clearfix"></div>
+                                        {% else %}
+                                            
+                                        {% endif %}
+                                        
                                     {% endfor %}
-                                    <form action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" method="POST">
+                                                       
+                                    <form class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" method="POST">
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
                                             <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
                                             <br>
                                             <button type="submit" class="btn btn-default pull-right">Comentar</button>
+                                            <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
+                                            <input id="file" type="file">
+                                            
                                         </div>
                                     </form> 
                                 </div>
-                                
                             </div>   
-                        </div>
+                        </div>                  
                         <hr />
                     {% endfor %}
                 </div>

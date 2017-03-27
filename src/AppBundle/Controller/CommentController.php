@@ -34,10 +34,11 @@ class CommentController extends Controller{
 		$comment->setOpinion($opinion);
         $comment->setCreatedAt(new \Datetime());
         $comment->setUser($user);
+		$comment->setCreatedAt(new \DateTime("now"));
         $em->persist($comment);
 		
 		$em->flush(); //ejecturamos
-        $this->addFlash('msg', 'Gracias por comentar.');
+        $this->addFlash('msg', 'Tu comentario se ha realizado con exito');
         return $this->redirectToRoute('company_profile', array('id' => $id ));
 		
 		

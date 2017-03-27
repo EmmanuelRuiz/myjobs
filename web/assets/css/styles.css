@@ -299,6 +299,24 @@ footer{
     width: 200px;
 }
 
+/* boton para subir imagenes */
+input[type=file] {
+    display: none;
+}
+
+.comment-form .label-img{
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.comment-form .label-img:hover{
+    cursor: pointer;
+    color: grey;
+}
+
+
+
 
 /* responsive para login */
 
