@@ -186,7 +186,9 @@ class CompanyController extends Controller {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
 		
+		$comment_repo = $em->getRepository('BackendBundle:Comment')->findAll();
 		
+	
 		
         // Si el ID no es nulo
         if ($id != null) {
@@ -217,6 +219,7 @@ class CompanyController extends Controller {
 
         return $this->render('AppBundle:Company:profile.html.twig', array(
 			// le pasamos a la vista una variable company donde estan todos los datos a mostrar
+			'comments' => $comment_repo,
 			'company' => $company,
 			'pagination' => $opinions
         ));

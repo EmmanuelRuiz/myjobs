@@ -234,21 +234,21 @@
 
                             <div class="media-body">
                                 <h5 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
-                                        {% if app.user == null %}
-                                            
-                                        {% else %}
-                                            {% if opinions.user.id == app.user.id %}
-                                                <div class="btn-group pull-right">
-                                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="caret"></span>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+                                    {% if app.user == null %}
 
-                                                    </ul>
-                                                </div> 
-                                            {% endif %}
-                                        {% endif%}
+                                    {% else %}
+                                        {% if opinions.user.id == app.user.id %}
+                                            <div class="btn-group pull-right">
+                                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+
+                                                </ul>
+                                            </div> 
+                                        {% endif %}
+                                    {% endif%}
                                     <span class="pull-right">{{opinions.createdAt|long_time}}</span>
 
                                 </h5>
@@ -295,12 +295,16 @@
                                               title="Ya no me gusta">
                                         </span>
                                     {% endif %}
-                                </div>
+                                </div><hr>
+                                
+                                <h5><b>Comentarios</b></h5>
+                                {% for comments in comments %}
                                 <div class="media">
                                     {%for message in app.session.flashbag().get('msg')%}
                                         <div class="alert alert-success">{{message}}</div>
                                     {%endfor%}
-                                    <label for="nameInput">Comentarios</label>
+                                    
+                                    
                                     <div class="media-left">
                                         <a href="#">
                                             <div class="avatar">
@@ -308,11 +312,12 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"></h4>
-                                        <p></p>
-                                    </div>
                                     
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{ comments.user.name}}</h4>
+                                        <p>{{comments.body}}</p>
+                                    </div>
+                                    {% endfor %}
                                     <form action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" method="POST">
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
@@ -322,6 +327,7 @@
                                         </div>
                                     </form> 
                                 </div>
+                                
                             </div>   
                         </div>
                         <hr />

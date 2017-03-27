@@ -38,6 +38,8 @@ class CommentController extends Controller{
 		
 		$em->flush(); //ejecturamos
         $this->addFlash('msg', 'Gracias por comentar.');
-        return $this->redirectToRoute('company_profile', array('id' => $id ));	
+        return $this->redirectToRoute('company_profile', array('id' => $id ));
+		
+		
 	}
 }
