@@ -331,15 +331,13 @@
                                         
                                     {% endfor %}
                                                        
-                                    <form class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" method="POST">
+                                    <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" >
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
                                             <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
-                                            <br>
-                                            <button type="submit" class="btn btn-default pull-right">Comentar</button>
                                             <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
-                                            <input id="file" type="file">
-                                            
+                                            <input id="file" name="image" type="file">
+                                            <button type="submit" class="btn btn-default pull-right">Comentar</button> 
                                         </div>
                                     </form> 
                                 </div>
