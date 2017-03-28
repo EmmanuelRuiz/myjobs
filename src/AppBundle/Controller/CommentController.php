@@ -29,7 +29,6 @@ class CommentController extends Controller{
 		
 		// evaluamos si hay una imagen enviandose
 		if (!empty($image) && $image != null) { // si la imagen existe
-			
 			// generamos una extensión
 			$ext = $image->guessExtension();
 			
