@@ -321,6 +321,8 @@
                                                     <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
                                                 </h5>
                                                 <p>{{ comments.body }}</p>
+                                                <!-- PENSAR COMO LA MOSTRREMOS -->
+                                                <img class="" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
                                                 
                                             </div>
                                             
@@ -339,7 +341,8 @@
                                             <input id="file" name="image" type="file" >
                                             <button type="submit" class="btn btn-default pull-right">Comentar</button> 
                                         </div>
-                                    </form> 
+                                    </form>
+                                    
                                 </div>
                             </div>   
                         </div>                  

@@ -188,8 +188,6 @@ class CompanyController extends Controller {
 		
 		$comment_repo = $em->getRepository('BackendBundle:Comment')->findAll();
 		
-		
-		
         // Si el ID no es nulo
         if ($id != null) {
             // Cargamos el repositorio de la empresa
