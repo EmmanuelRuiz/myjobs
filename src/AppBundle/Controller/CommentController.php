@@ -22,7 +22,8 @@ class CommentController extends Controller{
 		// buscamos la opinion a la que le estamos comentando
 		$opinion = $opinion_repo->find($opinion_id);
 
-		$commentText = $request->request->get("comment");		
+		$commentText = $request->request->get("comment");	
+		
 	
 		// upload image
 		//$image = $request->query->get('image')->getData();

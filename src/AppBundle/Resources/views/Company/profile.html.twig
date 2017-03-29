@@ -321,8 +321,13 @@
                                                     <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
                                                 </h5>
                                                 <p>{{ comments.body }}</p>
-                                                <!-- PENSAR COMO LA MOSTRREMOS -->
-                                                <img class="" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
+                                                
+                                                {% if comments.image == null%}
+                                                    
+                                                {% else %}
+                                                    <img class="" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
+                                                {% endif %}
+                                                
                                                 
                                             </div>
                                             
@@ -337,9 +342,11 @@
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
                                             <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
+                                            <br />
+                                            <button type="submit" class="btn btn-default pull-right">Comentar</button> 
+                                            
                                             <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
                                             <input id="file" name="image" type="file" >
-                                            <button type="submit" class="btn btn-default pull-right">Comentar</button> 
                                         </div>
                                     </form>
                                     

@@ -104,7 +104,7 @@
                             </a>
                         </li>
                         <li>
-                                    <a href="{{path("register-company")}}">Registrar empresa</a>
+                            <a href="{{path("register-company")}}">Registrar empresa</a>
                         </li>
                         <li><a href="#categorias">Categorias</a></li>
                         
@@ -131,8 +131,11 @@
                                 <span class="caret"></span> 
                             </a> 
                             <ul class="dropdown-menu">
-                                <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Mi perfil</a></li>
-                                <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Mis datos</a></li>
+                                <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Perfil</a></li>
+                                <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Configuración</a></li>
+                                {% if app.user.role == 'ADMINISTRADOR'%}
+                                    <li><a href="{{path('administrator_index')}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Administrar</a></li>
+                                {% endif %}
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{path('user_logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
                                 <li><a href=""><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbspAyuda</a></li>
