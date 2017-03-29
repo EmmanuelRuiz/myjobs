@@ -25,10 +25,12 @@ class CommentController extends Controller{
 		$commentText = $request->request->get("comment");		
 	
 		// upload image
-		$image = $request->request->get("image");
+		//$image = $request->query->get('image')->getData();
+		$image = $request->files->get('image');
 		
 		// evaluamos si hay una imagen enviandose
 		if (!empty($image) && $image != null) { // si la imagen existe
+			
 			// generamos una extensión
 			$ext = $image->guessExtension();
 			
@@ -37,7 +39,7 @@ class CommentController extends Controller{
 				// guardamos el nombre del archivo que viene
 				$file_name = $user->getId().time().".".$ext; 
 				// movemos a la carpeta que deseemos en el servidor
-				$file->move("uploads/comments/images", $file_name);
+				$image->move("uploads/comments/images", $file_name);
 				
 				// lo guaramos
 				$comment->setImage($file_name);
@@ -50,8 +52,6 @@ class CommentController extends Controller{
 			// insertamos como vacio
 			$comment->setImage(null);
 		}
-		
-
 		
 		// insertamos el comentario
 		$comment->setBody($commentText);

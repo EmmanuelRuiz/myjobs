@@ -172,6 +172,7 @@ class UserController extends Controller {
                     
 					// upload archivo
 					$file = $form["image"]->getData();
+					
 					if (!empty($file) && $file != null) {
 						// comprobamos que sea un formato de imagen
 						$ext = $file->guessExtension();
