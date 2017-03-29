@@ -1,0 +1,4 @@
+administrator_index:
+    path: /administrar
+    defaults: { _controller: AppBundle:Administrator:index }
+

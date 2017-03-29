@@ -17,6 +17,10 @@ app_like:
 app_comment:
     resource: "@AppBundle/Resources/config/routing/comment.yml"
     prefix: /
+
+app_administrator:
+    resource: "@AppBundle/Resources/config/routing/administrator.yml"
+    prefix: /
     
 app_homepage:
     path: /
