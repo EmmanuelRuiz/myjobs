@@ -21,7 +21,7 @@ class AdministratorController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
         // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-        $dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'no'";
+        $dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
         $query = $em->createQuery($dql);
 
         $paginator = $this->get('knp_paginator');

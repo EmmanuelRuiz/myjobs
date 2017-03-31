@@ -49,6 +49,7 @@ class CompanyController extends Controller {
                     $updatedAt = new \Datetime('now');
                     $company->setUser($user);
                     $company->setLogo(null);
+                    $company->setStatus("invalid");
                     $company->setCreatedAt($createdAt);
                     $company->setUpdatedAt($updatedAt);
                     
