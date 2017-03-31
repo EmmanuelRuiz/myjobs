@@ -2,3 +2,6 @@ administrator_index:
     path: /administrar
     defaults: { _controller: AppBundle:Administrator:index }
 
+administrar_empresa:
+    path: /administrar-empresa
+    defaults: { _controller: AppBundle:Administrator:companiesAdmin }

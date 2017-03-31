@@ -1,0 +1,14 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+
+{% block javascripts %}
+    {{ parent() }}
+     <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Empresas que no están validadas</h1>
+    </div>
+    
+    
+{%endblock%}

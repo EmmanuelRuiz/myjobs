@@ -15,4 +15,9 @@ class AdministratorController extends Controller
     {
         return $this->render('AppBundle:Administrator:administrator.html.twig');
     }
+    
+    public function companiesAdminAction(Request $request)
+    {
+        return $this->render('AppBundle:Administrator:administrator_companies.html.twig');
+    }
 }

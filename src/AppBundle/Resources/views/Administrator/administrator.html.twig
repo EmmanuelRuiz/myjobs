@@ -1,5 +1,44 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 
 {% block content %}
-        hola
+    <div class="page-header">
+        <h1>Panel de administrador</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Empresas pendientes</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Aquí van las empresas pendientes</p>
+                    <a href="{{path("administrar_empresa")}}">Ver empresas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Usuarios registrados</h3>
+                </div>
+                <div class="panel-body">
+                    <p>usuarios registrados</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Descargar informació</h3>
+                </div>
+                <div class="panel-body">
+                    <p>opción de descargar</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {%endblock%}
