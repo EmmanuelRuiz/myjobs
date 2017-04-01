@@ -12,8 +12,8 @@
     {% block stylesheet %}
         <!-- estilos css -->
         <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/css/admin.css')}}" type="text/css" rel="stylesheet">
         <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
-        
         
     {%endblock%}
 
@@ -44,7 +44,7 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                    {{ app.request.get('_route')}}<a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
+                    <a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -147,19 +147,14 @@
             </div>         
         </nav>
     </header>
-                
-
+                                
     <div class="container">
-        
+        {% block content %}
+            <!-- todo el contenido de la web -->
+            Content default
+        {%endblock%}    
     </div>
-    <div class="clearfix"></div>
-   
-    {% block content %}
-        <!-- todo el contenido de la web -->
-        Content default
-    {%endblock%}
-   
-       
+     
     <footer class="col-lg-12">
         <div class="container">
             <div class="row footer">
