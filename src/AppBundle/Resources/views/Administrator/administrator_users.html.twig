@@ -25,21 +25,32 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Creador</th>
-                                <th>Comentario</th>
-                                <th>Creacion</th>
+                                <th>Nombre</th>
+                                <th>Apellido Pat</th>
+                                <th>Apellido Mat</th>
+                                <th>Edad</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Creado</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
                         {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                        {% for comment in pagination %}
+                        {% for users in pagination %}
                             <tbody>
                                 <tr>
-                                    <td>{{ comment.id }}</td>
-                                    <td>{{ comment.user.name }}</td>
-                                    <td>{{ comment.body }}</td>
-                                    <td>{{ comment.createdAt|date("D d M Y") }}</td>
-                                    <td><button type="button" class="btn btn-success">Validar</button></td>
+                                    <td>{{ users.id }}</td>
+                                    <td>{{ users.name }}</td>
+                                    <td>{{ users.plastname }}</td>
+                                    <td>{{ users.mlastname }}</td>
+                                    <td>{{ users.age }}</td>
+                                    <td>{{ users.email }}</td>
+                                    <td>{{ users.telephone }}</td>
+                                    <td>{{ users.createdAt|date("D d M Y") }}</td>
+                                    <td><button type="button" class="btn btn-success">Ver</button>
+                                        <button type="button" class="btn btn-info">Editar</button>
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         {% endfor %}

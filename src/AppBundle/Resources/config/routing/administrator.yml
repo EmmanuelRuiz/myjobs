@@ -3,9 +3,19 @@ administrator_index:
     defaults: { _controller: AppBundle:Administrator:index }
 
 administrator_company:
-    path: /administrar/{slug}
-    defaults: { _controller: AppBundle:Administrator:companiesAdmin }
+    path: /administrar/empresas
+    defaults: { _controller: AppBundle:Administrator:companies}
     
 administrator_comment:
-    path: /administrar/{slug}
-    defaults: { _controller: AppBundle:Administrator:commentsAdmin }
+    path: /administrar/comentarios
+    defaults: { _controller: AppBundle:Administrator:comments}
+    
+administrator_user:
+    path: /administrar/usuarios
+    defaults: { _controller: AppBundle:Administrator:users}
+    
+administrator_allcompanies:
+    path: /administrar/todas_empresas
+    defaults: { _controller: AppBundle:Administrator:allCompanies}
+    
+
