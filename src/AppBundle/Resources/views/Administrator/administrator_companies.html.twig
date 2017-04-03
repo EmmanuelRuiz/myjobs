@@ -6,15 +6,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="page-header">
-        <h1>Empresas que no están validadas</h1>
-    </div>
-    
+ 
     <section class="result-company-section">
         <div class="row">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Resultados de busqueda</h1>
+                    <h1>Empresas que no están validadas</h1>
                     <div class="count">
                         <span class="label label-primary">
                             Total de resultados: {{ pagination.getTotalItemCount }}
@@ -23,31 +20,39 @@
                     <hr/>
 
 
-                    {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                    {% for company in pagination %}
-                        <div class="media">
-                            <div class="media-left">
-                                {% if company.logo == null%}
-                                    <a href="{{ path('company_profile', {'id':company.id}) }}">
-                                        <img class="company-logo" src="{{ asset('assets/images/company-logo.png') }}"/>
-                                    </a>
-                                {% else %}
-                                    <a href="{{ path('company_profile', {'id':company.id}) }}">
-                                        <img class="company-logo" src="{{ asset('uploads/users/'~company.logo) }}"/>
-                                    </a>
-                                {% endif %}
-                            </div>
-
-                            <div class="media-body">
-                                {# enlace al perfil de la empresa #}
-                                <h4 class="media-heading"><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.businessname }}</a> <span class="glyphicon glyphicon-ok-circle"></span>  | 123 opiniones</h4>
-                                <p>{{ company.description }}</p>
-                                <p>www.sitioweb.com</p>
-                              </div>
-                            <div class="clearfix"></div>
-                            <hr />
-                        </div>
-                    {% endfor %}
+                    
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>RFC</th>
+                                <th>Sector</th>
+                                <th>Representante</th>
+                                <th>Ext. Representante</th>
+                                <th>Email de Representante</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                        {% for company in pagination %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ company.id }}</td>
+                                    <td>{{ company.tradename }}</td>
+                                    <td>{{ company.rfc }}</td>
+                                    <td>{{ company.businesssector }}</td>
+                                    <td>{{ company.contacname }}</td>
+                                    <td>{{ company.telephoneext }}</td>
+                                    <td>{{ company.businessemail }}</td>
+                                    <td>{{ company.status }}</td>
+                                    <td><button type="button" class="btn btn-success">Validar</button></td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                    
 
                     {# modificar el js para el scroll infinito #}
                     <div class="navigation">

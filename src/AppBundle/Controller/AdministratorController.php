@@ -16,10 +16,10 @@ class AdministratorController extends Controller
         return $this->render('AppBundle:Administrator:administrator.html.twig');
     }
     
-    public function companiesAdminAction(Request $request)
+    public function companiesAdminAction(Request $request, $slug)
     {
-                $em = $this->getDoctrine()->getManager();
-
+		$em = $this->getDoctrine()->getManager();
+		
         // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
         $dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
         $query = $em->createQuery($dql);
