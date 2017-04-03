@@ -1,184 +1,181 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 
 {% block content %}
-    
-    <div class="col-lg-12">
-        <h1>Panel de administrador</h1>
-        <hr />
-    </div>
-    
-    
-    
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="panel panel-info">
+    <div class="container">
+        <div class="col-lg-12">
+            <h1>Panel de administrador</h1>
+            <hr />
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h2><span class="span-validate glyphicon glyphicon-alert"></span></h2>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h4 class="huge">26</h4>
+                                <p>Empresas sin validar</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a href="{{path("administrator_company", {'slug': 'empresas'})}}">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h2><span class="span-validate glyphicon glyphicon-comment"></span></h2>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h4 class="huge">30</h4>
+                                <p>Comentarios sin validar</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a href="{{ path("administrator_comment", {'slug': 'comentarios'}) }}">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h2><span class="span-validate glyphicon glyphicon-user"></span></h2>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h4 class="huge">19</h4>
+                                <p>Administrar usuarios</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a href="#">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h2><span class="span-validate glyphicon glyphicon-remove-circle"></span></h2>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h4 class="huge">23</h4>
+                                <p>Administrar empresas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a href="#">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h2><span class="span-validate glyphicon glyphicon-alert"></span></h2>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <h4 class="huge">26</h4>
-                            <p>Empresas sin validar</p>
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a href="#">Action</a>
+                                </li>
+                                <li><a href="#">Another action</a>
+                                </li>
+                                <li><a href="#">Something else here</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <a href="{{path("administrator_company", {'slug': 'empresas'})}}">Ver detalles</a>
+                    <div id="morris-area-chart"></div>
                 </div>
+                <!-- /.panel-body -->
             </div>
+            <!-- /.panel -->
         </div>
-        <div class="col-lg-3">
-            <div class="panel panel-info">
+
+
+        <div class="col-lg-4">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h2><span class="span-validate glyphicon glyphicon-comment"></span></h2>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <h4 class="huge">30</h4>
-                            <p>Comentarios sin validar</p>
-                        </div>
-                    </div>
+                    <i class="fa fa-bell fa-fw"></i> Panel de notificaciones
                 </div>
+                <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <a href="#">Ver detalles</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h2><span class="span-validate glyphicon glyphicon-user"></span></h2>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <h4 class="huge">19</h4>
-                            <p>Administrar usuarios</p>
-                        </div>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> New Comment
+                            <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                            <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-envelope fa-fw"></i> Message Sent
+                            <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-tasks fa-fw"></i> New Task
+                            <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                            <span class="pull-right text-muted small"><em>11:32 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+                            <span class="pull-right text-muted small"><em>11:13 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-warning fa-fw"></i> Server Not Responding
+                            <span class="pull-right text-muted small"><em>10:57 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+                            <span class="pull-right text-muted small"><em>9:49 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-money fa-fw"></i> Payment Received
+                            <span class="pull-right text-muted small"><em>Yesterday</em>
+                            </span>
+                        </a>
                     </div>
+                    <!-- /.list-group -->
+                    <a href="#" class="btn btn-default btn-block">View All Alerts</a>
                 </div>
-                <div class="panel-body">
-                    <a href="#">Ver detalles</a>
-                </div>
+                <!-- /.panel-body -->
             </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h2><span class="span-validate glyphicon glyphicon-remove-circle"></span></h2>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <h4 class="huge">23</h4>
-                            <p>Administrar empresas</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <a href="#">Ver detalles</a>
-                </div>
-            </div>
+            <!-- /.panel -->
         </div>
     </div>
-    
-    <div class="col-lg-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-                <div class="pull-right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            Actions
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="#">Action</a>
-                            </li>
-                            <li><a href="#">Another action</a>
-                            </li>
-                            <li><a href="#">Something else here</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div id="morris-area-chart"></div>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
-    
-                
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i> Panel de notificaciones
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> New Comment
-                        <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                        <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-envelope fa-fw"></i> Message Sent
-                        <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-tasks fa-fw"></i> New Task
-                        <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                        <span class="pull-right text-muted small"><em>11:32 AM</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                        <span class="pull-right text-muted small"><em>11:13 AM</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                        <span class="pull-right text-muted small"><em>10:57 AM</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                        <span class="pull-right text-muted small"><em>9:49 AM</em>
-                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-money fa-fw"></i> Payment Received
-                        <span class="pull-right text-muted small"><em>Yesterday</em>
-                        </span>
-                    </a>
-                </div>
-                <!-- /.list-group -->
-                <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
-    
-    
 {%endblock%}

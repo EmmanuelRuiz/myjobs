@@ -34,4 +34,24 @@ class AdministratorController extends Controller
         ));
         /*return $this->render('AppBundle:Administrator:administrator_companies.html.twig');*/
     }
+	
+	public function commentsAdminAction(Request $request, $slug)
+    {
+		$em = $this->getDoctrine()->getManager();
+		
+        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+        $dql = "SELECT u FROM BackendBundle:Comment u WHERE u.status = 'invalid'";
+        $query = $em->createQuery($dql);
+		
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+			$query, $request->query->getInt('page', 1), 5
+        );
+
+        return $this->render('AppBundle:Administrator:administrator_comments.html.twig', array(
+			'pagination' => $pagination
+        ));
+	
+    }
 }

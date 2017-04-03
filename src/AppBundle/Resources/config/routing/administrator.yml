@@ -5,3 +5,7 @@ administrator_index:
 administrator_company:
     path: /administrar/{slug}
     defaults: { _controller: AppBundle:Administrator:companiesAdmin }
+    
+administrator_comment:
+    path: /administrar/{slug}
+    defaults: { _controller: AppBundle:Administrator:commentsAdmin }
