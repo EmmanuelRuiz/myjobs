@@ -158,7 +158,7 @@ ALTER TABLE `users` ADD `anonimo` VARCHAR(2) NOT NULL AFTER `role`;
 ALTER TABLE `likes` ADD `opinions_id` int(255) AFTER `company`;
 ALTER TABLE likes ADD CONSTRAINT fk_like_opinion FOREIGN KEY (opinions_id) REFERENCES opinions(id);
 
-
+ALTER TABLE `comments` ADD `status` VARCHAR(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL AFTER `updated_at`;
 
 
 
