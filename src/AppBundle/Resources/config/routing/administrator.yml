@@ -17,5 +17,12 @@ administrator_user:
 administrator_allcompanies:
     path: /administrar/todas_empresas
     defaults: { _controller: AppBundle:Administrator:allCompanies}
+
+administrator_delete_companies:
+    path: /administrar/todas_empresas/{id}
+    defaults: { _controller: AppBundle:Administrator:deleteCompanies }
     
+administrator_delete_user:
+    path: /administrar/usuarios/delete={id}
+    defaults: { _controller: AppBundle:Administrator:deleteUsers }
 

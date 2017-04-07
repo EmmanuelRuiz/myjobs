@@ -92,4 +92,48 @@ class AdministratorController extends Controller
 			'pagination' => $pagination
         ));
     }
+	
+	public function deleteCompaniesAction(Request $request, $id){
+		
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
+		
+		$company_repo = $em->getRepository('BackendBundle:Company');
+        $company = $company_repo->find($id);
+		
+		$em->remove($company);
+		$flush = $em->flush();
+
+		if ($flush == null) {
+			$status = "La publicación se ha borrado correctamente";
+		} else {
+			$status = "La publicación no se ha borrado";
+		}
+        
+		return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
+			'status' => $status
+        ));
+	}
+	
+	public function deleteUsersAction(Request $request, $id){
+		
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
+		
+		$user_repo = $em->getRepository('BackendBundle:User');
+        $user = $user_repo->find($id);
+		
+		$em->remove($user);
+		$flush = $em->flush();
+
+		if ($flush == null) {
+			$status = "La publicación se ha borrado correctamente";
+		} else {
+			$status = "La publicación no se ha borrado";
+		}
+        
+		return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
+			'status' => $status
+        ));
+	}
 }

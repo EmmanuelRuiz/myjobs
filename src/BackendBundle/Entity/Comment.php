@@ -39,7 +39,9 @@ class Comment
 
     /**
      * @var \BackendBundle\Entity\User
+	 * 
      */
+	
     private $user;
 
 

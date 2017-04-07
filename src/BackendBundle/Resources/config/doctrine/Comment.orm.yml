@@ -54,15 +54,17 @@ BackendBundle\Entity\Comment:
             joinColumns:
                 opinion_id:
                     referencedColumnName: id
+               
             orphanRemoval: false
         user:
             targetEntity: User
-            cascade: {  }
+            cascade: { }
             fetch: LAZY
             mappedBy: null
             inversedBy: null
             joinColumns:
                 user_id:
                     referencedColumnName: id
+                
             orphanRemoval: false
     lifecycleCallbacks: {  }

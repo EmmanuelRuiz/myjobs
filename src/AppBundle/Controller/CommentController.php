@@ -59,12 +59,14 @@ class CommentController extends Controller{
 		$comment->setOpinion($opinion);
         $comment->setCreatedAt(new \Datetime());
         $comment->setUser($user);
+		// seteamos el status definido
+		$comment->setStatus("invalid");
 		$comment->setCreatedAt(new \DateTime("now"));
         $em->persist($comment);
 		$em->flush(); //ejecturamos
 		
 		
-        $this->addFlash('msg', 'Tu comentario se ha realizado con exito');
+        $this->addFlash('msg', 'Tu comentario se ha realizado con exito. Estamos validando, en breve tu comentario se podra visualizar');
 		
         return $this->redirectToRoute('company_profile', array('id' => $id ));
 		
