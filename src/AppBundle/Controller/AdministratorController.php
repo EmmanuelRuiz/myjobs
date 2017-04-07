@@ -6,6 +6,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use BackendBundle\Entity\Comment;
+use BackendBundle\Entity\Opinion;
+use BackendBundle\Entity\Company;
+
 class AdministratorController extends Controller
 {
     /**
@@ -92,6 +96,22 @@ class AdministratorController extends Controller
 			'pagination' => $pagination
         ));
     }
+	
+	public function validateCompaniesAction(Request $request, $id){
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
+		
+		
+		$company_repo = $em->getRepository('BackendBundle:Company');
+        $company = $company_repo->find($id);
+		
+		var_dump($company);
+		die();
+		
+		
+		
+		return $this->redirectToRoute('administrator_company');
+	}
 	
 	public function deleteCompaniesAction(Request $request, $id){
 		

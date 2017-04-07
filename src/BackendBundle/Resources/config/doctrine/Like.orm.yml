@@ -50,6 +50,5 @@ BackendBundle\Entity\Like:
             joinColumns:
                 user:
                     referencedColumnName: id
-                onDelete: CASCADE
             orphanRemoval: false
     lifecycleCallbacks: {  }

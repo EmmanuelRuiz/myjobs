@@ -54,7 +54,6 @@ BackendBundle\Entity\Comment:
             joinColumns:
                 opinion_id:
                     referencedColumnName: id
-               
             orphanRemoval: false
         user:
             targetEntity: User
@@ -65,6 +64,5 @@ BackendBundle\Entity\Comment:
             joinColumns:
                 user_id:
                     referencedColumnName: id
-                
             orphanRemoval: false
     lifecycleCallbacks: {  }

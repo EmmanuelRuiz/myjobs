@@ -105,7 +105,5 @@ BackendBundle\Entity\Company :
             joinColumns:
                 user_id:
                     referencedColumnName: id
-                    
-                onDelete: CASCADE
             orphanRemoval: false
     lifecycleCallbacks: {  }

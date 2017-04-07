@@ -102,8 +102,6 @@ BackendBundle\Entity\Opinion:
             joinColumns:
                 company_id:
                     referencedColumnName: id
-                    
-                onDelete: CASCADE
             orphanRemoval: false
         user:
             targetEntity: User
