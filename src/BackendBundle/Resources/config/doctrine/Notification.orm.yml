@@ -53,5 +53,7 @@ BackendBundle\Entity\Notification:
             joinColumns:
                 user_id:
                     referencedColumnName: id
+                    
+                onDelete: CASCADE
             orphanRemoval: false
     lifecycleCallbacks: {  }

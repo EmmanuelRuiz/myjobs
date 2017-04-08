@@ -47,7 +47,7 @@
                                     <td>{{ company.telephoneext }}</td>
                                     <td>{{ company.businessemail }}</td>
                                     <td>{{ company.status }}</td>
-                                    <td><button type="button" class="btn btn-success">Validar</button></td>
+                                    <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success">Validar</a></td>
                                 </tr>
                             </tbody>
                         {% endfor %}
