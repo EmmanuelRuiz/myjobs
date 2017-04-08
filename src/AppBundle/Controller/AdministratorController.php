@@ -113,26 +113,27 @@ class AdministratorController extends Controller
 		return $this->redirectToRoute('administrator_company');
 	}
 	
-	public function deleteCompaniesAction(Request $request, $id){
+	public function deleteCompaniesAction($id){
 		
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
 		
 		$company_repo = $em->getRepository('BackendBundle:Company');
-        $company = $company_repo->find($id);
+                $company = $company_repo->find($id);
 		
 		$em->remove($company);
 		$flush = $em->flush();
 
-		if ($flush == null) {
+		/*if ($flush == null) {
 			$status = "La publicación se ha borrado correctamente";
 		} else {
 			$status = "La publicación no se ha borrado";
 		}
-        
+                
 		return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
 			'status' => $status
-        ));
+        ));*/
+                return $this->redirectToRoute("administrar");
 	}
 	
 	public function deleteUsersAction(Request $request, $id){
