@@ -15,33 +15,47 @@
                         {% endif %}
                     </div>
                     <div class="col-lg-9 " id="user-card">
-                        <h1>{{ company.tradename }}  | {{ company.businesssector}} <span class="glyphicon glyphicon-ok-circle certify-sign"></span></h1>
+                        <h1>{{ company.tradename }}  | {{ company.businesssector}} 
+                            {% if company.status == 'valid' %}
+                                <span class="glyphicon glyphicon-ok-circle certify-sign"></span></h1>
+                            {% endif %}
                         <h5><b>Descripción</b></h5>
                         
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam nihil pariatur vitae cumque maxime suscipit asperiores quaerat quae ut veritatis quibusdam corrupti facere quisquam, excepturi, temporibus quidem autem, ducimus voluptatum.</p>
-
-                        <div class="following-data">
-                            <a href="#">
-                                <span class="label-stat">Opiniones</span>
-                                <span class="number-stat">0</span>
-                            </a>
-                        </div>
-
-                        <div class="following-data">
-                            <a href="#">
-                                <span class="label-stat">Me gusta</span>
-                                <span class="number-stat">0</span>
-                            </a>
-                        </div>
-                        {% if app.user == null%}
+                        <p>Totam nihil pariatur vitae cumque maxime suscipit asperiores quaerat quae ut veritatis quibusdam corrupti facere quisquam, excepturi, temporibus quidem autem, ducimus voluptatum.</p>
+                        
+                        <div class="row">
+                            {% set company_stats = company.id|company_stats%}
                             <div class="following-data">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                <a href="#">
+                                    <span class="label-stat">Opiniones</span>
+                                    <span class="number-stat">{{company_stats.opinions}}</span>
+                                </a>
                             </div>
-                        {% else %} 
+
                             <div class="following-data">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
+                                <a href="#">
+                                    <span class="label-stat">Me gusta</span>
+                                    <span class="number-stat">0</span>
+                                </a>
                             </div>
-                        {% endif %}
+                                
+                            <div class="following-data">
+                                <a href="#">
+                                    <span class="label-stat">Calificación</span>
+                                    <span class="number-stat">0</span>
+                                </a>
+                            </div>
+
+                            {% if app.user == null%}
+                                <div class="following-data">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                </div>
+                            {% else %} 
+                                <div class="following-data">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
+                                </div>
+                            {% endif %}  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -320,14 +334,13 @@
                                                 <h5 class="media-heading"><a href="#">{{comments.user.name}} {{comments.user.plastname}}</a>
                                                     <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
                                                 </h5>
+                                                
+                                                
                                                 <p>{{ comments.body }}</p>
                                                 
-                                                {% if comments.image == null%}
-                                                    
-                                                {% else %}
+                                                {% if comments.image != null%}
                                                     <img class="" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
                                                 {% endif %}
-                                                
                                                 
                                             </div>
                                             

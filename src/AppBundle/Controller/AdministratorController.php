@@ -98,18 +98,19 @@ class AdministratorController extends Controller
     }
 	
 	public function validateCompaniesAction(Request $request, $id){
+		
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
 		
+		$company = new Company();
 		
 		$company_repo = $em->getRepository('BackendBundle:Company');
         $company = $company_repo->find($id);
 		
-		var_dump($company);
-		die();
-		
-		
-		
+		$company->setStatus('valid');
+		$em->persist($company);
+		$em->flush(); //ejecturamos
+	
 		return $this->redirectToRoute('administrator_company');
 	}
 	
@@ -119,21 +120,15 @@ class AdministratorController extends Controller
 		$user = $this->getUser();
 		
 		$company_repo = $em->getRepository('BackendBundle:Company');
-                $company = $company_repo->find($id);
+		$company = $company_repo->find($id);
 		
 		$em->remove($company);
 		$flush = $em->flush();
+		
+		$this->addFlash('msg', 'La empresa se ha eliminado con exito');
 
-		/*if ($flush == null) {
-			$status = "La publicación se ha borrado correctamente";
-		} else {
-			$status = "La publicación no se ha borrado";
-		}
-                
-		return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
-			'status' => $status
-        ));*/
-                return $this->redirectToRoute("administrar");
+        return $this->redirectToRoute("administrator_allcompanies");
+		
 	}
 	
 	public function deleteUsersAction(Request $request, $id){
@@ -147,14 +142,8 @@ class AdministratorController extends Controller
 		$em->remove($user);
 		$flush = $em->flush();
 
-		if ($flush == null) {
-			$status = "La publicación se ha borrado correctamente";
-		} else {
-			$status = "La publicación no se ha borrado";
-		}
-        
-		return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
-			'status' => $status
-        ));
+		$this->addFlash('msg', 'El usuario se ha eliminado con exito');
+
+        return $this->redirectToRoute("administrator_user");
 	}
 }

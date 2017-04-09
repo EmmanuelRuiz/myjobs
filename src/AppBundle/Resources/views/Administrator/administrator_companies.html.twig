@@ -31,7 +31,6 @@
                                 <th>Representante</th>
                                 <th>Ext. Representante</th>
                                 <th>Email de Representante</th>
-                                <th>Estado</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -46,7 +45,6 @@
                                     <td>{{ company.contacname }}</td>
                                     <td>{{ company.telephoneext }}</td>
                                     <td>{{ company.businessemail }}</td>
-                                    <td>{{ company.status }}</td>
                                     <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success">Validar</a></td>
                                 </tr>
                             </tbody>

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="container">
                 <div class="col-lg-12">
-                    <h1>Comentarios pendientes</h1>
+                    <h1>Administrar empresas</h1>
                     <div class="count">
                         <span class="label label-primary">
                             Total de resultados: {{ pagination.getTotalItemCount }}
@@ -19,14 +19,15 @@
                     </div>
                     <hr/>
 
-
+                    {%for message in app.session.flashbag().get('msg')%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {%endfor%}        
                     
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre comercial</th>
-                                <th>Nombre de negocio</th>
                                 <th>RFC</th>
                                 <th>Sector</th>
                                 <th>Sitio Web</th>
@@ -41,16 +42,15 @@
                                 <tr>
                                     <td>{{ companies.id }}</td>
                                     <td>{{ companies.tradename }}</td>
-                                    <td>{{ companies.businessname }}</td>
                                     <td>{{ companies.rfc }}</td>
                                     <td>{{ companies.businesssector }}</td>
                                     <td>www.empresa.com </td>
                                     <td>1234567891</td>
                                     <td>{{ companies.createdAt|date("D d M Y") }}</td>
-                                    <td><button type="button" class="btn btn-success">Ver</button>
+                                    <td>
+                                        <button type="button" class="btn btn-success">Ver</button>
                                         <button type="button" class="btn btn-info">Editar</button>
-                                        <button type="button" class="btn btn-danger">Eliminar</button>
-                                        <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" class="btn btn-danger">eliminar</a>
+                                        <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" class="btn btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                             </tbody>

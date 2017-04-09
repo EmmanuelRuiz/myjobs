@@ -38,3 +38,11 @@ services:
         tags: 
             - { name: twig.extension }
     
+    company_stats.twig_extension:
+        class: AppBundle\Twig\CompanyStatsExtension   
+        public: false
+        arguments:
+            doctrine: "@doctrine"
+        tags: 
+            - { name: twig.extension }
+    

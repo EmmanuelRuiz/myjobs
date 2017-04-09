@@ -46,6 +46,7 @@ CONSTRAINT  pk_companies PRIMARY KEY(id),
 CONSTRAINT  fk_companies_users FOREIGN KEY(user_id) REFERENCES users(id)
 )ENGINE=InnoDb;
 
+
 CREATE TABLE following(
 id  		int(255) auto_increment not null,
 user  		int(255),
