@@ -64,6 +64,5 @@ BackendBundle\Entity\Comment:
             joinColumns:
                 user_id:
                     referencedColumnName: id
-                    onDelete: CASCADE
             orphanRemoval: false
     lifecycleCallbacks: {  }

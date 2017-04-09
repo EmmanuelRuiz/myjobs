@@ -112,7 +112,5 @@ BackendBundle\Entity\Opinion:
             joinColumns:
                 user_id:
                     referencedColumnName: id
-                    
-                onDelete: CASCADE
             orphanRemoval: false
     lifecycleCallbacks: {  }
