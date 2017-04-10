@@ -49,7 +49,7 @@
                                     <td>{{ companies.createdAt|date("D d M Y") }}</td>
                                     <td>
                                         <button type="button" class="btn btn-success">Ver</button>
-                                        <button type="button" class="btn btn-info">Editar</button>
+                                        <a href="{{ path("companies_edit", {"id":companies.id})}}"  class="btn btn-info">Editar</a>
                                         <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" class="btn btn-danger">Eliminar</a>
                                     </td>
                                 </tr>

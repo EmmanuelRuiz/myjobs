@@ -10,6 +10,12 @@ companies_search:
     path: /search
     defaults: { _controller: AppBundle:Company:search }
     
+
+    
+companies_edit:
+    path: /administrar/todas_empresas/editar
+    defaults: { _controller: AppBundle:Company:edit }
+    
     
 # esta ruta debe pertenecer a otro yml
 remove_opinion:

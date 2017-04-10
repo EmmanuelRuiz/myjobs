@@ -223,5 +223,89 @@ class CompanyController extends Controller {
 			'pagination' => $opinions
         ));
     }
+	
+	
+	public function editAction(Request $request){
+		
+		$em = $this->getDoctrine()->getManager();
+		
+		
+		$company = new Company();
+		$id = $request->query->get('id');
+		$company_repo = $em->getRepository('BackendBundle:Company');
+        $company = $company_repo->find($id);
+		
+		
+		// guardamos la imagen por defecto
+		$company_image = $company->getLogo();
+		
+		
+		// creamos variable para la instancia del formulario
+		$form = $this->createForm(CompanyType::class, $company);
+		
+		/* recoger la request del formulario */
+        $form->handleRequest($request);
+		/* comprobar si el formularion se ha enviado */
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                /*
+                 * usar entiti manager para consultas				
+                 * hacer comprobacion de que el usuario se quiere registrar
+                 * no este en la bd	
+                 * valor significa que es el parametro que recibimos			 
+                 */
+
+                $query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename')
+						->setParameter('tradename', $form->get("tradename")->getData());
+				
+				// almacenamos el usuario existente
+				$company_isset = $query->getResult();
+				
+				/* si user_isset es = 0 crea el usuario, si no no se registra por que ya existe */
+                if ((count($company_isset) == 0 || $company->getTradename() == $company_isset[0]->getTradename())) {
+                    
+					// upload archivo
+					$file = $form["image"]->getData();
+					
+					if (!empty($file) && $file != null) {
+						// comprobamos que sea un formato de imagen
+						$ext = $file->guessExtension();
+						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
+							// creamos el nombre del archivo nuevo
+							$file_name = $user->getId().time().'.'.$ext;
+							//carpeta en la que se guardara
+							$file->move("uploads/users", $file_name);
+							$user->setImage($file_name);
+						}
+					} else {
+						$user->setImage($user_image);
+					}
+					
+                    /* volcar el objeto y persistir en doctrine */
+                    $em->persist($user);
+                    /* pasar los objetos persistidos a la bd */
+                    $flush = $em->flush();
+					
+					
+                    // mensajes de comprobación 
+                    if ($flush == null) {
+                        $status = "Has modificado tus datos correctamente";
+                    } else {
+                        $status = "No has modificado tus datos";
+                    }
+                } else {
+                    $status = "El usuario ya existe";
+                }
+            } else {
+                $status = "No se han actualizado tus datos";
+            }
+            $this->session->getFlashBag()->add("status", $status);
+			return $this->redirect('my-data');
+        }
+		
+		return $this->render('AppBundle:Company:edit_company.html.twig', array(
+			'form' => $form->createView()
+		));
+	}
 
 }
