@@ -1,13 +1,14 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 {% block content %}
-    
+
     <div class="container">
-        <div class="col-lg-12">
-            <h2 class="page-header">Da de alta una empresa</h2>
-        </div>
+
         <div class="row">
             <div class="col-lg-6">
-                
+                <div class="col-lg-6">
+                    <h1>Da de alta una empresa</h1>
+                    <img src="{{ asset('assets/images/myjobsadvisor-registrar-empresa.png')}}" class="img-responsive img-register" alt="">
+                </div>
             </div> 
             <div class="col-lg-6 box-form">
                 {{form_start(form, {'action':'', 'method':'POST'})}}
@@ -15,8 +16,8 @@
                 {{form_end(form)}}
             </div>
         </div>
-        
+
     </div>
-    
+
 
 {% endblock %}
