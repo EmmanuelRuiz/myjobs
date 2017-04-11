@@ -1,5 +1,5 @@
 register-company:
-    path: /register-company
+    path: /empresas/registrar
     defaults: { _controller: AppBundle:Company:register }
 
 companies_list:

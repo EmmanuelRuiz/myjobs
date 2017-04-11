@@ -195,18 +195,18 @@ class UserController extends Controller {
 					
                     // mensajes de comprobación 
                     if ($flush == null) {
-                        $status = "Has modificado tus datos correctamente";
+                        $status = "Tu perfil se a actualizado con exito";
                     } else {
-                        $status = "No has modificado tus datos";
+                        $status = "No se han realizado cambios a tu perfil";
                     }
                 } else {
-                    $status = "El usuario ya existe";
+                    $status = "El correo electronico ya esta en uso";
                 }
             } else {
-                $status = "No se han actualizado tus datos";
+                $status = "No se han realizado cambios a tu perfil";
             }
             $this->session->getFlashBag()->add("status", $status);
-			return $this->redirect('my-data');
+			return $this->redirectToRoute('user_edit');
         }
 
 		return $this->render('AppBundle:User:edit_user.html.twig', array(

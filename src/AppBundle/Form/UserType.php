@@ -11,6 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class UserType extends AbstractType
 {
@@ -28,14 +31,14 @@ class UserType extends AbstractType
 				)
 			))
 			->add('plastname', TextType::class, array(
-				'label' => 'Apellido paterno',
+				'label' => 'Apellido Paterno',
 				'required' => 'required',
 				'attr' => array(
 					'class' => 'form-lastname form-control'
 				)
 			))
 			->add('mlastname', TextType::class, array(
-				'label' => 'apellido materno',
+				'label' => 'Apellido Materno',
 				'required' => 'required',
 				'attr' => array(
 					'class' => 'form-lastname form-control'
@@ -60,7 +63,7 @@ class UserType extends AbstractType
 				
 			//campo para imagen del usuario
 			->add('image', FileType::class, array(
-                'label' => 'Foto',
+                'label' => 'Foto de perfil',
                 'required' => false,
                 'data_class' => null,
                 'attr' => array(
@@ -68,16 +71,36 @@ class UserType extends AbstractType
                 )
             ))
 				
-			->add('age')
-			->add('telephone')
-			->add('termscondition')
-			->add('datejob')
-			->add('privacy')
-			->add('anonimo')
+			->add('age', NumberType::class, array(
+				'label' => 'Edad',
+				'required' => 'required',
+				'attr' => array(
+					'class' => 'form-control'
+				)
+			))
+			->add('telephone', TextType::class, array(
+				'label' => 'Numero telefonico',
+				'required' => 'required',
+				'attr' => array(
+					'class' => 'form-control'
+				)
+			))
+			->add('anonimo', ChoiceType::class, array(
+				'choices' => array(
+					'Si' => 'Si',
+					'No' => 'No'
+				),
+				'label' => '¿Quieres ser un perfil privado?',
+				'required' => 'required',
+				'attr' => array(
+					'class' => 'form-control'
+				),
+				'placeholder' => 'Perfil'
+			))
 				
 			->add('Editar', SubmitType::class, array(
 				"attr" => array(
-					"class" => "form-submit btn btn-success"
+					"class" => "pull-right btn btn-success"
 				)
 			))
 		;
