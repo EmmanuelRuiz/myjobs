@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CompanyType extends AbstractType
 {
@@ -18,6 +19,15 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+			//campo para imagen del usuario
+			->add('logo', FileType::class, array(
+                'label' => 'Agregar foto de perfil',
+                'required' => false,
+                'data_class' => null,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
             ->add('tradename', TextType::class, array(
                 'label' => 'Nombre comercial',
                 'required' => 'required',
@@ -55,41 +65,41 @@ class CompanyType extends AbstractType
                 )
             ))
             ->add('contacname', TextType::class, array(
-                'label' => 'Nombre de contacto',
+                'label' => 'Nombre',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-contacname form-control'
                 )
             ))
             ->add('position', TextType::class, array(
-                'label' => 'Posición en la empresa',
+                'label' => 'Cargo',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-position form-control'
                 )
             ))
             ->add('telephoneext', TextType::class, array(
-                'label' => 'Teléfono externo',
+                'label' => 'No° de Extensión',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-telefono form-control'
                 )
             ))
             ->add('businessemail', TextType::class, array(
-                'label' => 'Correo de negocio',
+                'label' => 'Correo electronico',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-businessemail form-control'
                 )
             ))
             
-            ->add('document', TextType::class, array(
+            /*->add('document', TextType::class, array(
                 'label' => 'document',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-document form-control'
                 )
-            ))
+            ))*/
 
             ->add('Registrar', SubmitType::class, array(
                 "attr" => array(
