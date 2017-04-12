@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 use BackendBundle\Entity\User;
 use AppBundle\Form\RegisterType;
 use AppBundle\Form\UserType;
@@ -19,37 +18,35 @@ class UserController extends Controller {
     public function __construct() {
         $this->session = new Session();
     }
-	
-	public function indexAction(Request $request) {
-		
-        if (is_object($this->getUser())) {
-			//return $this->redirectToRoute('app_homepage');
 
+    public function indexAction(Request $request) {
+
+        if (is_object($this->getUser())) {
+            //return $this->redirectToRoute('app_homepage');
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-		
+
         return $this->render('AppBundle:User:home.html.twig', array(
-			'last_username' => $lastUsername,
-			'error' => $error
+                    'last_username' => $lastUsername,
+                    'error' => $error
         ));
     }
 
     public function loginerrorAction(Request $request) {
         if (is_object($this->getUser())) {
-			//return $this->redirectToRoute('app_homepage');
-
+            //return $this->redirectToRoute('app_homepage');
         }
 
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-		
+
         return $this->render('AppBundle:User:home.html.twig', array(
-			'last_username' => $lastUsername,
-			'error' => $error
+                    'last_username' => $lastUsername,
+                    'error' => $error
         ));
     }
 
@@ -100,7 +97,7 @@ class UserController extends Controller {
                         $status = "Te has registrado correctamente";
 
                         $this->session->getFlashBag()->add("status", $status);
-                        return $this->redirect("login");
+                        return $this->redirectToRoute("app_homepage");
                     } else {
                         $status = "No te has registrado correctamente";
                     }
@@ -114,9 +111,9 @@ class UserController extends Controller {
         }
 
         return $this->render('AppBundle:User:register.html.twig', array(
-					"form" => $form->createView()
-		));
-	}
+                    "form" => $form->createView()
+        ));
+    }
 
     public function emailTestAction(Request $request) {
         $email = $request->get("email");
@@ -134,19 +131,19 @@ class UserController extends Controller {
         }
         return new Response($result);
     }
-    
-    public function editUserAction(Request $request){
-		
-		// creamos un objeto  usuario que ya esta logeado
-		$user = $this->getUser();
-		
-		// guardamos la imagen por defecto
-		$user_image = $user->getImage();
-		
-		// creamos variable para la instancia del formulario
-		$form = $this->createForm(UserType::class, $user);
-		
-		/* recoger la request del formulario */
+
+    public function editUserAction(Request $request) {
+
+        // creamos un objeto  usuario que ya esta logeado
+        $user = $this->getUser();
+
+        // guardamos la imagen por defecto
+        $user_image = $user->getImage();
+
+        // creamos variable para la instancia del formulario
+        $form = $this->createForm(UserType::class, $user);
+
+        /* recoger la request del formulario */
         $form->handleRequest($request);
         /* comprobar si el formularion se ha enviado */
         if ($form->isSubmitted()) {
@@ -162,37 +159,37 @@ class UserController extends Controller {
                  */
 
                 $query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email')
-						->setParameter('email', $form->get("email")->getData());
-				
-				// almacenamos el usuario existente
-				$user_isset = $query->getResult();
-				
-				/* si user_isset es = 0 crea el usuario, si no no se registra por que ya existe */
+                        ->setParameter('email', $form->get("email")->getData());
+
+                // almacenamos el usuario existente
+                $user_isset = $query->getResult();
+
+                /* si user_isset es = 0 crea el usuario, si no no se registra por que ya existe */
                 if ((count($user_isset) == 0 || $user->getEmail() == $user_isset[0]->getEmail())) {
-                    
-					// upload archivo
-					$file = $form["image"]->getData();
-					
-					if (!empty($file) && $file != null) {
-						// comprobamos que sea un formato de imagen
-						$ext = $file->guessExtension();
-						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
-							// creamos el nombre del archivo nuevo
-							$file_name = $user->getId().time().'.'.$ext;
-							//carpeta en la que se guardara
-							$file->move("uploads/users", $file_name);
-							$user->setImage($file_name);
-						}
-					} else {
-						$user->setImage($user_image);
-					}
-					
+
+                    // upload archivo
+                    $file = $form["image"]->getData();
+
+                    if (!empty($file) && $file != null) {
+                        // comprobamos que sea un formato de imagen
+                        $ext = $file->guessExtension();
+                        if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
+                            // creamos el nombre del archivo nuevo
+                            $file_name = $user->getId() . time() . '.' . $ext;
+                            //carpeta en la que se guardara
+                            $file->move("uploads/users", $file_name);
+                            $user->setImage($file_name);
+                        }
+                    } else {
+                        $user->setImage($user_image);
+                    }
+
                     /* volcar el objeto y persistir en doctrine */
                     $em->persist($user);
                     /* pasar los objetos persistidos a la bd */
                     $flush = $em->flush();
-					
-					
+
+
                     // mensajes de comprobación 
                     if ($flush == null) {
                         $status = "Tu perfil se a actualizado con exito";
@@ -206,36 +203,35 @@ class UserController extends Controller {
                 $status = "No se han realizado cambios a tu perfil";
             }
             $this->session->getFlashBag()->add("status", $status);
-			return $this->redirectToRoute('user_edit');
+            return $this->redirectToRoute('user_edit');
         }
 
-		return $this->render('AppBundle:User:edit_user.html.twig', array(
-			'form' => $form->createView()
-		));
-		
+        return $this->render('AppBundle:User:edit_user.html.twig', array(
+                    'form' => $form->createView()
+        ));
     }
-	
-	public function userAction(Request $request){
-		
-		$em = $this->getDoctrine()->getManager();
-		
-		//Sacamos todos los objetos de tipo usuario desde la base de datos
-		$dql = "SELECT u FROM BackendBundle:User u ORDER BY u.id ASC";
-		$query = $em->createQuery($dql);
-		
-		//Sacamos los registros paginados
-		$paginator = $this->get('knp_paginator');
-		$pagination = $paginator->paginate(
-				$query, $request->query->getInt('page', 1), 5
-		);
 
-		//Pasamos información a la vista
-		return $this->render('AppBundle:User:users.html.twig', array(
-			'pagination' => $pagination
-		));
+    public function userAction(Request $request) {
 
-		var_dump("User action");
-		die();
-	}
+        $em = $this->getDoctrine()->getManager();
+
+        //Sacamos todos los objetos de tipo usuario desde la base de datos
+        $dql = "SELECT u FROM BackendBundle:User u ORDER BY u.id ASC";
+        $query = $em->createQuery($dql);
+
+        //Sacamos los registros paginados
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $query, $request->query->getInt('page', 1), 5
+        );
+
+        //Pasamos información a la vista
+        return $this->render('AppBundle:User:users.html.twig', array(
+                    'pagination' => $pagination
+        ));
+
+        var_dump("User action");
+        die();
+    }
 
 }

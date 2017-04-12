@@ -3,9 +3,33 @@ BackendBundle\Entity\User:
         name:
             - NotBlank: {message: "El nombre no puede estar vacio"}
         plastname:
-            - NotBlank: {message: "Los apellidos no pueden estar vacios"}
+            - NotBlank: {message: "El apellido paterno no puede estar vacio"}
+        mlastname:
+            - NotBlank: {message: "El apellido materno no puede estar vacio"}
+        age:
+            - NotBlank: {message: "Por favor rellena este campo"}
         email:
             - NotBlank: {message: "El email no puede estar vacio"}
             - Email:
                 message: El email {{ value }} no es valido
                 checkMX: false
+        telephone:
+            - NotBlank: {message: "El número de teléfono no puede estar vacío"}
+        password:
+            - NotBlank: {message: "Debes agregar una contraseña"}
+            - Length:
+                min: 6
+                minMessage: "La contraseña debe tener almenos 6 caracteres"
+
+BackendBundle\Entity\Company:
+    properties:
+        tradename:
+            - NotBlank: {message: "el tradename no puede estar vacío"}
+        businessname:
+            - NotBlank: {message: "Este campo no puede estar vacío"}
+        rfc:
+            - NotBlank: {message: "Este campo no puede estar vacío"}
+        description:
+            - NotBlank: {message: "Este campo no puede estar vacío"}
+        businesssector:
+            - NotBlank: {message: "Este campo no puede estar vacío"}
