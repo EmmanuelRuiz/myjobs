@@ -1,11 +1,11 @@
 {% extends "AppBundle:Layouts:layout.html.twig"%}
 
-    {% block javascripts %}
-        {{ parent() }}
-         <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
-    {% endblock %}
-                            
-    {% block content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
+{% endblock %}
+
+{% block content %}
     <section class="how-we-work-for-you-section">
         <div class="container">
             <div class="col-lg-12 text-center">
@@ -32,9 +32,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                  <h4>Empresas</h4>
-                  <h1>Algunas empresas registradas en MyJobsAdvisor</h1>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
+                    <h4>Empresas</h4>
+                    <h1>Algunas empresas registradas en MyJobsAdvisor</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
                 </div>
                 <div class="col-lg-2">
                     <a href="#" class="thumbnail">
@@ -100,7 +100,19 @@
                 </table>
             </div>
         </div>
+    </section><hr>
+
+    <section class="register-company-section">
+        <div class="container">
+            <div class="col-lg-12 text-center">
+                <h4></h4>
+                <h1>Registra una empresa</h1>
+                <p>Eres representante de una empresa, registrala ahora mismo</p>
+            </div>
+            <div class="col-lg-12 text-center">
+                <a href="{{ path('register-company')}}" type="button" class="btn btn-info">¡Registrarla ahora!</a>
+            </div>
+        </div>
     </section>
 
-    {% endblock %}
-    
+{% endblock %}

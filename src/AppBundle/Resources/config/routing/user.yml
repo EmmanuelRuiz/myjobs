@@ -9,7 +9,7 @@ user_loginerror:
     defaults: {_controller: AppBundle:User:loginerror}
 
 user_register:
-    path: /register
+    path: /registrarse
     defaults: { _controller: AppBundle:User:register }
 
 user_email_test:
@@ -22,5 +22,9 @@ user_edit:
     defaults: { _controller: AppBundle:User:editUser }
 
 user_list:
-    path: /people
+    path: /usuarios
     defaults: { _controller: AppBundle:User:user }
+
+user_register_login:
+    path: /cuenta/login
+    defaults: { _controller: AppBundle:User:redirect }

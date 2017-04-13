@@ -52,7 +52,7 @@ class UserController extends Controller {
 
     public function registerAction(Request $request) {
         if (is_object($this->getUser())) {
-            return $this->redirect('home');
+            return $this->redirectToRoute('home');
         }
 
 
@@ -97,7 +97,7 @@ class UserController extends Controller {
                         $status = "Te has registrado correctamente";
 
                         $this->session->getFlashBag()->add("status", $status);
-                        return $this->redirectToRoute("app_homepage");
+                        return $this->redirectToRoute("user_register_login");
                     } else {
                         $status = "No te has registrado correctamente";
                     }
@@ -111,9 +111,13 @@ class UserController extends Controller {
         }
 
         return $this->render('AppBundle:User:register.html.twig', array(
-                    "form" => $form->createView()
+			"form" => $form->createView()
         ));
     }
+	
+	public function redirectAction (Request $request){
+		return $this->render('AppBundle:User:login.html.twig');
+	}
 
     public function emailTestAction(Request $request) {
         $email = $request->get("email");

@@ -127,6 +127,12 @@ body {
 }
 
 
+/* pagina para login */
+.login-section{
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
 /* welcome-header */
 
 
@@ -316,8 +322,6 @@ input[type=file] {
 }
 
 /* panel administrador */
-
-
 
 
 

@@ -20,6 +20,9 @@
                         {{form_start(form, {'action':'', 'method':'POST'})}}
                             {{form_errors(form)}}
                             <div class="col-lg-12 form-group">
+                                {%for message in app.session.flashbag().get('status')%}
+                                    <div class="alert alert-danger">{{message}}</div>
+                                {%endfor%}
                                 {{form_row(form.name)}}
                             </div>
                             <div class="col-lg-6 form-group">
