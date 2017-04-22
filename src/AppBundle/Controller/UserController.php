@@ -237,5 +237,36 @@ class UserController extends Controller {
         var_dump("User action");
         die();
     }
-
+	
+	public function profileAction(Request $request){
+		$em = $this->getDoctrine()->getManager();
+		
+		$user = new User();
+		$id = $request->query->get('id');
+		
+		if ($id != null) {
+			$user_repo = $em->getRepository('BackendBundle:User');
+			$user = $user_repo->findOneBy(array("id" => $id));
+		} else {
+			$user = $this->getUser();
+		}
+		
+		if (empty($user) || !is_object($user)) {
+			return $this->redirect($this->generateUrl('app_homepage'));
+		}
+		
+		$user_id = $user->getId();
+		$dql = "SELECT o FROM BackendBundle:Opinion o WHERE o.user = $user_id ORDER BY o.id DESC";
+		//creamos la query
+		$query = $em->createQuery($dql);
+		
+		//servicio de paginacion
+		$paginator = $this->get('knp_paginator');
+        $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
+		
+		return $this->render('AppBundle:User:profile.html.twig', array(
+			'user' => $user,
+			'pagination' => $opinions
+		));
+	}
 }
