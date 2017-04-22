@@ -114,13 +114,14 @@ class AdministratorController extends Controller
 		return $this->redirectToRoute('administrator_company');
 	}
 	
-	public function deleteCompaniesAction($id){
+	public function deleteCompaniesAction(Request $request){
 		
 		$em = $this->getDoctrine()->getManager();
-		$user = $this->getUser();
 		
+		$company = new Company();
+		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
-		$company = $company_repo->find($id);
+        $company = $company_repo->find($id);
 		
 		$em->remove($company);
 		$flush = $em->flush();
