@@ -1,7 +1,7 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 {% block javascripts %}
     {{parent()}}
-    <script src="{{ asset('assets/js/custom/profile.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/users.js') }}"></script>
 {% endblock javascripts %}
 {% block content %}
     <section class="profile-company-header">
@@ -15,35 +15,57 @@
                     {% endif %}
                 </div>
                 <div class="col-lg-9 " id="user-card">
-                    <h1>{{ user.name }}  | {{ user.plastname}}</h1>
-                        
+                    <h1>{{ user.name }} {{ user.plastname}}</h1>
+                    
+                    
+
                     <h5><b>Descripción</b></h5>
 
                     <p>{{user.biography}}</p>
 
                     <div class="row">
-                        {% set company_stats = company.id|company_stats%}
+                        {% set user_stats = user.id |user_stats%}
                         <div class="following-data">
-                            <a href="#">
-                                <span class="label-stat">Opiniones</span>
-                                <span class="number-stat">{{company_stats.opinions}}</span>
+                            <a href="{{ path('following_users', {'email':user.email})}}">
+                                <span class="label-stat">Siguiendo</span>
+                                <span class="number-stat">{{user_stats.following}}</span>
                             </a>
                         </div>
 
+                        <div class="following-data">
+                            <a href="{{ path('followed_users', {'email':user.email})}}">
+                                <span class="label-stat">Seguidores</span>
+                                <span class="number-stat">{{user_stats.followers}}</span>
+                            </a>
+                        </div>
+
+                        <div class="following-data">
+                            <a href="#">
+                                <span class="label-stat">Opinions</span>
+                                <span class="number-stat">{{user_stats.opinions}}</span>
+                            </a>
+                        </div>
                         <div class="following-data">
                             <a href="#">
                                 <span class="label-stat">Me gusta</span>
-                                <span class="number-stat">0</span>
+                                <span class="number-stat">{{user_stats.likes}}</span>
                             </a>
                         </div>
+                        {% if app.user.id != user.id %}
+                            <div class=buttons-following" >
+                                <button class="btn btn-sm btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
+                                    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                                    Seguir
+                                </button>
 
-                        <div class="following-data">
-                            <a href="#">
-                                <span class="label-stat">Calificación</span>
-                                <span class="number-stat">0</span>
-                            </a>
-                        </div>
+                                <button class="btn btn-sm btn-default btn-unfollow {% if app.user|following(user) == false %} hidden {% endif %}" data-followed="{{ user.id }}">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                                    Dejar de seguir
+                                </button>
+                            </div>
+                        {% endif %}
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -101,17 +123,6 @@
 
                             </h5>
                             <p>{{opinions.generalcomment}}</p>
-
-
-                            {#  
-                                Esta condicion es para cuando en los comentarios publiquen imagenes o documentos
-                                Falta agregar a la base de datos el campo document y images.
-                                Necesitamos agregar igual la condicion para la imagen 
-                            #}
-
-                            {#{% if(opinions.document is defined ) and (opinions.document != null) %}
-                                <a href="{{ asset('assets/opinions/documment'~opinions.document)}}" class="btn-doc glyphicon glyphicon-save" aria-hidden="true" target="_blank"></a>
-                            {% endif %}#}
 
                             <div class="like">
                                 {% if app.user == null%}
@@ -184,7 +195,7 @@
 
                                 {% endfor %}
 
-                                <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" >
+                                <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':user.id, 'opinion_id':opinions.id}) }}" >
                                     <div class="form-group">
                                         <label for="nameInput">Agregar comentario</label>
                                         <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>

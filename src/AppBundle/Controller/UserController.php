@@ -241,6 +241,8 @@ class UserController extends Controller {
 	public function profileAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
 		
+		$comment_repo = $em->getRepository('BackendBundle:Comment')->findAll();
+		
 		$user = new User();
 		$id = $request->query->get('id');
 		
@@ -265,6 +267,7 @@ class UserController extends Controller {
         $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 		
 		return $this->render('AppBundle:User:profile.html.twig', array(
+			'comments' => $comment_repo,
 			'user' => $user,
 			'pagination' => $opinions
 		));
