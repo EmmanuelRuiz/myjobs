@@ -38,6 +38,7 @@
                                 <span class="number-stat">{{user_stats.followers}}</span>
                             </a>
                         </div>
+                            
 
                         <div class="following-data">
                             <a href="#">
@@ -86,9 +87,14 @@
                 {%endfor%}
             </div>
             <div class="col-lg-8">
-                <h1>Opiniones</h1>
-                {% for opinions in pagination %}
+                
+                {% if user_stats.opinions == 0%}
+                    <h2 class="text-muted">{{user.name}} aun no hay realizado ninguna opinion</h2>
                     
+                {% else %}
+                    <h1 class="page-header">Opiniones</h1>
+                {% endif %}
+                {% for opinions in pagination %}
                     <div class="media">
                         <div class="media-left ">
                             <a href="#">
