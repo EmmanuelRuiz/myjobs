@@ -41,12 +41,12 @@
 
                         <div class="following-data">
                             <a href="#">
-                                <span class="label-stat">Opinions</span>
+                                <span class="label-stat">Opiniones</span>
                                 <span class="number-stat">{{user_stats.opinions}}</span>
                             </a>
                         </div>
                         <div class="following-data">
-                            <a href="#">
+                            <a href="{{ path('user_likes', {'email':user.email})}}">
                                 <span class="label-stat">Me gusta</span>
                                 <span class="number-stat">{{user_stats.likes}}</span>
                             </a>

@@ -7,17 +7,18 @@
 
 {% block content %}
     
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h1>Se parte de este gran proyecto</h1>
-                <img src="{{ asset('assets/images/myjobsadvisor-register.png')}}" class="img-responsive img-register" alt="">
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h4>Únete a MyJobsAdvisor</h4></div>
-                    <div class="panel-body">
-                        {{form_start(form, {'action':'', 'method':'POST'})}}
+    <section class="register-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>Se parte de este gran proyecto</h1>
+                    <img src="{{ asset('assets/images/myjobsadvisor-register.png')}}" class="img-responsive img-register" alt="">
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Únete a MyJobsAdvisor</h4></div>
+                        <div class="panel-body">
+                            {{form_start(form, {'action':'', 'method':'POST'})}}
                             {{form_errors(form)}}
                             <div class="col-lg-12 form-group">
                                 {%for message in app.session.flashbag().get('status')%}
@@ -50,7 +51,7 @@
                             <div class="col-lg-6 form-group">
                                 {{form_row(form.datejob)}}
                             </div>
-                          
+
                             <div class="col-lg-6 form-group">
                                 {{form_row(form.anonimo)}}
                             </div>
@@ -61,11 +62,12 @@
                                 {{form_row(form.Registrarse)}}
                             </div>
                             <div class="clearfix"></div>
-                        {{form_end(form)}}
+                            {{form_end(form)}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /.container -->
+        <!-- /.container -->
+    </section>
 {% endblock %}
