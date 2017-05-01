@@ -112,8 +112,8 @@
                                     </li>
                                 {% endif%}
                                 {% if app.user != null %}
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="btn-group">
+                                        <button class="btn btn-link btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="avatar">
                                                 {% if app.user.image == null%}
                                                     <img src="{{ asset('assets/images/default.jpg') }}"/>
@@ -123,8 +123,8 @@
                                             </div>
 
                                             {{app.user.name}} {{app.user.plastname}}
-                                            <span class="caret"></span> 
-                                        </a> 
+                                            <span class="caret"></span>
+                                        </button>
                                         <ul class="dropdown-menu">
                                             <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Perfil</a></li>
                                             <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Configuración</a></li>
@@ -135,7 +135,7 @@
                                             <li><a href="{{path('user_logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
                                             <li><a href=""><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbspAyuda</a></li>
                                         </ul>
-                                    </li>   
+                                    </div> 
                                 {% endif %}
                             </ul> 
                         </div>
