@@ -300,7 +300,7 @@ footer{
   height: 350px;
 }
 #user-card .following-data{
-    width: 15%;
+    width: 12%;
     float: left;
     text-align: center;
     margin-top: 10px;
@@ -363,6 +363,7 @@ footer{
 .profile-picture-company{
     border-radius: 50%;
     width: 200px;
+    height: 200px;
 }
 
 /* boton para subir imagenes */

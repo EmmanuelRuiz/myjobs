@@ -233,7 +233,12 @@
                 {%endfor%}
             </div>
             <div class="col-lg-8">
-                <h1>Opiniones</h1>
+                {% if company_stats.opinions == 0%}
+                    <h2 class="text-muted">Aun no se han realizado opiniones</h2>
+                    
+                {% else %}
+                    <h1 class="page-header">Opiniones</h1>
+                {% endif %}
                 {% for opinions in pagination %}
 
                     <div class="media">
