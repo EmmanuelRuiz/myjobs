@@ -12,7 +12,7 @@ use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
 use BackendBundle\Entity\Comment;
 
-use AppBundle\Form\CompanyType;
+use AppBundle\Form\RegisterCompanyType;
 
 
 class CompanyController extends Controller {
@@ -26,7 +26,7 @@ class CompanyController extends Controller {
     /* éste método es para registrar una compañia*/
     public function registerAction(Request $request) {
         $company = new Company();
-        $form = $this->createForm(CompanyType::class, $company);
+        $form = $this->createForm(RegisterCompanyType::class, $company);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {

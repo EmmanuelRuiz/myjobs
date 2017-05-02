@@ -222,7 +222,7 @@ body {
 }
 
 /* index */
-.register-company-section{
+.register-company-section-index{
     padding-bottom: 40px;
 }
 
@@ -231,10 +231,10 @@ body {
   background-color: #eee;
 }
 
-.img-register{
-  margin-top: 20%;
+.register-company-section{
+    padding-bottom: 40px;
+    padding-top: 40px;
 }
-
 /* register user */
 .register-section{
     padding-top: 40px;

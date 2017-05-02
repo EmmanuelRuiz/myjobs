@@ -29,7 +29,7 @@ class RegisterCompanyType extends AbstractType
                 )
             ))
             ->add('businessname', TextType::class, array(
-                'label' => 'Nombre del negocio',
+                'label' => 'Nombre de negocio',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-businessname form-control'
@@ -40,6 +40,14 @@ class RegisterCompanyType extends AbstractType
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-rfc form-control'
+                )
+            ))
+			
+			->add('description', TextareaType::class, array(
+                'label' => 'Descripcion',
+                'required' => 'required',
+                'attr' => array(
+                    'class' => 'form-control'
                 )
             ))
 				
