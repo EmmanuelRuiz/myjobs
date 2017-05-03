@@ -275,6 +275,8 @@ class CompanyController extends Controller {
 						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
 							// creamos el nombre del archivo nuevo
 							$file_name = $company->getId().time().'.'.$ext;
+							var_dump($file_name);
+							die();
 							//carpeta en la que se guardara
 							$file->move("uploads/company", $file_name);
 							$company->setLogo($file_name);
