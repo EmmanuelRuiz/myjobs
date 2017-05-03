@@ -13,6 +13,7 @@ use BackendBundle\Entity\User;
 use BackendBundle\Entity\Comment;
 
 use AppBundle\Form\RegisterCompanyType;
+use AppBundle\Form\CompanyType;
 
 
 class CompanyController extends Controller {
@@ -234,6 +235,7 @@ class CompanyController extends Controller {
 		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
         $company = $company_repo->find($id);
+		$user = $this->getUser();
 		
 		
 		// guardamos la imagen por defecto
@@ -265,24 +267,24 @@ class CompanyController extends Controller {
                 if ((count($company_isset) == 0 || $company->getTradename() == $company_isset[0]->getTradename())) {
                     
 					// upload archivo
-					$file = $form["image"]->getData();
+					$file = $form["logo"]->getData();
 					
 					if (!empty($file) && $file != null) {
 						// comprobamos que sea un formato de imagen
 						$ext = $file->guessExtension();
 						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
 							// creamos el nombre del archivo nuevo
-							$file_name = $user->getId().time().'.'.$ext;
+							$file_name = $company->getId().time().'.'.$ext;
 							//carpeta en la que se guardara
-							$file->move("uploads/users", $file_name);
-							$user->setImage($file_name);
+							$file->move("uploads/company", $file_name);
+							$company->setLogo($file_name);
 						}
 					} else {
-						$user->setImage($user_image);
+						$company->setLogo($file_name);
 					}
 					
                     /* volcar el objeto y persistir en doctrine */
-                    $em->persist($user);
+                    $em->persist($company);
                     /* pasar los objetos persistidos a la bd */
                     $flush = $em->flush();
 					
@@ -300,7 +302,7 @@ class CompanyController extends Controller {
                 $status = "No se han actualizado tus datos";
             }
             $this->session->getFlashBag()->add("status", $status);
-			return $this->redirect('my-data');
+			return $this->redirectToRoute('companies_edit');
         }
 		
 		return $this->render('AppBundle:Company:edit_company.html.twig', array(

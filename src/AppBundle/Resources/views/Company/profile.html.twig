@@ -11,7 +11,7 @@
                     {% if company.logo == null%}
                         <img class="profile-picture-company pull-right" src="{{ asset('assets/images/company-logo.png') }}"/>
                     {% else %}
-                        <img class="profile-picture-company pull-right" src="{{ asset('uploads/users/'~company.logo) }}"/>
+                        <img class="profile-picture-company pull-right" src="{{ asset('uploads/company/'~company.logo) }}"/>
                     {% endif %}
                 </div>
                 <div class="col-lg-9 " id="user-card">
@@ -320,16 +320,14 @@
                             </div><hr>
 
                             <div class="media">
-
-
                                 {% for comments in comments%}
                                     {% if comments.opinion.id == opinions.id %}
                                         <div class="media-left">
                                             <div class="avatar">
                                                 {% if comments.user.image == null%}
-                                                    <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    <img class="user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
                                                 {% else %}
-                                                    <img class="user-logo-opinion" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                    <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -344,7 +342,7 @@
                                             <p>{{ comments.body }}</p>
 
                                             {% if comments.image != null%}
-                                                <img class="center-block" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
+                                                <img class="center-block comment-img" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
                                             {% endif %}
                                             
                                             

@@ -143,7 +143,7 @@ class UserController extends Controller {
 
         // guardamos la imagen por defecto
         $user_image = $user->getImage();
-
+		
         // creamos variable para la instancia del formulario
         $form = $this->createForm(UserType::class, $user);
 
@@ -180,6 +180,7 @@ class UserController extends Controller {
                         if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
                             // creamos el nombre del archivo nuevo
                             $file_name = $user->getId() . time() . '.' . $ext;
+							
                             //carpeta en la que se guardara
                             $file->move("uploads/users", $file_name);
                             $user->setImage($file_name);

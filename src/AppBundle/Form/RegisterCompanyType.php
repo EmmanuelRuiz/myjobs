@@ -20,7 +20,6 @@ class RegisterCompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			
             ->add('tradename', TextType::class, array(
                 'label' => 'Nombre comercial',
                 'required' => 'required',
