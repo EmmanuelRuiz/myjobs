@@ -15,6 +15,7 @@ companies_search:
 companies_edit:
     path: /administrar/todas_empresas/editar
     defaults: { _controller: AppBundle:Company:edit }
+    methods:  [GET]
     
     
 # esta ruta debe pertenecer a otro yml
