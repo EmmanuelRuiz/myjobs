@@ -229,13 +229,12 @@ class CompanyController extends Controller {
 	public function editAction(Request $request){
 		
 		$em = $this->getDoctrine()->getManager();
-		
+		$user = $this->getUser();
 		
 		$company = new Company();
 		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
         $company = $company_repo->find($id);
-		$user = $this->getUser();
 		
 		
 		// guardamos la imagen por defecto
@@ -275,14 +274,12 @@ class CompanyController extends Controller {
 						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
 							// creamos el nombre del archivo nuevo
 							$file_name = $company->getId().time().'.'.$ext;
-							var_dump($file_name);
-							die();
 							//carpeta en la que se guardara
 							$file->move("uploads/company", $file_name);
 							$company->setLogo($file_name);
 						}
 					} else {
-						$company->setLogo($file_name);
+						$company->setLogo($company_image);
 					}
 					
                     /* volcar el objeto y persistir en doctrine */
@@ -308,6 +305,7 @@ class CompanyController extends Controller {
         }
 		
 		return $this->render('AppBundle:Company:edit_company.html.twig', array(
+			'company' => $company,
 			'form' => $form->createView()
 		));
 	}
