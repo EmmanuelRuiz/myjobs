@@ -220,7 +220,7 @@ class CompanyController extends Controller {
 		
 		
 		
-		$query = "SELECT AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) AS promedio FROM opinions WHERE company_id = $company_id; ";
+		$query = "SELECT ROUND(AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10),1) AS promedio FROM opinions WHERE company_id = $company_id; ";
         $stmt = $db->prepare($query);
 		$params = array();
         $stmt->execute($params);
