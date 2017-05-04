@@ -17,6 +17,11 @@ companies_edit:
     defaults: { _controller: AppBundle:Company:edit }
     methods:  [GET]
     
+companies_points:
+    path: /prueba
+    defaults: { _controller: AppBundle:Company:puntos }
+    
+    
     
 # esta ruta debe pertenecer a otro yml
 remove_opinion:

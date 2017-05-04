@@ -187,6 +187,7 @@ class CompanyController extends Controller {
 
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+		$db = $em->getConnection();
 		
 		$comment_repo = $em->getRepository('BackendBundle:Comment')->findAll();
 		
@@ -216,14 +217,48 @@ class CompanyController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
+		
+		
+		
+		$query = "SELECT AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) AS promedio FROM opinions WHERE company_id = $company_id; ";
+        $stmt = $db->prepare($query);
+		$params = array();
+        $stmt->execute($params);
+		
+        $po=$stmt->fetchAll();
+		
+		foreach ($po as $p) {
+           $p["promedio"];
+        }
 
         return $this->render('AppBundle:Company:profile.html.twig', array(
 			// le pasamos a la vista una variable company donde estan todos los datos a mostrar
+			'puntos' => $p,
 			'comments' => $comment_repo,
 			'company' => $company,
 			'pagination' => $opinions
         ));
     }
+	
+	public function puntosAction(Request $request){
+		$em = $this->getDoctrine()->getEntityManager();
+        $db = $em->getConnection();
+		
+		$query = "SELECT SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) / 10 AS promedio FROM opinions WHERE company_id = 6; ";
+        $stmt = $db->prepare($query);
+		$params = array();
+        $stmt->execute($params);
+		
+        $po=$stmt->fetchAll();
+		
+		foreach ($po as $p) {
+           $p["promedio"];
+        }
+		
+		return $this->render('AppBundle:User:home.html.twig', array(
+			'puntos' => $p
+		));
+	}
 	
 	
 	public function editAction(Request $request){

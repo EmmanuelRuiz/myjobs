@@ -42,7 +42,10 @@
                         <div class="following-data">
                             <a href="#">
                                 <span class="label-stat">Calificación</span>
-                                <span class="number-stat">0</span>
+                                {% for puntos in puntos %}
+                                    <span class="number-stat">{{puntos}}</span>
+                                {% endfor %}
+
                             </a>
                         </div>
 
