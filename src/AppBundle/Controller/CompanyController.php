@@ -326,18 +326,18 @@ class CompanyController extends Controller {
 					
                     // mensajes de comprobación 
                     if ($flush == null) {
-                        $status = "Has modificado tus datos correctamente";
+                        $status = "La información de la empresa se a actualizado correctamente";
                     } else {
-                        $status = "No has modificado tus datos";
+                        $status = "No se ha realizado ninguna actualización";
                     }
                 } else {
-                    $status = "El usuario ya existe";
+                    $status = "La empresa ya existe en nuestra base de datos";
                 }
             } else {
-                $status = "No se han actualizado tus datos";
+                $status = "No se ha realizado ninguna actualización";
             }
             $this->session->getFlashBag()->add("status", $status);
-			return $this->redirectToRoute('companies_edit');
+			return $this->redirectToRoute('companies_edit', array('id'=>$id));
         }
 		
 		return $this->render('AppBundle:Company:edit_company.html.twig', array(
