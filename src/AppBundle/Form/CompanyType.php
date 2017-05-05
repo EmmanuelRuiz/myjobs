@@ -20,9 +20,10 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+			
 			//campo para imagen del usuario
 			->add('logo', FileType::class, array(
-                'label' => 'Agregar foto de perfil',
+                'label' => 'Actualizar foto de perfil',
                 'required' => false,
                 'data_class' => null,
                 'attr' => array(

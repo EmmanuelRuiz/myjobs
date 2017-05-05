@@ -267,6 +267,7 @@ class CompanyController extends Controller {
 		$user = $this->getUser();
 		
 		$company = new Company();
+		
 		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
         $company = $company_repo->find($id);
@@ -283,7 +284,7 @@ class CompanyController extends Controller {
         $form->handleRequest($request);
 		/* comprobar si el formularion se ha enviado */
         if ($form->isSubmitted()) {
-            if ($form->isValid()) {
+			if ($form->isValid()) {
                 /*
                  * usar entiti manager para consultas				
                  * hacer comprobacion de que el usuario se quiere registrar
