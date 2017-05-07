@@ -3,15 +3,14 @@ register-company:
     defaults: { _controller: AppBundle:Company:register }
 
 companies_list:
-    path: /companies
+    path: /empresas
     defaults: { _controller: AppBundle:Company:companies }
     
 companies_search:
-    path: /search
+    path: /busqueda
     defaults: { _controller: AppBundle:Company:search }
     
 
-    
 companies_edit:
     path: /administrar/todas_empresas/editar
     defaults: { _controller: AppBundle:Company:edit }
@@ -21,17 +20,17 @@ companies_points:
     path: /prueba
     defaults: { _controller: AppBundle:Company:puntos }
     
+company_profile:
+    path: /empresas/perfil
+    defaults: { _controller: AppBundle:Company:profile }
     
     
-# esta ruta debe pertenecer a otro yml
+    
+# estas rutas deben pertenecer a otro yml
 remove_opinion:
     path: /opinion/remove/{id}
     defaults: { _controller: AppBundle:Company:removeOpinion, id:null }
-    
-company_profile:
-    path: /company/{id}
-    defaults: { _controller: AppBundle:Company:profile, id:null }
-    
+     
 rate:
     path: /rate/{id}
     defaults: { _controller: AppBundle:Rate:rate, id:null}

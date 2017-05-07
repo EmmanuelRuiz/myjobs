@@ -152,13 +152,14 @@ class AdministratorController extends Controller
         ));
     }
 	
-	public function validateCompaniesAction(Request $request, $id){
+	public function validateCompaniesAction(Request $request){
 		
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
 		
 		$company = new Company();
 		
+		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
         $company = $company_repo->find($id);
 		

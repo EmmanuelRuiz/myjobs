@@ -183,10 +183,11 @@ class CompanyController extends Controller {
     }
 
     // metodo para el perfil de la empresa
-    public function profileAction(Request $request, $id = null) {
+    public function profileAction(Request $request) {
 
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+		$id = $request->query->get('id');
 		$db = $em->getConnection();
 		
 		$comment_repo = $em->getRepository('BackendBundle:Comment')->findAll();

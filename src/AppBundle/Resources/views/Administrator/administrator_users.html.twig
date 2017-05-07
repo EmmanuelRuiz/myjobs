@@ -52,8 +52,8 @@
                                     <td>{{ users.telephone }}</td>
                                     <td>{{ users.createdAt|date("D d M Y") }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success">Ver</button>
-                                        <button type="button" class="btn btn-info">Editar</button>
+                                        <a href="{{ path('user_profile', {'id':users.id })}}" type="button" class="btn btn-success">Ver</a>
+                                        {#<a href="{{path('user_edit', {'id':users.id})}}" type="button" class="btn btn-info">Editar</a>#}
                                         <a href="{{path('administrator_delete_user', {'id':users.id})}}" type="button" class="btn btn-danger">Eliminar</a>
                                     </td>
                                 </tr>

@@ -167,6 +167,12 @@ body {
     background-color: transparent;
 }
 
+/* comments*/
+
+.btn .caret-opinioncomment{
+    margin-top: -10px;
+}
+
 
 /* pagina para login */
 .login-section{
