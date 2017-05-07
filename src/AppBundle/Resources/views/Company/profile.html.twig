@@ -325,6 +325,7 @@
                             <div class="media">
                                 {% for comments in comments%}
                                     {% if comments.opinion.id == opinions.id %}
+                                        {% if comments.status != 'invalid'%}
                                         <div class="media-left">
                                             <div class="avatar">
                                                 {% if comments.user.image == null%}
@@ -337,8 +338,21 @@
 
                                         <div class="media-body">
 
-                                            <h5 class="media-heading"><a href="#">{{comments.user.name}} {{comments.user.plastname}}</a>
-                                                <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
+                                            <h5 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                                                {% if app.user != null %}
+                                                    {% if comments.user.id == app.user.id %}
+                                                        <div class="btn-group pull-right">
+                                                            <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+                                                            </ul>
+                                                        </div> 
+                                                    {% endif %}
+                                                {% endif%}
+                                                <span class="pull-right text-muted">{{opinions.createdAt|long_time}}</span>
+
                                             </h5>
 
 
@@ -353,8 +367,7 @@
                                         </div>
                                         <hr>   
                                         <div class="clearfix"></div>
-                                    {% else %}
-
+                                        {% endif %}
                                     {% endif %}
 
                                 {% endfor %}
