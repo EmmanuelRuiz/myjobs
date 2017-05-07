@@ -17,7 +17,9 @@
                                     <h2><span class="span-validate glyphicon glyphicon-alert"></span></h2>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <h4 class="huge">26</h4>
+                                    {% for empresas in empresas %}
+                                        <h4 class="huge">{{empresas}}</h4>
+                                    {% endfor %}
                                     <p>Empresas sin validar</p>
                                 </div>
                             </div>
@@ -35,7 +37,10 @@
                                     <h2><span class="span-validate glyphicon glyphicon-comment"></span></h2>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <h4 class="huge">30</h4>
+                                    {% for comentarios in comentarios %}
+                                        <h4 class="huge">{{comentarios}}</h4>
+                                    {% endfor %}
+                                  
                                     <p>Comentario sin validar</p>
                                 </div>
                             </div>
@@ -53,7 +58,9 @@
                                     <h2><span class="span-validate glyphicon glyphicon-user"></span></h2>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <h4 class="huge">19</h4>
+                                    {% for usuarios in usuarios %}
+                                        <h4 class="huge">{{usuarios}}</h4>
+                                    {% endfor %}
                                     <p>Administrar usuarios</p>
                                 </div>
                             </div>
@@ -71,7 +78,9 @@
                                     <h2><span class="span-validate glyphicon glyphicon-remove-circle"></span></h2>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <h4 class="huge">23</h4>
+                                    {% for todas_empresas in todas_empresas %}
+                                        <h4 class="huge">{{todas_empresas}}</h4>
+                                    {% endfor %}
                                     <p>Administrar empresas</p>
                                 </div>
                             </div>

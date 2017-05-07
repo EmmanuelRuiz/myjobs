@@ -17,7 +17,62 @@ class AdministratorController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('AppBundle:Administrator:administrator.html.twig');
+		$em = $this->getDoctrine()->getManager();
+		$db = $em->getConnection();
+		
+		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
+        $stmt = $db->prepare($querye);
+		$params = array();
+        $stmt->execute($params);
+		
+        $po=$stmt->fetchAll();
+		
+		foreach ($po as $e) {
+           $e["empresas"];
+        }
+		
+		// sacar cantidad de comentarios
+		$queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
+		$stmt = $db->prepare($queryc);
+		$params = array();
+        $stmt->execute($params);
+		
+        $po=$stmt->fetchAll();
+		
+		foreach ($po as $c) {
+           $c["comentarios"];
+        }
+		
+		// sacar cantidad de usuarios
+		$queryu = "SELECT COUNT(id) AS usuarios FROM users;";
+		$stmt = $db->prepare($queryu);
+		$params = array();
+        $stmt->execute($params);
+		
+        $po=$stmt->fetchAll();
+		
+		foreach ($po as $u) {
+           $u["usuarios"];
+        }
+		
+		// sacar cantidad de empresas
+		$queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
+		$stmt = $db->prepare($queryte);
+		$params = array();
+        $stmt->execute($params);
+		
+        $po=$stmt->fetchAll();
+		
+		foreach ($po as $te) {
+           $te["todas_empresas"];
+        }
+		
+        return $this->render('AppBundle:Administrator:administrator.html.twig', array(
+			'empresas' => $e,
+			'comentarios' => $c,
+			'usuarios' => $u,
+			'todas_empresas' => $te
+		));
     }
     
     public function companiesAction(Request $request)
