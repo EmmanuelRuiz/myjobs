@@ -246,7 +246,7 @@
 
                     <div class="media">
                         <div class="media-left ">
-                            <a href="#">
+                            <a href="{{ path('user_profile', {'id':opinions.user.id})}}">
                                 <div class="avatar">
                                     {% if opinions.user.image == null%}
                                         <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
@@ -258,7 +258,7 @@
                         </div>
 
                         <div class="media-body">
-                            <h5 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                            <h5 class="media-heading"><a href="{{ path('user_profile', {'id':opinions.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
                                 {% if app.user == null %}
 
                                 {% else %}
@@ -329,16 +329,21 @@
                                         <div class="media-left">
                                             <div class="avatar">
                                                 {% if comments.user.image == null%}
-                                                    <img class="user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    <a href="{{ path('user_profile', {'id':comments.user.id})}}">
+                                                        <img class="user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    </a>
+                                                    
                                                 {% else %}
-                                                    <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                    <a href="{{ path('user_profile', {'id':comments.user.id})}}">
+                                                        <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                    </a>
                                                 {% endif %}
                                             </div>
                                         </div>
 
                                         <div class="media-body">
 
-                                            <h5 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                                            <h5 class="media-heading"><a href="{{ path('user_profile', {'id':comments.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
                                                 {% if app.user != null %}
                                                     {% if comments.user.id == app.user.id %}
                                                         <div class="btn-group pull-right">
@@ -351,7 +356,7 @@
                                                         </div> 
                                                     {% endif %}
                                                 {% endif%}
-                                                <span class="pull-right text-muted">{{opinions.createdAt|long_time}}</span>
+                                                <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
 
                                             </h5>
 
@@ -371,7 +376,8 @@
                                     {% endif %}
 
                                 {% endfor %}
-
+                                
+                                {% if app.user != null%}
                                 <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" >
                                     <div class="form-group">
                                         <label for="nameInput">Agregar comentario</label>
@@ -383,11 +389,12 @@
                                         <input id="file" name="image" type="file" >
                                     </div>
                                 </form>
+                                {% endif %}
 
                             </div>
                         </div>   
                     </div>                  
-                    <hr />
+                    <hr>
                 {% endfor %}
             </div>
         </div>

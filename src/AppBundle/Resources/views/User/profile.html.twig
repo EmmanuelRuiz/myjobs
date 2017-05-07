@@ -16,8 +16,8 @@
                 </div>
                 <div class="col-lg-9 " id="user-card">
                     <h1>{{ user.name }} {{ user.plastname}}</h1>
-                    
-                    
+
+
 
                     <h5><b>Descripción</b></h5>
 
@@ -38,7 +38,7 @@
                                 <span class="number-stat">{{user_stats.followers}}</span>
                             </a>
                         </div>
-                            
+
 
                         <div class="following-data">
                             <a href="#">
@@ -66,7 +66,7 @@
                             </div>
                         {% endif %}
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -87,10 +87,10 @@
                 {%endfor%}
             </div>
             <div class="col-lg-8">
-                
+
                 {% if user_stats.opinions == 0%}
                     <h2 class="text-muted">{{user.name}} aun no hay realizado ninguna opinion</h2>
-                    
+
                 {% else %}
                     <h1 class="page-header">Opiniones</h1>
                 {% endif %}
@@ -116,7 +116,7 @@
                                     {% if opinions.user.id == app.user.id %}
                                         <div class="btn-group pull-right">
                                             <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="caret"></span>
+                                                <span class="caret caret-opinioncomment"></span>
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
@@ -167,52 +167,68 @@
 
                                 {% for comments in comments%}
                                     {% if comments.opinion.id == opinions.id %}
-                                        <div class="media-left">
-                                            <div class="avatar">
-                                                {% if comments.user.image == null%}
-                                                    <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                                {% else %}
-                                                    <img class="user-logo-opinion" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
-                                                {% endif %}
+                                        {% if comments.status != 'invalid'%}
+                                            <div class="media-left">
+                                                <div class="avatar">
+                                                    {% if comments.user.image == null%}
+                                                        <img class="user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    {% else %}
+                                                        <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                    {% endif %}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="media-body">
+                                            <div class="media-body">
 
-                                            <h5 class="media-heading"><a href="#">{{comments.user.name}} {{comments.user.plastname}}</a>
-                                                <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
-                                            </h5>
+                                                <h5 class="media-heading"><a href="#">{{comments.user.name}} {{comments.user.plastname}}</a>
+                                                    {% if app.user != null %}
+                                                        {% if comments.user.id == app.user.id %}
+                                                            <div class="btn-group pull-right">
+                                                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <span class="caret caret-opinioncomment"></span>
+                                                                </button>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a class="btn-delete-pub" data-id="{{ comments.id }}">Eliminar</a></li>
+
+                                                                </ul>
+                                                            </div> 
+                                                        {% endif %}
+                                                    {% endif%}
+                                                    <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
+
+                                                </h5>
 
 
-                                            <p>{{ comments.body }}</p>
+                                                <p>{{ comments.body }}</p>
 
-                                            {% if comments.image != null%}
-                                                <img class="center-block" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
-                                            {% endif %}
+                                                {% if comments.image != null%}
+                                                    <img class="center-block" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
+                                                {% endif %}
 
 
 
-                                        </div>
-                                        <hr>   
-                                        <div class="clearfix"></div>
+                                            </div>
+                                            <hr>   
+                                            <div class="clearfix"></div>
+                                        {% endif %}
                                     {% else %}
 
                                     {% endif %}
 
                                 {% endfor %}
+                                {% if app.user != null%}   
+                                    <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':user.id, 'opinion_id':opinions.id}) }}" >
+                                        <div class="form-group">
+                                            <label for="nameInput">Agregar comentario</label>
+                                            <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
+                                            <br />
+                                            <button type="submit" class="btn btn-default pull-right">Comentar</button> 
 
-                                <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':user.id, 'opinion_id':opinions.id}) }}" >
-                                    <div class="form-group">
-                                        <label for="nameInput">Agregar comentario</label>
-                                        <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
-                                        <br />
-                                        <button type="submit" class="btn btn-default pull-right">Comentar</button> 
-
-                                        <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
-                                        <input id="file" name="image" type="file" >
-                                    </div>
-                                </form>
-
+                                            <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
+                                            <input id="file" name="image" type="file" >
+                                        </div>
+                                    </form>
+                                {% endif %}        
                             </div>
                         </div>   
                     </div>                  
