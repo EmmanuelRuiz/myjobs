@@ -377,7 +377,7 @@ footer{
 
 
 /* boton para subir imagenes */
-input[type=file] {
+input[id=file] {
     display: none;
 }
 

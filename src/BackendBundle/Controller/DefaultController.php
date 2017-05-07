@@ -8,7 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-		//cargar entiti manager.. acceder a nuestras entidades
+		//cargar entity manager.. acceder a nuestras entidades
 		$em = $this->getDoctrine()->getManager();
 		$user_repo = $em->getRepository("BackendBundle:User");
 		$user = $user_repo->find(1);

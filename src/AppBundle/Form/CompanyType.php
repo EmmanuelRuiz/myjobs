@@ -23,11 +23,11 @@ class CompanyType extends AbstractType
 			
 			//campo para imagen del usuario
 			->add('logo', FileType::class, array(
-                'label' => 'Actualizar foto de perfil',
+                'label' => 'Foto de perfil de la empresa',
                 'required' => false,
                 'data_class' => null,
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => ''
                 )
             ))
             ->add('tradename', TextType::class, array(

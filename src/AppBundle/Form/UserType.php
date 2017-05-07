@@ -66,7 +66,7 @@ class UserType extends AbstractType {
                     'required' => false,
                     'data_class' => null,
                     'attr' => array(
-                        'class' => 'form-image form-control'
+                        'class' => ''
                     )
                 ))
                 ->add('age', IntegerType::class, array(
