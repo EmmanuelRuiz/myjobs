@@ -217,7 +217,7 @@
 
                                 {% endfor %}
                                 {% if app.user != null%}   
-                                    <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':user.id, 'opinion_id':opinions.id}) }}" >
+                                    <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate_user', {'id':user.id, 'opinion_id':opinions.id}) }}" >
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
                                             <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
