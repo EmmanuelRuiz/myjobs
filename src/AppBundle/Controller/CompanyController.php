@@ -59,7 +59,7 @@ class CompanyController extends Controller {
                     $flush = $em->flush();
                     if ($flush == null) {
                         $status = "registro exitoso";
-                        return $this->redirect("register-company");
+                        return $this->redirect("empresas");
                     } else {
                         return $status = "registro fallido";
                     }
@@ -346,5 +346,5 @@ class CompanyController extends Controller {
 			'form' => $form->createView()
 		));
 	}
-
+	
 }

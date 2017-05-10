@@ -24,14 +24,31 @@ class UserController extends Controller {
         if (is_object($this->getUser())) {
             //return $this->redirectToRoute('app_homepage');
         }
+		
+		$em = $this->getDoctrine()->getManager();
+		$db = $em->getConnection();
+		
+	
+		
+        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+        $dql = "SELECT o FROM BackendBundle:Opinion o ORDER BY o.id DESC";
+        $query = $em->createQuery($dql);
+		
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+			$query, $request->query->getInt('page', 1), 4
+        );
+		
 
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('AppBundle:User:home.html.twig', array(
-                    'last_username' => $lastUsername,
-                    'error' => $error
+			'last_username' => $lastUsername,
+			'error' => $error,
+			'pagination' => $pagination
         ));
     }
 
