@@ -24,6 +24,8 @@ company_profile:
     path: /empresas/perfil
     defaults: { _controller: AppBundle:Company:profile }
     
+
+    
     
     
 # estas rutas deben pertenecer a otro yml

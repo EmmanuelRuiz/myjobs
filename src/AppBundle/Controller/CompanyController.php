@@ -346,5 +346,4 @@ class CompanyController extends Controller {
 			'form' => $form->createView()
 		));
 	}
-	
 }
