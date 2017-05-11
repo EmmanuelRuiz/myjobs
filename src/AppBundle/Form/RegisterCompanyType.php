@@ -59,28 +59,28 @@ class RegisterCompanyType extends AbstractType
             ))
             ->add('contacname', TextType::class, array(
                 'label' => 'Nombre',
-                'required' => 'required',
+                'required' => null,
                 'attr' => array(
                     'class' => 'form-contacname form-control'
                 )
             ))
             ->add('position', TextType::class, array(
                 'label' => 'Cargo',
-                'required' => 'required',
+                'required' => null,
                 'attr' => array(
                     'class' => 'form-position form-control'
                 )
             ))
             ->add('telephoneext', TextType::class, array(
                 'label' => 'No° de Extensión',
-                'required' => 'required',
+                'required' => null,
                 'attr' => array(
                     'class' => 'form-telefono form-control'
                 )
             ))
             ->add('businessemail', TextType::class, array(
                 'label' => 'Correo electronico',
-                'required' => 'required',
+                'required' => null,
                 'attr' => array(
                     'class' => 'form-businessemail form-control'
                 )

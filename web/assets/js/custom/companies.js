@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	
 	//alert('entro');
+	
+	$(".repdiv").hide();
 
 	// Instanciamos el objeto IAS
 	var ias = jQuery.ias({
@@ -26,5 +28,13 @@ $(document).ready(function(){
 	ias.extension(new IASNoneLeftExtension({
 		text: 'No hay mas resultados'
 	}));
+	
+	$("#mostrar").click(function(){
+		$(".repdiv").show();
+	});
+	
+	$("#ocultar").click(function(){
+		$(".repdiv").hide();
+	});
 	
 });

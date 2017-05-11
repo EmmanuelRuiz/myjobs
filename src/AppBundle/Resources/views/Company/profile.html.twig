@@ -48,16 +48,30 @@
 
                             </a>
                         </div>
+                         
+                        {% for opinions in pagination%}
+                            {% if date(opinions.createdAt) < date('-365days') %}
+                                
+                            {% endif %}
+                        {% endfor%}
+                        
+                        {% if company.status == 'invalid' %}
+                            <div class="following-data">
+                                <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                            </div>
 
-                        {% if app.user == null%}
-                            <div class="following-data">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
-                            </div>
-                        {% else %} 
-                            <div class="following-data">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
-                            </div>
-                        {% endif %}  
+
+                        {% else %}
+                            {% if app.user == null%}
+                                <div class="following-data">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                </div>
+                            {% else %} 
+                                <div class="following-data">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
+                                </div>
+                            {% endif %} 
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -237,7 +251,9 @@
             </div>
             <div class="col-lg-8">
                 {% if company_stats.opinions == 0%}
-                    <h2 class="text-muted">Aun no se han realizado opiniones</h2>
+                    <h2 class="text-muted">
+                        La empresa no ha sido validada, una vez validada se podran realizar opiniones
+                    </h2>
                     
                 {% else %}
                     <h1 class="page-header">Opiniones</h1>
