@@ -50,30 +50,35 @@
                         </div>
                          
                         {% for opinions in pagination%}
-                            {% if date(opinions.createdAt) < date('-365days') %}
-                                
+
+                            {% if company.status == 'invalid' %}
+                                <div class="following-data">
+                                    <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                </div>
+                            {% else %}
+                                {% if app.user == null%}
+                                    <div class="following-data">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                    </div>
+                                {% else %} 
+                                    {% if date(opinions.createdAt) < date('-365days')%}
+                                        <div class="following-data">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
+                                        </div>
+                                    {% else %}
+                                        <div class="following-data">
+                                            <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Ya has hecho una opinion</button>
+                                        </div>
+                                    {% endif %}
+
+                                    
+                                {% endif %} 
                             {% endif %}
+                            
+                            
                         {% endfor%}
                         
-                        {% if company.status == 'invalid' %}
-                            <div class="following-data">
-                                <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
-                            </div>
-                            <div class="following-data">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Reclamar empresa</button>
-                            </div>    
-
-                        {% else %}
-                            {% if app.user == null%}
-                                <div class="following-data">
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
-                                </div>
-                            {% else %} 
-                                <div class="following-data">
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
-                                </div>
-                            {% endif %} 
-                        {% endif %}
+                        
                     </div>
                 </div>
             </div>
