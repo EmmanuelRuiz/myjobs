@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	
+	$('.js-datepicker').datepicker({
+		format: 'yyyy-mm-dd'
+	});
+	
 	$(".email-input").blur(function(){
 		var email = this.value;
 		

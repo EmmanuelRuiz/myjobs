@@ -20,9 +20,11 @@ class UserController extends Controller {
     }
 
     public function indexAction(Request $request) {
+		
+		$id = $request->query->get('id');
 
         if (is_object($this->getUser())) {
-            //return $this->redirectToRoute('app_homepage');
+            return $this->redirectToRoute('user_profile', array('id' => $id));
         }
 		
 		$em = $this->getDoctrine()->getManager();

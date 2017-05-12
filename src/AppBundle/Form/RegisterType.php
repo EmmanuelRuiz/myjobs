@@ -79,22 +79,26 @@ class RegisterType extends AbstractType
 			))
 				
 			->add('termscondition', CheckboxType::class, array(
-				'label' => ' '
+				'label'    => ' ',
+				'required' => false,
+				'attr' => array(
+					'class' => 'hidden'
+				)
 			))
+				
 			->add('datejob', DateType::class, array(
 				'label' => 'Fecha desde que labora',
-				'required' => null,
-				'attr' => array(
-					'class' => ''
-				)
+				'widget' => 'choice',
+				'years' => range(1980,2025),
+
+				// do not render as type="date", to avoid HTML5 date pickers
+				'html5' => false,
+
+				// add a class that can be selected in JavaScript
+				'attr' => ['class' => 'form-control js-datepicker'],
+				
 			))
-			/*->add('privacy', TextType::class, array(
-				'label' => 'Privacidad',
-				'required' => null,
-				'attr' => array(
-					'class' => ''
-				)
-			))*/
+				
 			->add('anonimo', ChoiceType::class, array(
 				'choices' => array(
 					'Si' => 'Si',
@@ -104,8 +108,7 @@ class RegisterType extends AbstractType
 				'required' => 'required',
 				'attr' => array(
 					'class' => 'form-control'
-				),
-				'placeholder' => 'Perfil'
+				)
 			))
 				
 			->add('Registrarse', SubmitType::class, array(
