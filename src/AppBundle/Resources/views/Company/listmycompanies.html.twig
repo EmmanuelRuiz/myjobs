@@ -1,0 +1,44 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+
+{% block content %}
+    <section class="result-company-section">
+        <div class="container">
+            <div class="col-lg-12">
+                <h1 class="page-header">Empresas que representas</h1>
+                {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                {% for company in company %}
+                    {% if company.user.id == app.user.id%}
+                        <div class="media">
+                            <div class="media-left">
+                                {% if company.logo == null%}
+                                    <a href="{{ path('company_profile', {'id':company.id}) }}">
+                                        <img class="company-logo" src="{{ asset('assets/images/company-logo.png') }}"/>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('company_profile', {'id':company.id}) }}">
+                                        <img class="company-logo" src="{{ asset('uploads/company/'~company.logo) }}"/>
+                                    </a>
+                                {% endif %}
+                            </div>
+
+                            <div class="media-body">
+                                {# enlace al perfil de la empresa #}
+                                {% set company_stats = company.id|company_stats%}
+                                <h4 class="media-heading"><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.businessname }}</a> {% if company.status == 'valid' %} <span class="glyphicon glyphicon-ok-circle text-success"></span> {% endif %}  | {{company_stats.opinions}} opiniones</h4>
+                                <p>{{ company.description }}</p>
+                                <p>www.sitioweb.com</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr />
+                        </div>
+                    {% endif %}
+                    
+                {% endfor %}
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </section>
+    
+{% endblock %}

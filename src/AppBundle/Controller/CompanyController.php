@@ -185,8 +185,9 @@ class CompanyController extends Controller {
     // metodo para el perfil de la empresa
     public function profileAction(Request $request) {
 
-        $user = $this->getUser();
+        
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
 		$id = $request->query->get('id');
 		$db = $em->getConnection();
 		
@@ -344,6 +345,21 @@ class CompanyController extends Controller {
 		return $this->render('AppBundle:Company:edit_company.html.twig', array(
 			'company' => $company,
 			'form' => $form->createView()
+		));
+	}
+	
+	public function myCompaniesAction(Request $request){
+		
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
+		$id = $request->query->get('id');
+		
+		$company_repo = $em->getRepository('BackendBundle:Company');
+		
+		$company = $company_repo->findAll();
+		
+		return $this->render('AppBundle:Company:listmycompanies.html.twig', array(
+			'company' => $company
 		));
 	}
 }
