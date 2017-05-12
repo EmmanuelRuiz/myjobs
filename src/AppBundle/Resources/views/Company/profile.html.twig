@@ -17,8 +17,22 @@
                 <div class="col-lg-9 " id="user-card">
                     <h1>{{ company.tradename }}  | {{ company.businesssector}} 
                         {% if company.status == 'valid' %}
-                            <span class="glyphicon glyphicon-ok-circle certify-sign"></span></h1>
-                        {% endif %}
+                            <span class="glyphicon glyphicon-ok-circle certify-sign"></span>
+                        {% endif %}    
+                        {% if company.status == 'invalid' %}
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modalReclamar">Reclamar empresa</button>
+                            </div>
+                        {%endif%}
+                        {% if company.user.id == app.user.id %}
+                        <div class="btn-group">
+                            <a href="{{ path('companies_edit', {'id':company.id}) }}" class="btn btn-default btn-xs" type="button"  aria-haspopup="true" aria-expanded="false">
+                                Editar empresa
+                            </a>
+                        </div>
+                        {%endif%}
+                    </h1>
+                        
                     <h5><b>Descripción</b></h5>
 
                     <p>Totam nihil pariatur vitae cumque maxime suscipit asperiores quaerat quae ut veritatis quibusdam corrupti facere quisquam, excepturi, temporibus quidem autem, ducimus voluptatum.</p>
@@ -45,7 +59,6 @@
                                 {% for puntos in puntos %}
                                     <span class="number-stat">{{puntos}}</span>
                                 {% endfor %}
-
                             </a>
                         </div>
                          
@@ -422,6 +435,52 @@
             </div>
         </div>
     </section>
+            
+    <div id="modalReclamar" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Reclamar esta empresa</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <strong>Información: </strong> Para lograr la reclamación de esta empresa
+                        es necesario que nos ayudes con algunos datos. 
+                        En breve nos comunicaremos contigo para corroborar la información.
+                    </div>
+                    <hr>
+                    
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="lastname" placeholder="Apellidos">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="position" placeholder="Cargo en la empresa">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="companyemail" placeholder="Email empresarial">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="officenumber" placeholder="Telefono de oficina y/o extención">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="personalnumber" placeholder="Telefono personal">
+                        </div>
+                        
+                        <button type="button" class="btn btn-success btn-block btn-lg">Enviar</button>   
+                    </form>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
 
 
     <div class="pagination">
