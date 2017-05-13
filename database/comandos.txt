@@ -1,4 +1,8 @@
 php bin/console doctrine:mapping:import BackendBundle yml --filter="Like"
-	*Se tiene que condigurar el archivo orm.yml
+	
+
+*Se tiene que condigurar el archivo orm.yml 
+
+
 php bin/console generate:doctrine:entities BackendBundle:Like
 
