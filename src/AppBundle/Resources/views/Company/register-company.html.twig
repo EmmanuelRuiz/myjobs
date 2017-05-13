@@ -38,13 +38,13 @@
                                 <label>¿Eres representante de la empresa?</label><br>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="mostrar" value="option1">
+                                        <input type="radio" name="optionsRadios" id="mostrar" value="si">
                                         Si
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="ocultar" value="option2" checked>
+                                        <input type="radio" name="optionsRadios" id="ocultar" value="no" checked>
                                         No
                                     </label>
                                 </div>
@@ -61,13 +61,19 @@
                                     {{form_row(form.contacname)}}
                                 </div>
                                 <div class="col-lg-6 form-group">
+                                    {{form_row(form.contactlastname)}}
+                                </div>
+                                <div class="col-lg-6 form-group">
                                     {{form_row(form.position)}}
                                 </div>
-                                <div class="col-lg-7 form-group">
+                                <div class="col-lg-6 form-group">
                                     {{form_row(form.businessemail)}}
                                 </div>
-                                <div class="col-lg-5 form-group">
+                                <div class="col-lg-7 form-group">
                                     {{form_row(form.telephoneext)}}
+                                </div>
+                                <div class="col-lg-5 form-group">
+                                    {{form_row(form.personalnumber)}}
                                 </div>
                                 
                             </div>

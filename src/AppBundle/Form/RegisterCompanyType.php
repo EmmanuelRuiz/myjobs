@@ -61,28 +61,44 @@ class RegisterCompanyType extends AbstractType
                 'label' => 'Nombre',
                 'required' => null,
                 'attr' => array(
-                    'class' => 'form-contacname form-control'
+                    'class' => ' form-control'
+                )
+            ))
+				
+			->add('contactlastname', TextType::class, array(
+                'label' => 'Apellido',
+                'required' => null,
+                'attr' => array(
+                    'class' => ' form-control'
                 )
             ))
             ->add('position', TextType::class, array(
-                'label' => 'Cargo',
+                'label' => 'Cargo en la empresa',
                 'required' => null,
                 'attr' => array(
-                    'class' => 'form-position form-control'
+                    'class' => ' form-control'
                 )
             ))
             ->add('telephoneext', TextType::class, array(
-                'label' => 'No° de Extensión',
+                'label' => 'Telefono de oficina y/o extensión',
                 'required' => null,
                 'attr' => array(
                     'class' => 'form-telefono form-control'
                 )
             ))
             ->add('businessemail', TextType::class, array(
-                'label' => 'Correo electronico',
+                'label' => 'Email empresarial',
                 'required' => null,
                 'attr' => array(
                     'class' => 'form-businessemail form-control'
+                )
+            ))
+				
+			->add('personalnumber', TextType::class, array(
+                'label' => 'Telefono personal',
+                'required' => null,
+                'attr' => array(
+                    'class' => 'form-telefono form-control'
                 )
             ))
             

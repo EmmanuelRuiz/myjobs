@@ -3,7 +3,7 @@
 namespace BackendBundle\Entity;
 
 /**
- * Company
+ * Companies
  */
 class Company
 {
@@ -45,7 +45,17 @@ class Company
     /**
      * @var string
      */
+    private $representant;
+
+    /**
+     * @var string
+     */
     private $contacname;
+
+    /**
+     * @var string
+     */
+    private $contactlastname;
 
     /**
      * @var string
@@ -61,6 +71,11 @@ class Company
      * @var string
      */
     private $businessemail;
+
+    /**
+     * @var string
+     */
+    private $personalnumber;
 
     /**
      * @var string
@@ -83,31 +98,12 @@ class Company
     private $updatedAt;
 
     /**
-     * @var \BackendBundle\Entity\User
+     * @var \BackendBundle\Entity\Users
      */
     private $user;
 
 
-    /*aqui en el turorial usaron username*/
-    public function getBusiness(){
-        return $this->businessname;
-    }
-    
-    /*abajo uso doble s por que da error con una, ya que estyamos accediendo a 
-     * una funcion de esta clase     */
-    public function getStatuss(){
-        return $this->getStatus();
-    }
-    
-    public function eraseCredentials(){
-        
-    }
-    
-    public function __toString() {
-        return $this->businessname;
-    }
-
-        /**
+    /**
      * Get id
      *
      * @return integer
@@ -122,7 +118,7 @@ class Company
      *
      * @param string $tradename
      *
-     * @return Company
+     * @return Companies
      */
     public function setTradename($tradename)
     {
@@ -146,7 +142,7 @@ class Company
      *
      * @param string $businessname
      *
-     * @return Company
+     * @return Companies
      */
     public function setBusinessname($businessname)
     {
@@ -170,7 +166,7 @@ class Company
      *
      * @param string $rfc
      *
-     * @return Company
+     * @return Companies
      */
     public function setRfc($rfc)
     {
@@ -194,7 +190,7 @@ class Company
      *
      * @param string $logo
      *
-     * @return Company
+     * @return Companies
      */
     public function setLogo($logo)
     {
@@ -218,7 +214,7 @@ class Company
      *
      * @param string $description
      *
-     * @return Company
+     * @return Companies
      */
     public function setDescription($description)
     {
@@ -242,7 +238,7 @@ class Company
      *
      * @param string $businesssector
      *
-     * @return Company
+     * @return Companies
      */
     public function setBusinesssector($businesssector)
     {
@@ -262,11 +258,35 @@ class Company
     }
 
     /**
+     * Set representant
+     *
+     * @param string $representant
+     *
+     * @return Companies
+     */
+    public function setRepresentant($representant)
+    {
+        $this->representant = $representant;
+
+        return $this;
+    }
+
+    /**
+     * Get representant
+     *
+     * @return string
+     */
+    public function getRepresentant()
+    {
+        return $this->representant;
+    }
+
+    /**
      * Set contacname
      *
      * @param string $contacname
      *
-     * @return Company
+     * @return Companies
      */
     public function setContacname($contacname)
     {
@@ -286,11 +306,35 @@ class Company
     }
 
     /**
+     * Set contactlastname
+     *
+     * @param string $contactlastname
+     *
+     * @return Companies
+     */
+    public function setContactlastname($contactlastname)
+    {
+        $this->contactlastname = $contactlastname;
+
+        return $this;
+    }
+
+    /**
+     * Get contactlastname
+     *
+     * @return string
+     */
+    public function getContactlastname()
+    {
+        return $this->contactlastname;
+    }
+
+    /**
      * Set position
      *
      * @param string $position
      *
-     * @return Company
+     * @return Companies
      */
     public function setPosition($position)
     {
@@ -314,7 +358,7 @@ class Company
      *
      * @param string $telephoneext
      *
-     * @return Company
+     * @return Companies
      */
     public function setTelephoneext($telephoneext)
     {
@@ -338,7 +382,7 @@ class Company
      *
      * @param string $businessemail
      *
-     * @return Company
+     * @return Companies
      */
     public function setBusinessemail($businessemail)
     {
@@ -358,11 +402,35 @@ class Company
     }
 
     /**
+     * Set personalnumber
+     *
+     * @param string $personalnumber
+     *
+     * @return Companies
+     */
+    public function setPersonalnumber($personalnumber)
+    {
+        $this->personalnumber = $personalnumber;
+
+        return $this;
+    }
+
+    /**
+     * Get personalnumber
+     *
+     * @return string
+     */
+    public function getPersonalnumber()
+    {
+        return $this->personalnumber;
+    }
+
+    /**
      * Set status
      *
      * @param string $status
      *
-     * @return Company
+     * @return Companies
      */
     public function setStatus($status)
     {
@@ -386,7 +454,7 @@ class Company
      *
      * @param string $document
      *
-     * @return Company
+     * @return Companies
      */
     public function setDocument($document)
     {
@@ -410,7 +478,7 @@ class Company
      *
      * @param \DateTime $createdAt
      *
-     * @return Company
+     * @return Companies
      */
     public function setCreatedAt($createdAt)
     {
@@ -434,7 +502,7 @@ class Company
      *
      * @param \DateTime $updatedAt
      *
-     * @return Company
+     * @return Companies
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -456,9 +524,9 @@ class Company
     /**
      * Set user
      *
-     * @param \BackendBundle\Entity\User $user
+     * @param \BackendBundle\Entity\Users $user
      *
-     * @return Company
+     * @return Companies
      */
     public function setUser(\BackendBundle\Entity\User $user = null)
     {
@@ -470,10 +538,11 @@ class Company
     /**
      * Get user
      *
-     * @return \BackendBundle\Entity\User
+     * @return \BackendBundle\Entity\Users
      */
     public function getUser()
     {
         return $this->user;
     }
 }
+

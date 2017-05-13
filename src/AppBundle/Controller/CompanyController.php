@@ -28,7 +28,7 @@ class CompanyController extends Controller {
     public function registerAction(Request $request) {
         $company = new Company();
         $form = $this->createForm(RegisterCompanyType::class, $company);
-
+		
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -43,6 +43,8 @@ class CompanyController extends Controller {
                 $company_isset = $query->getResult();
                 /* si company isset es igual a 0 crea el usuario sino no lo hace por que ya existe el usuario */
                 if (count($company_isset) == 0) {
+					
+					$representant = $request->request->get('optionsRadios');
                     //$factory = $this->get("security.encoder_factory");
                     //$encoder = $factory->getEncoder($company);
                     //$company->setStatus("NO");
@@ -50,7 +52,13 @@ class CompanyController extends Controller {
                     $updatedAt = new \Datetime('now');
                     $company->setUser($user);
                     $company->setLogo(null);
-                    $company->setStatus("invalid");
+                    if ($representant == 'no') {
+						$company->setStatus("invalid");
+						$company->setRepresentant($representant);
+					} else {
+						$company->setStatus("valid");
+						$company->setRepresentant($representant);
+					}
                     $company->setCreatedAt($createdAt);
                     $company->setUpdatedAt($updatedAt);
                     
@@ -59,7 +67,7 @@ class CompanyController extends Controller {
                     $flush = $em->flush();
                     if ($flush == null) {
                         $status = "registro exitoso";
-                        return $this->redirect("empresas");
+                        return $this->redirect("registrar");
                     } else {
                         return $status = "registro fallido";
                     }

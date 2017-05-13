@@ -284,4 +284,3 @@ class Claimcompany
         return $this->user;
     }
 }
-

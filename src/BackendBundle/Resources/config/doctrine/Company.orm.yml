@@ -1,8 +1,8 @@
-BackendBundle\Entity\Company :
+BackendBundle\Entity\Company:
     type: entity
     table: companies
     indexes:
-        fk_companies_users:
+        FK_8244AA3AA76ED395:
             columns:
                 - user_id
     id:
@@ -51,10 +51,22 @@ BackendBundle\Entity\Company :
             length: 255
             options:
                 fixed: false
+        representant:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
         contacname:
             type: string
             nullable: true
             length: 250
+            options:
+                fixed: false
+        contactlastname:
+            type: string
+            nullable: true
+            length: 255
             options:
                 fixed: false
         position:
@@ -73,6 +85,12 @@ BackendBundle\Entity\Company :
             type: string
             nullable: true
             length: 250
+            options:
+                fixed: false
+        personalnumber:
+            type: string
+            nullable: true
+            length: 255
             options:
                 fixed: false
         status:
@@ -98,11 +116,11 @@ BackendBundle\Entity\Company :
     manyToOne:
         user:
             targetEntity: User
-            cascade: { }
+            cascade: {  }
             fetch: LAZY
             mappedBy: null
             inversedBy: null
-            joinColumns: 
+            joinColumns:
                 user_id:
                     referencedColumnName: id
             orphanRemoval: false
