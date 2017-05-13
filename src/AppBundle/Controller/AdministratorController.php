@@ -234,6 +234,7 @@ class AdministratorController extends Controller
 		
 		
 		$company->setUser($user);
+		$company->setRepresentant('si');
 		$em->remove($claim);
 		
         //Persistimos en el objeto

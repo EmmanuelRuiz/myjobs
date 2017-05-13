@@ -19,7 +19,7 @@
                         {% if company.status == 'valid' %}
                             <span class="glyphicon glyphicon-ok-circle certify-sign"></span>
                         {% endif %}    
-                        {% if company.status == 'invalid' %}
+                        {% if (company.representant == 'no') or (company.representant == null)%}
                             <div class="btn-group">
                                 <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modalReclamar">Reclamar empresa</button>
                             </div>
