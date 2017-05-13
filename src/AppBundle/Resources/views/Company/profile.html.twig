@@ -62,18 +62,29 @@
                             </a>
                         </div>
                          
-                        {% for opinions in pagination%}
+                        
 
-                            {% if company.status == 'invalid' %}
+                        {% if company.status == 'invalid' %}
+                            <div class="following-data">
+                                <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                            </div>
+                        {% else %}
+                            
+                            {% if company_stats.opinions == 0%}
                                 <div class="following-data">
-                                    <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
                                 </div>
                             {% else %}
-                                {% if app.user == null%}
-                                    <div class="following-data">
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
-                                    </div>
-                                {% else %} 
+                                
+                            {% endif %}
+                                
+                            
+                            {% if app.user == null%}
+                                <div class="following-data">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                </div>
+                            {% else %} 
+                                {% for opinions in pagination%}
                                     {% if date(opinions.createdAt) < date('-365days')%}
                                         <div class="following-data">
                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
@@ -83,15 +94,11 @@
                                             <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Ya has hecho una opinion</button>
                                         </div>
                                     {% endif %}
+                                {% endfor%}
 
-                                    
-                                {% endif %} 
-                            {% endif %}
-                            
-                            
-                        {% endfor%}
-                        
-                        
+                            {% endif %} 
+                        {% endif %}
+                                  
                     </div>
                 </div>
             </div>
@@ -272,7 +279,7 @@
             <div class="col-lg-8">
                 {% if company_stats.opinions == 0%}
                     <h2 class="text-muted">
-                        La empresa no ha sido validada, una vez validada se podran realizar opiniones
+                        Algun texto de aviso
                     </h2>
                     
                 {% else %}

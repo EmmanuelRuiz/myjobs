@@ -24,7 +24,7 @@ class UserController extends Controller {
 		$id = $request->query->get('id');
 
         if (is_object($this->getUser())) {
-            return $this->redirectToRoute('user_profile', array('id' => $id));
+            //return $this->redirectToRoute('user_profile', array('id' => $id));
         }
 		
 		$em = $this->getDoctrine()->getManager();
