@@ -56,7 +56,7 @@ class CompanyController extends Controller {
 						$company->setStatus("invalid");
 						$company->setRepresentant($representant);
 					} else {
-						$company->setStatus("valid");
+						$company->setStatus("invalid");
 						$company->setRepresentant($representant);
 					}
                     $company->setCreatedAt($createdAt);

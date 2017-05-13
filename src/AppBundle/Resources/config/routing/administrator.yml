@@ -30,7 +30,11 @@ administrator_validate_company:
     path: /administrar/empresas/validar
     defaults: { _controller: AppBundle:Administrator:validateCompanies }
     
+administrator_claim:
+    path: /administrar/reclamaciones
+    defaults: { _controller: AppBundle:Administrator:view }
+    
 administrator_claimcompany:
-    path: /administrar/empresas/reclamar
+    path: /administrar/reclamar
     defaults: { _controller: AppBundle:Administrator:reclamar }
 

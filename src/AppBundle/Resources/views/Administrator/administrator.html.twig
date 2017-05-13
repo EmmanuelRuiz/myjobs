@@ -7,9 +7,9 @@
             <hr />
         </div>
 
-        <div class="row">
+        <div class="row ">
             <div class="container">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="row">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="row">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="panel panel-danger">
                         <div class="panel-heading">
                             <div class="row">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4 col-lg-offset-2">
                     <div class="panel panel-danger">
                         <div class="panel-heading">
                             <div class="row">
@@ -90,41 +90,30 @@
                         </div>
                     </div>
                 </div> 
+                <div class="col-lg-4">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <h2><span class="span-validate glyphicon glyphicon-remove-circle"></span></h2>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    {% for todas_empresas in todas_empresas %}
+                                        <h4 class="huge">{{todas_empresas}}</h4>
+                                    {% endfor %}
+                                    <p>Reclamaciones</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <a href="{{path("administrator_claim")}}">Ver detalles</a>
+                        </div>
+                    </div>
+                </div> 
             </div>
 
         </div>
                         
-        <div class="col-lg-12">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <i class="fa fa-bell fa-fw"></i> Reclamaciones
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Empresa a reclamar</th>
-                                <th>Cargo</th>
-                                <th>Email empresarial</th>
-                                <th># de telefono oficina/ext</th>
-                                <th># de telefono personal</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
+        
     </div>
 {%endblock%}

@@ -213,6 +213,25 @@ class AdministratorController extends Controller
         return $this->redirectToRoute("administrator_user");
 	}
 	
+	public function viewAction(Request $request){
+		$em = $this->getDoctrine()->getManager();
+		
+        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+        $dql = "SELECT u FROM BackendBundle:Claimcompany u";
+        $query = $em->createQuery($dql);
+		
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+			$query, $request->query->getInt('page', 1), 5
+        );
+
+        return $this->render('AppBundle:Administrator:administrator_claims.html.twig', array(
+			'pagination' => $pagination
+        ));
+
+	}
+	
 	public function reclamarAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();

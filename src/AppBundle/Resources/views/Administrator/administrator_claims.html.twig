@@ -1,0 +1,71 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+ 
+    <section class="result-company-section">
+        <div class="row">
+            <div class="container">
+                <div class="col-lg-12">
+                    <h1>Reclamaciones</h1>
+                    <div class="count">
+                        <span class="label label-primary">
+                            Total de resultados: {{ pagination.getTotalItemCount }}
+                        </span>
+                    </div>
+                    <hr/>
+
+                    <a href="{{ path("administrator_index") }}"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</a> 
+                    
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Posición en la empresa</th>
+                                <th>Empresa reclamada</th>
+                                <th>Email empresarial</th>
+                                <th>Telefono de oficina y/o extensión</th>
+                                <th>Teléfono personal</th>
+                                <th>Fecha de reclamación</th>
+                                <th>Accións</th>
+                            </tr>
+                        </thead>
+                        {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                        {% for claims in pagination %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ claims.id }}</td>
+                                    <td>{{ claims.user.name }}</td>
+                                    <td>{{ claims.user.plastname }}</td>
+                                    <td>{{ claims.position }}</td>
+                                    <td>{{ claims.company.id }}</td>
+                                    <td>{{ claims.businessemail }}</td>
+                                    <td>{{ claims.officenumber }}</td>
+                                    <td>{{ claims.personalnumber }}</td>
+                                    <td>{{ claims.createdAt|date("D d M Y") }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-xs btn-success ">Asignar</button>
+                                        <button type="button" class="btn btn-xs btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                    {# modificar el js para el scroll infinito #}
+                    <div class="navigation text-center">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+{%endblock%}
