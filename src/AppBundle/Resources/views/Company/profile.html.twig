@@ -453,27 +453,27 @@
                     </div>
                     <hr>
                     
-                    <form>
+                    <form action="{{ path('administrator_claimcompany',{'id':company.id}) }}" method="post">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" placeholder="Nombre">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="lastname" placeholder="Apellidos">
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="position" placeholder="Cargo en la empresa">
+                            <input type="text" class="form-control" name="position" id="position" placeholder="Cargo en la empresa">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="companyemail" placeholder="Email empresarial">
+                            <input type="text" class="form-control" name="companyemail" id="companyemail" placeholder="Email empresarial">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="officenumber" placeholder="Telefono de oficina y/o extención">
+                            <input type="text" class="form-control" name="officenumber" id="officenumber" placeholder="Telefono de oficina y/o extención">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="personalnumber" placeholder="Telefono personal">
+                            <input type="text" class="form-control" name="personalnumber" id="personalnumber" placeholder="Telefono personal">
                         </div>
                         
-                        <button type="button" class="btn btn-success btn-block btn-lg">Enviar</button>   
+                        <button type="submit" class="btn btn-success btn-block btn-lg">Enviar</button>   
                     </form>
                 </div>
                 

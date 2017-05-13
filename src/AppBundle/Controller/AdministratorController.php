@@ -5,13 +5,22 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use BackendBundle\Entity\Comment;
 use BackendBundle\Entity\Opinion;
 use BackendBundle\Entity\Company;
+use BackendBundle\Entity\Claimcompany;
 
 class AdministratorController extends Controller
 {
+	
+	
+	private $session;
+
+    public function __construct() {
+        $this->session = new Session();
+    }
     /**
      * @Route("/", name="homepage")
      */
@@ -202,5 +211,49 @@ class AdministratorController extends Controller
 		$this->addFlash('msg', 'El usuario se ha eliminado con exito');
 
         return $this->redirectToRoute("administrator_user");
+	}
+	
+	public function reclamarAction(Request $request){
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
+		
+		$claim = new Claimcompany();
+		
+		
+		$id = $request->query->get('id');
+		$company_repo = $em->getRepository('BackendBundle:Company');
+		$company = $company_repo->find($id);
+	
+
+		$name = $request->request->get("name");
+		$lastname = $request->request->get("lastname");
+		$position = $request->request->get("position");
+		$companyemail = $request->request->get("companyemail");
+		$officenumber = $request->request->get("officenumber");
+		$personalnumber = $request->request->get("personalnumber");
+		
+		
+		$claim->setName($name);
+		$claim->setUser($user);
+		$claim->setCompany($company);
+		$claim->setLastname($lastname);
+		$claim->setPosition($position);
+		$claim->setOfficenumber($officenumber);
+		$claim->setPersonalnumber($personalnumber);
+		$claim->setBusinessemail($companyemail);
+		$claim->setCreatedAt(new \DateTime("now"));
+		
+		$em->persist($claim);
+		$flush = $em->flush();
+		if ($flush == null) {
+			$status = "Reclamación exitosa, en breve nos comunicaremos contigo para corroborar la información";
+		} else {
+			$status = "Error al hacer la reclamación, intente mas tarde. Si el problema persiste, contactenos";
+		}
+		
+		$this->session->getFlashBag()->add("status", $status);
+		// /company/id 
+		return $this->redirectToRoute('company_profile', array('id' => $id));
+		
 	}
 }
