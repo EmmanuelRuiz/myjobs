@@ -34,6 +34,10 @@ administrator_claim:
     path: /administrar/reclamaciones
     defaults: { _controller: AppBundle:Administrator:view }
     
+administrator_asign:
+    path: /administrar/reclamaciones/asignar
+    defaults: { _controller: AppBundle:Administrator:asign }
+    
 administrator_claimcompany:
     path: /administrar/reclamar
     defaults: { _controller: AppBundle:Administrator:reclamar }

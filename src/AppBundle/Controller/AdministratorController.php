@@ -213,6 +213,39 @@ class AdministratorController extends Controller
         return $this->redirectToRoute("administrator_user");
 	}
 	
+	public function asignAction(Request $request){
+		//Entity Manager
+        $em = $this->getDoctrine()->getEntityManager();
+		
+		$id = $request->query->get('id');
+		$company_id = $request->query->get('company_id');
+		$claim_id = $request->query->get('claim_id');
+		
+
+		$user_repo = $em->getRepository('BackendBundle:User');
+        $user = $user_repo->find($id);
+		
+        $company_repo = $em->getRepository('BackendBundle:Company');
+        $company = $company_repo->find($company_id);
+		
+		
+		$claim_repo = $em->getRepository('BackendBundle:Claimcompany');
+        $claim = $claim_repo->find($claim_id);
+		
+		
+		$company->setUser($user);
+		$em->remove($claim);
+		
+        //Persistimos en el objeto
+        $em->persist($company, $claim);
+ 
+        //Insertarmos en la base de datos
+        $flush = $em->flush();
+ 
+		$this->addFlash('msg', 'Se ha asignado la empresa correctamente');
+		
+		return $this->redirectToRoute('administrator_claim');
+	}
 	public function viewAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
 		
