@@ -52,28 +52,27 @@
                         {% set user_stats = user.id |user_stats%}
                         <div class="following-data">
                             <a href="{{ path('following_users', {'email':user.email})}}">
-                                <span class="label-stat">Siguiendo</span>
+                                <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
                                 <span class="number-stat">{{user_stats.following}}</span>
                             </a>
                         </div>
 
                         <div class="following-data">
                             <a href="{{ path('followed_users', {'email':user.email})}}">
-                                <span class="label-stat">Seguidores</span>
+                                <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                                 <span class="number-stat">{{user_stats.followers}}</span>
                             </a>
                         </div>
 
-
                         <div class="following-data">
                             <a href="#">
-                                <span class="label-stat">Opiniones</span>
+                                <i class="fa fa-commenting fa-2x" aria-hidden="true"></i>
                                 <span class="number-stat">{{user_stats.opinions}}</span>
                             </a>
                         </div>
                         <div class="following-data">
                             <a href="{{ path('user_likes', {'email':user.email})}}">
-                                <span class="label-stat">Me gusta</span>
+                                <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
                                 <span class="number-stat">{{user_stats.likes}}</span>
                             </a>
                         </div>

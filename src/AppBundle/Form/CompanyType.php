@@ -105,7 +105,7 @@ class CompanyType extends AbstractType
 
             ->add('Registrar', SubmitType::class, array(
                 "attr" => array(
-                    "class" => "form-submit btn btn-success"
+                    "class" => "btn btn-success btn-block btn-lg"
                 )
             ))
         ;
