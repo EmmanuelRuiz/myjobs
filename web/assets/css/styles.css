@@ -1,22 +1,14 @@
 html,
 body {
-  height: 100%;
-  font-style: normal;
-  font-weight: 400;
-  font-family: MyriadPro, sans-serif;
-}
-
-@font-face {
-   font-family: MyriadPro;
-   src: url('../fonts/MyriadPro-Regular.otf');
+    height: 100%;
 }
 
 /* general */
 .how-we-work-for-you-section,
 .companies-from-myjobsadvisor,
 .recent-opinion{
-  padding-top: 5%;
-  padding-bottom: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .result-company-section{
@@ -32,37 +24,37 @@ body {
 
 
 .form-rating p {
-  text-align: center;
+    text-align: center;
 }
 
 .form-rating .label-star {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 .form-rating input[type="radio"] {
-  display: none;
+    display: none;
 }
 
 .form-rating .label-star {
-  color: grey;
+    color: grey;
 }
 
 .clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
+    direction: rtl;
+    unicode-bidi: bidi-override;
 }
 
 .form-rating .label-star:hover,
 .form-rating .label-star:hover ~ .label-star {
-  color: orange;
+    color: orange;
 }
 
 .form-rating input[type="radio"]:checked ~ label {
-  color: orange;
+    color: orange;
 }
 
 .form-rating h5 {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 
@@ -70,24 +62,24 @@ body {
 /* navbar layouts */
 
 .navbar-default {
-  background-color: transparent;
-  border-color: transparent;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 .navbar-default .navbar-brand{
-  float: left;
-  height: 50px;
-  padding: 0;
-  font-size: 18px;
-  line-height: 20px;
+    float: left;
+    height: 50px;
+    padding: 0;
+    font-size: 18px;
+    line-height: 20px;
 }
 
 .navbar-default .navbar-right>li>a{
-  color: #fff;
+    color: #fff;
 }
 
 .topnav{
-  padding-top: 35px;
+    padding-top: 35px;
 }
 
 .navbar-default-register-companie{
@@ -100,7 +92,7 @@ body {
 
 .btn-login,
 .btn-register{
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .navbar-collapse .avatar {
@@ -184,10 +176,10 @@ body {
 
 
 .welcome-header {
-  background-image: url("../images/myjobsadvisor-welcome-picture.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 700px;
+    background-image: url("../images/myjobsadvisor-welcome-picture.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 700px;
 }
 
 .pattern{
@@ -196,35 +188,66 @@ body {
 }
 
 .intro-message{
-  margin-top: 13%;
-  margin-bottom: 20%;
-  color: #f8f8f8;
+    margin-top: 13%;
+    margin-bottom: 20%;
+    color: #f8f8f8;
 }
 
 .intro-message h1{
-  font-size: 65px;
-  font-weight:700;
+    font-size: 65px;
+    font-weight:700;
 }
 
-.search-input,
-.search-btn{
-  width: 60px;
-  height: 45px;
-  border-radius: 10px;
-  font-size: 20px;
+.input-group .search-input{
+    height: 55px;
+    border-radius: 50px;
+    font-size: 20px;
+}
+
+.input-group-btn #btn-search{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    white-space: nowrap;
+    padding: 10px 15px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    border-top-right-radius:  50px;
+    border-bottom-right-radius:  50px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 55px;
+    
 }
 
 .navbar-form .form-control {
-  width: 600px;;
+    width: 600px;;
 }
 
 .navbar-form {
-  margin-left: 230px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
-  
+    margin-left: 230px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+
 }
 
 /* index */
@@ -234,7 +257,7 @@ body {
 
 /* register companie*/
 .register-header{
-  background-color: #eee;
+    background-color: #eee;
 }
 
 .register-company-section{
@@ -294,16 +317,16 @@ body {
 
 /* footer */
 footer{
-  background-color: #293A52;
-  color: white;
-  padding-top: 2%;
-  padding-bottom: 1%;
+    background-color: #293A52;
+    color: white;
+    padding-top: 2%;
+    padding-bottom: 1%;
 }
 
 /* profile user */
 .profile-user-header{
-  background-color: #eee;
-  height: 350px;
+    background-color: #eee;
+    height: 350px;
 }
 #user-card .following-data{
     width: 12%;
@@ -331,8 +354,8 @@ footer{
 }
 
 .opinions-section{
-  padding-top: 2%;
-  padding-bottom: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 .avatar .user-logo-opinion{
@@ -359,14 +382,14 @@ footer{
 /* profile company */
 
 .profile-company-header{
-  background-color: #eee;
-  padding-top: 40px;
-  padding-bottom: 5px;
+    background-color: #eee;
+    padding-top: 40px;
+    padding-bottom: 5px;
 }
 
 .modal-body span{
-  font-size: 20px;
-  color: blue;
+    font-size: 20px;
+    color: blue;
 }
 
 .company-logo, .company-pp-list{

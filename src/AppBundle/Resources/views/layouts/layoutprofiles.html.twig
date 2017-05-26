@@ -11,7 +11,8 @@
 
         {% block stylesheet %}
             <!-- estilos css -->
-            <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+            <link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+            <link href="{{ asset('assets/css/bootswatch.css')}}" type="text/css" rel="stylesheet">
             <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
         {%endblock%}
 
@@ -25,13 +26,14 @@
                 var URL = "{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/app_dev.php";
             </script>
             <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-            <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
         {% endblock %}
     </head>
     <body>
         <header class="">
             <!-- Navigation -->
+            
             <nav class="navbar navbar-default-register-companie" role="navigation">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
