@@ -197,7 +197,7 @@ class AdministratorController extends Controller
 		
 	}
 	
-	public function deleteUsersAction(Request $request, $id){
+	public function deleteUsersAction(Request $request, $id = null){
 		
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
