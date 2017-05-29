@@ -31,6 +31,11 @@ class Company
      * @var string
      */
     private $logo;
+	
+	/**
+     * @var string
+     */
+    private $website;
 
     /**
      * @var string
@@ -207,6 +212,30 @@ class Company
     public function getLogo()
     {
         return $this->logo;
+    }
+	
+	/**
+     * Set website
+     *
+     * @param string $website
+     *
+     * @return Company
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
     }
 
     /**
@@ -544,5 +573,8 @@ class Company
     {
         return $this->user;
     }
-}
+    
 
+
+    
+}
