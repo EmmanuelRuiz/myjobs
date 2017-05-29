@@ -11,6 +11,7 @@ use BackendBundle\Entity\Comment;
 use BackendBundle\Entity\Opinion;
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\Claimcompany;
+use BackendBundle\Entity\User;
 
 class AdministratorController extends Controller
 {
@@ -197,11 +198,11 @@ class AdministratorController extends Controller
 		
 	}
 	
-	public function deleteUsersAction(Request $request, $id = null){
+	public function deleteUsersAction(Request $request){
 		
 		$em = $this->getDoctrine()->getManager();
-		$user = $this->getUser();
-		
+		$user = new User();
+		$id = $request->query->get('id');
 		$user_repo = $em->getRepository('BackendBundle:User');
         $user = $user_repo->find($id);
 		

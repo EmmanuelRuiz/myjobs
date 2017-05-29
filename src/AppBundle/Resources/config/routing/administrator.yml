@@ -23,8 +23,8 @@ administrator_delete_companies:
     defaults: { _controller: AppBundle:Administrator:deleteCompanies }
     
 administrator_delete_user:
-    path: /administrar/usuarios/eliminar/{id}
-    defaults: { _controller: AppBundle:Administrator:deleteUsers, id:null }
+    path: /administrar/usuarios/eliminar
+    defaults: { _controller: AppBundle:Administrator:deleteUsers}
     
 administrator_validate_company:
     path: /administrar/empresas/validar

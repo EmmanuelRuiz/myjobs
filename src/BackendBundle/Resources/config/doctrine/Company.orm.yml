@@ -39,6 +39,12 @@ BackendBundle\Entity\Company:
             length: 255
             options:
                 fixed: false
+        website:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
         description:
             type: text
             nullable: true
