@@ -30,6 +30,16 @@ class CompanyType extends AbstractType
                     'class' => ''
                 )
             ))
+				
+			->add('website', TextType::class, array(
+                'label' => 'Sitio Web de la empresa',
+                'required' => false,
+                'data_class' => null,
+                'attr' => array(
+                    'class' => ''
+                )
+            ))
+				
             ->add('tradename', TextType::class, array(
                 'label' => 'Nombre comercial',
                 'required' => 'required',
