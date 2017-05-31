@@ -37,14 +37,7 @@ class RegisterCompanyType extends AbstractType
                 )
             ))
 			
-			// ELIMINAR ESTE CAMPO
-            /*->add('businessname', TextType::class, array(
-                'label' => 'Nombre de negocio',
-                'required' => 'required',
-                'attr' => array(
-                    'class' => 'form-businessname form-control'
-                )
-            ))*/
+			
             ->add('rfc', TextType::class, array(
                 'label' => 'RFC',
                 'required' => 'required',
