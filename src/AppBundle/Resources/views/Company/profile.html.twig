@@ -25,14 +25,14 @@
                             </div>
                         {%endif%}
                         {% if company.user.id == app.user.id %}
-                        <div class="btn-group">
-                            <a href="{{ path('companies_edit', {'id':company.id}) }}" class="btn btn-default btn-xs" type="button"  aria-haspopup="true" aria-expanded="false">
-                                Editar empresa
-                            </a>
-                        </div>
+                            <div class="btn-group">
+                                <a href="{{ path('companies_edit', {'id':company.id}) }}" class="btn btn-default btn-xs" type="button"  aria-haspopup="true" aria-expanded="false">
+                                    Editar empresa
+                                </a>
+                            </div>
                         {%endif%}
                     </h1>
-                        
+
                     <h5><b>Descripción</b></h5>
 
                     <p>Totam nihil pariatur vitae cumque maxime suscipit asperiores quaerat quae ut veritatis quibusdam corrupti facere quisquam, excepturi, temporibus quidem autem, ducimus voluptatum.</p>
@@ -40,7 +40,7 @@
                     <div class="row">
                         {% set company_stats = company.id|company_stats%}
                         <div class="following-data">
-                            
+
                             <a href="#">
                                 <i class="fa fa-commenting fa-2x" aria-hidden="true"></i>
                                 <span class="number-stat">{{company_stats.opinions}}</span>
@@ -62,24 +62,24 @@
                                 {% endfor %}
                             </a>
                         </div>
-                         
-                        
+
+
 
                         {% if company.status == 'invalid' %}
                             <div class="following-data">
                                 <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
                             </div>
                         {% else %}
-                            
+
                             {% if company_stats.opinions == 0%}
                                 <div class="following-data">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
                                 </div>
                             {% else %}
-                                
+
                             {% endif %}
-                                
-                            
+
+
                             {% if app.user == null%}
                                 <div class="following-data">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
@@ -91,15 +91,20 @@
                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
                                         </div>
                                     {% else %}
-                                        <div class="following-data">
-                                            <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Ya has hecho una opinion</button>
-                                        </div>
+                                        {% if opinions.user.id == app.user.id%}
+                                            <div class="following-data">
+                                                <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Ya has hecho una opinion</button>
+                                            </div>
+                                        {% else %}
+                                            <div class="following-data">
+                                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
+                                            </div>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor%}
-
                             {% endif %} 
                         {% endif %}
-                                  
+
                     </div>
                 </div>
             </div>
@@ -282,7 +287,7 @@
                     <h2 class="text-muted">
                         Algun texto de aviso
                     </h2>
-                    
+
                 {% else %}
                     <h1 class="page-header">Opiniones</h1>
                 {% endif %}
@@ -370,69 +375,69 @@
                                 {% for comments in comments%}
                                     {% if comments.opinion.id == opinions.id %}
                                         {% if comments.status != 'invalid'%}
-                                        <div class="media-left">
-                                            <div class="avatar">
-                                                {% if comments.user.image == null%}
-                                                    <a href="{{ path('user_profile', {'id':comments.user.id})}}">
-                                                        <img class="user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
-                                                    </a>
-                                                    
-                                                {% else %}
-                                                    <a href="{{ path('user_profile', {'id':comments.user.id})}}">
-                                                        <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
-                                                    </a>
-                                                {% endif %}
-                                            </div>
-                                        </div>
+                                            <div class="media-left">
+                                                <div class="avatar">
+                                                    {% if comments.user.image == null%}
+                                                        <a href="{{ path('user_profile', {'id':comments.user.id})}}">
+                                                            <img class="user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                        </a>
 
-                                        <div class="media-body">
-
-                                            <h5 class="media-heading"><a href="{{ path('user_profile', {'id':comments.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
-                                                {% if app.user != null %}
-                                                    {% if comments.user.id == app.user.id %}
-                                                        <div class="btn-group pull-right">
-                                                            <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <span class="caret caret-opinioncomment"></span>
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
-                                                            </ul>
-                                                        </div> 
+                                                    {% else %}
+                                                        <a href="{{ path('user_profile', {'id':comments.user.id})}}">
+                                                            <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                        </a>
                                                     {% endif %}
-                                                {% endif%}
-                                                <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
+                                                </div>
+                                            </div>
 
-                                            </h5>
+                                            <div class="media-body">
+
+                                                <h5 class="media-heading"><a href="{{ path('user_profile', {'id':comments.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                                                    {% if app.user != null %}
+                                                        {% if comments.user.id == app.user.id %}
+                                                            <div class="btn-group pull-right">
+                                                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <span class="caret caret-opinioncomment"></span>
+                                                                </button>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+                                                                </ul>
+                                                            </div> 
+                                                        {% endif %}
+                                                    {% endif%}
+                                                    <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
+
+                                                </h5>
 
 
-                                            <p>{{ comments.body }}</p>
+                                                <p>{{ comments.body }}</p>
 
-                                            {% if comments.image != null%}
-                                                <img class="center-block comment-img" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
-                                            {% endif %}
-                                            
-                                            
+                                                {% if comments.image != null%}
+                                                    <img class="center-block comment-img" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
+                                                {% endif %}
 
-                                        </div>
-                                        <hr>   
-                                        <div class="clearfix"></div>
+
+
+                                            </div>
+                                            <hr>   
+                                            <div class="clearfix"></div>
                                         {% endif %}
                                     {% endif %}
 
                                 {% endfor %}
-                                
-                                {% if app.user != null%}
-                                <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" >
-                                    <div class="form-group">
-                                        <label for="nameInput">Agregar comentario</label>
-                                        <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
-                                        <br />
-                                        <button type="submit" class="btn btn-default pull-right">Comentar</button> 
 
-                                        <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
-                                        <input id="file" name="image" type="file" >
-                                    </div>
-                                </form>
+                                {% if app.user != null%}
+                                    <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" >
+                                        <div class="form-group">
+                                            <label for="nameInput">Agregar comentario</label>
+                                            <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
+                                            <br />
+                                            <button type="submit" class="btn btn-default pull-right">Comentar</button> 
+
+                                            <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
+                                            <input id="file" name="image" type="file" >
+                                        </div>
+                                    </form>
                                 {% endif %}
 
                             </div>
@@ -443,7 +448,7 @@
             </div>
         </div>
     </section>
-            
+
     <div id="modalReclamar" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -460,7 +465,7 @@
                         En breve nos comunicaremos contigo para corroborar la información.
                     </div>
                     <hr>
-                    
+
                     <form action="{{ path('administrator_claimcompany',{'id':company.id}) }}" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
@@ -483,11 +488,11 @@
                         <div class="form-group">
                             <input type="text" class="form-control" name="personalnumber" id="personalnumber" placeholder="Telefono personal">
                         </div>
-                        
+
                         <button type="submit" class="btn btn-success btn-block btn-lg">Enviar</button>   
                     </form>
                 </div>
-                
+
             </div>
 
         </div>

@@ -234,6 +234,7 @@ class AdministratorController extends Controller
         $claim = $claim_repo->find($claim_id);
 		
 		
+		$company->setStatus('valid');
 		$company->setUser($user);
 		$company->setRepresentant('si');
 		$em->remove($claim);

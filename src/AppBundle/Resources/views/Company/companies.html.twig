@@ -46,9 +46,9 @@
                         <div class="media-body">
                             {# enlace al perfil de la empresa #}
                             {% set company_stats = company.id|company_stats%}
-                            <h4 class="media-heading"><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.businessname }}</a> {% if company.status == 'valid' %} <span class="glyphicon glyphicon-ok-circle text-success"></span> {% endif %}  | {{company_stats.opinions}} opiniones</h4>
+                            <h4 class="media-heading"><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.tradename }}</a> {% if company.status == 'valid' %} <span class="glyphicon glyphicon-ok-circle text-success"></span> {% endif %}  | {{company_stats.opinions}} opiniones</h4>
                             <p>{{ company.description }}</p>
-                            <p>www.sitioweb.com</p>
+                            <a href="">{{ company.website }}</a>
                         </div>
                         <div class="clearfix"></div>
                         <hr />
