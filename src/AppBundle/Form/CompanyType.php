@@ -47,13 +47,13 @@ class CompanyType extends AbstractType
                     'class' => 'form-tradename form-control'
                 )
             ))
-            ->add('businessname', TextType::class, array(
+            /*->add('businessname', TextType::class, array(
                 'label' => 'Nombre del negocio',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-businessname form-control'
                 )
-            ))
+            ))*/
             ->add('rfc', TextType::class, array(
                 'label' => 'RFC',
                 'required' => 'required',
