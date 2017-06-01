@@ -91,6 +91,7 @@
                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
                                         </div>
                                     {% else %}
+                                        {# TENEMOS QUE VERIFICAR ESTA CONDICION :( #}
                                         {% if opinions.user.id == app.user.id%}
                                             <div class="following-data">
                                                 <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Ya has hecho una opinion</button>
