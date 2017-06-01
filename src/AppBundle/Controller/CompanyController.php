@@ -36,9 +36,8 @@ class CompanyController extends Controller {
                 $user = $this->getUser();
 
                 //$user_repo = $em->getRepository("BackendBundle:Company");
-                $query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename OR u.businessname = :businessname')
-                        ->setParameter('tradename', $form->get("tradename")->getData())
-                        ->setParameter('businessname', $form->get("businessname")->getData());
+                $query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename')
+                        ->setParameter('tradename', $form->get("tradename")->getData());
                 
                 $company_isset = $query->getResult();
                 /* si company isset es igual a 0 crea el usuario sino no lo hace por que ya existe el usuario */

@@ -3,7 +3,7 @@
 namespace BackendBundle\Entity;
 
 /**
- * Companies
+ * Company
  */
 class Company
 {
@@ -548,4 +548,33 @@ class Company
 
 
     
+    /**
+     * @var string
+     */
+    private $businessname;
+
+
+    /**
+     * Set businessname
+     *
+     * @param string $businessname
+     *
+     * @return Company
+     */
+    public function setBusinessname($businessname)
+    {
+        $this->businessname = $businessname;
+
+        return $this;
+    }
+
+    /**
+     * Get businessname
+     *
+     * @return string
+     */
+    public function getBusinessname()
+    {
+        return $this->businessname;
+    }
 }

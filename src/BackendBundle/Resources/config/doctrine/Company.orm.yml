@@ -21,6 +21,12 @@ BackendBundle\Entity\Company:
             length: 255
             options:
                 fixed: false
+        businessname:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
         rfc:
             type: string
             nullable: true

@@ -21,7 +21,7 @@ class RegisterCompanyType extends AbstractType
     {
         $builder
             ->add('tradename', TextType::class, array(
-                'label' => 'Nombre comercial',
+                'label' => 'Nombre de la empresa',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-tradename form-control'
