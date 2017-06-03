@@ -2,118 +2,49 @@
 
 {% block content %}
     <div class="container">
-        <div class="col-lg-12">
-            <h1>Panel de administrador</h1>
-            <hr />
-        </div>
-
-        <div class="row ">
-            <div class="container">
-                <div class="col-lg-4">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <h2><span class="span-validate glyphicon glyphicon-alert"></span></h2>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    {% for empresas in empresas %}
-                                        <h4 class="huge">{{empresas}}</h4>
-                                    {% endfor %}
-                                    <p>Empresas sin validar</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <a href="{{path("administrator_company")}}">Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <h2><span class="span-validate glyphicon glyphicon-comment"></span></h2>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    {% for comentarios in comentarios %}
-                                        <h4 class="huge">{{comentarios}}</h4>
-                                    {% endfor %}
-                                  
-                                    <p>Comentario sin validar</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <a href="{{ path("administrator_comment")}}">Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <h2><span class="span-validate glyphicon glyphicon-user"></span></h2>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    {% for usuarios in usuarios %}
-                                        <h4 class="huge">{{usuarios}}</h4>
-                                    {% endfor %}
-                                    <p>Administrar usuarios</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <a href="{{path("administrator_user")}}">Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-lg-offset-2">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <h2><span class="span-validate glyphicon glyphicon-remove-circle"></span></h2>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    {% for todas_empresas in todas_empresas %}
-                                        <h4 class="huge">{{todas_empresas}}</h4>
-                                    {% endfor %}
-                                    <p>Administrar empresas</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <a href="{{path("administrator_allcompanies")}}">Ver detalles</a>
-                        </div>
-                    </div>
-                </div> 
-                <div class="col-lg-4">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <h2><span class="span-validate glyphicon glyphicon-remove-circle"></span></h2>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    {% for todas_empresas in todas_empresas %}
-                                        <h4 class="huge">{{todas_empresas}}</h4>
-                                    {% endfor %}
-                                    <p>Reclamaciones</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <a href="{{path("administrator_claim")}}">Ver detalles</a>
-                        </div>
-                    </div>
-                </div> 
+        <div class="row">
+            <div class="col-lg-3">
+                <h2 class="page-header">Opciones</h2>
+                <ul class="list-group">
+                    <a href="{{ path('administrator_company') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
+                </ul>
             </div>
-
+                <div class="col-lg-9">
+                    <h2 class="page-header">Empresas pendientes por validar</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>RFC</th>
+                                <th>Sector</th>
+                                <th>Representante</th>
+                                <th>Ext. Representante</th>
+                                <th>Email de Representante</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                        {% for company in pagination %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ company.id }}</td>
+                                    <td>{{ company.tradename }}</td>
+                                    <td>{{ company.rfc }}</td>
+                                    <td>{{ company.businesssector }}</td>
+                                    <td>{{ company.contacname }}</td>
+                                    <td>{{ company.telephoneext }}</td>
+                                    <td>{{ company.businessemail }}</td>
+                                    <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success">Validar</a></td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
         </div>
-                        
-        
     </div>
 {%endblock%}

@@ -6,61 +6,59 @@
 {% endblock %}
 
 {% block content %}
- 
-    <section class="result-company-section">
+
+    <div class="container">
         <div class="row">
-            <div class="container">
-                <div class="col-lg-12">
-                    <h1>Empresas pendientes</h1>
-                    <div class="count">
-                        <span class="label label-primary">
-                            Total de resultados: {{ pagination.getTotalItemCount }}
-                        </span>
-                    </div>
-                    <hr/>
-
-                    <a href="{{ path("administrator_index") }}"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</a>     
-                    
-                    <table class="table table-striped">
-                        <thead>
+            <div class="col-lg-3">
+                <h2 class="page-header">Opciones</h2>
+                <ul class="list-group">
+                    <a href="{{ path('administrator_company') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <h2 class="page-header">Empresas pendientes por validar</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>RFC</th>
+                            <th>Sector</th>
+                            <th>Representante</th>
+                            <th>Ext. Representante</th>
+                            <th>Email de Representante</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                    {% for company in pagination %}
+                        <tbody>
                             <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>RFC</th>
-                                <th>Sector</th>
-                                <th>Representante</th>
-                                <th>Ext. Representante</th>
-                                <th>Email de Representante</th>
-                                <th>Acción</th>
+                                <td>{{ company.id }}</td>
+                                <td>{{ company.tradename }}</td>
+                                <td>{{ company.rfc }}</td>
+                                <td>{{ company.businesssector }}</td>
+                                <td>{{ company.contacname }}</td>
+                                <td>{{ company.telephoneext }}</td>
+                                <td>{{ company.businessemail }}</td>
+                                <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success">Validar</a></td>
                             </tr>
-                        </thead>
-                        {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                        {% for company in pagination %}
-                            <tbody>
-                                <tr>
-                                    <td>{{ company.id }}</td>
-                                    <td>{{ company.tradename }}</td>
-                                    <td>{{ company.rfc }}</td>
-                                    <td>{{ company.businesssector }}</td>
-                                    <td>{{ company.contacname }}</td>
-                                    <td>{{ company.telephoneext }}</td>
-                                    <td>{{ company.businessemail }}</td>
-                                    <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success">Validar</a></td>
-                                </tr>
-                            </tbody>
-                        {% endfor %}
-                    </table>
-                    
+                        </tbody>
+                    {% endfor %}
+                </table>
 
-                    {# modificar el js para el scroll infinito #}
-                    <div class="navigation text-center">
-                        {{ knp_pagination_render(pagination) }}
-                    </div>
-                    <div class="clearfix"></div>
+
+                {# modificar el js para el scroll infinito #}
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pagination) }}
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
-    </section>
-    
-    
+    </div>
+
 {%endblock%}

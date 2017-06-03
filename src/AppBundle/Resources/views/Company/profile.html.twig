@@ -17,7 +17,7 @@
                 <div class="col-lg-9 " id="user-card">
                     <h1>{{ company.tradename }}  | {{ company.businesssector}} 
                         {% if company.status == 'valid' %}
-                            <span class="glyphicon glyphicon-ok-circle certify-sign"></span>
+                            <i class="fa fa-check-circle text-info" aria-hidden="true"></i>
                         {% endif %}    
                         {% if (company.representant == 'no') or (company.representant == null)%}
                             <div class="btn-group">

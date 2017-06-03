@@ -33,7 +33,7 @@
     <body>
         <header class="">
             <!-- Navigation -->
-            
+
             <nav class="navbar navbar-default-register-companie" role="navigation">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -100,7 +100,7 @@
                             {% else %}
                                 <li>
                                     <a href="{{path("app_homepage")}}" >
-                                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
+                                        <i class="fa fa-home fa-lg" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
@@ -131,16 +131,16 @@
                                         <span class="caret"></span>
                                     </button> 
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ path('user_profile') }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Perfil</a></li>
-                                        <li><a href="{{path('user_edit')}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Configuración</a></li>
+                                        <li><a href="{{ path('user_profile') }}"><i class="fa fa-user "></i>&nbsp;Perfil</a></li>
+                                        <li><a href="{{path('user_edit')}}"><i class="fa fa-pencil-square "></i>&nbsp;Editar perfil</a></li>
                                             {% if app.user.role == 'ADMINISTRADOR'%}
-                                            <li><a href="{{path('administrator_index')}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Administrar</a></li>
+                                            <li><a href="{{path('administrator_index')}}"><i class="fa fa-lock "></i>&nbsp;Panel de administrador</a></li>
                                             {% endif %}
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="{{path('companies_mycompanies')}}"><span class=" glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbspMis empresas</a></li>
+                                        <li><a href="{{path('companies_mycompanies')}}"><i class="fa fa-bookmark "></i>&nbsp;Mis empresas</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="{{path('user_logout')}}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbspSalir</a></li>
-                                        <li><a href=""><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbspAyuda</a></li>
+                                        <li><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
+                                        <li><a href=""><i class="fa fa-question-circle"></i>&nbsp;Ayuda</a></li>
                                     </ul>
                                 </div>   
                             {% endif %}
