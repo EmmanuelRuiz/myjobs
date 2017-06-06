@@ -227,9 +227,13 @@ class CompanyController extends Controller {
         $paginator = $this->get('knp_paginator');
         $opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 		
+		/*SELECT * from opinions where created_at < DATE_SUB(NOW(), INTERVAL 356 DAY);*/
+		/*SELECT * from opinions where created_at < DATE_FORMAT(NOW(),'%Y-%m-%d')*/
+		$query = "SELECT ROUND(AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)*.60,1) "
+			. "AS promedio FROM opinions WHERE company_id = $company_id and  created_at < (DATE_SUB(NOW(), INTERVAL 365 DAY));";
+		$query2 = "SELECT ROUND(AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10),1)"
+			. " AS promedios FROM opinions WHERE company_id = $company_id and  created_at > (DATE_SUB(NOW(), INTERVAL 365 DAY));";
 		
-		
-		$query = "SELECT ROUND(AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10),1) AS promedio FROM opinions WHERE company_id = $company_id; ";
         $stmt = $db->prepare($query);
 		$params = array();
         $stmt->execute($params);
@@ -239,9 +243,21 @@ class CompanyController extends Controller {
 		foreach ($po as $p) {
            $p["promedio"];
         }
-
+		
+		
+		$stmt = $db->prepare($query2);
+		$params = array();
+        $stmt->execute($params);
+		
+        $po=$stmt->fetchAll();
+		
+		foreach ($po as $q) {
+           $q["promedios"];
+        }
+		
         return $this->render('AppBundle:Company:profile.html.twig', array(
 			// le pasamos a la vista una variable company donde estan todos los datos a mostrar
+			'puntos2' => $q,
 			'puntos' => $p,
 			'comments' => $comment_repo,
 			'company' => $company,
@@ -249,7 +265,7 @@ class CompanyController extends Controller {
         ));
     }
 	
-	public function puntosAction(Request $request){
+	/*public function puntosAction(Request $request){
 		$em = $this->getDoctrine()->getEntityManager();
         $db = $em->getConnection();
 		
@@ -267,7 +283,7 @@ class CompanyController extends Controller {
 		return $this->render('AppBundle:User:home.html.twig', array(
 			'puntos' => $p
 		));
-	}
+	}*/
 	
 	
 	public function editAction(Request $request){

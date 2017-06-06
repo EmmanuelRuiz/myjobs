@@ -14,6 +14,7 @@
                         <img class="profile-picture-company pull-right" src="{{ asset('uploads/company/'~company.logo) }}"/>
                     {% endif %}
                 </div>
+
                 <div class="col-lg-9 " id="user-card">
                     <h1>{{ company.tradename }}  | {{ company.businesssector}} 
                         {% if company.status == 'valid' %}
@@ -58,7 +59,9 @@
                             <a href="#">
                                 <i class="fa fa-star fa-2x" aria-hidden="true"></i>
                                 {% for puntos in puntos %}
-                                    <span class="number-stat">{{puntos}}</span>
+                                    {% for puntos2 in puntos2%}
+                                        <span class="number-stat">{{ (puntos + puntos2) / 2 }}</span>
+                                    {% endfor %}
                                 {% endfor %}
                             </a>
                         </div>
