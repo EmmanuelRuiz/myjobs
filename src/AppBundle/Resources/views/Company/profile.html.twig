@@ -78,34 +78,18 @@
                                 <div class="following-data">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
                                 </div>
-                            {% else %}
-
                             {% endif %}
+                            
+                            
 
-
-                            {% if app.user == null%}
+                            {% if app.user == null%} {# Si no hay una sesión iniciada #}
+                                {# El boton para opinar debe invitar a iniciar sesión#}
                                 <div class="following-data">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
                                 </div>
-                            {% else %} 
-                                {% for opinions in pagination%}
-                                    {% if date(opinions.createdAt) < date('-365days')%}
-                                        <div class="following-data">
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
-                                        </div>
-                                    {% else %}
-                                        {# TENEMOS QUE VERIFICAR ESTA CONDICION :( #}
-                                        {% if opinions.user.id == app.user.id%}
-                                            <div class="following-data">
-                                                <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Ya has hecho una opinion</button>
-                                            </div>
-                                        {% else %}
-                                            <div class="following-data">
-                                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
-                                            </div>
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor%}
+                            {% else %} {# Si no, muestrame el boton, pero...#}
+                                
+
                             {% endif %} 
                         {% endif %}
 
