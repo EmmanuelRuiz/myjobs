@@ -68,27 +68,49 @@
 
 
 
-                        {% if company.status == 'invalid' %}
+                        {% if company.status == 'invalid' %} {# Si la empresa esta validada#}
                             <div class="following-data">
-                                <button type="button" class="btn btn-default" disabled data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
                             </div>
                         {% else %}
-
                             {% if company_stats.opinions == 0%}
                                 <div class="following-data">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
                                 </div>
                             {% endif %}
-                            
-                            
 
                             {% if app.user == null%} {# Si no hay una sesión iniciada #}
                                 {# El boton para opinar debe invitar a iniciar sesión#}
                                 <div class="following-data">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
                                 </div>
-                            {% else %} {# Si no, muestrame el boton, pero...#}
-                                
+                            {% else %}
+                                {# Si no, muestrame el boton, pero...#}
+                                {% set lol = "0" %}
+                                {% set sol = "0" %}
+                                {% for opinions in pagination %}
+
+                                    {% if opinions.user.id == app.user.id %}{# Si la fecha de la opinion creada es mayor a un año #}
+                                        {% if date(opinions.createdAt) < date('-365days') %}{# Solo si el id del usuario de la opinion es igual a su sesión #}
+                                            {% set lol = "3" %}
+                                        {% else %}
+                                            {% set sol = "5" %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if sol == "5" %}
+                                    <div class="following-data">
+                                        <button type="button" class="btn btn-default" disabled>Has realizado una opinión</button>
+                                    </div>
+                                {% else %}
+                                    {% if lol == "3"%}
+                                        <div class="following-data">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ratingModal" data-whatever="@mdo">Calificar empresa</button>
+                                        </div>
+                                    {% endif%}
+                                {% endif %}
+                             
 
                             {% endif %} 
                         {% endif %}
