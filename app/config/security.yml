@@ -27,9 +27,9 @@ security:
                 login_path: /loginerror
                 check_path: /login
             logout:
-
+                invalidate_session: false
                 path: /logout
-                target: /
+                success_handler: logout_success_handler
                 
             # activate different ways to authenticate
 

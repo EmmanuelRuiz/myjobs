@@ -46,3 +46,7 @@ services:
         tags: 
             - { name: twig.extension }
     
+    logout_success_handler:
+        class: AppBundle\Controller\LogoutSuccessHandler
+        arguments: ['@security.http_utils']
+    

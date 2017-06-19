@@ -148,16 +148,9 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6 col-lg-offset-3">
-                            {% for message in app.session.flashbag().get('success') %}
-                                <div class="alert alert-success">{{message}}</div>
-                            {%endfor%}
-                        </div>
                         <div class="col-lg-12">
 
-                            <div class="intro-message text-center">
-
-
+                            <div class="intro-message text-center">  
                                 {% if app.user != null %}
                                     <h1>Bienvenido {{app.user.name}}</h1>
                                 {% else %}
@@ -236,5 +229,33 @@
                 </div>
             </div>
         </footer>
+
+        {% for message in app.session.flashbag().get('notice') %}
+            
+            <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3>Sesion Terminada</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h4>{{ message }}</h4>
+                                
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}  
+
+        <script>
+                $(document).ready(function ()
+                {
+                    $("#mostrarmodal").modal("show");
+                });
+        </script>                        
     </body>
 </html>
