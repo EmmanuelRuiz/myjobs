@@ -22,12 +22,15 @@ security:
         main:
             anonymous: ~
             provider: user_db_provider
+            
             form_login:
                 login_path: /loginerror
                 check_path: /login
             logout:
+
                 path: /logout
                 target: /
+                
             # activate different ways to authenticate
 
             # http_basic: ~
