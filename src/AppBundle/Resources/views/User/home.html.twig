@@ -91,14 +91,11 @@
                         <th>Opinado por</th>
                  
                     </tr>
-                    {% for opinions in pagination%}
+                    {% for opinions in pagination %}
                     <tr>
                         <td>
-                            {% if opinions.company.logo == null%}
-                                <img src="{{ asset('assets/images/default.jpg') }}" class="img-responsive" width="50" alt=""/>
-                            {% else %}
-                                <img src="{{ asset('uploads/company/'~opinions.company.logo) }}" class="img-responsive" width="50" alt=""/>
-                            {% endif %}
+                           
+                            
                         </td>
                         <td>{{ opinions.company.tradename}}</td>
                         <td>{{ opinions.user.name}}</td>
