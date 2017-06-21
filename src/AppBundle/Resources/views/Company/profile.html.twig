@@ -60,11 +60,19 @@
                         <div class="following-data">
                             <a href="#">
                                 <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                
                                 {% for puntos in puntos %}
-                                    {% for puntos2 in puntos2%}
-                                        <span class="number-stat">{{ (puntos + puntos2) / 2 }}</span>
+                                    {% for puntos2 in puntos2 %}    
+                                        {% if puntos == null %}
+                                            <span class="number-stat"> {{puntos2}}</span>
+                                        {% elseif puntos2 == null %}
+                                            <span class="number-stat"> {{puntos}}</span>
+                                        {% else %}
+                                            <span class="number-stat"> {{(puntos + puntos2) / company_stats.opinions }}</span>
+                                        {% endif%}
                                     {% endfor %}
                                 {% endfor %}
+
                             </a>
                         </div>
 

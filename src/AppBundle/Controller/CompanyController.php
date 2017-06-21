@@ -227,9 +227,11 @@ class CompanyController extends Controller {
 
 		/* SELECT * from opinions where created_at < DATE_SUB(NOW(), INTERVAL 356 DAY); */
 		/* SELECT * from opinions where created_at < DATE_FORMAT(NOW(),'%Y-%m-%d') */
-		$query = "SELECT ROUND(AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)*.60,1) "
+		$query = "SELECT SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)*.60"
 				. "AS promedio FROM opinions WHERE company_id = $company_id and  created_at < (DATE_SUB(NOW(), INTERVAL 365 DAY));";
-		$query2 = "SELECT ROUND(AVG(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10),1)"
+		
+		
+		$query2 = "SELECT SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)"
 				. " AS promedios FROM opinions WHERE company_id = $company_id and  created_at > (DATE_SUB(NOW(), INTERVAL 365 DAY));";
 
 		$stmt = $db->prepare($query);
@@ -254,12 +256,12 @@ class CompanyController extends Controller {
 		}
 
 		return $this->render('AppBundle:Company:profile.html.twig', array(
-					// le pasamos a la vista una variable company donde estan todos los datos a mostrar
-					'puntos2' => $q,
-					'puntos' => $p,
-					'comments' => $comment_repo,
-					'company' => $company,
-					'pagination' => $opinions
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar
+			'puntos2' => $q,
+			'puntos' => $p,
+			'comments' => $comment_repo,
+			'company' => $company,
+			'pagination' => $opinions
 		));
 	}
 

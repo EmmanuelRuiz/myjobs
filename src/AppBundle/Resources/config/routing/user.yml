@@ -1,13 +1,13 @@
+user_loginerror:
+    path: /loginerror
+    defaults: {_controller: AppBundle:User:loginerror}
+    
 user_login:
     path: /login
 
 user_logout:
     path: /logout
     
-user_loginerror:
-    path: /loginerror
-    defaults: {_controller: AppBundle:User:loginerror}
-
 user_register:
     path: /registrarse
     defaults: { _controller: AppBundle:User:register }
