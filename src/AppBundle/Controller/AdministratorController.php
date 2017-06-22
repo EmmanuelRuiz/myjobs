@@ -24,6 +24,7 @@ class AdministratorController extends Controller {
 	 * @Route("/", name="homepage")
 	 */
 	public function indexAction(Request $request) {
+
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
 
@@ -94,7 +95,21 @@ class AdministratorController extends Controller {
 		$pagination = $paginator->paginate(
 				$query, $request->query->getInt('page', 1), 5
 		);
+
+		$opinion_repo = $em->getRepository('BackendBundle:Opinion');
+
+		$query_opinion = $opinion_repo->createQueryBuilder('o')
+				->select('(o.company) as company', '(o.user) as user', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication as promedio')
+				->where('o.createdAt < :date')
+				->groupBy('o.company', 'o.user')
+				->orderBy('promedio', 'DESC')
+				->setParameter('multiplication', .60)
+				->setParameter('date', new \DateTime('-365 day'))
+				->getQuery();
+
+		$avgScore = $query_opinion->getResult();
 		
+
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,
@@ -102,6 +117,7 @@ class AdministratorController extends Controller {
 			'todas_empresas' => $te,
 			'claims' => $re,
 			'pagination' => $pagination,
+			'opinions' => $avgScore,
 		));
 	}
 
