@@ -6,627 +6,618 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 use BackendBundle\Entity\Comment;
 use BackendBundle\Entity\Opinion;
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\Claimcompany;
 use BackendBundle\Entity\User;
 
-class AdministratorController extends Controller
-{
-	
-	
+class AdministratorController extends Controller {
+
 	private $session;
 
-    public function __construct() {
-        $this->session = new Session();
-    }
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
+	public function __construct() {
+		$this->session = new Session();
+	}
+
+	/**
+	 * @Route("/", name="homepage")
+	 */
+	public function indexAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
-		
+
 		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
-        $stmt = $db->prepare($querye);
+		$stmt = $db->prepare($querye);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $e) {
-           $e["empresas"];
-        }
-		
+			$e["empresas"];
+		}
+
 		// sacar cantidad de comentarios
 		$queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
 		$stmt = $db->prepare($queryc);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $c) {
-           $c["comentarios"];
-        }
-		
+			$c["comentarios"];
+		}
+
 		// sacar cantidad de usuarios
 		$queryu = "SELECT COUNT(id) AS usuarios FROM users;";
 		$stmt = $db->prepare($queryu);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $u) {
-           $u["usuarios"];
-        }
-		
+			$u["usuarios"];
+		}
+
 		// sacar cantidad de empresas
 		$queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $te) {
-           $te["todas_empresas"];
-        }
-		
+			$te["todas_empresas"];
+		}
+
 		// sacar cantidad de reclamos
 		$queryte = "SELECT COUNT(id) AS claims FROM claimcompany;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $re) {
-           $re["claims"];
-        }
-		
+			$re["claims"];
+		}
+
 		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-        $dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
-        $query = $em->createQuery($dql);
+		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
+		$query = $em->createQuery($dql);
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
-        );
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
 		
-        return $this->render('AppBundle:Administrator:administrator.html.twig', array(
+		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,
 			'usuarios' => $u,
 			'todas_empresas' => $te,
 			'claims' => $re,
-			'pagination' => $pagination
+			'pagination' => $pagination,
 		));
-    }
-    
-    public function companiesAction(Request $request)
-    {
+	}
+
+	public function companiesAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
-		
+
 		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
-        $stmt = $db->prepare($querye);
+		$stmt = $db->prepare($querye);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $e) {
-           $e["empresas"];
-        }
-		
+			$e["empresas"];
+		}
+
 		// sacar cantidad de comentarios
 		$queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
 		$stmt = $db->prepare($queryc);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $c) {
-           $c["comentarios"];
-        }
-		
+			$c["comentarios"];
+		}
+
 		// sacar cantidad de usuarios
 		$queryu = "SELECT COUNT(id) AS usuarios FROM users;";
 		$stmt = $db->prepare($queryu);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $u) {
-           $u["usuarios"];
-        }
-		
+			$u["usuarios"];
+		}
+
 		// sacar cantidad de empresas
 		$queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $te) {
-           $te["todas_empresas"];
-        }
-		
+			$te["todas_empresas"];
+		}
+
 		// sacar cantidad de reclamos
 		$queryte = "SELECT COUNT(id) AS claims FROM claimcompany;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $re) {
-           $re["claims"];
-        }
-		
-        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-        $dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
-        $query = $em->createQuery($dql);
+			$re["claims"];
+		}
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
-        );
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
+		$query = $em->createQuery($dql);
 
-        return $this->render('AppBundle:Administrator:administrator_companies.html.twig', array(
-			'empresas' => $e,
-			'comentarios' => $c,
-			'usuarios' => $u,
-			'todas_empresas' => $te,
-			'claims' => $re,
-			'pagination' => $pagination
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
+
+		return $this->render('AppBundle:Administrator:administrator_companies.html.twig', array(
+					'empresas' => $e,
+					'comentarios' => $c,
+					'usuarios' => $u,
+					'todas_empresas' => $te,
+					'claims' => $re,
+					'pagination' => $pagination
 		));
-        /*return $this->render('AppBundle:Administrator:administrator_companies.html.twig');*/
-    }
-	
-	public function commentsAction(Request $request)
-    {
+		/* return $this->render('AppBundle:Administrator:administrator_companies.html.twig'); */
+	}
+
+	public function commentsAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
-		
+
 		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
-        $stmt = $db->prepare($querye);
+		$stmt = $db->prepare($querye);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $e) {
-           $e["empresas"];
-        }
-		
+			$e["empresas"];
+		}
+
 		// sacar cantidad de comentarios
 		$queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
 		$stmt = $db->prepare($queryc);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $c) {
-           $c["comentarios"];
-        }
-		
+			$c["comentarios"];
+		}
+
 		// sacar cantidad de usuarios
 		$queryu = "SELECT COUNT(id) AS usuarios FROM users;";
 		$stmt = $db->prepare($queryu);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $u) {
-           $u["usuarios"];
-        }
-		
+			$u["usuarios"];
+		}
+
 		// sacar cantidad de empresas
 		$queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $te) {
-           $te["todas_empresas"];
-        }
-		
+			$te["todas_empresas"];
+		}
+
 		// sacar cantidad de reclamos
 		$queryte = "SELECT COUNT(id) AS claims FROM claimcompany;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $re) {
-           $re["claims"];
-        }
-		
-        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-        $dql = "SELECT u FROM BackendBundle:Comment u WHERE u.status = 'invalid'";
-        $query = $em->createQuery($dql);
-		
+			$re["claims"];
+		}
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
-        );
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+		$dql = "SELECT u FROM BackendBundle:Comment u WHERE u.status = 'invalid'";
+		$query = $em->createQuery($dql);
 
-        return $this->render('AppBundle:Administrator:administrator_comments.html.twig', array(
-			'empresas' => $e,
-			'comentarios' => $c,
-			'usuarios' => $u,
-			'todas_empresas' => $te,
-			'claims' => $re,
-			'pagination' => $pagination
+
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
+
+		return $this->render('AppBundle:Administrator:administrator_comments.html.twig', array(
+					'empresas' => $e,
+					'comentarios' => $c,
+					'usuarios' => $u,
+					'todas_empresas' => $te,
+					'claims' => $re,
+					'pagination' => $pagination
 		));
-	
-    }
-	
-	public function usersAction(Request $request)
-    {
+	}
+
+	public function usersAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
-		
+
 		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
-        $stmt = $db->prepare($querye);
+		$stmt = $db->prepare($querye);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $e) {
-           $e["empresas"];
-        }
-		
+			$e["empresas"];
+		}
+
 		// sacar cantidad de comentarios
 		$queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
 		$stmt = $db->prepare($queryc);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $c) {
-           $c["comentarios"];
-        }
-		
+			$c["comentarios"];
+		}
+
 		// sacar cantidad de usuarios
 		$queryu = "SELECT COUNT(id) AS usuarios FROM users;";
 		$stmt = $db->prepare($queryu);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $u) {
-           $u["usuarios"];
-        }
-		
+			$u["usuarios"];
+		}
+
 		// sacar cantidad de empresas
 		$queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $te) {
-           $te["todas_empresas"];
-        }
-		
+			$te["todas_empresas"];
+		}
+
 		// sacar cantidad de reclamos
 		$queryte = "SELECT COUNT(id) AS claims FROM claimcompany;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
-		foreach ($po as $re) {
-           $re["claims"];
-        }
-		
-        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-        $dql = "SELECT u FROM BackendBundle:User u";
-        $query = $em->createQuery($dql);
-		
+		$stmt->execute($params);
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
-        );
+		$po = $stmt->fetchAll();
+
+		foreach ($po as $re) {
+			$re["claims"];
+		}
+
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+		$dql = "SELECT u FROM BackendBundle:User u";
+		$query = $em->createQuery($dql);
+
+
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
 
 		return $this->render('AppBundle:Administrator:administrator_users.html.twig', array(
-			'empresas' => $e,
-			'comentarios' => $c,
-			'usuarios' => $u,
-			'todas_empresas' => $te,
-			'claims' => $re,
-			'pagination' => $pagination
+					'empresas' => $e,
+					'comentarios' => $c,
+					'usuarios' => $u,
+					'todas_empresas' => $te,
+					'claims' => $re,
+					'pagination' => $pagination
 		));
-    }
-	
-	public function allCompaniesAction(Request $request)
-    {
+	}
+
+	public function allCompaniesAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
-		
+
 		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
-        $stmt = $db->prepare($querye);
+		$stmt = $db->prepare($querye);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $e) {
-           $e["empresas"];
-        }
-		
+			$e["empresas"];
+		}
+
 		// sacar cantidad de comentarios
 		$queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
 		$stmt = $db->prepare($queryc);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $c) {
-           $c["comentarios"];
-        }
-		
+			$c["comentarios"];
+		}
+
 		// sacar cantidad de usuarios
 		$queryu = "SELECT COUNT(id) AS usuarios FROM users;";
 		$stmt = $db->prepare($queryu);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $u) {
-           $u["usuarios"];
-        }
-		
+			$u["usuarios"];
+		}
+
 		// sacar cantidad de empresas
 		$queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $te) {
-           $te["todas_empresas"];
-        }
-		
+			$te["todas_empresas"];
+		}
+
 		// sacar cantidad de reclamos
 		$queryte = "SELECT COUNT(id) AS claims FROM claimcompany;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $re) {
-           $re["claims"];
-        }
-		
-        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-        $dql = "SELECT u FROM BackendBundle:Company u";
-        $query = $em->createQuery($dql);
-		
+			$re["claims"];
+		}
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
-        );
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+		$dql = "SELECT u FROM BackendBundle:Company u";
+		$query = $em->createQuery($dql);
 
-        return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
-			'empresas' => $e,
-			'comentarios' => $c,
-			'usuarios' => $u,
-			'todas_empresas' => $te,
-			'claims' => $re,
-			'pagination' => $pagination
+
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
+
+		return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
+					'empresas' => $e,
+					'comentarios' => $c,
+					'usuarios' => $u,
+					'todas_empresas' => $te,
+					'claims' => $re,
+					'pagination' => $pagination
 		));
-    }
-	
-	public function validateCompaniesAction(Request $request){
-		
+	}
+
+	public function validateCompaniesAction(Request $request) {
+
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
-		
+
 		$company = new Company();
-		
+
 		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
-        $company = $company_repo->find($id);
-		
+		$company = $company_repo->find($id);
+
 		$company->setStatus('valid');
 		$em->persist($company);
 		$em->flush(); //ejecturamos
-	
+
 		return $this->redirectToRoute('administrator_company');
 	}
-	
-	public function deleteCompaniesAction(Request $request){
-		
+
+	public function deleteCompaniesAction(Request $request) {
+
 		$em = $this->getDoctrine()->getManager();
-		
+
 		$company = new Company();
 		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
-        $company = $company_repo->find($id);
-		
+		$company = $company_repo->find($id);
+
 		$em->remove($company);
 		$flush = $em->flush();
-		
+
 		$this->addFlash('msg', 'La empresa se ha eliminado con exito');
 
-        return $this->redirectToRoute("administrator_allcompanies");
-		
+		return $this->redirectToRoute("administrator_allcompanies");
 	}
-	
-	public function deleteUsersAction(Request $request){
-		
+
+	public function deleteUsersAction(Request $request) {
+
 		$em = $this->getDoctrine()->getManager();
 		$user = new User();
 		$id = $request->query->get('id');
 		$user_repo = $em->getRepository('BackendBundle:User');
-        $user = $user_repo->find($id);
-		
+		$user = $user_repo->find($id);
+
 		$em->remove($user);
 		$flush = $em->flush();
 
 		$this->addFlash('msg', 'El usuario se ha eliminado con exito');
 
-        return $this->redirectToRoute("administrator_user");
+		return $this->redirectToRoute("administrator_user");
 	}
-	
-	public function asignAction(Request $request){
+
+	public function asignAction(Request $request) {
 		//Entity Manager
-        $em = $this->getDoctrine()->getEntityManager();
-		
+		$em = $this->getDoctrine()->getEntityManager();
+
 		$id = $request->query->get('id');
 		$company_id = $request->query->get('company_id');
 		$claim_id = $request->query->get('claim_id');
-		
+
 
 		$user_repo = $em->getRepository('BackendBundle:User');
-        $user = $user_repo->find($id);
-		
-        $company_repo = $em->getRepository('BackendBundle:Company');
-        $company = $company_repo->find($company_id);
-		
-		
+		$user = $user_repo->find($id);
+
+		$company_repo = $em->getRepository('BackendBundle:Company');
+		$company = $company_repo->find($company_id);
+
+
 		$claim_repo = $em->getRepository('BackendBundle:Claimcompany');
-        $claim = $claim_repo->find($claim_id);
-		
-		
+		$claim = $claim_repo->find($claim_id);
+
+
 		$company->setStatus('valid');
 		$company->setUser($user);
 		$company->setRepresentant('si');
 		$em->remove($claim);
-		
-        //Persistimos en el objeto
-        $em->persist($company, $claim);
- 
-        //Insertarmos en la base de datos
-        $flush = $em->flush();
- 
+
+		//Persistimos en el objeto
+		$em->persist($company, $claim);
+
+		//Insertarmos en la base de datos
+		$flush = $em->flush();
+
 		$this->addFlash('msg', 'Se ha asignado la empresa correctamente');
-		
+
 		return $this->redirectToRoute('administrator_claim');
 	}
-	public function viewAction(Request $request){
+
+	public function viewAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
-		
+
 		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
-        $stmt = $db->prepare($querye);
+		$stmt = $db->prepare($querye);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $e) {
-           $e["empresas"];
-        }
-		
+			$e["empresas"];
+		}
+
 		// sacar cantidad de comentarios
 		$queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
 		$stmt = $db->prepare($queryc);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $c) {
-           $c["comentarios"];
-        }
-		
+			$c["comentarios"];
+		}
+
 		// sacar cantidad de usuarios
 		$queryu = "SELECT COUNT(id) AS usuarios FROM users;";
 		$stmt = $db->prepare($queryu);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $u) {
-           $u["usuarios"];
-        }
-		
+			$u["usuarios"];
+		}
+
 		// sacar cantidad de empresas
 		$queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $te) {
-           $te["todas_empresas"];
-        }
-		
+			$te["todas_empresas"];
+		}
+
 		// sacar cantidad de reclamos
 		$queryte = "SELECT COUNT(id) AS claims FROM claimcompany;";
 		$stmt = $db->prepare($queryte);
 		$params = array();
-        $stmt->execute($params);
-		
-        $po=$stmt->fetchAll();
-		
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+
 		foreach ($po as $re) {
-           $re["claims"];
-        }
-		
-        // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-        $dql = "SELECT u FROM BackendBundle:Claimcompany u";
-        $query = $em->createQuery($dql);
-		
+			$re["claims"];
+		}
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-			$query, $request->query->getInt('page', 1), 5
-        );
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+		$dql = "SELECT u FROM BackendBundle:Claimcompany u";
+		$query = $em->createQuery($dql);
 
-        return $this->render('AppBundle:Administrator:administrator_claims.html.twig', array(
-			'empresas' => $e,
-			'comentarios' => $c,
-			'usuarios' => $u,
-			'todas_empresas' => $te,
-			'claims' => $re,
-			'pagination' => $pagination
+
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
+
+		return $this->render('AppBundle:Administrator:administrator_claims.html.twig', array(
+					'empresas' => $e,
+					'comentarios' => $c,
+					'usuarios' => $u,
+					'todas_empresas' => $te,
+					'claims' => $re,
+					'pagination' => $pagination
 		));
-
 	}
-	
-	public function reclamarAction(Request $request){
+
+	public function reclamarAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
-		
+
 		$claim = new Claimcompany();
-		
-		
+
+
 		$id = $request->query->get('id');
 		$company_repo = $em->getRepository('BackendBundle:Company');
 		$company = $company_repo->find($id);
-	
+
 
 		$name = $request->request->get("name");
 		$lastname = $request->request->get("lastname");
@@ -634,8 +625,8 @@ class AdministratorController extends Controller
 		$companyemail = $request->request->get("companyemail");
 		$officenumber = $request->request->get("officenumber");
 		$personalnumber = $request->request->get("personalnumber");
-		
-		
+
+
 		$claim->setName($name);
 		$claim->setUser($user);
 		$claim->setCompany($company);
@@ -645,7 +636,7 @@ class AdministratorController extends Controller
 		$claim->setPersonalnumber($personalnumber);
 		$claim->setBusinessemail($companyemail);
 		$claim->setCreatedAt(new \DateTime("now"));
-		
+
 		$em->persist($claim);
 		$flush = $em->flush();
 		if ($flush == null) {
@@ -653,10 +644,10 @@ class AdministratorController extends Controller
 		} else {
 			$status = "Error al hacer la reclamación, intente mas tarde. Si el problema persiste, contactenos";
 		}
-		
+
 		$this->session->getFlashBag()->add("status", $status);
 		// /company/id 
 		return $this->redirectToRoute('company_profile', array('id' => $id));
-		
 	}
+
 }
