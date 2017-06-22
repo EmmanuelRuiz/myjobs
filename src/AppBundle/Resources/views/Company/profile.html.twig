@@ -64,9 +64,11 @@
                                 {% for puntos in puntos %}
                                     {% for puntos2 in puntos2 %}    
                                         {% if puntos == null %}
-                                            <span class="number-stat"> {{puntos2}}</span>
+                                            {% if company_stats.opinions != 0%}
+                                                <span class="number-stat"> {{puntos2 / company_stats.opinions}}</span>
+                                            {% endif %}
                                         {% elseif puntos2 == null %}
-                                            <span class="number-stat"> {{puntos}}</span>
+                                            <span class="number-stat"> {{puntos / company_stats.opinions}}</span>
                                         {% else %}
                                             <span class="number-stat"> {{(puntos + puntos2) / company_stats.opinions }}</span>
                                         {% endif%}

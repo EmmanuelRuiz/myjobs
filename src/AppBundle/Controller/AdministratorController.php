@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+// entidades 
 use BackendBundle\Entity\Comment;
 use BackendBundle\Entity\Opinion;
 use BackendBundle\Entity\Company;
@@ -27,6 +28,24 @@ class AdministratorController extends Controller {
 
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
+
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
+		$dql = "SELECT u FROM BackendBundle:Company u";
+		$query_company = $em->createQuery($dql);
+
+		$paginator = $this->get('knp_paginator');
+		$pag_company = $paginator->paginate(
+				$query_company, $request->query->getInt('page', 1), 5
+		);
+
+		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company que no estan verificadas
+		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
+		$query = $em->createQuery($dql);
+
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
 
 		$querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
 		$stmt = $db->prepare($querye);
@@ -87,29 +106,43 @@ class AdministratorController extends Controller {
 			$re["claims"];
 		}
 
-		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
-		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
-		$query = $em->createQuery($dql);
+		// Saca las opiniones con 60%
+		$query_60 = "SELECT company_id, SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + "
+				. "point9 + point10)*.60 AS promedio_60 FROM opinions WHERE created_at < DATE_SUB(NOW(), "
+				. "INTERVAL 365 DAY) GROUP BY company_id ORDER BY promedio_60 DESC;";
 
-		$paginator = $this->get('knp_paginator');
-		$pagination = $paginator->paginate(
-				$query, $request->query->getInt('page', 1), 5
-		);
 
-		$opinion_repo = $em->getRepository('BackendBundle:Opinion');
+		$stmt = $db->prepare($query_60);
+		$params = array();
+		$stmt->execute($params);
 
-		$query_opinion = $opinion_repo->createQueryBuilder('o')
-				->select('(o.company) as company', '(o.user) as user', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication as promedio')
-				->where('o.createdAt < :date')
-				->groupBy('o.company', 'o.user')
-				->orderBy('promedio', 'DESC')
-				->setParameter('multiplication', .60)
-				->setParameter('date', new \DateTime('-365 day'))
-				->getQuery();
+		$po = $stmt->fetchAll();
 
-		$avgScore = $query_opinion->getResult();
+		$qs = null;
+		foreach ($po as $qs) {
+			$qs["promedio_60"];
+			
+		}
+
+		// Saca las opiniones con 100%
+		$query_100 = "SELECT company_id, SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 +"
+				. "point9 + point10) AS promedio_100 FROM opinions WHERE created_at > DATE_SUB(NOW(), "
+				. "INTERVAL 365 DAY) GROUP BY company_id ORDER BY promedio_100 DESC;";
+
+
+
+		$stmt = $db->prepare($query_100);
+		$params = array();
+		$stmt->execute($params);
+
+		$po = $stmt->fetchAll();
+		$qc = null;
+		foreach ($po as $qc) {
+			$qc["promedio_100"];
+			var_dump($qc);
+		}
+
 		
-
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,
@@ -117,7 +150,9 @@ class AdministratorController extends Controller {
 			'todas_empresas' => $te,
 			'claims' => $re,
 			'pagination' => $pagination,
-			'opinions' => $avgScore,
+			'opinions_60' => $qs, // Opiniones que valen 60%
+			'opinions_100' => $qc, // Opiniones que valen 100%
+			'companies' => $pag_company // Todas las empresas en general 7
 		));
 	}
 
