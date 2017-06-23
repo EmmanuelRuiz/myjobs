@@ -105,54 +105,15 @@ class AdministratorController extends Controller {
 		foreach ($po as $re) {
 			$re["claims"];
 		}
-
-		// Saca las opiniones con 60%
-		$query_60 = "SELECT company_id, SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + "
-				. "point9 + point10)*.60 AS promedio_60 FROM opinions WHERE created_at < DATE_SUB(NOW(), "
-				. "INTERVAL 365 DAY) GROUP BY company_id ORDER BY promedio_60 DESC;";
-
-
-		$stmt = $db->prepare($query_60);
-		$params = array();
-		$stmt->execute($params);
-
-		$po = $stmt->fetchAll();
-
-		$qs = null;
-		foreach ($po as $qs) {
-			$qs["promedio_60"];
-			
-		}
-
-		// Saca las opiniones con 100%
-		$query_100 = "SELECT company_id, SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 +"
-				. "point9 + point10) AS promedio_100 FROM opinions WHERE created_at > DATE_SUB(NOW(), "
-				. "INTERVAL 365 DAY) GROUP BY company_id ORDER BY promedio_100 DESC;";
-
-
-
-		$stmt = $db->prepare($query_100);
-		$params = array();
-		$stmt->execute($params);
-
-		$po = $stmt->fetchAll();
-		$qc = null;
-		foreach ($po as $qc) {
-			$qc["promedio_100"];
-			var_dump($qc);
-		}
-
 		
+
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,
 			'usuarios' => $u,
 			'todas_empresas' => $te,
 			'claims' => $re,
-			'pagination' => $pagination,
-			'opinions_60' => $qs, // Opiniones que valen 60%
-			'opinions_100' => $qc, // Opiniones que valen 100%
-			'companies' => $pag_company // Todas las empresas en general 7
+			'pagination' => $pagination
 		));
 	}
 

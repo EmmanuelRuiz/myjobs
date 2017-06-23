@@ -31,7 +31,7 @@
 
                     {# usamos la variable company para recorrer cada resultado y mostrarlos #}
                     {% for company in pagination %}
-                        
+
                         <tbody>
                             <tr>
                                 <td>{{ company.id }}</td>
@@ -54,40 +54,18 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th>RFC</th>
+                            <th>Sector</th>
                             <th>Representante</th>
                             <th>Ext. Representante</th>
+                            <th>Email de Representante</th>
                             <th>Calificación</th>
                         </tr>
                     </thead>
 
-                    {% for company in pagination %}
-                        {% set company_stats = company.id|company_stats%}
-                        
-                        {% for opinions_100 in opinions_100|slice(0, 10)%}
-                            {{ opinions_100 }}
-                        {% endfor %}
-                        <tbody>
-                            <tr>
-                                {% if company.id == opinions_100.company_id  %}
-                                    <td>{{ company.tradename }}</td>
-                                    <td>{{ company.rfc }}</td>
-                                    <td>{{ company.contacname }}</td>
-                                    <td>{{ company.telephoneext }}</td>
-                                    <td>
-                                        {% if opinions_100.promedio_100 == null%}
-                                            {{ opinions_60.promedio_60|number_format(1) }}
-                                        {% elseif opinions_60.promedio_60|default(null) == null %}
-                                            {{ opinions_100.promedio_100|number_format(1) }}
-                                        {% else %}
-                                            {{ (opinions_100.promedio_100|number_format(1) + opinions_60.promedio_60|number_format(1)) / company_stats.opinions }} 
-                                        {% endif %}
-                                    </td>
-                                {% endif %}
-                            </tr>
-                        </tbody>
-                    {% endfor %}
+                    
                 </table>
             </div>
         </div>
