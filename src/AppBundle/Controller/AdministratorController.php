@@ -105,7 +105,33 @@ class AdministratorController extends Controller {
 		foreach ($po as $re) {
 			$re["claims"];
 		}
-		
+
+		$opinion_repo = $em->getRepository('BackendBundle:Opinion');
+
+		$query_opinion_100 = $opinion_repo->createQueryBuilder('o')
+				->select('(o.company) as company', 'COUNT(o) as cont', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) as promedio_100')
+				->where('o.createdAt > :date')
+				->groupBy('o.company', 'o.createdAt')
+				->orderBy('promedio_100', 'DESC')
+				->setParameter('date', new \DateTime('-365 day'))
+				->getQuery();
+
+		$opinions_100 = $query_opinion_100->getResult();
+
+		$query_opinion_60 = $opinion_repo->createQueryBuilder('o')
+				->select('(o.company) as company', 'COUNT(o) as cont', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication as promedio_60')
+				->where('o.createdAt < :date')
+				->groupBy('o.company', 'o.createdAt')
+				->orderBy('promedio_60', 'DESC')
+				->setParameter('date', new \DateTime('-365 day'))
+				->setParameter('multiplication', .60)
+				->getQuery();
+
+		$opinions_60 = $query_opinion_60->getResult();
+
+		//var_dump($opinions_60, $opinions_100);
+		//die();
+
 
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
@@ -113,7 +139,9 @@ class AdministratorController extends Controller {
 			'usuarios' => $u,
 			'todas_empresas' => $te,
 			'claims' => $re,
-			'pagination' => $pagination
+			'pagination' => $pagination,
+			'opinion_100' => $opinions_100,
+			'opinion_60' => $opinions_60
 		));
 	}
 

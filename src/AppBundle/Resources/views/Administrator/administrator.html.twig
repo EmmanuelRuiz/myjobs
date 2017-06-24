@@ -29,8 +29,10 @@
                         </tr>
                     </thead>
 
+
                     {# usamos la variable company para recorrer cada resultado y mostrarlos #}
                     {% for company in pagination %}
+                        {% set company_stats = company.id|company_stats%}
 
                         <tbody>
                             <tr>
@@ -45,30 +47,83 @@
                             </tr>
                         </tbody>
                     {% endfor %}
+
                 </table>
             </div>                
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">Empresas destacadas</h2>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="alert alert-info" role="alert"><b>Información.</b> Calificación de empresas con opiniones que valen <b>100%</b> </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>RFC</th>
-                            <th>Sector</th>
-                            <th>Representante</th>
-                            <th>Ext. Representante</th>
-                            <th>Email de Representante</th>
-                            <th>Calificación</th>
+                            <th>Opiniones</th>
+                            <th>Puntos</th>
+                            <th>Calificacion</th>
                         </tr>
                     </thead>
 
-                    
+                    {% set puntos_100 = 0 %}
+                    {% for opinions_100 in opinion_100%}
+                        {% for company in pagination %}
+                            {% set company_stats = company.id|company_stats%}
+                            <tbody>
+                                <tr>
+                                    {% if company.id == opinions_100.company%}
+                                        {% set puntos_100 = opinions_100.promedio_100|number_format(1) %}
+                                        <td>{{ opinions_100.company }}</td>
+                                        <td>{{ company.tradename}}</td>
+                                        <td>{{ opinions_100.cont }}</td>
+                                        <td>{{ opinions_100.promedio_100|number_format(1) }}</td>
+                                        <td>{{ ((opinions_100.promedio_100) / opinions_100.cont)|number_format(1)  }}</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+            <div class="col-lg-6">
+                <div class="alert alert-info" role="alert"><b>Información.</b> Calificación de empresas con opiniones que valen <b>60%</b>  </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Opiniones</th>
+                            <th>Puntos</th>
+                            <th>Calificacion</th>
+                        </tr>
+                    </thead>
+                    {% set puntos_60 = 0 %}
+                    {% for opinions_60 in opinion_60 %}
+                        {% for company in pagination %}
+                            {% set company_stats = company.id|company_stats%}
+                            <tbody>
+                                <tr>
+                                    {% if company.id == opinions_60.company%}
+                                        {% set puntos_60 = opinions_60.promedio_60|number_format(1) %}
+                                        <td>{{ opinions_60.company }}</td>
+                                        <td>{{ company.tradename}}</td>
+                                        <td>{{ opinions_60.cont }}</td>
+                                        <td>{{ opinions_60.promedio_60|number_format(1) }}</td>
+                                        <td>{{ (opinions_60.promedio_60) / opinions_60.cont  }}</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    {% endfor %}
                 </table>
             </div>
         </div>
-
     </div>
 {%endblock%}
