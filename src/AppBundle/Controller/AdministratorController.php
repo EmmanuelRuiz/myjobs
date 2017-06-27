@@ -129,10 +129,8 @@ class AdministratorController extends Controller {
 
 		$opinions_60 = $query_opinion_60->getResult();
 
-		//var_dump($opinions_60, $opinions_100);
-		//die();
-
-
+	
+				
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,

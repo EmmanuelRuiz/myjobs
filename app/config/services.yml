@@ -49,4 +49,11 @@ services:
     logout_success_handler:
         class: AppBundle\Controller\LogoutSuccessHandler
         arguments: ['@security.http_utils']
+        
+        
+
+    twig.extension.sortbyfield:
+        class: Snilius\Twig\SortByFieldExtension
+        tags:
+            - { name: twig.extension }
     
