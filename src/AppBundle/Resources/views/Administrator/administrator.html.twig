@@ -41,7 +41,7 @@
                                 <td>{{ company.contacname }}</td>
                                 <td>{{ company.telephoneext }}</td>
                                 <td>{{ company.businessemail }}</td>
-                                <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success">Validar</a></td>
+                                <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Validar" data-original-title=""><i class="fa fa-check" aria-hidden="true"></i></a></td>
                             </tr>
                         </tbody>
                     {% endfor %}
@@ -68,7 +68,7 @@
                     </thead>
 
 
-                    {% for opinions_100 in opinion_100 | sortbyfield('promedio_100')  %}
+                    {% for opinions_100 in opinion_100 %}
                         {% for company in pagination %}
                             {% set company_stats = company.id|company_stats%}
                             <tbody>
@@ -103,7 +103,7 @@
                         </tr>
                     </thead>
 
-                    {% for opinions_60 in opinion_60 | sortbyfield('promedio_60') %}
+                    {% for opinions_60 in opinion_60 %}
                         {% for company in pagination %}
                             {% set company_stats = company.id|company_stats%}
                             <tbody>
@@ -135,15 +135,22 @@
                             <th>Calificacion Generals</th>
                         </tr>
                     </thead>
-                    {% for company in pagination %}
-                        {% for opinions_100 in opinion_100 %}
-                            {% if company.id == opinions_100.company %}
-                                {% for opinions_60 in opinion_60 %}
-                                    {% if company.id == opinions_60.company and company.id == opinions_100.company %}
-                                        {{ opinions_100.promedio_100 + opinions_60.promedio_60 }}
+
+                    {% for avg in general_avg %}
+                        {% for company in pagination %}
+                            <tbody>
+                                <tr>
+                                    {% if company.id == avg.company%}
+                                        <td>{{ company.id }}</td>
+                                        <td>{{ company.tradename }}</td>
+                                        <td>0</td>
+                                        <td>{{ avg.promedio }}</td>
                                     {% endif %}
-                                {% endfor %}
-                            {% endif %}
+                                </tr>
+                            </tbody>
+
+
+
                         {% endfor %}
                     {% endfor %}
 

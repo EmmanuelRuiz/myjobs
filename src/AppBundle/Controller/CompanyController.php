@@ -242,6 +242,7 @@ class CompanyController extends Controller {
 
 		foreach ($po as $p) {
 			$p["promedio"];
+			var_dump($p);
 		}
 
 
@@ -253,6 +254,7 @@ class CompanyController extends Controller {
 
 		foreach ($po as $q) {
 			$q["promedios"];
+			var_dump($q);
 		}
 
 		return $this->render('AppBundle:Company:profile.html.twig', array(

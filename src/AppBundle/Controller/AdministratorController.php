@@ -112,7 +112,6 @@ class AdministratorController extends Controller {
 				->select('(o.company) as company', 'COUNT(o) as cont', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) as promedio_100')
 				->where('o.createdAt > :date')
 				->groupBy('o.company', 'o.createdAt')
-				->orderBy('promedio_100', 'DESC')
 				->setParameter('date', new \DateTime('-365 day'))
 				->getQuery();
 
@@ -122,15 +121,27 @@ class AdministratorController extends Controller {
 				->select('(o.company) as company', 'COUNT(o) as cont', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication as promedio_60')
 				->where('o.createdAt < :date')
 				->groupBy('o.company', 'o.createdAt')
-				->orderBy('promedio_60', 'DESC')
 				->setParameter('date', new \DateTime('-365 day'))
 				->setParameter('multiplication', .60)
 				->getQuery();
 
 		$opinions_60 = $query_opinion_60->getResult();
 
-	
-				
+		$query_avg = $opinion_repo->createQueryBuilder('o')
+				->select('(o.company) as company', 'AVG(CASE WHEN o.createdAt > :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) WHEN o.createdAt < :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication ELSE 0 END) AS promedio')
+				->groupBy('o.company')
+				->orderBy('promedio', 'DESC')
+				->setParameter('date', new \DateTime('-365 day'))
+				->setParameter('multiplication', .60)
+				->getQuery();
+
+		$general_avg = $query_avg ->getResult();
+		
+		
+		
+
+
+
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,
@@ -139,7 +150,8 @@ class AdministratorController extends Controller {
 			'claims' => $re,
 			'pagination' => $pagination,
 			'opinion_100' => $opinions_100,
-			'opinion_60' => $opinions_60
+			'opinion_60' => $opinions_60,
+			'general_avg' => $general_avg
 		));
 	}
 
