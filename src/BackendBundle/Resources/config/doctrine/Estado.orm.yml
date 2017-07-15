@@ -1,0 +1,31 @@
+BackendBundle\Entity\Estado:
+    type: entity
+    table: estados
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+        claveEstado:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: clave_estado
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 35
+            options:
+                fixed: false
+        abreviatura:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

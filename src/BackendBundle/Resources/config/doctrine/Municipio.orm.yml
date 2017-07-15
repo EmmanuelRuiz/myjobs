@@ -1,0 +1,32 @@
+BackendBundle\Entity\Municipio:
+    type: entity
+    table: municipios
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+        claveEstado:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: clave_estado
+        claveMunicipio:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: clave_municipio
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 80
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

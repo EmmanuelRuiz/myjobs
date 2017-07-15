@@ -1,0 +1,10 @@
+<?php
+
+namespace BackendBundle\Entity;
+
+/**
+ * Municipio
+ */
+class Municipio {
+	//put your code here
+}

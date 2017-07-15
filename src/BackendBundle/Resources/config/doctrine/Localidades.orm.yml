@@ -1,0 +1,39 @@
+BackendBundle\Entity\Localidades:
+    type: entity
+    table: localidades
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+        claveEstado:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: clave_estado
+        claveMunicipio:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: clave_municipio
+        claveLocalidad:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: clave_localidad
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 75
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }
