@@ -7,11 +7,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
 use BackendBundle\Entity\Comment;
+
+
 use AppBundle\Form\RegisterCompanyType;
 use AppBundle\Form\CompanyType;
+
+
 
 class CompanyController extends Controller {
 
@@ -25,7 +30,9 @@ class CompanyController extends Controller {
 
 	public function registerAction(Request $request) {
 		$company = new Company();
+		
 		$form = $this->createForm(RegisterCompanyType::class, $company);
+		
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted()) {
@@ -77,7 +84,7 @@ class CompanyController extends Controller {
 		}
 
 		return $this->render('AppBundle:Company:register-company.html.twig', array(
-					"form" => $form->createView()
+			"form" => $form->createView(),
 		));
 	}
 
