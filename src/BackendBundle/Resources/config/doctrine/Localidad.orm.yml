@@ -1,10 +1,10 @@
-BackendBundle\Entity\Municipio:
+BackendBundle\Entity\Localidad:
     type: entity
-    table: municipios
+    table: localidades
     indexes:
-        estado_id:
+        municipio_id:
             columns:
-                - estado_id
+                - municipio_id
     id:
         id:
             type: integer
@@ -15,23 +15,23 @@ BackendBundle\Entity\Municipio:
             generator:
                 strategy: IDENTITY
     fields:
-        estadoId:
+        municipioId:
             type: integer
             nullable: false
             options:
                 unsigned: false
-                comment: 'Relación con estados'
-            column: estado_id
+                comment: 'Relación con municipios'
+            column: municipio_id
         clave:
             type: string
             nullable: false
-            length: 3
+            length: 4
             options:
                 fixed: false
         nombre:
             type: string
             nullable: false
-            length: 50
+            length: 110
             options:
                 fixed: false
         activo:

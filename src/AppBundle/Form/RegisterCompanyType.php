@@ -26,14 +26,6 @@ class RegisterCompanyType extends AbstractType {
 						'class' => 'form-tradename form-control'
 					)
 				))
-
-				/* ->add('businessname', TextType::class, array(
-				  'label' => 'Nombre del negocio',
-				  'required' => 'required',
-				  'attr' => array(
-				  'class' => 'form-businessname form-control'
-				  )
-				  )) */
 				
 				->add('website', TextType::class, array(
 					'label' => 'Sitio Web de la empresa',

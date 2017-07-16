@@ -1,0 +1,294 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+namespace BackendBundle\Entity;
+
+/**
+ * Description of Localidad
+ *
+ * @author Juan Amaya
+ */
+class Localidad {
+	//put your code here
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var integer
+     */
+    private $municipioId;
+
+    /**
+     * @var string
+     */
+    private $clave;
+
+    /**
+     * @var string
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     */
+    private $latitud;
+
+    /**
+     * @var string
+     */
+    private $longitud;
+
+    /**
+     * @var string
+     */
+    private $lat;
+
+    /**
+     * @var string
+     */
+    private $lng;
+
+    /**
+     * @var string
+     */
+    private $altitud;
+
+    /**
+     * @var boolean
+     */
+    private $activo = '1';
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set municipioId
+     *
+     * @param integer $municipioId
+     *
+     * @return Localidad
+     */
+    public function setMunicipioId($municipioId)
+    {
+        $this->municipioId = $municipioId;
+
+        return $this;
+    }
+
+    /**
+     * Get municipioId
+     *
+     * @return integer
+     */
+    public function getMunicipioId()
+    {
+        return $this->municipioId;
+    }
+
+    /**
+     * Set clave
+     *
+     * @param string $clave
+     *
+     * @return Localidad
+     */
+    public function setClave($clave)
+    {
+        $this->clave = $clave;
+
+        return $this;
+    }
+
+    /**
+     * Get clave
+     *
+     * @return string
+     */
+    public function getClave()
+    {
+        return $this->clave;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Localidad
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set latitud
+     *
+     * @param string $latitud
+     *
+     * @return Localidad
+     */
+    public function setLatitud($latitud)
+    {
+        $this->latitud = $latitud;
+
+        return $this;
+    }
+
+    /**
+     * Get latitud
+     *
+     * @return string
+     */
+    public function getLatitud()
+    {
+        return $this->latitud;
+    }
+
+    /**
+     * Set longitud
+     *
+     * @param string $longitud
+     *
+     * @return Localidad
+     */
+    public function setLongitud($longitud)
+    {
+        $this->longitud = $longitud;
+
+        return $this;
+    }
+
+    /**
+     * Get longitud
+     *
+     * @return string
+     */
+    public function getLongitud()
+    {
+        return $this->longitud;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param string $lat
+     *
+     * @return Localidad
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return string
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param string $lng
+     *
+     * @return Localidad
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return string
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set altitud
+     *
+     * @param string $altitud
+     *
+     * @return Localidad
+     */
+    public function setAltitud($altitud)
+    {
+        $this->altitud = $altitud;
+
+        return $this;
+    }
+
+    /**
+     * Get altitud
+     *
+     * @return string
+     */
+    public function getAltitud()
+    {
+        return $this->altitud;
+    }
+
+    /**
+     * Set activo
+     *
+     * @param boolean $activo
+     *
+     * @return Localidad
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+}

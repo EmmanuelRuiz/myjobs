@@ -11,10 +11,12 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
 use BackendBundle\Entity\Comment;
+use BackendBundle\Entity\Estado;
 
 
 use AppBundle\Form\RegisterCompanyType;
 use AppBundle\Form\CompanyType;
+use AppBundle\Form\UbicationType;
 
 
 
@@ -30,10 +32,12 @@ class CompanyController extends Controller {
 
 	public function registerAction(Request $request) {
 		$company = new Company();
+		$estado = new Estado();
 		
 		$form = $this->createForm(RegisterCompanyType::class, $company);
+		$form_ubication = $this->createForm(UbicationType::class, $estado);
 		
-
+		
 		$form->handleRequest($request);
 		if ($form->isSubmitted()) {
 			if ($form->isValid()) {
@@ -85,6 +89,7 @@ class CompanyController extends Controller {
 
 		return $this->render('AppBundle:Company:register-company.html.twig', array(
 			"form" => $form->createView(),
+			"form_ubication" => $form_ubication->createView()
 		));
 	}
 

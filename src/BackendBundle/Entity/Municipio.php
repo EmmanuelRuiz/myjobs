@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 namespace BackendBundle\Entity;
 
 /**
- * Municipio
+ * Description of Municipio
+ *
+ * @author Juan Amaya
  */
 class Municipio {
-	
+	//put your code here
     /**
      * @var integer
      */
@@ -15,32 +23,23 @@ class Municipio {
     /**
      * @var integer
      */
-    private $claveEstado;
+    private $estadoId;
 
     /**
-     * @var integer
+     * @var string
      */
-    private $claveMunicipio;
+    private $clave;
 
     /**
      * @var string
      */
     private $nombre;
 
-
     /**
-     * Set id
-     *
-     * @param integer $id
-     *
-     * @return Municipio
+     * @var boolean
      */
-    public function setId($id)
-    {
-        $this->id = $id;
+    private $activo = '1';
 
-        return $this;
-    }
 
     /**
      * Get id
@@ -53,51 +52,51 @@ class Municipio {
     }
 
     /**
-     * Set claveEstado
+     * Set estadoId
      *
-     * @param integer $claveEstado
+     * @param integer $estadoId
      *
      * @return Municipio
      */
-    public function setClaveEstado($claveEstado)
+    public function setEstadoId($estadoId)
     {
-        $this->claveEstado = $claveEstado;
+        $this->estadoId = $estadoId;
 
         return $this;
     }
 
     /**
-     * Get claveEstado
+     * Get estadoId
      *
      * @return integer
      */
-    public function getClaveEstado()
+    public function getEstadoId()
     {
-        return $this->claveEstado;
+        return $this->estadoId;
     }
 
     /**
-     * Set claveMunicipio
+     * Set clave
      *
-     * @param integer $claveMunicipio
+     * @param string $clave
      *
      * @return Municipio
      */
-    public function setClaveMunicipio($claveMunicipio)
+    public function setClave($clave)
     {
-        $this->claveMunicipio = $claveMunicipio;
+        $this->clave = $clave;
 
         return $this;
     }
 
     /**
-     * Get claveMunicipio
+     * Get clave
      *
-     * @return integer
+     * @return string
      */
-    public function getClaveMunicipio()
+    public function getClave()
     {
-        return $this->claveMunicipio;
+        return $this->clave;
     }
 
     /**
@@ -122,5 +121,29 @@ class Municipio {
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * Set activo
+     *
+     * @param boolean $activo
+     *
+     * @return Municipio
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean
+     */
+    public function getActivo()
+    {
+        return $this->activo;
     }
 }

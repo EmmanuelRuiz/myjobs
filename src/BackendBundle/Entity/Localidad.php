@@ -1,18 +1,29 @@
 <?php
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 namespace BackendBundle\Entity;
 
 /**
- * Description of Estado
+ * Description of Localidad
  *
  * @author Juan Amaya
  */
-class Estado {
+class Localidad {
 	//put your code here
     /**
      * @var integer
      */
     private $id;
+
+    /**
+     * @var integer
+     */
+    private $municipioId;
 
     /**
      * @var string
@@ -24,10 +35,6 @@ class Estado {
      */
     private $nombre;
 
-    /**
-     * @var string
-     */
-    private $abrev;
 
     /**
      * @var boolean
@@ -46,11 +53,35 @@ class Estado {
     }
 
     /**
+     * Set municipioId
+     *
+     * @param integer $municipioId
+     *
+     * @return Localidad
+     */
+    public function setMunicipioId($municipioId)
+    {
+        $this->municipioId = $municipioId;
+
+        return $this;
+    }
+
+    /**
+     * Get municipioId
+     *
+     * @return integer
+     */
+    public function getMunicipioId()
+    {
+        return $this->municipioId;
+    }
+
+    /**
      * Set clave
      *
      * @param string $clave
      *
-     * @return Estado
+     * @return Localidad
      */
     public function setClave($clave)
     {
@@ -74,7 +105,7 @@ class Estado {
      *
      * @param string $nombre
      *
-     * @return Estado
+     * @return Localidad
      */
     public function setNombre($nombre)
     {
@@ -94,35 +125,11 @@ class Estado {
     }
 
     /**
-     * Set abrev
-     *
-     * @param string $abrev
-     *
-     * @return Estado
-     */
-    public function setAbrev($abrev)
-    {
-        $this->abrev = $abrev;
-
-        return $this;
-    }
-
-    /**
-     * Get abrev
-     *
-     * @return string
-     */
-    public function getAbrev()
-    {
-        return $this->abrev;
-    }
-
-    /**
      * Set activo
      *
      * @param boolean $activo
      *
-     * @return Estado
+     * @return Localidad
      */
     public function setActivo($activo)
     {

@@ -6,26 +6,32 @@ BackendBundle\Entity\Estado:
             type: integer
             nullable: false
             options:
-                unsigned: true
-            id: true
-        claveEstado:
-            type: integer
-            nullable: false
-            options:
                 unsigned: false
             id: true
-            column: clave_estado
+            generator:
+                strategy: IDENTITY
     fields:
+        clave:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
         nombre:
             type: string
-            nullable: true
-            length: 35
+            nullable: false
+            length: 45
             options:
                 fixed: false
-        abreviatura:
+        abrev:
             type: string
-            nullable: true
-            length: 10
+            nullable: false
+            length: 16
             options:
                 fixed: false
+        activo:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
     lifecycleCallbacks: {  }
