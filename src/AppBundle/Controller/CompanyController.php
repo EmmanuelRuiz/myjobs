@@ -7,18 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 use BackendBundle\Entity\Company;
 use BackendBundle\Entity\User;
 use BackendBundle\Entity\Comment;
 use BackendBundle\Entity\Estado;
-
-
 use AppBundle\Form\RegisterCompanyType;
 use AppBundle\Form\CompanyType;
 use AppBundle\Form\UbicationType;
-
-
 
 class CompanyController extends Controller {
 
@@ -33,11 +29,11 @@ class CompanyController extends Controller {
 	public function registerAction(Request $request) {
 		$company = new Company();
 		$estado = new Estado();
-		
+
 		$form = $this->createForm(RegisterCompanyType::class, $company);
 		$form_ubication = $this->createForm(UbicationType::class, $estado);
-		
-		
+
+
 		$form->handleRequest($request);
 		if ($form->isSubmitted()) {
 			if ($form->isValid()) {
@@ -56,6 +52,20 @@ class CompanyController extends Controller {
 					//$factory = $this->get("security.encoder_factory");
 					//$encoder = $factory->getEncoder($company);
 					//$company->setStatus("NO");
+
+					$estado = $request->request->get('estado');
+					$municipio = $request->request->get('municipio');
+					$localidad = $request->request->get('localidad');
+		
+					$estado_repo = $em->getRepository("BackendBundle:Estado");
+					$nombre_estado = $estado_repo->findOneById($estado)->getNombre();
+
+					$municipio_repo = $em->getRepository("BackendBundle:Municipio");
+					$nombre_municipio = $municipio_repo->findOneById($municipio)->getNombre();
+					
+					$localidad_repo = $em->getRepository("BackendBundle:Localidad");
+					$nombre_localidad = $localidad_repo->findOneById($localidad)->getNombre();
+					
 					$createdAt = new \Datetime('now');
 					$updatedAt = new \Datetime('now');
 					$company->setUser($user);
@@ -67,6 +77,10 @@ class CompanyController extends Controller {
 						$company->setStatus("invalid");
 						$company->setRepresentant($representant);
 					}
+					$company->setEstado($nombre_estado);
+					$company->setMunicipio($nombre_municipio);
+					$company->setLocalidad($nombre_localidad);
+
 					$company->setCreatedAt($createdAt);
 					$company->setUpdatedAt($updatedAt);
 
@@ -88,9 +102,69 @@ class CompanyController extends Controller {
 		}
 
 		return $this->render('AppBundle:Company:register-company.html.twig', array(
-			"form" => $form->createView(),
-			"form_ubication" => $form_ubication->createView()
+					"form" => $form->createView(),
 		));
+	}
+
+	public function findStateAction(Request $request) {
+
+		$em = $this->getDoctrine()->getManager();
+
+		$states_repo = $em->getRepository("BackendBundle:Estado");
+		$states = $states_repo->findAll();
+
+		$countrytab = array();
+
+		foreach ($states as $country) {
+			$countrytab[$country->getNombre()] = array(
+				"nombre" => $country->getNombre(),
+				"id" => $country->getId()
+			);
+		}
+
+		return new JsonResponse($countrytab);
+	}
+
+	public function findMunicipioAction(Request $request) {
+
+		$em = $this->getDoctrine()->getManager();
+
+		$id = $request->get('id');
+		$municipio_repo = $em->getRepository("BackendBundle:Municipio");
+		$municipio = $municipio_repo->findBy(array("estadoId" => $id));
+
+
+		$municipiotab = array();
+
+		foreach ($municipio as $country) {
+			$municipiotab[$country->getNombre()] = array(
+				"nombre" => $country->getNombre(),
+				"id" => $country->getId()
+			);
+		}
+
+		return new JsonResponse($municipiotab);
+	}
+
+	public function findLocalidadAction(Request $request) {
+
+		$em = $this->getDoctrine()->getManager();
+
+		$id = $request->get('id');
+		$localidad_repo = $em->getRepository("BackendBundle:Localidad");
+		$localidad = $localidad_repo->findBy(array("municipioId" => $id));
+
+
+		$localidadtab = array();
+
+		foreach ($localidad as $country) {
+			$localidadtab[$country->getNombre()] = array(
+				"nombre" => $country->getNombre(),
+				"id" => $country->getId()
+			);
+		}
+
+		return new JsonResponse($localidadtab);
 	}
 
 	public function companiesAction(Request $request) {
@@ -196,6 +270,7 @@ class CompanyController extends Controller {
 		} else {
 			$status = "La publicación no se ha borrado";
 		}
+
 		return new Response($status);
 	}
 
@@ -241,8 +316,8 @@ class CompanyController extends Controller {
 		/* SELECT * from opinions where created_at < DATE_FORMAT(NOW(),'%Y-%m-%d') */
 		$query = "SELECT SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)*.60"
 				. "AS promedio FROM opinions WHERE company_id = $company_id and  created_at < (DATE_SUB(NOW(), INTERVAL 365 DAY));";
-		
-		
+
+
 		$query2 = "SELECT SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)"
 				. " AS promedios FROM opinions WHERE company_id = $company_id and  created_at > (DATE_SUB(NOW(), INTERVAL 365 DAY));";
 
@@ -270,12 +345,12 @@ class CompanyController extends Controller {
 		}
 
 		return $this->render('AppBundle:Company:profile.html.twig', array(
-			// le pasamos a la vista una variable company donde estan todos los datos a mostrar
-			'puntos2' => $q,
-			'puntos' => $p,
-			'comments' => $comment_repo,
-			'company' => $company,
-			'pagination' => $opinions
+					// le pasamos a la vista una variable company donde estan todos los datos a mostrar
+					'puntos2' => $q,
+					'puntos' => $p,
+					'comments' => $comment_repo,
+					'company' => $company,
+					'pagination' => $opinions
 		));
 	}
 

@@ -577,4 +577,91 @@ class Company
     {
         return $this->businessname;
     }
+    /**
+     * @var string
+     */
+    private $estado;
+
+    /**
+     * @var string
+     */
+    private $municipio;
+
+    /**
+     * @var string
+     */
+    private $localidad;
+
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     *
+     * @return Company
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set municipio
+     *
+     * @param string $municipio
+     *
+     * @return Company
+     */
+    public function setMunicipio($municipio)
+    {
+        $this->municipio = $municipio;
+
+        return $this;
+    }
+
+    /**
+     * Get municipio
+     *
+     * @return string
+     */
+    public function getMunicipio()
+    {
+        return $this->municipio;
+    }
+
+    /**
+     * Set localidad
+     *
+     * @param string $localidad
+     *
+     * @return Company
+     */
+    public function setLocalidad($localidad)
+    {
+        $this->localidad = $localidad;
+
+        return $this;
+    }
+
+    /**
+     * Get localidad
+     *
+     * @return string
+     */
+    public function getLocalidad()
+    {
+        return $this->localidad;
+    }
 }

@@ -28,6 +28,20 @@ companies_mycompanies:
     path: /empresas/mis_empresas
     defaults: { _controller: AppBundle:Company:myCompanies }
     
+companies_state:
+    path: /estados
+    defaults: { _controller: AppBundle:Company:findState }
+ 
+       
+companies_muni:
+    path: /municipio
+    defaults: { _controller: AppBundle:Company:findMunicipio }
+
+       
+companies_loca:
+    path: /localidad
+    defaults: { _controller: AppBundle:Company:findLocalidad }
+    
     
 # estas rutas deben pertenecer a otro yml
 remove_opinion:

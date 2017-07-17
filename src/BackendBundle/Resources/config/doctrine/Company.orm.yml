@@ -33,6 +33,24 @@ BackendBundle\Entity\Company:
             length: 50
             options:
                 fixed: false
+        estado:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        municipio:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        localidad:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
         logo:
             type: string
             nullable: true

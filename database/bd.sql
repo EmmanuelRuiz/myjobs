@@ -162,4 +162,9 @@ ALTER TABLE likes ADD CONSTRAINT fk_like_opinion FOREIGN KEY (opinions_id) REFER
 ALTER TABLE `comments` ADD `status` VARCHAR(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL AFTER `updated_at`;
 
 
+ALTER TABLE `companies` ADD `estado` VARCHAR(255) CHARACTER SET utf32 COLLATE utf32_spanish_ci NOT NULL AFTER `rfc`;
 
+
+ALTER TABLE `companies` ADD `municipio` VARCHAR(255) CHARACTER SET utf32 COLLATE utf32_spanish_ci NOT NULL AFTER `estado`
+
+ALTER TABLE `companies` ADD `localidad` VARCHAR(255) CHARACTER SET utf32 COLLATE utf32_spanish_ci NOT NULL AFTER `municipio`
