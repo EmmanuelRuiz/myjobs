@@ -22,10 +22,6 @@ app_administrator:
     resource: "@AppBundle/Resources/config/routing/administrator.yml"
     prefix: /
 
-app_facebook:
-    resource: "@AppBundle/Resources/config/routing/facebook.yml"
-    prefix: /
-    
 app_homepage:
     path: /
     defaults: { _controller: AppBundle:User:index }

@@ -21,15 +21,6 @@ security:
 
         main:
             anonymous: ~
-            
-            knpu_guard:
-                
-                authenticators:
-                    - app.form_login_authenticator
-                    - app.api_token_authenticator
-                    - app.facebook_authenticator
-                
-                entry_point: app.form_login_authenticator
                 
             provider: user_db_provider
             

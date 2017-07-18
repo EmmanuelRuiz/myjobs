@@ -1,7 +1,0 @@
-connect_facebook:
-    path: /connect/facebook
-    defaults: { _controller: AppBundle:FacebookConnect:connectFacebook }
-    
-connect_facebook_check:
-    path: /connect/facebook-check
-    defaults: { _controller: AppBundle:FacebookConnect:connectFacebookActionCheck }
