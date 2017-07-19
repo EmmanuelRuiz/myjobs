@@ -1,6 +1,7 @@
 <?php
 
 namespace BackendBundle\Entity;
+
 use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * User
