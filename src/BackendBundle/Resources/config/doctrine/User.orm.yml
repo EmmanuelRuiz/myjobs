@@ -15,6 +15,20 @@ BackendBundle\Entity\User:
             generator:
                 strategy: IDENTITY
     fields:
+        facebookId:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: facebook_id
+        facebookaccesstoken:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: facebookAccessToken
         name:
             type: string
             nullable: false
@@ -23,13 +37,13 @@ BackendBundle\Entity\User:
                 fixed: false
         plastname:
             type: string
-            nullable: false
+            nullable: true
             length: 255
             options:
                 fixed: false
         mlastname:
             type: string
-            nullable: false
+            nullable: true
             length: 255
             options:
                 fixed: false
@@ -88,13 +102,13 @@ BackendBundle\Entity\User:
                 fixed: false
         role:
             type: string
-            nullable: false
+            nullable: true
             length: 20
             options:
                 fixed: false
         anonimo:
             type: string
-            nullable: false
+            nullable: true
             length: 2
             options:
                 fixed: false
