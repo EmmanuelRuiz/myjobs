@@ -32,6 +32,12 @@ security:
                 path: /logout
                 success_handler: logout_success_handler
                 
+                
+            guard:
+                authenticators:
+                    - app.facebook_authenticator
+
+                
             # activate different ways to authenticate
 
             # http_basic: ~
