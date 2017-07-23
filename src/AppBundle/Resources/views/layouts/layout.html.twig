@@ -116,13 +116,20 @@
                                 {% if app.user != null %}
                                     <div class="btn-group">
                                         <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                                             <div class="avatar">
                                                 {% if app.user.image == null%}
                                                     <img src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% elseif app.user.facebookId != null %}
+                                                    <img src="{{ app.user.image }}"/>
                                                 {% else %}
                                                     <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
                                                 {% endif %}
                                             </div>
+
+
+
+
 
                                             {{app.user.name}} {{app.user.plastname}}
                                             <span class="caret"></span>
@@ -231,7 +238,7 @@
         </footer>
 
         {% for message in app.session.flashbag().get('notice') %}
-            
+
             <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -241,7 +248,7 @@
                         </div>
                         <div class="modal-body">
                             <h4>{{ message }}</h4>
-                                
+
                         </div>
                         <div class="modal-footer">
                             <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>

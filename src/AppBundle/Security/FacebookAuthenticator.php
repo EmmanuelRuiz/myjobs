@@ -4,6 +4,7 @@ namespace AppBundle\Security;
 
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -129,7 +130,10 @@ class FacebookAuthenticator extends AbstractGuardAuthenticator {
 	}
 
 	public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey) {
-		return $this->container->get('router')->generate('app_homepage');
+
+
+		return new RedirectResponse($this->container->get('router')
+						->generate('app_homepage'));
 	}
 
 	public function supportsRememberMe() {
