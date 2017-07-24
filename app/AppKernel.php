@@ -18,7 +18,7 @@ class AppKernel extends Kernel
 			// Instanciamos la clase de paginación
 			new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new AppBundle\AppBundle(),
-            new BackendBundle\BackendBundle(),
+            new BackendBundle\BackendBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

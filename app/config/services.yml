@@ -17,9 +17,23 @@ services:
                 graphApiVersion: v2.3
                 redirectUri: "http://localhost:81/myjobs/web/app_dev.php/connect/facebook-check"
                 
+    app.google_provider:
+        class: League\OAuth2\Client\Provider\Google
+        arguments:
+            -
+                clientId: %google_app_id%
+                clientSecret: %google_app_secret%
+                redirectUri: "http://localhost:81/myjobs/web/app_dev.php/connect/google/check"
+                
+    app.google_authenticator:
+        class: AppBundle\Security\GoogleAuthenticator
+        arguments: ["@service_container"]
+                
     app.facebook_authenticator:
         class: AppBundle\Security\FacebookAuthenticator
         arguments: ["@service_container"]
+        
+
     
     following.twig_extension:
         class: AppBundle\Twig\FollowingExtension   

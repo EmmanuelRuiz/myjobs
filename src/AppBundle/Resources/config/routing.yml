@@ -25,6 +25,10 @@ app_administrator:
 app_facebook:
     resource: "@AppBundle/Resources/config/routing/facebook.yml"
     prefix: /
+    
+app_google:
+    resource: "@AppBundle/Resources/config/routing/google.yml"
+    prefix: /
 
 app_homepage:
     path: /

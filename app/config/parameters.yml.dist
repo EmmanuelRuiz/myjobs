@@ -6,6 +6,9 @@ parameters:
     facebook_app_id: 1841494202832876
     facebook_app_secret: 8e4f4ed400ebe6bb4b6a8df7e36a20bb
 
+    google_app_id: 43785180861-hmi257jor14qp192g1ei0l63tuens5gt.apps.googleusercontent.com
+    google_app_secret: BQlu4FyhQT_DFkRn8ByqsANM
+
     database_host:     127.0.0.1
     database_port:     ~
     database_name:     symfony
