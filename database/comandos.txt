@@ -6,3 +6,6 @@ php bin/console doctrine:mapping:import BackendBundle yml --filter="Like"
 
 php bin/console generate:doctrine:entities BackendBundle:Like
 
+*comando para actualizar la base de datos usando las entidades
+
+$ php bin/console doctrine:schema:update --force
