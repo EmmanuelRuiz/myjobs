@@ -17,18 +17,18 @@ BackendBundle\Entity\User:
     fields:
         facebookId:
             type: string
-            nullable: false
+            nullable: true
             length: 255
             options:
                 fixed: false
             column: facebook_id
-        facebookaccesstoken:
+        googleId:
             type: string
             nullable: true
             length: 255
             options:
                 fixed: false
-            column: facebookAccessToken
+            column: google_id
         name:
             type: string
             nullable: false

@@ -23,7 +23,7 @@ services:
             -
                 clientId: %google_app_id%
                 clientSecret: %google_app_secret%
-                redirectUri: "http://localhost:81/myjobs/web/app_dev.php/connect/google/check"
+                redirectUri: "http://localhost:81/myjobs/web/app_dev.php/connect/google-check"
                 
     app.google_authenticator:
         class: AppBundle\Security\GoogleAuthenticator

@@ -26,7 +26,7 @@ class FacebookAuthenticator extends AbstractGuardAuthenticator {
 
 		if ($request->getPathInfo() != '/connect/facebook-check') {
 			// skip authentication unless we're on this URL!
-
+			
 			return null;
 		}
 

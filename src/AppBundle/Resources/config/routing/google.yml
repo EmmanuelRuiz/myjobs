@@ -3,6 +3,7 @@ connect_google:
     defaults: { _controller: AppBundle:GoogleConnect:connectGoogle }
 
 connect_google_check:
-    path: /connect/google/check
+    path: /connect/google-check
+    
     
     

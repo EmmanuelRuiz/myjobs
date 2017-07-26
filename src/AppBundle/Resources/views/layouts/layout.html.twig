@@ -122,14 +122,12 @@
                                                     <img src="{{ asset('assets/images/default.jpg') }}"/>
                                                 {% elseif app.user.facebookId != null %}
                                                     <img src="{{ app.user.image }}"/>
+                                                {% elseif app.user.googleId != null %}
+                                                    <img src="{{ app.user.image }}"/>
                                                 {% else %}
                                                     <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
                                                 {% endif %}
                                             </div>
-
-
-
-
 
                                             {{app.user.name}} {{app.user.plastname}}
                                             <span class="caret"></span>
@@ -259,10 +257,10 @@
         {%endfor%}  
 
         <script>
-                $(document).ready(function ()
-                {
-                    $("#mostrarmodal").modal("show");
-                });
+				$(document).ready(function ()
+				{
+					$("#mostrarmodal").modal("show");
+				});
         </script>                        
     </body>
 </html>

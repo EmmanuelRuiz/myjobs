@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+use AppBundle\Security\GoogleAuthenticator;
+
 class GoogleConnectController extends Controller {
 
 	/**
@@ -25,15 +27,16 @@ class GoogleConnectController extends Controller {
 				'profile',
 			]
 		]);
-
+		
+	
 		return $this->redirect($url);
 	}
 
 	/**
-	 * @Route("/connect/google/check", name="connect_google_check")
+	 * @Route("/connect/google-check", name="connect_google_check")
 	 */
-	public function connectCheckAction() {
-		
+	public function connectCheckAction(Request $request) {
+		 
 	}
 
 }

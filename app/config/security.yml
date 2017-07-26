@@ -36,10 +36,8 @@ security:
             guard:
                 authenticators:
                     - app.facebook_authenticator
-                    
-            guard:
-                authenticators:
                     - app.google_authenticator
+                entry_point: app.facebook_authenticator
 
                 
             # activate different ways to authenticate
