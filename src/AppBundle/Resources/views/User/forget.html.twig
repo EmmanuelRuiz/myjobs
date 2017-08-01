@@ -1,0 +1,17 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+{% block content %}
+
+    <div class="container">
+        <div class="col-lg-4 col-lg-offset-4">
+            <form action="{{ path('user_forget_password') }}" class="form-signin">
+                <h2 class="form-signin-heading">Recuperar contraseña</h2>
+                <p>Ingresa tu correo electronico, enseguida te enviaremos un mensaje para recuperar tu contraseña</p>
+                <label for="inputEmail" class="sr-only">Correo electronico</label>
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus> 
+                <br>
+                <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

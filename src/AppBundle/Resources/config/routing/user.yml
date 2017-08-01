@@ -24,6 +24,14 @@ user_profile:
 user_edit:
     path: /cuenta/editar
     defaults: { _controller: AppBundle:User:editUser }
+    
+user_change:
+    path: /cuenta/cambiar/contraseña
+    defaults: { _controller: AppBundle:User:viewChange }
+    
+user_change_password:
+    path: /cuenta/cambiando/contraseña
+    defaults: { _controller: AppBundle:User:changePassword }
 
 user_list:
     path: /usuarios
@@ -32,3 +40,11 @@ user_list:
 user_register_login:
     path: /cuenta/login
     defaults: { _controller: AppBundle:User:redirect }
+    
+user_forget:
+    path: /recuperar/contraseña
+    defaults: { _controller: AppBundle:User:viewForgetPassword }
+    
+user_forget_password:
+    path: /recuperando
+    defaults: { _controller: AppBundle:User:resetPassword }
