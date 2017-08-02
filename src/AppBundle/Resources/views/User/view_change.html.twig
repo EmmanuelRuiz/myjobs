@@ -1,6 +1,6 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 {% block javascripts %}
-    
+    {{ parent() }}
      <script src="{{ asset('assets/js/custom/users.js') }}"></script>
 {% endblock %}
 
@@ -27,7 +27,7 @@
                         <label for="confirmNewPassword" >Repetir contraseña nueva</label>
                         <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control" placeholder="Confirmar nueva contraseña" required autofocus> 
                     </div>
-                      <button type="submit" id="btnvalidar" class="btn btn-default ">Guardar</button>
+                      <button type="submit"  class="btn btn-default btnvalidar">Guardar</button>
                 </form>
             </div>
         </div>

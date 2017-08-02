@@ -39,7 +39,6 @@ $(document).ready(function () {
         $("#backendbundle_customer_phone").keyup(validarPhone);
         $("#backendbundle_customer_birthdate").keyup(validarBirthdate);
     }
-
     inicio();
     /*
     campo username
@@ -124,19 +123,7 @@ $(document).ready(function () {
         }
     }
 
-    function inicio(){
-        //en caso de querer usar el span
-        //$("span.help-block").hide();
-        $(".btnvalidar").click(validarfinal);
-        $("#backendbundle_customer_name").keyup(validarName);
-        $("#backendbundle_customer_flastname").keyup(validarFlastname);
-        $("#backendbundle_customer_mlastname").keyup(validarMlastname);
-        $("#backendbundle_customer_address").keyup(validarAddress);
-        $("#backendbundle_customer_email").blur(validarEmail);
-        $("#backendbundle_customer_username").blur(validarUsername);
-        $("#backendbundle_customer_phone").keyup(validarPhone);
-        $("#backendbundle_customer_birthdate").keyup(validarBirthdate);
-    }
+
     
 
     function validarfinal(){
