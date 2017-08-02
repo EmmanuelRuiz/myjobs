@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	//alert('entro');
+	alert('entro');
 
 	// Instanciamos el objeto IAS
 	var ias = jQuery.ias({
@@ -70,5 +70,29 @@ function followButton(){
 		});
 	});
 }
+
+inicio();
+
+function inicio(){
+    $("#btnvalidar").click(validarfinal);
+}
+
+function validarfinal(){
+    var customer_password = document.getElementById("newPassword").value;
+    if(customer_password.length < 6){
+        $("#spanPassword").remove();
+        $("#newPassword").attr("class", "invalid");
+        $("#newPassword").parent().append("<span id='spanPassword'>Tu contraseña debe tener 6 o más carácteres</span>");
+        return false;
+    }
+    var repetir_password = document.getElementById("confirmNewPassword").value;
+    if (customer_password != repetir_password) {
+        $("#spanPassword").remove();
+        $("#newPassword").attr("class", "invalid");
+        $("#newPassword").parent().append("<span id='spanPassword'>Las contraseñas que ingresaste no coinciden</span>");
+        return false;
+    }
+
+    }
 
 
