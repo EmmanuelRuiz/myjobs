@@ -100,7 +100,7 @@ class RegisterType extends AbstractType {
                 ))
                 ->add('Registrarse', SubmitType::class, array(
                     "attr" => array(
-                        "class" => "form-submit col-lg-12 btn btn-default"
+                        "class" => "form-submit col-lg-12 btn btn-default btnvalidar"
                     )
                 ))
         ;

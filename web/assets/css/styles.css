@@ -269,7 +269,17 @@ body {
     padding-top: 40px;
     padding-bottom: 20px;
 }
+/*
+.invalid {
+     border-bottom: 2px solid #FF0000;
+     box-shadow: 0 1px 0 0 #fff;
+}
 
+.valid {
+     border-bottom: 1px solid #0ce626;
+     box-shadow: 0 1px 0 0 #0ce626;
+}
+*/
 /* login */
 #login-dp{
     min-width: 250px;
