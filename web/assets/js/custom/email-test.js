@@ -177,7 +177,6 @@ $(document).ready(function () {
             $("#backendbundle_customer_password").parent().append("<span id='spanPassword'>Las contraseñas que ingresaste no coinciden</span>");
             return false;
         }
-
     }
 
     /*
