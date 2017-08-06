@@ -18,19 +18,15 @@ class UserController extends Controller {
 	public function __construct() {
 		$this->session = new Session();
 	}
-
-	public function indexAction(Request $request) {
-
-		$id = $request->query->get('id');
-
+	
+	// Funcion en caso de existir un error
+	public function loginerrorAction(Request $request) {
 		if (is_object($this->getUser())) {
-			//return $this->redirectToRoute('user_profile', array('id' => $id));
+			return $this->redirectToRoute('user_profile');
 		}
-
+		
 		$em = $this->getDoctrine()->getManager();
 		$db = $em->getConnection();
-
-
 
 		// Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company
 		$dql = "SELECT o FROM BackendBundle:Opinion o ORDER BY o.id DESC";
@@ -42,36 +38,25 @@ class UserController extends Controller {
 				$query, $request->query->getInt('page', 1), 4
 		);
 
-
 		$authenticationUtils = $this->get('security.authentication_utils');
 		$error = $authenticationUtils->getLastAuthenticationError();
 		$lastUsername = $authenticationUtils->getLastUsername();
-
-		return $this->render('AppBundle:User:home.html.twig', array(
-					'last_username' => $lastUsername,
-					'error' => $error,
-					'pagination' => $pagination
-		));
-	}
-
-	public function loginerrorAction(Request $request) {
-		if (is_object($this->getUser())) {
-			//return $this->redirectToRoute('app_homepage');
-		}
-
-		$authenticationUtils = $this->get('security.authentication_utils');
-		$error = $authenticationUtils->getLastAuthenticationError();
-		$lastUsername = $authenticationUtils->getLastUsername();
-
-		return $this->render('AppBundle:User:home.html.twig', array(
-					'last_username' => $lastUsername,
-					'error' => $error
+		
+		$this->addFlash(
+            'error_login',
+            'Ha ocurrido un error al iniciar sesion. Compruebe su correo o contraseña'
+        );
+		
+		return $this->render('AppBundle:Index:index.html.twig', array(
+			'last_username' => $lastUsername,
+			'error' => $error,
+			'pagination' => $pagination
 		));
 	}
 
 	public function registerAction(Request $request) {
 		if (is_object($this->getUser())) {
-			return $this->redirectToRoute('home');
+			return $this->redirectToRoute('user_profile');
 		}
 
 
