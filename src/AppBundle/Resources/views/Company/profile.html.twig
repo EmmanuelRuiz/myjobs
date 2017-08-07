@@ -19,20 +19,25 @@
                     <h1>{{ company.tradename }}  | {{ company.businesssector}} 
                         {% if company.status == 'valid' %}
                             <i class="fa fa-check-circle text-info" aria-hidden="true"></i>
-                        {% endif %}    
-                        {% if (company.representant == 'no') or (company.representant == null)%}
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modalReclamar">Reclamar empresa</button>
-                            </div>
-                        {% else %}
-                            {% if (company.user.id == app.user.id) and (company.representant == 'si') %}
+                        {% endif %}
+
+                        {% if app.user != null %}
+                            {% if (company.representant == 'no') or (company.representant == null)%}
+
                                 <div class="btn-group">
-                                    <a href="{{ path('companies_edit', {'id':company.id}) }}" class="btn btn-default btn-xs" type="button"  aria-haspopup="true" aria-expanded="false">
-                                        Editar empresa
-                                    </a>
+                                    <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modalReclamar">Reclamar empresa</button>
                                 </div>
-                            {% endif %}
-                        {%endif%}
+                            {% else %}
+                                {% if (company.user.id == app.user.id) and (company.representant == 'si') %}
+                                    <div class="btn-group">
+                                        <a href="{{ path('companies_edit', {'id':company.id}) }}" class="btn btn-default btn-xs" type="button"  aria-haspopup="true" aria-expanded="false">
+                                            Editar empresa
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {%endif%}
+                        {% endif %}
+
                     </h1>
 
                     <h5><b>Descripción</b></h5>
@@ -60,7 +65,7 @@
                         <div class="following-data">
                             <a href="#">
                                 <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                
+
                                 {% for puntos in puntos %}
                                     {% for puntos2 in puntos2 %}    
                                         {% if puntos == null %}
@@ -305,145 +310,143 @@
                     <h1 class="page-header">Opiniones</h1>
 
                     {% for opinions in pagination %}
-                        <div class="media">
-                            <div class="media-left ">
-                                <a href="{{ path('user_profile', {'id':opinions.user.id})}}">
-                                    <div class="avatar">
-                                        {% if opinions.user.image == null%}
-                                            <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                        {% else %}
-                                            <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
-                                        {% endif %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading ">
+                                <div class="row"> 
+                                    <div class="col-lg-1">
+                                        <a href="{{ path('user_profile', {'id':opinions.user.id})}}">
+                                            <div class="avatar">
+                                                {% if opinions.user.image == null%}
+                                                    <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% else %}
+                                                    <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                {% endif %}
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
+                                    <div class="col-lg-5">
+                                        <h5 class="media-heading"><a href="{{ path('user_profile', {'id':opinions.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a></h5>
+                                        <small class="text-muted">{{opinions.createdAt|long_time}}</small>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        {% if app.user != null %}
+                                            {% if opinions.user.id == app.user.id %}
+                                                <div class="btn-group pull-right">
+                                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-cog" aria-hidden="true"></i> <i class="fa fa-caret-down caret-opinioncomment"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+
+                                                    </ul>
+                                                </div> 
+                                            {% endif %}
+                                        {% endif%}
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="media-body">
-                                <h5 class="media-heading"><a href="{{ path('user_profile', {'id':opinions.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
-                                    {% if app.user == null %}
-
-                                    {% else %}
-                                        {% if opinions.user.id == app.user.id %}
-                                            <div class="btn-group pull-right">
-                                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="caret caret-opinioncomment"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
-
-                                                </ul>
-                                            </div> 
-                                        {% endif %}
-                                    {% endif%}
-                                    <span class="pull-right text-muted">{{opinions.createdAt|long_time}}</span>
-                                </h5>
+                            <div class="panel-body">
                                 <p>{{opinions.generalcomment}}</p>
 
+                                {% if app.user != null%}
+                                    <hr class="profiles-hr">
+                                    <div class="like">
 
-                                {#  
-                                    Esta condicion es para cuando en los comentarios publiquen imagenes o documentos
-                                    Falta agregar a la base de datos el campo document y images.
-                                    Necesitamos agregar igual la condicion para la imagen 
-                                #}
+                                        <i data-id="{{opinions.id}}" class="
+                                           {% if app.user|liked(opinions) == true%}
+                                               hidden
+                                           {% endif %}
+                                           btn-like fa fa-heart" 
+                                           aria-hidden="true" 
+                                           data-toggle="tooltip" 
+                                           data-placement="left" 
+                                           title="Me gusta">
+                                        </i> 
 
-                                {#{% if(opinions.document is defined ) and (opinions.document != null) %}
-                                    <a href="{{ asset('assets/opinions/documment'~opinions.document)}}" class="btn-doc glyphicon glyphicon-save" aria-hidden="true" target="_blank"></a>
-                                {% endif %}#}
+                                        <i data-id="{{opinions.id}}" class="
+                                           {% if app.user|liked(opinions) == false%}
+                                               hidden
+                                           {% endif %}
+                                           btn-unlike active fa fa-heart" 
+                                           aria-hidden="true" 
+                                           data-toggle="tooltip" 
+                                           data-placement="left" 
+                                           title="Ya no me gusta">
+                                        </i> 
+                                    </div>
+                                    <hr class="profiles-hr">
+                                {% endif %}
+                            </div> 
 
-                                <div class="like">
-                                    {% if app.user == null%}
 
-                                    {% else %}
-                                        <span data-id="{{opinions.id}}" class="
-                                              {% if app.user|liked(opinions) == true%}
-                                                  hidden
-                                              {% endif %}
-                                              btn-like glyphicon glyphicon-heart" 
-                                              aria-hidden="true" 
-                                              data-toggle="tooltip" 
-                                              data-placement="left" 
-                                              title="Me gusta">
-                                        </span>
-                                    {% endif %}
-
-                                    {% if app.user == null%}
-
-                                    {% else %}    
-                                        <span data-id="{{opinions.id}}" class="
-                                              {% if app.user|liked(opinions) == false%}
-                                                  hidden
-                                              {% endif %}
-                                              btn-unlike active glyphicon glyphicon-heart" 
-                                              aria-hidden="true" 
-                                              data-toggle="tooltip" 
-                                              data-placement="left" 
-                                              title="Ya no me gusta">
-                                        </span>
-                                    {% endif %}
-                                </div><hr>
-
-                                <div class="media">
-                                    {% for comments in comments%}
-                                        {% if comments.opinion.id == opinions.id %}
-                                            {% if comments.status != 'invalid'%}
-                                                <div class="media-left">
-                                                    <div class="avatar">
+                            {% for comments in comments%}
+                                <div class="panel-footer">
+                                    {% if comments.opinion.id == opinions.id %}
+                                        {% if comments.status != 'invalid'%}
+                                            <div class="row"> 
+                                                <div class="col-lg-1 ">
+                                                    <div class="avatar  ">
                                                         {% if comments.user.image == null%}
-                                                            <a href="{{ path('user_profile', {'id':comments.user.id})}}">
-                                                                <img class="user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                            <a class="" href="{{ path('user_profile', {'id':comments.user.id})}}">
+                                                                <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
                                                             </a>
                                                         {% else %}
                                                             <a href="{{ path('user_profile', {'id':comments.user.id})}}">
                                                                 <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
                                                             </a>
                                                         {% endif %}
-                                                    </div>
+                                                    </div>  
                                                 </div>
-
-                                                <div class="media-body">
-                                                    <h5 class="media-heading"><a href="{{ path('user_profile', {'id':comments.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
-                                                        {% if app.user != null %}
-                                                            {% if comments.user.id == app.user.id %}
-                                                                <div class="btn-group pull-right">
-                                                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="caret caret-opinioncomment"></span>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
-                                                                    </ul>
-                                                                </div> 
-                                                            {% endif %}
-                                                        {% endif%}
-                                                        <span class="pull-right text-muted">{{comments.createdAt|long_time}}</span>
+                                                <div class="col-lg-5">
+                                                    <h5 class="media-heading "><a href="{{ path('user_profile', {'id':comments.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                                                        - <small class="text-muted">{{comments.createdAt|long_time}}</small>
                                                     </h5>
-                                                    <p>{{ comments.body }}</p>
+
+                                                    <p >{{ comments.body }}</p>
+
+
                                                     {% if comments.image != null%}
                                                         <img class="center-block comment-img" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
                                                     {% endif %}
                                                 </div>
-                                                <hr>   
-                                                <div class="clearfix"></div>
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
+                                                <div class="col-lg-6">
+                                                    {% if app.user != null %}
+                                                        {% if comments.user.id == app.user.id %}
+                                                            <div class=" btn-group pull-right  ">
+                                                                <button class="btn btn-link btn-xs dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-cog" aria-hidden="true"></i> <i class="fa fa-caret-down caret-opinioncomment"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu ">
+                                                                    <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+                                                                </ul>
+                                                            </div> 
+                                                            <div class="clearfix"></div>
+                                                        {% endif %}
+                                                    {% endif%}
+                                                </div>
+                                            </div>
 
+                                            <hr class="profiles-hr">   
+
+                                        {% endif %}
+                                    {% endif %}
                                     {% if app.user != null%}
                                         <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate', {'id':company.id, 'opinion_id':opinions.id}) }}" >
                                             <div class="form-group">
                                                 <label for="nameInput">Agregar comentario</label>
                                                 <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
-                                                <br />
-                                                <button type="submit" class="btn btn-default pull-right">Comentar</button> 
+                                                <button type="submit" class="btn btn-default btn-sm pull-right">Comentar</button> 
 
-                                                <label for="file" class="pull-right label-img"><span class="glyphicon glyphicon-picture"></span></label>
+                                                <label for="file" class="pull-right label-img"><i class="fa fa-file-image-o"></i></label>
                                                 <input id="file" name="image" type="file" >
                                             </div>
+                                            <div class="clearfix"></div>
                                         </form>
                                     {% endif %}
                                 </div>
-                            </div>   
-                        </div>                  
-                        <hr>
+                            {% endfor %}
+                        </div>
                     {% endfor %}
                 </div>
             {% endif %}

@@ -22,8 +22,7 @@ class FacebookConnectController extends Controller
             // these are actually the default scopes
             'scopes' => ['public_profile', 'email'],
         ]);
-		var_dump($url);
-		die();
+
         return $this->redirect($url);
     }
     /**
