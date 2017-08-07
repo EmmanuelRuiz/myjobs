@@ -1,35 +1,7 @@
-/*$(document).ready(function () {
-    $('.js-datepicker').datepicker({
-        format: 'yyyy-mm-dd'
-    });
-
-    $(".email-input").blur(function () {
-        var email = this.value;
-
-        $.ajax({
-            url: URL + '/email-test',
-            data: {email: email},
-            type: 'POST',
-            success: function (response) {
-                if (response == "used") {
-                    $(".email-input").css("border", "1px solid red");
-                } else {
-                    $(".email-input").css("border", "1px solid green");
-                }
-            }
-        });
-    });
-});
-*/
-
-
-
 $(document).ready(function() {
 
     function inicio() {
-        //en caso de querer usar el span
-        //$("span.help-block").hide();
-        $("#backendbundle_user_Registrarse").click(validarfinal);
+        $(".btnvalidar").click(validarfinal);
         $("#backendbundle_user_name").keyup(validarName);
         $("#backendbundle_user_plastname").keyup(validarPlastname);
         $("#backendbundle_user_mlastname").keyup(validarMlastname);
@@ -38,52 +10,6 @@ $(document).ready(function() {
         $("#backendbundle_user_age").keyup(validarAge);
     }
     inicio();
-
-    /*  
-     campo email
-     */
-    function validarEmail() {
-        var customer_email = document.getElementById("backendbundle_user_email").value;
-        var expEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        if (!expEmail.exec(customer_email)) {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").attr("class", "alert alert-danger");
-            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>El E-mail no es correcto</span>");
-            return false;
-        } else if (/^\s+$/.test(customer_email)) {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").attr("class", "alert alert-danger");
-            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>Ingresa un E-mail</span>");
-            return false;
-        } else if (!isNaN(customer_email)) {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").attr("class", "alert alert-danger");
-            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>Ingresa un E-mail valido</span>");
-            return false;
-        } else {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").removeClass("alert-danger");
-            $.ajax({
-                url: URL + '/email-test',
-                data: {
-                    email: customer_email
-                },
-                type: 'POST',
-                success: function(response) {
-                    if (response == 'used') {
-                        $(".email-input").css("border", "5px solid red");
-                    } else {
-                        $(".email-input").css("border", "5px solid green");
-                    }
-                }
-            });
-            
-            
-            return true;
-        }
-    }
-
-
 
     function validarfinal() {
         var customer_name = document.getElementById("backendbundle_user_name").value;
@@ -108,13 +34,12 @@ $(document).ready(function() {
             return false;
         }
         var customer_phone = document.getElementById("backendbundle_user_telephone").value;
-        if (customer_address.length < 10) {
+        if (customer_phone.length < 10) {
             $("#spanPhone").remove();
             $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
             $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Necesitamos tu número de teléfono completo</span>");
             return false;
         }
-
         var customer_password = document.getElementById("backendbundle_user_password").value;
         if (customer_password.length < 6) {
             $("#spanPassword").remove();
@@ -151,7 +76,7 @@ $(document).ready(function() {
         } else if (!isNaN(customer_name)) {
             $("#spanName").remove();
             $("#backendbundle_user_name").attr("class", "alert alert-danger");
-            $("#backendbundle_user_name").parent().append("<span id='spanName' >Ingresa un nombre valido</span>");
+            $("#backendbundle_user_name").parent().append("<span id='spanName'>Ingresa un nombre valido</span>");
             return false;
         } else {
             $("#spanName").remove();
@@ -217,27 +142,68 @@ $(document).ready(function() {
         }
     }
 
-
-
+    /*  
+     campo email
+    */
+    function validarEmail() {
+        var customer_email = document.getElementById("backendbundle_user_email").value;
+        var expEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        if (!expEmail.exec(customer_email)) {
+            $("#spanEmail").remove();
+            $("#backendbundle_user_email").attr("class", "alert alert-danger");
+            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>El E-mail no es correcto</span>");
+            return false;
+        } else if (/^\s+$/.test(customer_email)) {
+            $("#spanEmail").remove();
+            $("#backendbundle_user_email").attr("class", "alert alert-danger");
+            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>Ingresa un E-mail</span>");
+            return false;
+        } else if (!isNaN(customer_email)) {
+            $("#spanEmail").remove();
+            $("#backendbundle_user_email").attr("class", "alert alert-danger");
+            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>Ingresa un E-mail valido</span>");
+            return false;
+        } else {
+            $("#spanEmail").remove();
+            $("#backendbundle_user_email").removeClass("alert-danger");
+            $.ajax({
+                url: URL + '/email-test',
+                data: {
+                    email: customer_email
+                },
+                type: 'POST',
+                success: function(response) {
+                    if (response == 'used') {
+                        $(".email-input").css("border", "5px solid red");
+                    } else {
+                        $(".email-input").css("border", "5px solid green");
+                    }
+                }
+            });
+            
+            
+            return true;
+        }
+    }
     /*  
      campo phone
      */
     function validarPhone() {
         var customer_phone = document.getElementById("backendbundle_user_telephone").value;
-        if  (customer_phone.length == 0){
+        if(customer_phone.length == 0){
             $("#spanPhone").remove();
             $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
-            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Ingresa un número de teléfono</span>");
+            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Inserta un número de teléfono</span>");
             return false;
         } else if (isNaN(customer_phone)) {
             $("#spanPhone").remove();
             $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
-            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Ingresa un número de teléfono</span>");
+            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Inserta un número de teléfono válido</span>");
             return false;
-        } else if (/^\s+$/.test(customer_birthdate)) {
+        } else if (/^\s+$/.test(customer_phone)) {
             $("#spanPhone").remove();
             $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
-            $("#backendbundle_user_telephone").parent().append("<span id='spanAge'>Ingresa un número de teléfono</span>");
+            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Inserta un número de teléfono válido</span>");
             return false;
         } else {
             $("#spanPhone").remove();
@@ -276,6 +242,31 @@ $(document).ready(function() {
     }
 
 });
+
+/*$(document).ready(function () {
+    $('.js-datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+
+    $(".email-input").blur(function () {
+        var email = this.value;
+
+        $.ajax({
+            url: URL + '/email-test',
+            data: {email: email},
+            type: 'POST',
+            success: function (response) {
+                if (response == "used") {
+                    $(".email-input").css("border", "1px solid red");
+                } else {
+                    $(".email-input").css("border", "1px solid green");
+                }
+            }
+        });
+    });
+});
+*/
+
 /*
  solo numeros
  
