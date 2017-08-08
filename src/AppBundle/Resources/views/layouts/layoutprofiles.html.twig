@@ -46,6 +46,7 @@
                         </button>
                         <a class="navbar-brand" href="{{path("app_homepage")}}"><img src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
                     </div>
+                    
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
@@ -80,7 +81,7 @@
                                                             <div class="form-group">
                                                                 <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                                                                 <input type="hidden" name="_target_path" value="/perfil">
-                                                                
+
                                                             </div>
                                                             <div class="checkbox">
                                                                 <label>
@@ -100,11 +101,7 @@
 
 
                             {% else %}
-                                <li>
-                                    <a href="{{path("app_homepage")}}" >
-                                        <i class="fa fa-home fa-lg" aria-hidden="true"></i>
-                                    </a>
-                                </li>
+                               
                                 <li>
                                     <a href="{{path("register-company")}}">Registrar empresa</a>
                                 </li>

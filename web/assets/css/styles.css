@@ -27,6 +27,14 @@ body {
     border-top: .5px dotted #95a5a6;
 }
 
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
 /* end general*/
 
 /* puntaje */
@@ -244,7 +252,7 @@ body {
     -ms-user-select: none;
     user-select: none;
     height: 55px;
-    
+
 }
 
 .navbar-form .form-control {
@@ -388,7 +396,7 @@ footer{
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    
+
 }
 
 
@@ -453,7 +461,58 @@ input[id=file] {
 
 
 
-/* responsive para login */
+/* responsive */
+
+@media only screen and (max-width: 1440px) {
+
+}
+
+@media only screen and (max-width: 736px) {
+
+    .navbar-default {
+        background-color: #014156;
+        border-color: #014156;
+    }
+
+    .navbar-brand {
+        float: left;
+        padding: 15px 15px; 
+        font-size: 19px;
+        line-height: 21px;
+        height: 60px;
+    }
+    .navbar-brand>.logo-desktop{
+        width: 90px;
+    }
+
+    .btn-login{
+        display:none;
+    }
+
+    .signin-movil{
+        display:block;
+    }
+
+    .welcome-header {
+        background-image: url(../images/myjobsadvisor-welcome-picture.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 450px;
+    }
+
+    .pattern {
+        height: 450px;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .intro-message {
+        margin-top: 8%;
+        margin-bottom: 20%;
+        color: #f8f8f8;
+    }
+    
+}
+
 
 @media(max-width:768px){
     #login-dp{
