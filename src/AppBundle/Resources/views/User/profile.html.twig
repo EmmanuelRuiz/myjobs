@@ -7,24 +7,24 @@
     <section class="profile-company-header">
         <div class="container ">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
                     {% if user.image == null%}
-                        <img class="profile-picture-company pull-right" src="{{ asset('assets/images/company-logo.png') }}"/>
+                        <img class="profile-picture-company center-block" src="{{ asset('assets/images/company-logo.png') }}"/>
                     {% else %}
-                        <img class="profile-picture-company pull-right" src="{{ asset('uploads/users/'~user.image) }}"/>
+                        <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
                     {% endif %}
                 </div>
-                <div class="col-lg-9 " id="user-card">
-                    <h1>
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" id="user-card">
+                    <h1 id="profile-username">
                         {{ user.name }} {{ user.plastname}}
                         {% if app.user.id == user.id %}
-                        <div class="btn-group">
-                            <a href="{{ path('user_edit') }}" class="btn btn-default btn-xs" type="button"  aria-haspopup="true" aria-expanded="false">
-                                Editar perfil
-                            </a>
-                        </div>
-                        {%endif%}
-                        
+                            <div class="btn-group">
+                                <a href="{{ path('user_edit') }}" class="btn btn-default btn-xs" type="button"  aria-haspopup="true" aria-expanded="false">
+                                    Editar perfil
+                                </a>
+                            </div>
+                        {% endif %}
+
                         {% if app.user.id != user.id %}
                             <div class="btn-group">
                                 <button class="btn btn-xs btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
@@ -39,16 +39,12 @@
                             </div>      
                         {% endif %}
                     </h1>
-                    
-                    
 
-
-
-                    <h5><b>Descripción</b></h5>
+                    <h5><b>Biografia</b></h5>
 
                     <p>{{user.biography}}</p>
 
-                    <div class="row">
+                    <div  class="row">
                         {% set user_stats = user.id |user_stats%}
                         <div class="following-data">
                             <a href="{{ path('following_users', {'email':user.email})}}">
@@ -76,7 +72,7 @@
                                 <span class="number-stat">{{user_stats.likes}}</span>
                             </a>
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -147,14 +143,14 @@
 
                                 {% else %}
                                     <i data-id="{{opinions.id}}" class="
-                                          {% if app.user|liked(opinions) == true%}
-                                              hidden
-                                          {% endif %}
-                                          btn-like fa fa-heart" 
-                                          aria-hidden="true" 
-                                          data-toggle="tooltip" 
-                                          data-placement="left" 
-                                          title="Me gusta">
+                                       {% if app.user|liked(opinions) == true%}
+                                           hidden
+                                       {% endif %}
+                                       btn-like fa fa-heart" 
+                                       aria-hidden="true" 
+                                       data-toggle="tooltip" 
+                                       data-placement="left" 
+                                       title="Me gusta">
                                     </i>
                                 {% endif %}
 
@@ -162,14 +158,14 @@
 
                                 {% else %}    
                                     <i data-id="{{opinions.id}}" class="
-                                          {% if app.user|liked(opinions) == false%}
-                                              hidden
-                                          {% endif %}
-                                          btn-unlike active fa fa-heart" 
-                                          aria-hidden="true" 
-                                          data-toggle="tooltip" 
-                                          data-placement="left" 
-                                          title="Ya no me gusta">
+                                       {% if app.user|liked(opinions) == false%}
+                                           hidden
+                                       {% endif %}
+                                       btn-unlike active fa fa-heart" 
+                                       aria-hidden="true" 
+                                       data-toggle="tooltip" 
+                                       data-placement="left" 
+                                       title="Ya no me gusta">
                                     </i>
                                 {% endif %}
                             </div><hr>

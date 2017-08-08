@@ -11,7 +11,7 @@
 
         {% block stylesheet %}
             <!-- estilos css -->
-            <link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+            <!--<link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">-->
             <link href="{{ asset('assets/css/bootswatch.css')}}" type="text/css" rel="stylesheet">
             <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
 
@@ -32,89 +32,78 @@
         {% endblock %}
     </head>
     <body>
-        <header class="welcome-header">
-            <div class="pattern">
-                <!-- Navigation -->
-                <nav class="navbar navbar-default " role="navigation">
-                    <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="{{path("app_homepage")}}"><img class="img-responsive logo-desktop" src="{{ asset('assets/images/myjobsadvisor-logo.png')}}" alt=""></a>
-                            
-                        </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                {% if app.user == null %}
-                                    <li class="signin-movil"><a href="{{path("user_register_login")}}">Entrar</a></li>
-                                    <li><a href="{{path("user_register")}}">Registrarse</a></li>
-                                    <li><a href="">Contacto</a></li>
 
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li class="dropdown">
-                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-login" data-toggle="dropdown">Iniciar sesion</button>
-                                            <ul id="login-dp" class="dropdown-menu">
-                                                <li >
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            Iniciar sesión con
-                                                            <div class="social-buttons">
-                                                                <a href="{{ path('connect_facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                                                <a href="{{ path('connect_google') }}" class="btn btn-tw"><i class="fa fa-google"></i> Google</a>
-                                                            </div>
-                                                            o ingresa tus datos
-                                                            <br />
-                                                            <form action="{{path('user_login')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
-                                                                <div class="form-group">
-                                                                    <label class="sr-only" for="inputEmail">Correo electronico</label>
-                                                                    <input type="email" id="username" value="{{ last_username }}" name="_username"  class="form-control">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="sr-only" for="inputPassword">Contraseña</label>
-                                                                    <input type="password" id="password" name="_password" class="form-control">
-                                                                    <div class="help-block text-right"><a href="{{ path('user_forget') }}">¿Olvidaste tu contraseña?</a></div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                                                                    <input type="hidden" name="_target_path" value="/perfil">
-                                                                </div>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox"> Recuerdame
-                                                                    </label>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="bottom text-center">
-                                                            ¿No tienes una cuenta? <a href="{{path("user_register")}}"><b>Registrate</b></a>
-                                                        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+            <div class="container topnav">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand topnav" href="#">Start Bootstrap</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if app.user == null %}
+                            <li class="signin-movil"><a href="{{path("user_register_login")}}">Entrar</a></li>
+                            <li><a href="{{path("user_register")}}">Registrarse</a></li>
+                            <li><a href="">Contácto</a></li>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle navbar-btn btn-login" data-toggle="dropdown">Iniciar sesion</button>
+                                    <ul id="login-dp" class="dropdown-menu">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    Iniciar sesión con
+                                                    <div class="social-buttons">
+                                                        <a href="{{ path('connect_facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                        <a href="{{ path('connect_google') }}" class="btn btn-tw"><i class="fa fa-google"></i> Google</a>
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                    o ingresa tus datos
+                                                    <br />
+                                                    <form action="{{path('user_login')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="inputEmail">Correo electronico</label>
+                                                            <input type="email" id="username" value="{{ last_username }}" name="_username"  class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="inputPassword">Contraseña</label>
+                                                            <input type="password" id="password" name="_password" class="form-control">
+                                                            <div class="help-block text-right"><a href="{{ path('user_forget') }}">¿Olvidaste tu contraseña?</a></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                                                            <input type="hidden" name="_target_path" value="/perfil">
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Recuerdame
+                                                            </label>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="bottom text-center">
+                                                    ¿No tienes una cuenta? <a href="{{path("user_register")}}"><b>Registrate</b></a>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
-
-
-                                {% else %}
-
-                                    <li>
-                                        <a href="{{path("register-company")}}">Registrar empresa</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{path("companies_list")}}" >Empresas</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{path("user_list")}}" >Usuarios</a>
-                                    </li>
-                                {% endif%}
+                                </li>
+                            </ul>
+                        {% else %}
+                            <li><a href="{{path("register-company")}}">Registrar empresa</a></li>
+                            <li><a href="{{path("companies_list")}}" >Empresas</a></li>
+                            <li><a href="{{path("user_list")}}" >Usuarios</a></li>
                                 {% if app.user != null %}
-                                    <div class="btn-group">
+                                <li class="user-logged-in">
+                                    <div class="dropdown">
                                         <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                             <div class="avatar">
@@ -144,44 +133,52 @@
                                             <li><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
                                             <li><a href=""><i class="fa fa-question-circle"></i>&nbsp;Ayuda</a></li>
                                         </ul>
-                                    </div> 
-                                {% endif %}
-                            </ul> 
-                        </div>
-                    </div>         
-                </nav>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endif%}
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
 
-                            <div class="intro-message text-center">  
-                                {% if app.user != null %}
-                                    <h1>Bienvenido {{app.user.name}}</h1>
-                                {% else %}
-                                    <h1>Bienvenido</h1>
-                                {% endif %}
-                                <h4>Encuentra opiniones de las empresas en Playa del Carmen y el mundo</h4>
-                                <div class="col-lg-6 col-lg-offset-3">
-                                    <form action="{{ path('companies_search') }}">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control search-input" placeholder="Empresa a la que estas buscando..." name="search">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" id="btn-search" type="button"><i class="fa fa-2x fa-search " aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                    </form>   
-                                </div>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
 
+        <!-- Header -->
+        <a name="about"></a>
+        <div class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="intro-message">
+                            {% if app.user != null %}
+                                <h1>Bienvenido {{app.user.name}}</h1>
+                            {% else %}
+                                <h1>Bienvenido</h1>
+                            {% endif %}
+                            <h4>Encuentra opiniones de las empresas en Playa del Carmen y el mundo</h4>
+                            <hr class="intro-divider">
+                            <div class="col-lg-6 col-lg-offset-3">
+                                <form action="{{ path('companies_search') }}">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control search-input" placeholder="Busca la empresa que desees..." name="search">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" id="btn-search" type="submit"><i class="fa fa-2x fa-search " aria-hidden="true"></i></button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </form> 
                             </div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
+            <!-- /.container -->
 
-        </header>
-
-
+        </div>
 
         <div class="container">
             <div class="col-lg-12">

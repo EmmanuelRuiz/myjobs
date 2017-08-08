@@ -73,6 +73,7 @@ body {
 .form-rating h5 {
     font-weight: bold;
 }
+/*end puntaje*/
 
 
 
@@ -83,32 +84,17 @@ body {
     border-color: transparent;
 }
 
-.navbar-default .navbar-brand{
-    float: left;
-    height: 50px;
-    font-size: 18px;
-    line-height: 20px;
+.navbar-default-alternative {
+    background-color: #233654;
+    border-color: #233654;
 }
 
-.navbar-default .navbar-right>li>a{
-    color: #fff;
-}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 
-.topnav{
-    padding-top: 35px;
-}
-
-.navbar-default-register-companie{
-    background-color: white;
-    height: 85px;
-    border-radius: 0px;
-    margin-bottom: 0;
-    box-shadow: 0px 1px 10px #ccc;
-}
-
-.btn-login,
-.btn-register{
-    margin-top: 20px;
 }
 
 .navbar-collapse .avatar {
@@ -125,45 +111,13 @@ body {
     height: 30px;
 }
 
-.navbar-right{
-    margin-top: 15px;
+.navbar-nav>.user-logged-in {
+    float: left;
+    line-height: 60px;
 }
 
+/* end navbar layout */
 
-.navbar-right ul{
-    margin-top: -2px;
-    margin-left: 10px;
-}
-
-.navbar-right li>a{
-    color: #000;
-    margin-left: 10px;
-}
-.navbar-right li>a:hover{
-    background-color: transparent;
-}
-
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-    color: #000;
-    background-color: #fff;
-}
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
-    color: #fff;
-    text-decoration: underline;
-    background-color: transparent;
-}
-
-.navbar-default .btn-link:focus, .navbar-default .btn-link:hover {
-    color: #fff;
-}
-
-.navbar-default .btn-link {
-    color: #fff;
-}
-
-.nav>li>a:focus, .nav>li>a:hover {
-    text-decoration: underline;
-}
 
 .btn-link {
     font-weight: 400;
@@ -186,34 +140,44 @@ body {
 
 /* pagina para login */
 .login-section{
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 100px;
 }
 
 /* welcome-header */
 
-
-.welcome-header {
-    background-image: url("../images/myjobsadvisor-welcome-picture.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 700px;
-}
-
-.pattern{
-    height: 700px;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.intro-message{
-    margin-top: 13%;
-    margin-bottom: 20%;
+.intro-header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
     color: #f8f8f8;
+    background: url("../images/myjobsadvisor-welcome-picture.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
-.intro-message h1{
-    font-size: 65px;
-    font-weight:700;
+.intro-message {
+    position: relative;
+    padding-top: 16%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 80px;
+}
+
+.intro-message > h4 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
 .input-group .search-input{
@@ -357,7 +321,7 @@ footer{
     height: 350px;
 }
 #user-card .following-data{
-    width: 12%;
+    width: 8%;
     float: left;
     text-align: center;
     margin-top: 10px;
@@ -412,7 +376,7 @@ footer{
 
 .profile-company-header{
     background-color: #eee;
-    padding-top: 40px;
+    padding-top: 100px;
     padding-bottom: 5px;
 }
 
@@ -463,56 +427,192 @@ input[id=file] {
 
 /* responsive */
 
-@media only screen and (max-width: 1440px) {
-
-}
-
 @media only screen and (max-width: 736px) {
 
-    .navbar-default {
-        background-color: #014156;
-        border-color: #014156;
+    .navbar {
+        position: absolute;
+        min-height: 48px;
+        background-color: #233654;
     }
-
     .navbar-brand {
         float: left;
-        padding: 15px 15px; 
+        padding: 15px 15px;
         font-size: 19px;
         line-height: 21px;
-        height: 60px;
+        height: 48px;
     }
-    .navbar-brand>.logo-desktop{
-        width: 90px;
+
+    .navbar-toggle {
+        position: relative;
+        float: right;
+        margin-right: 5px;
+        padding: 9px 10px;
+        margin-top: 8px;
+        margin-bottom: 5px;
+        background-color: transparent;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
     }
 
     .btn-login{
         display:none;
     }
 
-    .signin-movil{
-        display:block;
+    .intro-message {
+        position: relative;
+        padding-top: 8%;
+        padding-bottom: 20%;
     }
 
-    .welcome-header {
-        background-image: url(../images/myjobsadvisor-welcome-picture.jpg);
-        background-size: cover;
-        background-position: center;
-        height: 450px;
+    .intro-message > h1 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 50px;
     }
 
-    .pattern {
-        height: 450px;
-        background-color: rgba(0, 0, 0, 0.4);
+    .navbar-default-alternative .navbar-toggle .icon-bar {
+        background-color: #ffffff;
+    }
+
+    .form-register{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-group {
+        margin-bottom: 5px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* profiles */
+    .profile-company-header {
+        background-color: #eee;
+        padding-top: 60px;
+        padding-bottom: 5px;
+    }
+
+    #profile-username{
+        text-align: center;
+    }
+
+    #user-card .following-data {
+        width: 25%;
+        float: left;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 667px) {
+
+    .intro-message > h1 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 50px;
     }
 
     .intro-message {
-        margin-top: 8%;
-        margin-bottom: 20%;
-        color: #f8f8f8;
+        position: relative;
+        padding-top: 8%;
+        padding-bottom: 20%;
     }
-    
 }
 
+@media only screen and (max-width: 667px) {
+
+    .input-group .search-input {
+        height: 40px;
+        border-radius: 50px;
+        font-size: 20px;
+    }
+
+    .input-group-btn #btn-search {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 1px;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        white-space: nowrap;
+        padding: 10px 15px;
+        font-size: 10px;
+        line-height: 1.42857143;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        height: 40px;
+    }
+
+    .intro-message {
+        position: relative;
+        padding-top: 5%;
+        padding-bottom: 20%;
+    }
+
+    .intro-message > h1 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 50px;
+    }
+
+    .intro-message > h4 {
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+
+    .intro-header {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        text-align: center;
+        color: #f8f8f8;
+        background: url(../images/myjobsadvisor-welcome-picture.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 550px;
+    }
+
+    .intro-message {
+        position: relative;
+        padding-top: 30%;
+        padding-bottom: 20%;
+    }
+
+    .intro-message > h1 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 50px;
+    }
+
+    .intro-divider {
+        width: 200px;
+        border-top: 1px solid #f8f8f8;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+}
 
 @media(max-width:768px){
     #login-dp{
