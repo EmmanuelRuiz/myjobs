@@ -35,8 +35,7 @@
         <header class="welcome-header">
             <div class="pattern">
                 <!-- Navigation -->
-
-                <nav class="navbar navbar-default topnav" role="navigation">
+                <nav class="navbar navbar-default " role="navigation">
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
@@ -59,7 +58,7 @@
                                         <li class="dropdown">
                                             <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-login" data-toggle="dropdown">Iniciar sesion</button>
                                             <ul id="login-dp" class="dropdown-menu">
-                                                <li>
+                                                <li >
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             Iniciar sesión con
@@ -255,7 +254,7 @@
                 </div>
             </div>
         {%endfor%}  
-        
+
         {% for error in app.session.flashbag().get('error_login') %}
 
             <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -278,10 +277,10 @@
         {%endfor%} 
 
         <script>
-				$(document).ready(function ()
-				{
-					$("#mostrarmodal").modal("show");
-				});
+                $(document).ready(function ()
+                {
+                    $("#mostrarmodal").modal("show");
+                });
         </script>                        
     </body>
 </html>
