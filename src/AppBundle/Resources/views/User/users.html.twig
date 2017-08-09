@@ -1,14 +1,14 @@
 {%extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 {% block javascripts %}
     {{ parent() }}
-     <script src="{{ asset('assets/js/custom/users.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/users.js') }}"></script>
 {% endblock %}
 {% block content %}
     <section class="people-section">
-        <div class="row">
-            <div class="container">
+        <div class="container">
+            <div class="row">
                 <div class="col-lg-12 box-form">
-                    <h1>Usuarios registrados</h1>
+                    <h1 id="user-result">Usuarios registrados</h1>
                     <div class="count">
                         <span class="label label-primary">
                             Total de personas: {{ pagination.getTotalItemCount }}
@@ -27,23 +27,26 @@
                                     </a>
                                 {% else %}
                                     <a href="{{ path('user_profile', {'id':user.id})}}">
-                                       <img class="company-pp-list" src="{{asset('uploads/users/'~user.image)}}" /> 
+                                        <img class="company-pp-list" src="{{asset('uploads/users/'~user.image)}}" /> 
                                     </a>
                                 {%endif%}
                             </div>
-                            
+
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a></h4>
-                                <p>{{user.biography}}</p>
+                                <h4 class="media-heading">
+                                    <a href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
+                                </h4>
                                 
-                                {% if app.user.id != user.id%}
-                                    <div class="pull-right buttons-following" >
-                                        <button class="btn btn-sm btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
+                                <p>{{ user.biography}}<p>
+                                    
+                                {% if app.user.id != user.id %}
+                                    <div class="buttons-following" >
+                                        <button class=" btn btn-xs btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
                                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                                             Seguir
                                         </button>
 
-                                        <button class="btn btn-sm btn-default btn-unfollow {% if app.user|following(user) == false %} hidden {% endif %}" data-followed="{{ user.id }}">
+                                        <button class="btn btn-xs btn-default btn-unfollow {% if app.user|following(user) == false %} hidden {% endif %}" data-followed="{{ user.id }}">
                                             <i class="fa fa-user-times" aria-hidden="true"></i>
                                             Dejar de seguir
                                         </button>
@@ -51,13 +54,13 @@
                                 {% endif %}
                             </div>
 
-                            
+
 
                             <div class="clearfix"></div>
                             <hr>
                         </div>
                     {% endfor%}
-            
+
 
                     <div class="navigation">
                         {{ knp_pagination_render(pagination) }}
@@ -68,7 +71,7 @@
         </div>
 
     </section>
-    
-    
+
+
 
 {%endblock%}

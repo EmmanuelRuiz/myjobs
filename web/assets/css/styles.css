@@ -12,6 +12,7 @@ body {
 }
 
 .result-company-section{
+    padding-top: 60px;
     padding-bottom: 30px;
 }
 
@@ -33,6 +34,10 @@ body {
 
 .navbar-default .navbar-toggle:hover {
     background-color: transparent;
+}
+
+.media {
+    margin-top: 0;
 }
 
 /* end general*/
@@ -108,6 +113,10 @@ body {
     display: none;
 }
 
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FF5C00;
+}
+
 .navbar-collapse .avatar {
     background: #fff;
     border-radius: 500px;
@@ -125,6 +134,14 @@ body {
 .navbar-nav>.user-logged-in {
     float: left;
     line-height: 60px;
+}
+
+.nav>.signin-movil{
+    display: none;
+}
+
+#nav-movil{
+    display: none;
 }
 
 /* end navbar layout */
@@ -262,17 +279,13 @@ body {
     padding-top: 40px;
     padding-bottom: 20px;
 }
-/*
-.invalid {
-     border-bottom: 2px solid #FF0000;
-     box-shadow: 0 1px 0 0 #fff;
-}
 
-.valid {
-     border-bottom: 1px solid #0ce626;
-     box-shadow: 0 1px 0 0 #0ce626;
+/* user list section */
+.people-section{
+    padding-top: 60px;
 }
-*/
+/* end use list*/
+
 /* login */
 #login-dp{
     min-width: 250px;
@@ -315,8 +328,6 @@ body {
     background-color:#bb0000;
 }
 
-
-/* how we work section */
 
 /* footer */
 footer{
@@ -407,6 +418,35 @@ footer{
     height: 200px;
 }
 
+#company-card .following-data{
+    width: 8%;
+    float: left;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#company-card .following-data a{
+    color: #444;
+}
+#company-card .following-data a:hover{
+    color: black;
+    text-decoration: none;
+}
+
+#company-card .following-data .label-stat{
+    display: block;
+}
+
+#company-card .following-data .number-stat{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-opinion-movil{
+    display: none;
+}
+
 
 
 /* boton para subir imagenes */
@@ -443,7 +483,7 @@ input[id=file] {
     .navbar {
         position: absolute;
         min-height: 48px;
-        background-color: #eee;
+        background-color: #1C58A1;
     }
     .navbar-header>.navbar-brand {
         float: left;
@@ -470,6 +510,10 @@ input[id=file] {
         display:none;
     }
 
+    .nav>.signin-movil{
+        display: block;
+    }
+
     .intro-message {
         position: relative;
         padding-top: 8%;
@@ -494,6 +538,20 @@ input[id=file] {
         display: none;
     }
 
+    .nav>.user-logged-in{
+        display: none; 
+    }
+
+    #nav-movil{
+        display: block;
+    }
+    
+    #nav-desktop{
+        display: none;
+    }
+
+    /* forms */
+
 
     .form-register{
         padding-left: 0;
@@ -513,7 +571,7 @@ input[id=file] {
         padding-bottom: 5px;
     }
 
-    #profile-username{
+    #profile-username, #profile-company-name{
         text-align: center;
     }
 
@@ -523,9 +581,48 @@ input[id=file] {
         text-align: center;
         margin-top: 10px;
     }
+    #company-card .following-data {
+        width: 33%;
+        float: left;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
 
+    .btn-opinion-desktop{
+        display: none;
+    }
 
+    .btn-opinion-movil{
+        display: block;
+    }
 
+    /* opinions */
+    .avatar .user-logo-opinion {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .avatar .user-logo-opinion-comment {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* companies list */
+    #result-company, #user-result{
+        font-size: 30px;
+    }
+
+    .company-logo, .company-pp-list{
+        width: 70px;
+        height: 70px;
+    }
+
+    .media-body>#company-description{
+        margin: 0;
+    }
 }
 
 @media only screen and (max-width: 667px) {

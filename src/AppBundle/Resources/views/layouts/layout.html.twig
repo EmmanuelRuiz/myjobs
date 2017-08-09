@@ -99,9 +99,19 @@
                                 </li>
                             </ul>
                         {% else %}
-                            <li><a href="{{path("register-company")}}">Registrar empresa</a></li>
-                            <li><a href="{{path("companies_list")}}" >Empresas</a></li>
-                            <li><a href="{{path("user_list")}}" >Usuarios</a></li>
+                            <li id="nav-desktop"><a href="{{path("register-company")}}">Registrar empresa</a></li>
+                            <li id="nav-desktop"><a href="{{path("companies_list")}}" >Empresas</a></li>
+                            <li id="nav-desktop"><a href="{{path("user_list")}}" >Usuarios</a></li>
+
+                            <li id="nav-movil" ><a href="{{ path('user_profile') }}"><i class="fa fa-user "></i>&nbsp;Perfil</a></li>
+                            <li id="nav-movil"><a href="{{path('companies_mycompanies')}}"><i class="fa fa-bookmark "></i>&nbsp;Mis empresas</a></li>
+                            <li id="nav-movil"><a href="{{path("register-company")}}"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Registrar empresa</a></li>
+                                {% if app.user.role == 'ROLE_ADMIN'%}
+                                <li id="nav-movil"><a href="{{path('administrator_index')}}"><i class="fa fa-lock "></i>&nbsp;Panel de administrador</a></li>
+                                {% endif %}
+
+                            <li id="nav-movil"><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
+                            
                                 {% if app.user != null %}
                                 <li class="user-logged-in">
                                     <div class="dropdown">
