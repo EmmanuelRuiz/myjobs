@@ -23,7 +23,7 @@
 
         {% block javascripts %}
             <script type="text/javascript">
-                var URL = "{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/app_dev.php";
+				var URL = "{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/app_dev.php";
             </script>
             <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
             <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -43,15 +43,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" href="#">Start Bootstrap</a>
+                    <a class="navbar-brand topnav" href="{{ path('app_homepage') }}"><img class="img-responsive img-desktop" width="200" src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial.png') }}"></img></a>
+                    <a class="navbar-brand topnav" href="{{ path('app_homepage') }}"><img class="img-responsive img-movil" width="60" src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial-movil.png') }}"></img></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user == null %}
-                            <li><a href="#categorias">Categorias </a></li>
-                            <li><a href="">Contacto</a></li>
+                            <li class="signin-movil"><a href="{{path("user_register_login")}}">Entrar</a></li>
                             <li><a href="{{path("user_register")}}">Registrarse</a></li>
+                            <li><a href="">Contácto</a></li>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-login navbar-btn" data-toggle="dropdown">Iniciar sesion</button>
@@ -97,16 +98,28 @@
                                 </li>
                             </ul>
                         {% else %}
-                            <li><a href="{{path("register-company")}}">Registrar empresa</a></li>
-                            <li><a href="#categorias">Categorias</a></li>
-                            <li><a href="{{path("companies_list")}}" >Empresas</a></li>
-                            <li><a href="{{path("user_list")}}" >Usuarios</a></li>
+                            <li id="nav-desktop"><a href="{{path("register-company")}}">Registrar empresa</a></li>
+                            <li id="nav-desktop"><a href="{{path("companies_list")}}" >Empresas</a></li>
+                            <li id="nav-desktop"><a href="{{path("user_list")}}" >Usuarios</a></li>
+
+                            <li id="nav-movil" ><a href="{{ path('user_profile') }}"><i class="fa fa-user "></i>&nbsp;Perfil</a></li>
+                            <li id="nav-movil"><a href="{{path('companies_mycompanies')}}"><i class="fa fa-bookmark "></i>&nbsp;Mis empresas</a></li>
+                            <li id="nav-movil"><a href="{{path("register-company")}}"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Registrar empresa</a></li>
+                                {% if app.user.role == 'ROLE_ADMIN'%}
+                                <li id="nav-movil"><a href="{{path('administrator_index')}}"><i class="fa fa-lock "></i>&nbsp;Panel de administrador</a></li>
+                                {% endif %}
+
+                            <li id="nav-movil"><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
                                 {% if app.user != null %}
-                                <li>
-                                    <button class="btn btn-link btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <li class="user-logged-in">
+                                    <button class="btn btn-link  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="avatar">
                                             {% if app.user.image == null%}
                                                 <img src="{{ asset('assets/images/default.jpg') }}"/>
+                                            {% elseif app.user.facebookId != null %}
+                                                <img src="{{ app.user.image }}"/>
+                                            {% elseif app.user.googleId != null %}
+                                                <img src="{{ app.user.image }}"/>
                                             {% else %}
                                                 <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
                                             {% endif %}
