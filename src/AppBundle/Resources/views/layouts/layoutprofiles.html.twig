@@ -98,6 +98,15 @@
                                 </li>
                             </ul>
                         {% else %}
+
+                            <form id="navbar-form-alternative" class="navbar-form navbar-left">
+                                <div class="form-group">
+                                    <input type="text"  class="form-control-alternative" placeholder="Buscar empresa...">
+                                </div>
+                                <button type="submit" class="btn btn-default">Buscar</button>
+                            </form>
+
+
                             <li id="nav-desktop"><a href="{{path("register-company")}}">Registrar empresa</a></li>
                             <li id="nav-desktop"><a href="{{path("companies_list")}}" >Empresas</a></li>
                             <li id="nav-desktop"><a href="{{path("user_list")}}" >Usuarios</a></li>
