@@ -12,7 +12,7 @@
             <div class="col-lg-3">
                 <h2 class="page-header">Opciones</h2>
                 <ul class="list-group">
-                    <a href="{{ path('administrator_company') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
+                    <a href="{{ path('administrator_index') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
                     <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
                     <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
                     <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>

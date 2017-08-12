@@ -6,64 +6,67 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <h2 class="page-header">Opciones</h2>
-                <ul class="list-group">
-                    <a href="{{ path('administrator_company') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
-                </ul>
-            </div>
-            <div class="col-lg-9">
-                <h2 class="page-header">Administrar empresas</h2>
-                {%for message in app.session.flashbag().get('msg')%}
-                    <div class="alert alert-success">{{message}}</div>
-                {%endfor%}        
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>RFC</th>
-                            <th>Sector</th>
-                            <th>Sitio Web</th>
-                            <th>Creado</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                    {% for companies in pagination %}
-                        <tbody>
-                            <tr>
-                                <td>{{ companies.id }}</td>
-                                <td>{{ companies.tradename }}</td>
-                                <td>{{ companies.rfc }}</td>
-                                <td>{{ companies.businesssector }}</td>
-                                <td>www.empresa.com </td>
-                                <td>{{ companies.createdAt|date("D d M Y") }}</td>
-                                <td>
-                                    <a href="{{ path("company_profile", {"id":companies.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Ver" data-original-title=""><i class="fa fa-search" aria-hidden="true"></i></a>
-                                    <a href="{{ path("companies_edit", {"id":companies.id})}}" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="left" title="Editar" data-original-title=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>   
-                                    <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    {% endfor %}
-                </table>
-                {# modificar el js para el scroll infinito #}
-                <div class="navigation text-center">
-                    {{ knp_pagination_render(pagination) }}
+    <section class="all-companies-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="page-header">Opciones</h2>
+                    <ul class="list-group">
+                        <a href="{{ path('administrator_index') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
+                    </ul>
                 </div>
-                <div class="clearfix"></div>
+                <div class="col-lg-9">
+                    <h2 class="page-header">Administrar empresas</h2>
+                    {%for message in app.session.flashbag().get('msg')%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {%endfor%}        
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>RFC</th>
+                                    <th>Sector</th>
+                                    <th>Sitio Web</th>
+                                    <th>Creado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                            {% for companies in pagination %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ companies.id }}</td>
+                                        <td>{{ companies.tradename }}</td>
+                                        <td>{{ companies.rfc }}</td>
+                                        <td>{{ companies.businesssector }}</td>
+                                        <td>{{ companies.website}}</td>
+                                        <td>{{ companies.createdAt|date("D d M Y") }}</td>
+                                        <td>
+                                            <a href="{{ path("company_profile", {"id":companies.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Ver" data-original-title=""><i class="fa fa-search" aria-hidden="true"></i></a>
+                                            <a href="{{ path("companies_edit", {"id":companies.id})}}" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="left" title="Editar" data-original-title=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>   
+                                            <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    {# modificar el js para el scroll infinito #}
+                    <div class="navigation text-center">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
-    </div>
+
+    </section>
 
 
 {%endblock%}

@@ -84,7 +84,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
             </div>
             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 table-responsive"> 
-                <table class="table table-hover ">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Logo</th>
@@ -96,11 +96,14 @@
                         <tbody>
                             <tr>
                                 <td>
-
-
+                                    {% if opinions.company.logo == null %}
+                                        <img class="center-block" src="{{ asset('assets/images/company-logo.png') }}" width="50"/>
+                                    {% else %}
+                                        <img class="center-block" src="{{ asset('uploads/company/'~opinions.company.logo) }}" width="50"/>
+                                    {% endif %}
                                 </td>
                                 <td>{{ opinions.company.tradename}}</td>
-                                <td>{{ opinions.user.name}}</td>
+                                <td>{{ opinions.user.name}} {{ opinions.user.plastname}}</td>
                             </tr>
                         </tbody>
                     {% endfor %}

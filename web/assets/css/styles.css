@@ -1,5 +1,6 @@
 html,
 body {
+
     height: 100%;
 }
 
@@ -91,7 +92,11 @@ body {
 
 .navbar-default-alternative {
     background-color: #FFF;
-    border-color: #FFF;
+    box-shadow: 0px -10px 50px 0px #888888;
+}
+
+.navbar {
+    border-width: 0 0 1px;
 }
 
 .navbar-default-alternative .navbar-nav>li>a {
@@ -319,14 +324,23 @@ body {
 }
 
 .register-company-section{
-    padding-bottom: 40px;
-    padding-top: 40px;
+    padding-bottom: 5%;
+    padding-top: 5%;
 }
 /* register user */
 .register-section{
     padding-top: 40px;
     padding-bottom: 20px;
 }
+
+/* edit user */
+
+.edit-section{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+/* fin edit user*/
 
 /* user list section */
 .people-section{
@@ -522,6 +536,31 @@ input[id=file] {
 
 /* panel administrador */
 
+.adminstrator-section{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.all-companies-section{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.comment-section{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.claims-section{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.users-section{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 
 
 /* responsive */
@@ -649,6 +688,19 @@ input[id=file] {
         margin-bottom: 5px;
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .box-form-register-company{
+        padding: 0px;
+    }
+    .box-form-register-company>h2{
+        font-size: 25px;
+        padding-left: 10px;
+    }
+
+    .register-company-section{
+        margin-top: 8%;
+        padding-bottom: 0px;
     }
 
     /* profiles */

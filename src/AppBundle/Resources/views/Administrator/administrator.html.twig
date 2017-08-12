@@ -1,164 +1,96 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <h2 class="page-header">Opciones</h2>
-                <ul class="list-group">
-                    <a href="{{ path('administrator_company') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
-                </ul>
-            </div>
-            <div class="col-lg-9">
-                <h2 class="page-header">Empresas pendientes por validar</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>RFC</th>
-                            <th>Sector</th>
-                            <th>Representante</th>
-                            <th>Ext. Representante</th>
-                            <th>Email de Representante</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
+    <section class="adminstrator-section">
 
-
-                    {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                    {% for company in pagination  %}
-                        <tbody>
-                            <tr>
-                                <td>{{ company.id }}</td>
-                                <td>{{ company.tradename }}</td>
-                                <td>{{ company.rfc }}</td>
-                                <td>{{ company.businesssector }}</td>
-                                <td>{{ company.contacname }}</td>
-                                <td>{{ company.telephoneext }}</td>
-                                <td>{{ company.businessemail }}</td>
-                                <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Validar" data-original-title=""><i class="fa fa-check" aria-hidden="true"></i></a></td>
-                            </tr>
-                        </tbody>
-                    {% endfor %}
-
-                </table>
-            </div>                
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Empresas destacadas</h2>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="alert alert-info" role="alert"><b>Información.</b> Calificación de empresas con opiniones que valen <b>100%</b> </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Opiniones</th>
-                            <th>Puntos</th>
-                            <th>Calificacion</th>
-                        </tr>
-                    </thead>
-
-
-                    {% for opinions_100 in opinion_100 %}
-                        {% for company in pagination %}
-                            {% set company_stats = company.id|company_stats%}
-                            <tbody>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="page-header">Opciones</h2>
+                    <ul class="list-group">
+                        <a href="{{ path('administrator_index') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
+                    </ul>
+                </div>
+                <div class="col-lg-9">
+                    <h2 class="page-header">Empresas pendientes por validar</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    {% if company.id == opinions_100.company%}
-
-                                        <td>{{ opinions_100.company }}</td>
-                                        <td>{{ company.tradename}}</td>
-                                        <td>{{ opinions_100.cont }}</td>
-                                        <td>{{ opinions_100.promedio_100|number_format(1) }}</td>
-                                        <td>{{ ((opinions_100.promedio_100) / opinions_100.cont)|number_format(1)  }}</td>
-                                    {% endif %}
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>RFC</th>
+                                    <th>Sector</th>
+                                    <th>Representante</th>
+                                    <th>Ext. Representante</th>
+                                    <th>Email de Representante</th>
+                                    <th>Acción</th>
                                 </tr>
-                            </tbody>
-                        {% endfor %}
-                    {% endfor %}
+                            </thead>
 
-                </table>
 
-            </div>
-
-            <div class="col-lg-6">
-                <div class="alert alert-info" role="alert"><b>Información.</b> Calificación de empresas con opiniones que valen <b>60%</b>  </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Opiniones</th>
-                            <th>Puntos</th>
-                            <th>Calificacion</th>
-                        </tr>
-                    </thead>
-
-                    {% for opinions_60 in opinion_60 %}
-                        {% for company in pagination %}
-                            {% set company_stats = company.id|company_stats%}
-                            <tbody>
-                                <tr>
-                                    {% if company.id == opinions_60.company%}
-
-                                        <td>{{ opinions_60.company }}</td>
-                                        <td>{{ company.tradename}}</td>
-                                        <td>{{ opinions_60.cont }}</td>
-                                        <td>{{ opinions_60.promedio_60|number_format(1) }}</td>
-                                        <td>{{ (opinions_60.promedio_60) / opinions_60.cont  }}</td>
-                                    {% endif %}
-                                </tr>
-                            </tbody>
-                        {% endfor %}
-                    {% endfor %}
-                </table>
-            </div>
-
-            <div class="col-lg-12">
-                <h2 class="page-header">Calificaciones generales</h2>
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Opiniones Totales</th>
-                            <th>Puntos Totales</th>
-                            <th>Calificacion Generals</th>
-                        </tr>
-                    </thead>
-
-                    {% for avg in general_avg %}
-                        {% for company in pagination %}
-                            <tbody>
-                                <tr>
-                                    {% if company.id == avg.company%}
+                            {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                            {% for company in pagination  %}
+                                <tbody>
+                                    <tr>
                                         <td>{{ company.id }}</td>
                                         <td>{{ company.tradename }}</td>
-                                        <td>0</td>
-                                        <td>{{ avg.promedio }}</td>
-                                    {% endif %}
-                                </tr>
-                            </tbody>
-
-
-
-                        {% endfor %}
-                    {% endfor %}
-
-
-                </table>
+                                        <td>{{ company.rfc }}</td>
+                                        <td>{{ company.businesssector }}</td>
+                                        <td>{{ company.contacname }}</td>
+                                        <td>{{ company.telephoneext }}</td>
+                                        <td>{{ company.businessemail }}</td>
+                                        <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Validar" data-original-title=""><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>                
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Empresas destacadas</h2>
+                </div>
+                <div class="col-lg-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Opiniones Totales</th>
+                                <th>Puntos Totales</th>
+                                <th>Calificacion Generals</th>
+                            </tr>
+                        </thead>
+
+                        {% for avg in general_avg %}
+                            {% for company in pagination %}
+                                <tbody>
+                                    <tr>
+                                        {% if company.id == avg.company%}
+                                            <td>{{ company.id }}</td>
+                                            <td>{{ company.tradename }}</td>
+                                            <td>0</td>
+                                            <td>{{ avg.promedio }}</td>
+                                        {% endif %}
+                                    </tr>
+                                </tbody>
+
+
+
+                            {% endfor %}
+                        {% endfor %}
+
+
+                    </table>
+                </div>
+            </div>
+
+
         </div>
-
-
-    </div>
+    </section>
 {%endblock%}

@@ -6,68 +6,73 @@
 {% endblock %}
 
 {% block content %}
+    <section class="claims-section">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <h2 class="page-header">Opciones</h2>
-                <ul class="list-group">
-                    <a href="{{ path('administrator_company') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
-                    <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
-                </ul>
-            </div>
-            <div class="col-lg-9">
-                <h2 class="page-header">Reclamaciones</h2>
-                {%for message in app.session.flashbag().get('msg')%}
-                    <div class="alert alert-success">{{message}}</div>
-                {%endfor%}
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Posición en la empresa</th>
-                            <th>Empresa reclamada</th>
-                            <th>Email empresarial</th>
-                            <th>Telefono de oficina y/o extensión</th>
-                            <th>Teléfono personal</th>
-                            <th>Fecha de reclamación</th>
-                            <th>Accións</th>
-                        </tr>
-                    </thead>
-                    {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                    {% for claims in pagination %}
-                        <tbody>
-                            <tr>
-                                <td>{{ claims.user.id }}</td>
-                                <td>{{ claims.user.name }}</td>
-                                <td>{{ claims.user.plastname }}</td>
-                                <td>{{ claims.position }}</td>
-                                <td>{{ claims.company.id }}</td>
-                                <td>{{ claims.businessemail }}</td>
-                                <td>{{ claims.officenumber }}</td>
-                                <td>{{ claims.personalnumber }}</td>
-                                <td>{{ claims.createdAt|date("D d M Y") }}</td>
-                                <td>
-                                    <a href="{{ path('administrator_asign', {'claim_id':claims.id, 'company_id':claims.company.id, 'id':claims.user.id}) }}" type="button" class="btn btn-xs btn-success ">Asignar</a>
-                                    <button type="button" class="btn btn-xs btn-danger">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    {% endfor %}
-                </table>
-                {# modificar el js para el scroll infinito #}
-                <div class="navigation text-center">
-                    {{ knp_pagination_render(pagination) }}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="page-header">Opciones</h2>
+                    <ul class="list-group">
+                        <a href="{{ path('administrator_index') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
+                        <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
+                    </ul>
                 </div>
-                <div class="clearfix"></div>
+                <div class="col-lg-9">
+                    <h2 class="page-header">Reclamaciones</h2>
+                    {%for message in app.session.flashbag().get('msg')%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {%endfor%}
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Cargo</th>
+                                    <th>Empresa</th>
+                                    <th>Email</th>
+                                    <th>Telefono de oficina y/o extensión</th>
+                                    <th>Teléfono personal</th>
+                                    <th>Fecha de reclamación</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                            {% for claims in pagination %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ claims.user.id }}</td>
+                                        <td>{{ claims.user.name }}</td>
+                                        <td>{{ claims.user.plastname }}</td>
+                                        <td>{{ claims.position }}</td>
+                                        <td>{{ claims.company.id }}</td>
+                                        <td>{{ claims.businessemail }}</td>
+                                        <td>{{ claims.officenumber }}</td>
+                                        <td>{{ claims.personalnumber }}</td>
+                                        <td>{{ claims.createdAt|date("D d M Y") }}</td>
+                                        <td>
+                                            <a href="{{ path('administrator_asign', {'claim_id':claims.id, 'company_id':claims.company.id, 'id':claims.user.id}) }}" type="button" class="btn btn-xs btn-success ">Asignar</a>
+                                            <button type="button" class="btn btn-xs btn-danger">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    {# modificar el js para el scroll infinito #}
+                    <div class="navigation text-center">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
 
 {%endblock%}
