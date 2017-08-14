@@ -47,16 +47,6 @@ BackendBundle\Entity\PrivateMessage:
             nullable: true
             column: created_at
     manyToOne:
-        emitter:
-            targetEntity: User
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                emitter:
-                    referencedColumnName: id
-            orphanRemoval: false
         receiver:
             targetEntity: User
             cascade: {  }
@@ -65,6 +55,16 @@ BackendBundle\Entity\PrivateMessage:
             inversedBy: null
             joinColumns:
                 receiver:
+                    referencedColumnName: id
+            orphanRemoval: false
+        emitter:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                emitter:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -57,7 +57,7 @@ BackendBundle\Entity\Comment:
             orphanRemoval: false
         user:
             targetEntity: User
-            cascade: { }
+            cascade: {  }
             fetch: LAZY
             mappedBy: null
             inversedBy: null

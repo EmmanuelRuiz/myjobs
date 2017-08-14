@@ -2,7 +2,7 @@ BackendBundle\Entity\Company:
     type: entity
     table: companies
     indexes:
-        FK_8244AA3AA76ED395:
+        fk_users_id:
             columns:
                 - user_id
     id:

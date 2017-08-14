@@ -2,12 +2,12 @@ BackendBundle\Entity\Following:
     type: entity
     table: following
     indexes:
-        fk_following_users:
-            columns:
-                - user
         fk_followed:
             columns:
                 - followed
+        fk_following_users:
+            columns:
+                - user
     id:
         id:
             type: integer

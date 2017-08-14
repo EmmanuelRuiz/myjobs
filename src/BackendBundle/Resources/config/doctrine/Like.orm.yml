@@ -2,15 +2,15 @@ BackendBundle\Entity\Like:
     type: entity
     table: likes
     indexes:
-        fk_likes_users:
-            columns:
-                - user
-        fk_likes_company:
-            columns:
-                - company
         fk_like_opinion:
             columns:
                 - opinions_id
+        fk_likes_company:
+            columns:
+                - company
+        fk_likes_users:
+            columns:
+                - user
     id:
         id:
             type: integer
