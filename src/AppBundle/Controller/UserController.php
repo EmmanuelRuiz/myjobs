@@ -272,9 +272,9 @@ class UserController extends Controller {
 		$opinions = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
 		return $this->render('AppBundle:User:profile.html.twig', array(
-					'comments' => $comment_repo,
-					'user' => $user,
-					'pagination' => $opinions
+			'comments' => $comment_repo,
+			'user' => $user,
+			'pagination' => $opinions
 		));
 	}
 

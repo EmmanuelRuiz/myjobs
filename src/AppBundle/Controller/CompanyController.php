@@ -343,12 +343,12 @@ class CompanyController extends Controller {
 		}
 
 		return $this->render('AppBundle:Company:profile.html.twig', array(
-					// le pasamos a la vista una variable company donde estan todos los datos a mostrar
-					'puntos2' => $q,
-					'puntos' => $p,
-					'comments' => $comment_repo,
-					'company' => $company,
-					'pagination' => $opinions
+			// le pasamos a la vista una variable company donde estan todos los datos a mostrar
+			'puntos2' => $q,
+			'puntos' => $p,
+			'comments' => $comment_repo,
+			'company' => $company,
+			'pagination' => $opinions
 		));
 	}
 

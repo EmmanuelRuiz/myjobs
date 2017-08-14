@@ -3,6 +3,6 @@ comment_crate:
     defaults: { _controller: AppBundle:Comment:create, id:null, opinion_id:null }
     
 comment_crate_user:
-    path: /createcommentuser/{id}/{opinion_id}
-    defaults: { _controller: AppBundle:Comment:createFromUser, id:null, opinion_id:null }
+    path: /createcommentuser
+    defaults: { _controller: AppBundle:Comment:createFromUser }
 

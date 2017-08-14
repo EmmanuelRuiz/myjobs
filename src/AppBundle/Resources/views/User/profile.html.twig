@@ -174,8 +174,9 @@
                                     <hr class="profiles-hr">
                                 {% endif %}
                             </div> 
-                            {% for comments in comments%}
-                                <div class="panel-footer">
+                            <div class="panel-footer">
+                                {% for comments in comments%}
+
                                     {% if comments.opinion.id == opinions.id %}
                                         {% if comments.status != 'invalid'%}
                                             <div class="row"> 
@@ -220,23 +221,27 @@
                                                     {% endif%}
                                                 </div>
                                             </div>
+                                            <hr class="profiles-hr"> 
                                         {% endif %}
                                     {% endif %}
-                                    {% if app.user != null%}
-                                        <form method="post" enctype="multipart/form-data" class="comment-form" action="" >
-                                            <div class="form-group">
-                                                <label for="nameInput">Agregar comentario</label>
-                                                <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
-                                                <button type="submit" class="btn btn-default btn-sm pull-right">Comentar</button> 
 
-                                                <label for="file" class="pull-right label-img"><i class="fa fa-file-image-o"></i></label>
-                                                <input id="file" name="image" type="file" >
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </form>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}        
+
+                                {% endfor %}  
+
+                                {% if app.user != null%}
+                                    <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate_user', {'opinion_id':opinions.id}) }}" >
+                                        <div class="form-group">
+                                            <label for="nameInput">Agregar comentario</label>
+                                            <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
+                                            <button type="submit" class="btn btn-default btn-sm pull-right">Comentar</button> 
+
+                                            <label for="file" class="pull-right label-img"><i class="fa fa-file-image-o"></i></label>
+                                            <input id="file" name="image" type="file" >
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
 

@@ -69,13 +69,15 @@ class CommentController extends Controller{
         $this->addFlash('msg', 'Tu comentario se ha realizado con exito. Estamos validando, en breve tu comentario se podra visualizar');
 		
         return $this->redirectToRoute('company_profile', array('id' => $id ));
-		
-		
 	}
 	
-	public function createFromUserAction(Request $request, $id, $opinion_id){
+	public function createFromUserAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
+		
+		
 		$comment = new Comment();
+		
+		$opinion_id = $request->query->get("opinion_id");
 		
 		$user = $this->getUser();
 		
@@ -129,7 +131,7 @@ class CommentController extends Controller{
 		
         $this->addFlash('msg', 'Tu comentario se ha realizado con exito. Estamos validando, en breve tu comentario se podra visualizar');
 		
-        return $this->redirectToRoute('user_profile', array('id' => $id ));
+        return $this->redirectToRoute('user_profile', array('id' => $user->getId()));
 		
 		
 	}
