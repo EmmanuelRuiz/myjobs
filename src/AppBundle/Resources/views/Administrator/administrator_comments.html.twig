@@ -41,8 +41,8 @@
                                         <td>{{ comment.body }}</td>
                                         <td>{{ comment.createdAt|date("D d M Y") }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-success ">Validar</button>
-                                            <button type="button" class="btn btn-info">Editar</button>
+                                            <a href="{{ path('administrator_validate_comment', {'id':comment.id}) }}" type="button" class="btn btn-xs btn-success "><i class="fa fa-check" aria-hidden="true"></i></a>
+                                            <a type="button" class="btn btn-xs btn-info"><i class="fa fa-edit" aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>

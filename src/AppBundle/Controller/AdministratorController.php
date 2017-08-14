@@ -701,6 +701,24 @@ class AdministratorController extends Controller {
 		// /company/id 
 		return $this->redirectToRoute('company_profile', array('id' => $id));
 	}
+	
+	public function validateCommentAction(Request $request){
+		$em = $this->getDoctrine()->getManager();
+		
+		$comment = new Comment();
+		$comment_id = $request->query->get('id');
+		
+		$comment_repo = $em->getRepository('BackendBundle:Comment');
+		$comment = $comment_repo->find($comment_id);
+		
+		
+		$comment->setStatus('valid');
+		$em->persist($comment);
+		$em->flush();
+		
+		return $this->redirectToRoute('administrator_comment');
+		
+	}
 
 	public function graficarAction(Request $request) {
 		//$email = $request->get("email");
