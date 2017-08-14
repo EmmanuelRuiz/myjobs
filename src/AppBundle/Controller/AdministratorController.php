@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 // entidades 
 use BackendBundle\Entity\Comment;
@@ -705,45 +706,39 @@ class AdministratorController extends Controller {
 		//$email = $request->get("email");
 
 		$em = $this->getDoctrine()->getManager();
+		$db = $em->getConnection();
 		$user_repo = $em->getRepository("BackendBundle:User");
 		/* si el nick es igual al de la bd es que ya existe */
 
 
-		$query_avg = $opinion_repo->createQueryBuilder('o')
-				->select('(o.company) as company', 'AVG(CASE WHEN o.createdAt > :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) WHEN o.createdAt < :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication ELSE 0 END) AS promedio')
-				->groupBy('o.company')
-				->orderBy('promedio', 'DESC')
-				->setParameter('date', new \DateTime('-365 day'))
-				->setParameter('multiplication', .60)
-				->getQuery();
+		$query = "SELECT age FROM users;";
+		$stmt = $db->prepare($query);
+		$params = array();
+		$stmt->execute($params);
 
-		$general_avg = $query_avg ->getResult();
+		$po = $stmt->fetchAll();
 
-
-
-
-		SELECT CASE WHEN
-  (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29) THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más'
-END
-END
-END rango,
-COUNT(*) total
-FROM
-  users
-GROUP BY
-  rango;
-
-
-
-		$user_isset = $user_repo->findOneBy(array("email" => $email));
-
-		$result = "used";
-		if (count($user_isset) >= 1 && is_object($user_isset)) {
-			$result = "used";
-		} else {
-			$result = "unused";
+		foreach ($po as $e) {
+			$e["age"];
 		}
-		return new Response($result);
+
+		
+
+		return new JSONResponse($e);
 	}
+
+		/*
+		SELECT CASE WHEN
+		  (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29) THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más'
+		END
+		END
+		END rango,
+		COUNT(*) total
+		FROM
+		  users
+		GROUP BY
+		  rango;
+		*/
+
 
 }

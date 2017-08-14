@@ -7,11 +7,8 @@ $(document).ready(function () {
             //data: {email: email},
             type: 'POST',
             success: function (response) {
-                if (response == "used") {
-                    alert("ogfal");
-                } else {
-                    alert("iskjdam");
-                }
+                $(".rellenar").text(response.age);
+                console.log(response.age);
             }
         });
     });
