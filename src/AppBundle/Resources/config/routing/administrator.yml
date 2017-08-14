@@ -42,3 +42,8 @@ administrator_claimcompany:
     path: /administrar/reclamar
     defaults: { _controller: AppBundle:Administrator:reclamar }
 
+administrator_graficar:
+    path: /graficar
+    defaults: { _controller: AppBundle:Administrator:graficar }
+    methods: [POST]
+

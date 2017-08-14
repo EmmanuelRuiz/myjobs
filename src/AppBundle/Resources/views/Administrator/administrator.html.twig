@@ -1,5 +1,10 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/custom/grafica.js') }}"></script>
+{% endblock %}
+
 {% block content %}
     <section class="adminstrator-section">
 
@@ -91,6 +96,11 @@
             </div>
 
 
+            <div class="row">
+                <div class="col-lg-12" >
+                    <button class="graficar">Graficar</button>
+                </div>
+            </div>
         </div>
     </section>
 {%endblock%}
