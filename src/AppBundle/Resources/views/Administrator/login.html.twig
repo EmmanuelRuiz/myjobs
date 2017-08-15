@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    
+    <body>
+        <form action="{{ path('administrador_login_check') }}" method="post">
+            <h1>Iniciar Sesión</h1>
+            <p>Este inicio de sesión, pertenece a los administradores de MyJobsAdvisor. <br>Si usted no es 
+                administrador, le recomendamos <a href="{{ path('app_homepage') }}"><b>regresar a la pagina de inicio</b></a></p>
+            <label><b>Nombre de usuario</b></label><br>
+            <input type="text" placeholder="Usuario" name="_username" ><br>
+
+            <label><b>Contraseña</b></label><br>
+            <input type="password" placeholder="Contraseña" name="_password" ><br>
+
+            <button type="submit">Entrar</button>
+            <input type="hidden" name="_target_path" value="/admin/panel" >
+        </form>
+
+
+    </body>
+</html>

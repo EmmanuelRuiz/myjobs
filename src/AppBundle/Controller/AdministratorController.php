@@ -23,9 +23,10 @@ class AdministratorController extends Controller {
 		$this->session = new Session();
 	}
 
-	/**
-	 * @Route("/", name="homepage")
-	 */
+	public function loginAction(Request $request){
+		return $this->render('AppBundle:Administrator:login.html.twig');
+	}
+	
 	public function indexAction(Request $request) {
 
 		$em = $this->getDoctrine()->getManager();

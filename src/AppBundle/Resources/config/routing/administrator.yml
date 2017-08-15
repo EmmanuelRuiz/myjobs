@@ -1,5 +1,5 @@
 administrator_index:
-    path: /administrar
+    path: /admin/panel
     defaults: { _controller: AppBundle:Administrator:index }
 
 administrator_company:
@@ -49,5 +49,22 @@ administrator_claimcompany:
 administrator_graficar:
     path: /graficar
     defaults: { _controller: AppBundle:Administrator:graficar }
+    
+    
+    
+administrator_login:
+    path: /admin/login
+    defaults: { _controller: AppBundle:Administrator:login }
+    
+administrador_login_check:
+   path: /admin/login_check
+
+administrador_logout:
+   path: /admin/logout
+
+   
+administrator_panel:
+    path: /admin/panel
+    defaults: { _controller: AppBundle:Administrator:panel }
    
 
