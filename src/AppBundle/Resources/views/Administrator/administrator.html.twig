@@ -2,6 +2,7 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('assets/js/d3.js') }}"></script>
     <script src="{{ asset('assets/js/custom/grafica.js') }}"></script>
 {% endblock %}
 
@@ -98,7 +99,7 @@
 
             <div class="row">
                 <div class="col-lg-12" >
-                    <button class="graficar">Graficar</button>
+                    <button onload="graficar()">Graficar</button>
                     <div class="rellenar"></div>
                 </div>
             </div>
