@@ -521,6 +521,16 @@ footer{
     display: none;
 }
 
+.btn-like:hover{
+    color:red !important;
+}
+
+.like .active{
+    color:red !important;
+}
+
+/* end profile company*/
+
 
 
 /* boton para subir imagenes */

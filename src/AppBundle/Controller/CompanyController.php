@@ -273,6 +273,31 @@ class CompanyController extends Controller {
 
 		return new Response($status);
 	}
+	
+	// metodo para eliminar comentarios
+	public function removeCommentAction(Request $request, $id) {
+		$em = $this->getDoctrine()->getManager();
+
+		$comment_repo = $em->getRepository('BackendBundle:Comment');
+		$comments = $comment_repo->find($id);
+		$user = $this->getUser();
+
+
+		if ($user->getId() == $comments->getUser()->getId()) {
+			$em->remove($comments);
+			$flush = $em->flush();
+
+			if ($flush == null) {
+				$status = "El comentario se ha eliminado";
+			} else {
+				$status = "El comentario no se ha borrado";
+			}
+		} else {
+			$status = "El comentario no se ha borrado correctamente";
+		}
+
+		return new Response($status);
+	}
 
 	// metodo para el perfil de la empresa
 	public function profileAction(Request $request) {

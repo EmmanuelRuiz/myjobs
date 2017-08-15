@@ -47,6 +47,10 @@ companies_loca:
 remove_opinion:
     path: /opinion/remove/{id}
     defaults: { _controller: AppBundle:Company:removeOpinion, id:null }
+
+remove_comment:
+    path: /comment/remove/{id}
+    defaults: { _controller: AppBundle:Company:removeComment, id:null }
      
 rate:
     path: /rate/{id}

@@ -272,7 +272,7 @@
 
                                         {% if comments.opinion.id == opinions.id %}
                                             {% if comments.status != 'invalid'%}
-                                                <div class="row"> 
+                                                <div class="row" id="comment"> 
                                                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 ">
                                                         <div class="avatar  ">
                                                             {% if comments.user.image == null%}
@@ -306,7 +306,7 @@
                                                                         <i class="fa fa-cog" aria-hidden="true"></i> <i class="fa fa-caret-down caret-opinioncomment"></i>
                                                                     </button>
                                                                     <ul class="dropdown-menu ">
-                                                                        <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+                                                                        <li><a class="btn-delete-comment" data-id="{{ comments.id }}">Eliminar</a></li>
                                                                     </ul>
                                                                 </div> 
                                                                 <div class="clearfix"></div>
