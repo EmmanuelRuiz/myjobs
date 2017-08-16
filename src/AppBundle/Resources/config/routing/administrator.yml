@@ -2,10 +2,6 @@ administrator_index:
     path: /admin/panel
     defaults: { _controller: AppBundle:Administrator:index }
 
-administrator_company:
-    path: /administrar/empresas
-    defaults: { _controller: AppBundle:Administrator:companies}
-    
 administrator_comment:
     path: /administrar/comentarios
     defaults: { _controller: AppBundle:Administrator:comments}

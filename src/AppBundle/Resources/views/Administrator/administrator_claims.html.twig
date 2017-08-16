@@ -1,27 +1,86 @@
-{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
-{% endblock %}
+    <head>
 
-{% block content %}
-    <section class="claims-section">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Panel de Administración</title>
 
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <h2 class="page-header">Opciones</h2>
-                    <ul class="list-group">
-                        <a href="{{ path('administrator_index') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
-                        <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
-                        <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
-                        <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
-                        <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/css/admin.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
+
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+
+    </head>
+
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">MyJobsAdvisor</a>
+                </div>
+                <!-- Top Menu Items -->
+                <ul class="nav navbar-right top-nav">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrador <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-power-off"></i> Salir </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li class="">
+                            <a href="{{ path('administrator_index') }}"><i class="fa fa-fw fa-dashboard"></i> Empresas Sin Validar</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_comment') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Comentarios Sin Validar</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_claim') }}"><i class="fa fa-fw fa-table"></i> Reclamaciones</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_user') }}"><i class="fa fa-fw fa-edit"></i> Administrar Usuarios</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_allcompanies') }}"><i class="fa fa-fw fa-desktop"></i> Administrar Empresas</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-wrench"></i> Estadisticas</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="col-lg-9">
+                <!-- /.navbar-collapse -->
+            </nav>
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
                     <h2 class="page-header">Reclamaciones</h2>
                     {%for message in app.session.flashbag().get('msg')%}
                         <div class="alert alert-success">{{message}}</div>
@@ -68,11 +127,13 @@
                     <div class="navigation text-center">
                         {{ knp_pagination_render(pagination) }}
                     </div>
-                    <div class="clearfix"></div>
                 </div>
+                <!-- /.container-fluid -->
+
             </div>
+            <!-- /#page-wrapper -->
         </div>
-    </section>
+        <!-- /#wrapper -->
+    </body>
 
-
-{%endblock%}
+</html>

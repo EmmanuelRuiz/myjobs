@@ -111,25 +111,6 @@ class AdministratorController extends Controller {
 
 		$opinion_repo = $em->getRepository('BackendBundle:Opinion');
 
-		$query_opinion_100 = $opinion_repo->createQueryBuilder('o')
-				->select('(o.company) as company', 'COUNT(o) as cont', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) as promedio_100')
-				->where('o.createdAt > :date')
-				->groupBy('o.company', 'o.createdAt')
-				->setParameter('date', new \DateTime('-365 day'))
-				->getQuery();
-
-		$opinions_100 = $query_opinion_100->getResult();
-
-		$query_opinion_60 = $opinion_repo->createQueryBuilder('o')
-				->select('(o.company) as company', 'COUNT(o) as cont', 'SUM(o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication as promedio_60')
-				->where('o.createdAt < :date')
-				->groupBy('o.company', 'o.createdAt')
-				->setParameter('date', new \DateTime('-365 day'))
-				->setParameter('multiplication', .60)
-				->getQuery();
-
-		$opinions_60 = $query_opinion_60->getResult();
-
 		$query_avg = $opinion_repo->createQueryBuilder('o')
 				->select('(o.company) as company', 'AVG(CASE WHEN o.createdAt > :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) WHEN o.createdAt < :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication ELSE 0 END) AS promedio')
 				->groupBy('o.company')
@@ -140,11 +121,6 @@ class AdministratorController extends Controller {
 
 		$general_avg = $query_avg ->getResult();
 		
-		
-		
-
-
-
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,
@@ -152,8 +128,7 @@ class AdministratorController extends Controller {
 			'todas_empresas' => $te,
 			'claims' => $re,
 			'pagination' => $pagination,
-			'opinion_100' => $opinions_100,
-			'opinion_60' => $opinions_60,
+			'companies' => $pag_company,
 			'general_avg' => $general_avg
 		));
 	}
@@ -231,12 +206,12 @@ class AdministratorController extends Controller {
 		);
 
 		return $this->render('AppBundle:Administrator:administrator_companies.html.twig', array(
-					'empresas' => $e,
-					'comentarios' => $c,
-					'usuarios' => $u,
-					'todas_empresas' => $te,
-					'claims' => $re,
-					'pagination' => $pagination
+			'empresas' => $e,
+			'comentarios' => $c,
+			'usuarios' => $u,
+			'todas_empresas' => $te,
+			'claims' => $re,
+			'pagination' => $pagination
 		));
 		/* return $this->render('AppBundle:Administrator:administrator_companies.html.twig'); */
 	}
@@ -505,7 +480,7 @@ class AdministratorController extends Controller {
 		$em->persist($company);
 		$em->flush(); //ejecturamos
 
-		return $this->redirectToRoute('administrator_company');
+		return $this->redirectToRoute('administrator_index');
 	}
 
 	public function deleteCompaniesAction(Request $request) {

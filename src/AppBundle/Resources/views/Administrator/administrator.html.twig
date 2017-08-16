@@ -1,123 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
         <title>Panel de Administración</title>
 
-        <link href="{{ asset('assets/css/bootswatch.css')}}" type="text/css" rel="stylesheet">
-        <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
+
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/css/admin.css')}}" type="text/css" rel="stylesheet">
         <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
 
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+
     </head>
+
     <body>
-        <!-- Navigation -->
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="index.html">MyJobsAdvisor</a>
                 </div>
+                <!-- Top Menu Items -->
+                <ul class="nav navbar-right top-nav">
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    
-                    
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrador <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="{{ path('administrador_logout') }}"><i class="fa fa-fw fa-power-off"></i> Salir </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li class="">
+                            <a href="{{ path('administrator_index') }}"><i class="fa fa-building" aria-hidden="true"></i> Empresas sin validar</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_comment') }}"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios sin validar</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_claim') }}"><i class="fa fa-gavel" aria-hidden="true"></i> Reclamaciones</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_user') }}"><i class="fa fa-users" aria-hidden="true"></i> Administrar usuarios</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_allcompanies') }}"><i class="fa fa-list-alt" aria-hidden="true"></i> Administrar empresas</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Estadisticas</a>
                         </li>
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-
-        <section class="adminstrator-section">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h2 class="page-header">Opciones</h2>
-                        <ul class="list-group">
-                            <a href="{{ path('administrator_index') }}" class="list-group-item list-group-item-info"><i class="fa fa-check-circle" aria-hidden="true"></i>Empresas sin validar {% for empresas in empresas %} <span class="badge">{{empresas}}</span>{% endfor %}</a>
-                            <a href="{{ path('administrator_comment') }}" class="list-group-item list-group-item-info"><i class="fa fa-comments" aria-hidden="true"></i>Comentarios sin validar {% for comentarios in comentarios %} <span class="badge">{{comentarios}}</span>{% endfor %}</a>
-                            <a href="{{ path('administrator_claim') }}" class="list-group-item list-group-item-warning"><i class="fa fa-gavel" aria-hidden="true"></i>Reclamaciones {% for claims in claims %} <span class="badge">{{claims}}</span>{% endfor %}</a>
-                            <a href="{{ path('administrator_user') }}" class="list-group-item list-group-item-danger"><i class="fa fa-address-book" aria-hidden="true"></i>Administrar usuarios {% for usuarios in usuarios %} <span class="badge">{{usuarios}}</span>{% endfor %}</a>
-                            <a href="{{ path('administrator_allcompanies') }}" class="list-group-item list-group-item-danger"><i class="fa fa-building" aria-hidden="true"></i>Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge">{{todas_empresas}}</span>{% endfor %}</a>
-                        </ul>
-                    </div>
-                    <div class="col-lg-9">
-                        <h2 class="page-header">Empresas pendientes por validar</h2>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>RFC</th>
-                                        <th>Sector</th>
-                                        <th>Representante</th>
-                                        <th>Ext. Representante</th>
-                                        <th>Email de Representante</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-
-
-                                {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                                {% for company in pagination  %}
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ company.id }}</td>
-                                            <td>{{ company.tradename }}</td>
-                                            <td>{{ company.rfc }}</td>
-                                            <td>{{ company.businesssector }}</td>
-                                            <td>{{ company.contacname }}</td>
-                                            <td>{{ company.telephoneext }}</td>
-                                            <td>{{ company.businessemail }}</td>
-                                            <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Validar" data-original-title=""><i class="fa fa-check" aria-hidden="true"></i></a></td>
-                                        </tr>
-                                    </tbody>
-                                {% endfor %}
-                            </table>
-                        </div>
-                    </div>                
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="page-header">Empresas destacadas</h2>
+                <!-- /.navbar-collapse -->
+            </nav>
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    <h2 class="page-header">Empresas pendientes por validar</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>RFC</th>
+                                    <th>Sector</th>
+                                    <th>Representante</th>
+                                    <th>Ext. Representante</th>
+                                    <th>Email de Representante</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+
+
+                            {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                            {% for company in pagination  %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ company.id }}</td>
+                                        <td>{{ company.tradename }}</td>
+                                        <td>{{ company.rfc }}</td>
+                                        <td>{{ company.businesssector }}</td>
+                                        <td>{{ company.contacname }}</td>
+                                        <td>{{ company.telephoneext }}</td>
+                                        <td>{{ company.businessemail }}</td>
+                                        <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Validar" data-original-title=""><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
                     </div>
-                    <div class="col-lg-12">
+
+
+                    <h2 class="page-header">Empresas destacadas</h2>
+                    <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Opiniones Totales</th>
                                     <th>Puntos Totales</th>
-                                    <th>Calificacion Generals</th>
+                                    <th>Calificacion General</th>
                                 </tr>
                             </thead>
 
                             {% for avg in general_avg %}
-                                {% for company in pagination %}
+                                {% for company in companies %}
                                     <tbody>
                                         <tr>
-                                            {% if company.id == avg.company%}
+                                            {% if company.id == avg.company %}
                                                 <td>{{ company.id }}</td>
                                                 <td>{{ company.tradename }}</td>
                                                 <td>0</td>
@@ -125,27 +141,17 @@
                                             {% endif %}
                                         </tr>
                                     </tbody>
-
-
-
                                 {% endfor %}
                             {% endfor %}
-
-
                         </table>
                     </div>
                 </div>
+                <!-- /.container-fluid -->
 
-
-                <div class="row">
-                    <div class="col-lg-12" >
-                        <button onload="graficar()">Graficar</button>
-                        <div class="rellenar"></div>
-                    </div>
-                </div>
             </div>
-        </section>
-
-
+            <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
     </body>
+
 </html>
