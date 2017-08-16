@@ -702,7 +702,7 @@ class AdministratorController extends Controller {
 	}
 
 
-	public function graficarGraficaAction(Request $request) {
+	public function graficaAction(Request $request) {
 		//$email = $request->get("email");
 
 		$em = $this->getDoctrine()->getManager();
@@ -721,17 +721,7 @@ class AdministratorController extends Controller {
 		foreach ($po as $e) {
 			$e["age"];
 		}
-
-		
-		return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
-					'empresas' => $e,
-					'comentarios' => $c,
-					'usuarios' => $u,
-					'todas_empresas' => $te,
-					'claims' => $re,
-					'pagination' => $pagination
-		));
-		return new JSONResponse($e);
+		return new Response($e);
 	}
 
 		/*

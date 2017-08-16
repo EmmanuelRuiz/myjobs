@@ -27,7 +27,7 @@ administrator_validate_company:
     defaults: { _controller: AppBundle:Administrator:validateCompanies }
     
 administrator_validate_comment:
-    path: /administrat/comentarios/validar
+    path: /administrar/comentarios/validar
     defaults: { _controller: AppBundle:Administrator:validateComment }
     
 administrator_claim:
@@ -45,7 +45,12 @@ administrator_claimcompany:
 administrator_graficar:
     path: /graficar
     defaults: { _controller: AppBundle:Administrator:graficar }
-    
+
+administrator_grafica:
+    path: /administrar/grafica
+    defaults: { _controller: AppBundle:User:grafica }
+    methods: [POST]
+
 
 administrator_login:
     path: /admin/login

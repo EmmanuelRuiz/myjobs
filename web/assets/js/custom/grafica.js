@@ -1,15 +1,14 @@
+
 $(document).ready(function() {
     $(".graficar").click(function() {
         //var email = "hola";
-
         $.ajax({
-            url: URL + '/graficar',
+            url: URL + '/administrar/grafica',
             //data: {email: email},
             type: 'POST',
-            success: function(datos) {
-                $(".rellenar").text(datos);
-                console.log(datos);
-                graficar(datos);
+            success: function(response) {
+                $(".dato").text(response);
+                console.log(response);
 
             }
         });
@@ -18,10 +17,10 @@ $(document).ready(function() {
 
 });
 
-var datos = [144, 89, 55, 34, 21, 13, 8, 5, 3, 2, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144];
 
-function graficar() {
-    alert("gola");
+
+function graficars() {
+   
     var w = 500;
     var h = 300;
 
