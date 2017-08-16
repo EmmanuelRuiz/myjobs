@@ -696,7 +696,13 @@ class AdministratorController extends Controller {
 		
 	}
 
-	public function graficarAction(Request $request) {
+
+	public function graficarAction(Request $request){
+		return $this->render('AppBundle:Administrator:administrator_graficar.html.twig');
+	}
+
+
+	public function graficarGraficaAction(Request $request) {
 		//$email = $request->get("email");
 
 		$em = $this->getDoctrine()->getManager();
@@ -717,7 +723,14 @@ class AdministratorController extends Controller {
 		}
 
 		
-
+		return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
+					'empresas' => $e,
+					'comentarios' => $c,
+					'usuarios' => $u,
+					'todas_empresas' => $te,
+					'claims' => $re,
+					'pagination' => $pagination
+		));
 		return new JSONResponse($e);
 	}
 

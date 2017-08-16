@@ -46,8 +46,7 @@ administrator_graficar:
     path: /graficar
     defaults: { _controller: AppBundle:Administrator:graficar }
     
-    
-    
+
 administrator_login:
     path: /admin/login
     defaults: { _controller: AppBundle:Administrator:login }

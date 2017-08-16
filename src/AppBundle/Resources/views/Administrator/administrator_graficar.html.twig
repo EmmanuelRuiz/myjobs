@@ -78,53 +78,8 @@
             </nav>
 
             <div id="page-wrapper">
-
-                <div class="container-fluid">
-
-                    <h2 class="page-header">Administrar empresas</h2>
-                    {%for message in app.session.flashbag().get('msg')%}
-                        <div class="alert alert-success">{{message}}</div>
-                    {%endfor%}        
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>RFC</th>
-                                    <th>Sector</th>
-                                    <th>Sitio Web</th>
-                                    <th>Creado</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                            {% for companies in pagination %}
-                                <tbody>
-                                    <tr>
-                                        <td>{{ companies.id }}</td>
-                                        <td>{{ companies.tradename }}</td>
-                                        <td>{{ companies.rfc }}</td>
-                                        <td>{{ companies.businesssector }}</td>
-                                        <td>{{ companies.website}}</td>
-                                        <td>{{ companies.createdAt|date("D d M Y") }}</td>
-                                        <td>
-                                            <a href="{{ path("company_profile", {"id":companies.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Ver" data-original-title=""><i class="fa fa-search" aria-hidden="true"></i></a>
-                                            <a href="{{ path("companies_edit", {"id":companies.id})}}" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="left" title="Editar" data-original-title=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>   
-                                            <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            {% endfor %}
-                        </table>
-                    </div>
-                    {# modificar el js para el scroll infinito #}
-                    <div class="navigation text-center">
-                        {{ knp_pagination_render(pagination) }}
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-
+                <button></button>
+                
             </div>
             <!-- /#page-wrapper -->
         </div>
