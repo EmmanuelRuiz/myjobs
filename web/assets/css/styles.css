@@ -341,7 +341,7 @@ body {
 }
 /* register user */
 .register-section{
-    padding-top: 40px;
+    padding-top: 80px;
     padding-bottom: 20px;
 }
 
@@ -756,6 +756,11 @@ input[id=file] {
 
     .btn-opinion-movil{
         display: block;
+    }
+
+    .register-section{
+        padding-top: 40px;
+        padding-bottom: 20px;
     }
 
     /* opinions */
