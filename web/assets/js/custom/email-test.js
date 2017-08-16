@@ -14,44 +14,38 @@ $(document).ready(function() {
     function validarfinal() {
         var customer_name = document.getElementById("backendbundle_user_name").value;
         if (customer_name.length < 2) {
-            $("#spanName").remove();
-            $("#backendbundle_user_name").attr("class", "alert alert-danger");
-            $("#backendbundle_user_name").parent().append("<span id='spanName'>Ingresa un nombre correcto</span>");
+            $(".help-block").remove();
+            $(".name-input").css("border", "2px solid red");
+            $("#backendbundle_user_name").parent().append("<span class='help-block'>Ingresa tu nombre correcto</span>");
             return false;
         }
         var customer_flastname = document.getElementById("backendbundle_user_plastname").value;
         if (customer_flastname.length < 2) {
-            $("#spanFlastname").remove();
-            $("#backendbundle_user_plastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_plastname").parent().append("<span id='spanFlastname'>Ingresa un apellido correcto</span>");
+            $(".help-block").remove();
+            $(".palstname-input").css("border", "2px solid red");
+            $("#backendbundle_user_plastname").parent().append("<span class='help-block'>Ingresa tu apellido correctamente</span>");
             return false;
         }
         var customer_mlastname = document.getElementById("backendbundle_user_mlastname").value;
         if (customer_mlastname.length < 2) {
-            $("#spanMlastname").remove();
-            $("#backendbundle_user_mlastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_mlastname").parent().append("<span id='spanMlastname'>Ingresa un apellido correcto</span>");
+            $(".help-block").remove();
+            $(".malstname-input").css("border", "2px solid red");
+            $("#backendbundle_user_mlastname").parent().append("<span class='help-block'>Ingresa tu apellido correctamente</span>");
             return false;
         }
-        var customer_phone = document.getElementById("backendbundle_user_telephone").value;
-        if (customer_phone.length < 10) {
-            $("#spanPhone").remove();
-            $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
-            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Necesitamos tu número de teléfono completo</span>");
-            return false;
-        }
+        
         var customer_password = document.getElementById("backendbundle_user_password").value;
         if (customer_password.length < 6) {
-            $("#spanPassword").remove();
-            $("#backendbundle_user_password").attr("class", "alert alert-danger");
-            $("#backendbundle_user_password").parent().append("<span id='spanPassword'>Tu contraseña debe tener 6 o más carácteres</span>");
+            $(".help-block").remove();
+            $(".password-input").css("border", "2px solid red");
+            $("#backendbundle_user_password").parent().append("<span class='help-block'>La contraseña debe tener 6 o mas caracteres</span>");
             return false;
         }
         var repetir_password = document.getElementById("confirmpasswordInput").value;
         if (customer_password != repetir_password) {
-            $("#spanPassword").remove();
-            $("#confirmpasswordInput").attr("class", "alert alert-danger");
-            $("#confirmpasswordInput").parent().append("<span id='spanPassword'>Las contraseñas que ingresaste no coinciden</span>");
+            $(".help-block").remove();
+            $("#confirmpasswordInput").css("border", "2px solid red");
+            $("#confirmpasswordInput").parent().append("<span class='help-block'>Las contraseñas no coinciden</span>");
             return false;
         }
     }
@@ -64,23 +58,23 @@ $(document).ready(function() {
         var expNombre = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
         var customer_name = document.getElementById("backendbundle_user_name").value;
         if (!expNombre.exec(customer_name)) {
-            $("#spanName").remove();
-            $("#backendbundle_user_name").attr("class", "alert alert-danger");
-            $("#backendbundle_user_name").parent().append("<span id='spanName'>Solo se permiten letras y espacios</span>");
+            $(".help-block").remove();
+            $(".name-input").css("border", "2px solid red");
+            $("#backendbundle_user_name").parent().append("<span class='help-block'>Ingresa solo letras y/o espacios</span>");
             return false;
         } else if (/^\s+$/.test(customer_name)) {
-            $("#spanName").remove();
-            $("#backendbundle_user_name").attr("class", "alert alert-danger");
-            $("#backendbundle_user_name").parent().append("<span id='spanName'>Ingresa un nombre</span>");
+            $(".help-block").remove();
+            $(".name-input").css("border", "2px solid red");
+            $("#backendbundle_user_name").parent().append("<span class='help-block'>Ingresa un nombre correctamente</span>");
             return false;
         } else if (!isNaN(customer_name)) {
-            $("#spanName").remove();
-            $("#backendbundle_user_name").attr("class", "alert alert-danger");
-            $("#backendbundle_user_name").parent().append("<span id='spanName'>Ingresa un nombre valido</span>");
+            $(".help-block").remove();
+            $(".name-input").css("border", "2px solid red");
+            $("#backendbundle_user_name").parent().append("<span class='help-block'>Ingresa un nombre valido</span>");
             return false;
         } else {
-            $("#spanName").remove();
-            $("#backendbundle_user_name").attr("class", "alert alert-success");
+            $(".help-block").remove();
+            $(".name-input").css("border", "2px solid green");
             return true;
         }
     }
@@ -93,23 +87,23 @@ $(document).ready(function() {
         var expNombre = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 
         if (!expNombre.exec(customer_flastname)) {
-            $("#spanFlastname").remove();
-            $("#backendbundle_user_plastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_plastname").parent().append("<span id='spanFlastname'>Solo se permiten letras y espacios</span>");
+            $(".help-block").remove();
+            $(".plastname-input").css("border", "2px solid red");
+            $("#backendbundle_user_plastname").parent().append("<span class='help-block'>Ingresa solo letras y/o espacios</span>");
             return false;
         } else if (/^\s+$/.test(customer_flastname)) {
-            $("#spanFlastname").remove();
-            $("#backendbundle_user_plastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_plastname").parent().append("<span id='spanFlastname'>Ingresa un apellido</span>");
+            $(".help-block").remove();
+            $(".plastname-input").css("border", "2px solid red");
+            $("#backendbundle_user_plastname").parent().append("<span class='help-block'>Ingresa un nombre correctamente</span>");
             return false;
         } else if (!isNaN(customer_flastname)) {
-            $("#spanFlastname").remove();
-            $("#backendbundle_user_plastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_plastname").parent().append("<span id='spanFlastname'>Ingresa un apellido valido</span>");
+            $(".help-block").remove();
+            $(".plastname-input").css("border", "2px solid red");
+            $("#backendbundle_user_plastname").parent().append("<span class='help-block'>Ingresa un nombre valido</span>");
             return false;
         } else {
-            $("#spanFlastname").remove();
-            $("#backendbundle_user_plastname").attr("class", "alert alert-success");
+            $(".help-block").remove();
+            $(".plastname-input").css("border", "2px solid green");
             return true;
         }
     }
@@ -121,23 +115,23 @@ $(document).ready(function() {
         var customer_mlastname = document.getElementById("backendbundle_user_mlastname").value;
         var expNombre = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
         if (!expNombre.exec(customer_mlastname)) {
-            $("#spanMlastname").remove();
-            $("#backendbundle_user_mlastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_mlastname").parent().append("<span id='spanMlastname'>Solo se permiten letras y espacios</span>");
+            $(".help-block").remove();
+            $(".mlastname-input").css("border", "2px solid red");
+            $("#backendbundle_user_mlastname").parent().append("<span class='help-block'>Ingresa solo letras y/o espacios</span>");
             return false;
         } else if (/^\s+$/.test(customer_mlastname)) {
-            $("#spanMlastname").remove();
-            $("#backendbundle_user_mlastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_mlastname").parent().append("<span id='spanMlastname'>Ingresa un apellido</span>");
+            $(".help-block").remove();
+            $(".mlastname-input").css("border", "2px solid red");
+            $("#backendbundle_user_mlastname").parent().append("<span class='help-block'>Ingresa un nombre correctamente</span>");
             return false;
         } else if (!isNaN(customer_mlastname)) {
-            $("#spanMlastname").remove();
-            $("#backendbundle_user_mlastname").attr("class", "alert alert-danger");
-            $("#backendbundle_user_mlastname").parent().append("<span id='spanMlastname'>Ingresa un apellido valido</span>");
+            $(".help-block").remove();
+            $(".mlastname-input").css("border", "2px solid red");
+            $("#backendbundle_user_mlastname").parent().append("<span class='help-block'>Ingresa un nombre valido</span>");
             return false;
         } else {
-            $("#spanMlastname").remove();
-            $("#backendbundle_user_mlastname").attr("class", "alert alert-success");
+            $(".help-block").remove();
+            $(".mlastname-input").css("border", "2px solid green");
             return true;
         }
     }
@@ -149,23 +143,23 @@ $(document).ready(function() {
         var customer_email = document.getElementById("backendbundle_user_email").value;
         var expEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (!expEmail.exec(customer_email)) {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").attr("class", "alert alert-danger");
-            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>El E-mail no es correcto</span>");
+            $(".help-block").remove();
+            $(".email-input").css("border", "2px solid red");
+            $("#backendbundle_user_email").parent().append("<span class='help-block'>El correo elctronico no es valido</span>");
             return false;
         } else if (/^\s+$/.test(customer_email)) {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").attr("class", "alert alert-danger");
-            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>Ingresa un E-mail</span>");
+            $(".help-block").remove();
+            $(".email-input").css("border", "2px solid red");
+            $("#backendbundle_user_email").parent().append("<span class='help-block'>Ingresa un email correcto</span>");
             return false;
         } else if (!isNaN(customer_email)) {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").attr("class", "alert alert-danger");
-            $("#backendbundle_user_email").parent().append("<span id='spanEmail'>Ingresa un E-mail valido</span>");
+            $(".help-block").remove();
+            $(".email-input").css("border", "2px solid red");
+            $("#backendbundle_user_email").parent().append("<span class='help-block'>Ingresa un email correcto</span>");
             return false;
         } else {
-            $("#spanEmail").remove();
-            $("#backendbundle_user_email").removeClass("alert-danger");
+            $(".help-block").remove();
+            
             $.ajax({
                 url: URL + '/email-test',
                 data: {
@@ -174,9 +168,10 @@ $(document).ready(function() {
                 type: 'POST',
                 success: function(response) {
                     if (response == 'used') {
-                        $(".email-input").css("border", "5px solid red");
+                        $(".email-input").css("border", "2px solid red");
+						$("#backendbundle_user_email").parent().append("<span class='help-block'>El correo electronico esta en uso</span>");
                     } else {
-                        $(".email-input").css("border", "5px solid green");
+                        $(".email-input").css("border", "2px solid green");
                     }
                 }
             });
@@ -190,24 +185,24 @@ $(document).ready(function() {
      */
     function validarPhone() {
         var customer_phone = document.getElementById("backendbundle_user_telephone").value;
-        if(customer_phone.length == 0){
-            $("#spanPhone").remove();
-            $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
-            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Inserta un número de teléfono</span>");
+        if(customer_phone.length < 10){
+            $(".help-block").remove();
+            $(".phone-input").css("border", "2px solid red");
+            $("#backendbundle_user_telephone").parent().append("<span class='help-block'>Ingresa un numero de telefono valido</span>");
             return false;
         } else if (isNaN(customer_phone)) {
-            $("#spanPhone").remove();
-            $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
-            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Inserta un número de teléfono válido</span>");
+			$(".help-block").remove();
+            $(".phone-input").css("border", "2px solid red");
+            $("#backendbundle_user_telephone").parent().append("<span class='help-block'>Ingresa un numero de telefono correcto</span>");
             return false;
         } else if (/^\s+$/.test(customer_phone)) {
-            $("#spanPhone").remove();
-            $("#backendbundle_user_telephone").attr("class", "alert alert-danger");
-            $("#backendbundle_user_telephone").parent().append("<span id='spanPhone'>Inserta un número de teléfono válido</span>");
+			$(".help-block").remove();
+            $(".phone-input").css("border", "2px solid red");
+            $("#backendbundle_user_telephone").parent().append("<span class='help-block'>Ingresa un numero de telefono correcto</span>");
             return false;
         } else {
-            $("#spanPhone").remove();
-            $("#backendbundle_user_telephone").attr("class", "alert alert-success");
+            $(".help-block").remove();
+            $(".phone-input").css("border", "2px solid green");
             return true;
         }
     }
@@ -219,24 +214,24 @@ $(document).ready(function() {
     function validarAge() {
         var customer_birthdate = document.getElementById("backendbundle_user_age").value;
 
-        if (customer_birthdate < 18 || customer_birthdate > 80) {
-            $("#spanAge").remove();
-            $("#backendbundle_user_age").attr("class", "alert alert-danger");
-            $("#backendbundle_user_age").parent().append("<span id='spanAge'>Debes tener más de 18 y menos de 80</span>");
+        if (customer_birthdate < 18 || customer_birthdate > 100) {
+            $(".help-block").remove();
+            $(".age-input").css("border", "2px solid red");
+            $("#backendbundle_user_age").parent().append("<span class='help-block'>Es necesario que seas mayor de edad</span>");
             return false;
         } else if (/^\s+$/.test(customer_birthdate)) {
-            $("#spanAge").remove();
-            $("#backendbundle_user_age").attr("class", "alert alert-danger");
-            $("#backendbundle_user_age").parent().append("<span id='spanAge'>Ingresa tu edad</span>");
+           $(".help-block").remove();
+            $(".age-input").css("border", "2px solid red");
+            $("#backendbundle_user_age").parent().append("<span class='help-block'>Ingresa tu edad correctamente</span>");
             return false;
         } else if (isNaN(customer_birthdate)) {
-            $("#spanAge").remove();
-            $("#backendbundle_user_age").attr("class", "alert alert-danger");
-            $("#backendbundle_user_age").parent().append("<span id='spanAge'>Ingresa tu edad</span>");
+            $(".help-block").remove();
+            $(".age-input").css("border", "2px solid red");
+            $("#backendbundle_user_age").parent().append("<span class='help-block'>Ingresa tu edad correctamente</span>");
             return false;
         } else {
-            $("#spanAge").remove();
-            $("#backendbundle_user_age").attr("class", "alert alert-success");
+            $(".help-block").remove();
+            $(".age-input").css("border", "2px solid green");
             return true;
         }
     }

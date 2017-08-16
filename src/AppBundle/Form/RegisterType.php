@@ -26,21 +26,21 @@ class RegisterType extends AbstractType {
                     'label' => 'Nombre',
                     'required' => 'required',
                     'attr' => array(
-                        'class' => 'form-name form-control'
+                        'class' => 'form-name form-control name-input'
                     )
                 ))
                 ->add('plastname', TextType::class, array(
                     'label' => 'Apellido paterno',
                     'required' => 'required',
                     'attr' => array(
-                        'class' => 'form-lastname form-control'
+                        'class' => 'form-lastname form-control plastname-input'
                     )
                 ))
                 ->add('mlastname', TextType::class, array(
                     'label' => 'Apellido materno',
                     'required' => 'required',
                     'attr' => array(
-                        'class' => 'form-lastname form-control'
+                        'class' => 'form-lastname form-control mlastname-input'
                     )
                 ))
                 ->add('email', EmailType::class, array(
@@ -54,21 +54,21 @@ class RegisterType extends AbstractType {
                     'label' => 'Contraseña',
                     'required' => 'required',
                     'attr' => array(
-                        'class' => 'form-password form-control'
+                        'class' => 'form-password form-control password-input'
                     )
                 ))
                 ->add('age', NumberType::class, array(
                     'label' => 'Edad',
                     'required' => 'required',
                     'attr' => array(
-                        'class' => 'form-control'
+                        'class' => 'form-control age-input'
                     )
                 ))
                 ->add('telephone', TextType::class, array(
                     'label' => 'Numero telefonico',
                     'required' => 'required',
                     'attr' => array(
-                        'class' => 'form-control'
+                        'class' => 'form-control phone-input'
                     )
                 ))
                 ->add('termscondition', CheckboxType::class, array(
@@ -78,15 +78,7 @@ class RegisterType extends AbstractType {
                         'class' => 'hidden'
                     )
                 ))
-                ->add('datejob', DateType::class, array(
-                    'label' => 'Fecha desde que labora',
-                    'widget' => 'choice',
-                    'years' => range(1980, 2025),
-                    // do not render as type="date", to avoid HTML5 date pickers
-                    'html5' => false,
-                    // add a class that can be selected in JavaScript
-                    'attr' => ['class' => 'form-control js-datepicker'],
-                ))
+                
                 ->add('anonimo', ChoiceType::class, array(
                     'choices' => array(
                         'Si' => 'Si',
