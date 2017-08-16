@@ -5,11 +5,11 @@ administrator_index:
 administrator_comment:
     path: /administrar/comentarios
     defaults: { _controller: AppBundle:Administrator:comments}
-    
+
 administrator_user:
     path: /administrar/usuarios
     defaults: { _controller: AppBundle:Administrator:users}
-    
+
 administrator_allcompanies:
     path: /administrar/todas_empresas
     defaults: { _controller: AppBundle:Administrator:allCompanies}
@@ -17,27 +17,27 @@ administrator_allcompanies:
 administrator_delete_companies:
     path: /administrar/todas_empresas/eliminar
     defaults: { _controller: AppBundle:Administrator:deleteCompanies }
-    
+
 administrator_delete_user:
     path: /administrar/usuarios/eliminar
     defaults: { _controller: AppBundle:Administrator:deleteUsers}
-    
+
 administrator_validate_company:
     path: /administrar/empresas/validar
     defaults: { _controller: AppBundle:Administrator:validateCompanies }
-    
+
 administrator_validate_comment:
     path: /administrar/comentarios/validar
     defaults: { _controller: AppBundle:Administrator:validateComment }
-    
+
 administrator_claim:
     path: /administrar/reclamaciones
     defaults: { _controller: AppBundle:Administrator:view }
-    
+
 administrator_asign:
     path: /administrar/reclamaciones/asignar
     defaults: { _controller: AppBundle:Administrator:asign }
-    
+
 administrator_claimcompany:
     path: /administrar/reclamar
     defaults: { _controller: AppBundle:Administrator:reclamar }
@@ -48,23 +48,19 @@ administrator_graficar:
 
 administrator_grafica:
     path: /administrar/grafica
-    defaults: { _controller: AppBundle:User:grafica }
-    methods: [POST]
-
+    defaults: { _controller: AppBundle:Administrator:grafica }
 
 administrator_login:
     path: /admin/login
     defaults: { _controller: AppBundle:Administrator:login }
-    
+
 administrador_login_check:
    path: /admin/login_check
 
 administrador_logout:
    path: /admin/logout
 
-   
+
 administrator_panel:
     path: /admin/panel
     defaults: { _controller: AppBundle:Administrator:panel }
-   
-

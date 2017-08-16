@@ -1,26 +1,15 @@
 
 $(document).ready(function() {
-    $(".graficar").click(function() {
-        //var email = "hola";
-        $.ajax({
-            url: URL + '/administrar/grafica',
-            //data: {email: email},
-            type: 'POST',
-            success: function(response) {
-                $(".dato").text(response);
-                console.log(response);
-
-            }
-        });
-    });
-
-
+  $.ajax({
+      url: URL + '/administrar/grafica',
+      type: 'GET',
+      success: function(response) {
+        
+      }
+  });
 });
 
-
-
-function graficars() {
-   
+function graficar(datos) {
     var w = 500;
     var h = 300;
 

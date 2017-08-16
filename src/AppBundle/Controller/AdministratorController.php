@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
-// entidades 
+// entidades
 use BackendBundle\Entity\Comment;
 use BackendBundle\Entity\Opinion;
 use BackendBundle\Entity\Company;
@@ -26,7 +26,7 @@ class AdministratorController extends Controller {
 	public function loginAction(Request $request){
 		return $this->render('AppBundle:Administrator:login.html.twig');
 	}
-	
+
 	public function indexAction(Request $request) {
 
 		$em = $this->getDoctrine()->getManager();
@@ -120,7 +120,7 @@ class AdministratorController extends Controller {
 				->getQuery();
 
 		$general_avg = $query_avg ->getResult();
-		
+
 		return $this->render('AppBundle:Administrator:administrator.html.twig', array(
 			'empresas' => $e,
 			'comentarios' => $c,
@@ -674,26 +674,26 @@ class AdministratorController extends Controller {
 		}
 
 		$this->session->getFlashBag()->add("status", $status);
-		// /company/id 
+		// /company/id
 		return $this->redirectToRoute('company_profile', array('id' => $id));
 	}
-	
+
 	public function validateCommentAction(Request $request){
 		$em = $this->getDoctrine()->getManager();
-		
+
 		$comment = new Comment();
 		$comment_id = $request->query->get('id');
-		
+
 		$comment_repo = $em->getRepository('BackendBundle:Comment');
 		$comment = $comment_repo->find($comment_id);
-		
-		
+
+
 		$comment->setStatus('valid');
 		$em->persist($comment);
 		$em->flush();
-		
+
 		return $this->redirectToRoute('administrator_comment');
-		
+
 	}
 
 
@@ -706,23 +706,15 @@ class AdministratorController extends Controller {
 		//$email = $request->get("email");
 
 		$em = $this->getDoctrine()->getManager();
-		$db = $em->getConnection();
-		$user_repo = $em->getRepository("BackendBundle:User");
+
 		/* si el nick es igual al de la bd es que ya existe */
 
 
-		$query = "SELECT age FROM users;";
-		$stmt = $db->prepare($query);
-		$params = array();
-		$stmt->execute($params);
+		$query = $em->createQuery('SELECT u.age FROM BackendBundle:User u');
 
-		$po = $stmt->fetchAll();
+		$notification = $query->getResult();
 
-		foreach ($po as $e) {
-			$e["age"];
-		}
-		return new Response($e);
-	}
+		return new JsonResponse($notification);
 
 		/*
 		SELECT CASE WHEN
@@ -736,6 +728,5 @@ class AdministratorController extends Controller {
 		GROUP BY
 		  rango;
 		*/
-
-
+	}
 }
