@@ -918,15 +918,3 @@ input[id=file] {
 
 
 
-
-/*graficas*/
-
-svg {
-    border: 1px solid #aaa;
-}
-
-text {
-    font-family: helvetica;
-    font-size: 10px;
-    text-anchor: middle;
-}

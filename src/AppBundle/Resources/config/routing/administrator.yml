@@ -49,6 +49,7 @@ administrator_graficar:
 administrator_grafica:
     path: /administrar/grafica
     defaults: { _controller: AppBundle:Administrator:grafica }
+    methods: [POST]
 
 administrator_login:
     path: /admin/login

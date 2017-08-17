@@ -226,3 +226,17 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+
+
+/*graficas*/
+
+svg {
+    border: 1px solid #aaa;
+}
+
+text {
+    font-family: helvetica;
+    font-size: 10px;
+    text-anchor: middle;
+}

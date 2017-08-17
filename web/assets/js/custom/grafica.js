@@ -1,15 +1,25 @@
-
 $(document).ready(function() {
-  $.ajax({
-      url: URL + '/administrar/grafica',
-      type: 'GET',
-      success: function(response) {
-        
-      }
-  });
+
+    $.ajax({
+        url: URL + '/administrar/grafica',
+        type: 'POST',
+        success: function(response) {
+            var datos = new Array();
+            $.each(response, function(i, item) {
+                datos.push(response[i].age)
+                console.log(response[i].age);
+                console.log("-------");
+                console.log(datos);
+            });
+            graficar(datos);
+        }
+    });
+
+
 });
 
 function graficar(datos) {
+
     var w = 500;
     var h = 300;
 
