@@ -4,12 +4,9 @@ $(document).ready(function() {
         url: URL + '/administrar/grafica',
         type: 'POST',
         success: function(response) {
-            var datos = new Array();
+            var datos = [];
             $.each(response, function(i, item) {
                 datos.push(response[i].age)
-                console.log(response[i].age);
-                console.log("-------");
-                console.log(datos);
             });
             graficar(datos);
         }
@@ -19,7 +16,7 @@ $(document).ready(function() {
 });
 
 function graficar(datos) {
-
+    //tamaño de la grafica
     var w = 500;
     var h = 300;
 
