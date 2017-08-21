@@ -1,6 +1,5 @@
 html,
 body {
-
     height: 100%;
 }
 
@@ -8,8 +7,20 @@ body {
 .how-we-work-for-you-section,
 .companies-from-myjobsadvisor,
 .recent-opinion{
-    padding-top: 5%;
+    padding-top: 4%;
     padding-bottom: 5%;
+}
+
+.recent-opinion .opinions{
+  color: #E75402;
+}
+
+.companies-from-myjobsadvisor .company{
+  color: #E75402;
+}
+
+.how-we-work-for-you-section .our-process{
+  color: #E75402;
 }
 
 .result-company-section{
@@ -39,6 +50,29 @@ body {
 
 .media {
     margin-top: 0;
+}
+
+.btn-page{
+  color: #ffffff;
+  background-color: #002F6D;
+  border-color: #002F6D;
+}
+
+.btn-page:hover{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+.btn-page:focus{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+
+.btn-page:active{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
 }
 
 /* end general*/
@@ -79,7 +113,7 @@ body {
 .form-rating h5 {
     font-weight: bold;
 }
-/*end puntaje*/
+/* end puntaje*/
 
 
 
@@ -181,6 +215,71 @@ body {
     background-color: transparent;
     color: #FF9E1B;
 }
+
+.btn-sign-in{
+  color: #ffffff;
+  background-color: #002F6D;
+  border-color: #002F6D;
+}
+
+.btn-sign-in:hover{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+
+.btn-default:focus, .btn-default.focus {
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
+}
+
+.open>.dropdown-toggle.btn-sign-in:focus{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+
+.btn-sign-in:active:hover{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+
+.btn-sign-in:active:focus{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+
+.btn-search{
+  color: #ffffff;
+  background-color: #002F6D;
+  border-color: #002F6D;
+}
+
+.btn-search:hover{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+.btn-search:focus{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+
+.btn-search:active{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+.btn-search:active:focus{
+  color: #ffffff;
+  background-color: #194F91;
+  border-color: #194F91;
+}
+
 
 /* end navbar layout */
 
@@ -402,14 +501,31 @@ body {
     background-color:#bb0000;
 }
 
+/* about section */
+.about-section{
+  padding-top: 2%;
+  padding-bottom: 3%;
+}
+/* end about section */
+
 
 /* footer */
 footer{
-    background-color: #293A52;
+    background-color: #002F6D;
     color: white;
     padding-top: 2%;
     padding-bottom: 1%;
 }
+
+.links-footer{
+  color: #FF9E1B;
+}
+
+.links-footer:hover{
+  color: #FF9E1B;
+}
+
+/* end footer */
 
 /* profile user */
 .profile-user-header{
@@ -652,7 +768,7 @@ input[id=file] {
     }
 
     .nav>.user-logged-in{
-        display: none; 
+        display: none;
     }
 
     #nav-movil{

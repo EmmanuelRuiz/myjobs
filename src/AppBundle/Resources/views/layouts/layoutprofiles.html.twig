@@ -136,7 +136,7 @@
 
                                         {{app.user.name}} {{app.user.plastname}}
                                         <span class="caret"></span>
-                                    </button> 
+                                    </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ path('user_profile') }}"><i class="fa fa-user "></i>&nbsp;Perfil</a></li>
                                         <li><a href="{{path('user_edit')}}"><i class="fa fa-pencil-square "></i>&nbsp;Editar perfil</a></li>
@@ -149,7 +149,7 @@
                                         <li><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
                                         <li><a href=""><i class="fa fa-question-circle"></i>&nbsp;Ayuda</a></li>
                                     </ul>
-                                </li>   
+                                </li>
                             {% endif %}
                         {% endif %}
 
@@ -166,44 +166,61 @@
         {% block content %}
             <!-- todo el contenido de la web -->
             Content default
-        {%endblock%}    
+        {%endblock%}
 
 
-        <footer class="col-lg-12 ">
+        <footer class="col-lg-12">
             <div class="container">
                 <div class="row footer">
                     <div class="col-md-4">
                         <div class="single-footer">
-                            <img src="{{ asset('assets/images/company-logo.png') }}" alt="" class="wow pulse" width="100" data-wow-delay="1s">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati architecto quaerat facere blanditiis tempora sequi nulla accusamus, possimus cum necessitatibus suscipit quia autem mollitia, similique quisquam molestias. Vel unde, blanditiis.</p>
+                            <img class="img-responsive" src="{{ asset('assets/images/myjobsadvisor-footer.png') }}" width="350">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed, et, consectetur adipisicing elit, sed, et, consectetur adipisicing elit, sed </p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="single-footer">
-                            <h4>Useful lnks</h4>
+                            <h4>Enlaces</h4>
                             <div class="footer-links">
                                 <ul class="list-unstyled">
-                                    <li><a href="">Acerca de</a></li>
-                                    <li><a href="" class="active">Servicios</a></li>
-                                    <li><a href="">Blog</a></li>
-                                    <li><a href="">Contacto</a></li>
-                                    <li><a href="">Terminos y condiciones</a></li>
+                                    <li><a class="links-footer" href="">Terminos y condiciones</a></li>
+                                </ul>
+                            </div>
+                            <h4>Contácto</h4>
+                            <div class="footer-links">
+                                <ul class="list-unstyled">
+                                    <li>Email: <b>contacto@myjobsadvisor.mx</b></li>
+                                    <li>Numero telefonico: <b>0000000000</b></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="single-footer">
-                            <h4>Siguenos</h4>
+                          <h4>Conectacte con nosotros</h4>
+                          <div class="footer-links">
+                              <ul class="list-unstyled">
+                                  <li><a class="links-footer" href=""><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+                                  <li><a class="links-footer" href=""><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+                                  <li><a class="links-footer" href=""><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                                  <li><a class="links-footer" href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i> Google +</a></li>
+                              </ul>
+                          </div>
                         </div>
                     </div>
+
                 </div>
+                <hr>
                 <div class="row footer-copy">
-                    <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span>  | <span> Creado con <span class="glyphicon glyphicon-heart"></span> por <a href="https://www.crealab.com.mx">CreaLab</a></span> </p>
+                  <div class="col-lg-6">
+                    <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span> </p>
+                  </div>
+                  <div class="col-lg-6 ">
+                    <p class="pull-right"><span> Creado con <i class="fa fa-heart" aria-hidden="true"></i> por <a class="links-footer" href="https://www.crealab.com.mx">CreaLab</a></span> </p>
+                  </div>
                 </div>
             </div>
         </footer>
+
     </body>
 </html>
-
-
