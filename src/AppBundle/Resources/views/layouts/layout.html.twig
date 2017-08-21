@@ -260,53 +260,42 @@
             </div>
         </footer>
 
+
         {% for message in app.session.flashbag().get('notice') %}
-
-            <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h3>Sesion Terminada</h3>
-                        </div>
-                        <div class="modal-body">
-                            <h4>{{ message }}</h4>
-
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header text-center">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h3>¿Te vas tan pronto?</h3>
+                          <img class="img-responsive center-block" src="{{ asset('assets/images/logout.png') }}" width="100">
+                          <p>Esta bien. No tardes en regresar</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
         {%endfor%}
 
+  
         {% for error in app.session.flashbag().get('error_login') %}
-
-            <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h3>Sesion Terminada</h3>
-                        </div>
-                        <div class="modal-body">
-                            <h4>{{ error }}</h4>
-
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header text-center">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h3>¡Ups! Ah ocurrido un error al iniciar sesión. Intentelo de nuevo</h3>
+                          <img class="img-responsive center-block" src="{{ asset('assets/images/login-error.png') }}" width="100">
+                      </div>
+                  </div>
+              </div>
+          </div>
         {%endfor%}
 
         <script>
-                $(document).ready(function ()
-                {
-                    $("#mostrarmodal").modal("show");
-                });
+          $(document).ready(function ()
+          {
+              $("#mostrarmodal").modal("show");
+          });
         </script>
     </body>
 </html>
