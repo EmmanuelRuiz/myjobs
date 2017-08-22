@@ -712,7 +712,7 @@ class AdministratorController extends Controller {
 
  		$db = $em->getConnection();
 
-		$querye = "SELECT age from users;";
+		$querye = "SELECT age FROM users WHERE age BETWEEN 10 AND 30 ;";
 		$stmt = $db->prepare($querye);
 		$params = array();
 		$stmt->execute($params);
