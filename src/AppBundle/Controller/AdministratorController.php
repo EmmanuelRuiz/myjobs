@@ -703,16 +703,24 @@ class AdministratorController extends Controller {
 
 
 	public function graficaAction(Request $request) {
-		//$email = $request->get("email");
-
 		$em = $this->getDoctrine()->getManager();
-
-		/* si el nick es igual al de la bd es que ya existe */
-
-
+		/*
 		$query = $em->createQuery('SELECT u.age FROM BackendBundle:User u');
 
 		$notification = $query->getResult();
+		*/
+
+ 		$db = $em->getConnection();
+
+		$querye = "SELECT age from users;";
+		$stmt = $db->prepare($querye);
+		$params = array();
+		$stmt->execute($params);
+
+		$notification = $stmt->fetchAll();
+
+
+
 
 		return new JsonResponse($notification);
 
