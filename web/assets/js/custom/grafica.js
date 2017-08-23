@@ -61,18 +61,18 @@ function graficar(datos) {
             .attr("fill", "SteelBlue");
     });
 
-
     svg.selectAll("text")
         .data(datos)
         .enter()
         .append("text")
         .text(function(d) {
-            return d;
+            return  'hola' + d ;
         })
         .attr("x", function(d, i) {
             return i * 21 + 40;
         })
         .attr("y", function(d) {
             return h - d - 53;
-        })
+        });
+
 }

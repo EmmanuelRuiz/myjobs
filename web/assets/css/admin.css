@@ -236,7 +236,16 @@ svg {
 }
 
 text {
+
     font-family: helvetica;
     font-size: 10px;
     text-anchor: middle;
 }
+
+/*
+
+    display: block; 
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg);
+
+    */
