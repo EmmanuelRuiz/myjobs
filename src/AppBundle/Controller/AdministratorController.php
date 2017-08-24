@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 // entidades
 use BackendBundle\Entity\Comment;
 use BackendBundle\Entity\Opinion;
@@ -698,7 +699,31 @@ class AdministratorController extends Controller {
 
 
 	public function graficarAction(Request $request){
-		return $this->render('AppBundle:Administrator:administrator_graficar.html.twig');
+		
+	    $pieChart = new PieChart();
+	    $pieChart->getData()->setArrayToDataTable(
+	        [['Task', 'Hours per Day'],
+	         ['Work',     11],
+	         ['Eat',      2],
+	         ['Commute',  2],
+	         ['Watch TV', 2],
+	         ['Sleep',    7]
+	        ]
+	    );
+	    $pieChart->getOptions()->setTitle('My Daily Activities');
+	    $pieChart->getOptions()->setHeight(500);
+	    $pieChart->getOptions()->setWidth(900);
+	    $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+	    $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+	    $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+	    $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+	    $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+    
+
+		return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', 
+			array('piechart' => $pieChart)
+		);
 	}
 
 
@@ -712,7 +737,7 @@ class AdministratorController extends Controller {
 
  		$db = $em->getConnection();
 
-		$querye = "SELECT age FROM users WHERE age BETWEEN 10 AND 30 ;";
+		$querye = "SELECT CASE WHEN (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29) THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más' END END END rango, COUNT(*) total FROM users GROUP BY rango ;";
 		$stmt = $db->prepare($querye);
 		$params = array();
 		$stmt->execute($params);

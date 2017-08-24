@@ -82,3 +82,6 @@ knp_paginator:
     template: 
         pagination: AppBundle:Layouts:custom_pagination.html.twig
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig
+
+cmen_google_charts:
+    version: "45"
