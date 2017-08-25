@@ -9,14 +9,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    {% if pagination.getTotalItemCount == 0%}
+                    {% if pagination.getTotalItemCount == 0 %}
                         <div class="search-result">
                             <h1 class="text-muted text-center">No se encontro ningun resultado</h1>
                             <h4 class="text-center">¿Deseas dar de alta alguna empresa?</h4>
 
                             <div class="col-lg-12 text-center">
                                 <a href="{{ path('register-company')}}" type="button" class="btn btn-info">¡Registrarla ahora!</a>
-                            </div>  
+                            </div>
                         </div>
 
                     {% else %}
@@ -26,7 +26,7 @@
                                 Total de resultados: {{ pagination.getTotalItemCount }}
                             </span>
                         </div>
-                        <hr/> 
+                        <hr/>
                     {% endif %}
 
                     {# usamos la variable company para recorrer cada resultado y mostrarlos #}
@@ -62,7 +62,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-            </div> 
+            </div>
         </div>
     </section>
 {% endblock %}

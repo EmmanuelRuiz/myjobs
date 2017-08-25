@@ -56,16 +56,16 @@ class CompanyController extends Controller {
 					$estado = $request->request->get('estado');
 					$municipio = $request->request->get('municipio');
 					$localidad = $request->request->get('localidad');
-		
+
 					$estado_repo = $em->getRepository("BackendBundle:Estado");
 					$nombre_estado = $estado_repo->findOneById($estado)->getNombre();
 
 					$municipio_repo = $em->getRepository("BackendBundle:Municipio");
 					$nombre_municipio = $municipio_repo->findOneById($municipio)->getNombre();
-					
+
 					$localidad_repo = $em->getRepository("BackendBundle:Localidad");
 					$nombre_localidad = $localidad_repo->findOneById($localidad)->getNombre();
-					
+
 					$createdAt = new \Datetime('now');
 					$updatedAt = new \Datetime('now');
 					$company->setUser($user);
@@ -273,7 +273,7 @@ class CompanyController extends Controller {
 
 		return new Response($status);
 	}
-	
+
 	// metodo para eliminar comentarios
 	public function removeCommentAction(Request $request, $id) {
 		$em = $this->getDoctrine()->getManager();
@@ -422,10 +422,10 @@ class CompanyController extends Controller {
 		if ($form->isSubmitted()) {
 			if ($form->isValid()) {
 				/*
-				 * usar entiti manager para consultas				
+				 * usar entiti manager para consultas
 				 * hacer comprobacion de que el usuario se quiere registrar
-				 * no este en la bd	
-				 * valor significa que es el parametro que recibimos			 
+				 * no este en la bd
+				 * valor significa que es el parametro que recibimos
 				 */
 
 				$query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename')
@@ -460,7 +460,7 @@ class CompanyController extends Controller {
 					$flush = $em->flush();
 
 
-					// mensajes de comprobación 
+					// mensajes de comprobación
 					if ($flush == null) {
 						$status = "La información de la empresa se a actualizado correctamente";
 					} else {
@@ -486,15 +486,23 @@ class CompanyController extends Controller {
 
 		$em = $this->getDoctrine()->getManager();
 		$user = $this->getUser();
-		$id = $request->query->get('id');
+		$id = $user->getId();
 
-		$company_repo = $em->getRepository('BackendBundle:Company');
 
-		$company = $company_repo->findAll();
+
+		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.user = $id";
+
+		$query = $em->createQuery($dql);
+
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+				$query, $request->query->getInt('page', 1), 5
+		);
 
 		return $this->render('AppBundle:Company:listmycompanies.html.twig', array(
-					'company' => $company
+					'pagination' => $pagination,
 		));
+
 	}
 
 }
