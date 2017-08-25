@@ -25,9 +25,7 @@
         <script src="{{ asset('assets/js/d3.min.js') }}"></script>
         <script src="{{ asset('assets/js/custom/grafica.js') }}"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-            {{ gc_draw(piechart, 'div_chart') }}
-        </script>
+
     </head>
 
     <body>
@@ -87,11 +85,15 @@
 
             <div id="page-wrapper">
                 <h2>Promedio de las edades de los usuarios</h2>
-                <div id="div_chart"></div>
+                    <div id="div_piechart"></div>
+                     <div id="div_histogram"></div>
             </div>
             <!-- /#page-wrapper -->
         </div>
         <!-- /#wrapper -->
+        <script type="text/javascript">
+            {{ gc_draw([piechart, histogram], ['div_piechart', 'div_histogram']) }}
+        </script>
     </body>
 
 </html>
