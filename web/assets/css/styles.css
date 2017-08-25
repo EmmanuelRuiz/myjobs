@@ -77,6 +77,46 @@ body {
 
 /* end general*/
 
+/* slide */
+
+.quotes-slider{
+  background-color: #002F6D;
+  color: white;
+  font-size: 30px;
+  padding-top: 2%;
+}
+
+.quotes-slider b{
+  font-size: 25px;
+}
+.quotes-slider #slides {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 250px;
+}
+
+.quotes-slider #slides ul {
+  list-style: none;
+  width: 100%;
+  height: 250px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.quotes-slider #slides li {
+  width: 100%;
+  height: 250px;
+  float: left;
+  text-align: center;
+  position: relative;
+  font-family: lato, sans-serif;
+}
+
+
+/* end slide */
+
 /* puntaje */
 
 
@@ -1031,6 +1071,3 @@ input[id=file] {
         border-top:0 none;
     }
 }
-
-
-

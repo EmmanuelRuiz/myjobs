@@ -3,21 +3,26 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/js/custom/companies.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/slider.js') }}"></script>
 {% endblock %}
 
 {% block content %}
     <section class="about-section">
         <div class="container">
-          <div class="row">
+          <div class="row ">
             <div class="col-lg-12 text-center">
-              <h2 class="our-process">Acerca de nosotros</h2>
+              <h2 class="our-process">Acerca de nosotros</h2><br>
             </div>
             <div class="col-lg-6">
               <h3>¿Quiénes somos?</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.s</p>
+              <p>MyJobsAdvisor es <b>una plataforma confiable</b> y auténtica basada en comentarios verdaderos
+                provenientes de los trabajadores y extrabajadores: ofrecemos una plataforma única donde los trabajadores intercambian
+                experiencias y <b>logran</b> reconocer los mejores lugares de trabajo.</p> <br>
+              <p>MyJobsAdvisor <b>suma el talento de profesionales en la gestión de relaciones laborales,</b> formación empresarial y
+              adquisición de talento.</p>
             </div>
             <div class="col-lg-6">
-              <img src="" alt="">
+              <img src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial-movil.png') }}" alt="" class="center-block img-responsive" width="350"/>
             </div>
           </div>
         </div>
@@ -26,24 +31,50 @@
     <section class="how-we-work-for-you-section">
         <div class="container">
             <div class="col-lg-12 text-center">
-                <h4 class="our-process">Nuestro proceso</h4>
-                <h1>¿Cómo trabajamos para ti?</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p><br>
+                <h4 class="our-process">MyJobsAdvisor y los trabajadores</h4>
+                <h1>¿Cómo ayudamos a los trabajadores y extrabajadores?</h1>
+                <p>Ayudamos a las personas a encontrar el mejor lugar para desarrollar su talento.</p><br>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
-                <img src="{{ asset('assets/images/imgdefault.png') }}" alt="" class="center-block img-responsive img-circle" width="150">
-                <h4>Aqui va un punto</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
+                <img src="{{ asset('assets/images/rating.png') }}" alt="" class="center-block img-responsive" >
+                <h4>Evaluaciones</h4>
+                <p>Nuestra plataforma permite la evaluación de cualquier empresa de manera verdadera y transparente basados en una metodología original.</p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
-                <img src="{{ asset('assets/images/imgdefault.png') }}" alt="" class="center-block img-responsive img-circle" width="150">
-                <h4>Aqui va un punto</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
+                <img src="{{ asset('assets/images/profesional.png') }}" alt="" class="center-block img-responsive " >
+                <h4>Perspectivas</h4>
+                <p>Los trabajadores y extrabajadores evalúan con base en su experiencia, proporcionando una perspectiva real de cada organización.</p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
-                <img src="{{ asset('assets/images/imgdefault.png') }}" alt="" class="center-block img-responsive img-circle" width="150">
+                <img src="{{ asset('assets/images/job.png') }}" alt="" class="center-block img-responsive " >
+                <h4>Desarrolla tus talentos</h4>
+                <p>Deja de perder tiempo en el lugar equivocado, encuentra la mejor empresa para desarrollar tu talento, comienza o continua tu carrera profesional.</p>
+            </div>
+        </div>
+    </section><hr>
+
+    <section class="how-we-work-for-you-section">
+        <div class="container">
+            <div class="col-lg-12 text-center">
+                <h4 class="our-process">MyJobsAdvisor y las empresas</h4>
+                <h1>¿Cómo ayudamos a los compañias?</h1>
+                <p>Ayudamos a las empresas a generar el mejor ambiente para desarrollar talentos</p><br>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                <img src="{{ asset('assets/images/guide.png') }}" alt="" class="center-block img-responsive" >
                 <h4>Aqui va un punto</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit adipisci consequuntur suscipit, optio itaque culpa voluptas, nesciunt sunt facere ipsa aut, accusantium voluptatibus deleniti error, obcaecati ex maxime voluptates praesentium!</p>
+                <p>Nuestra propuesta consiste en guiar a las organizaciones para crear un ambiente donde cada individuo pueda utilizar al máximo su potencial y
+                  lograr las metas empresariales.</p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                <img src="{{ asset('assets/images/productividad.png') }}" alt="" class="center-block img-responsive" >
+                <h4>Aqui va un punto</h4>
+                <p>La suma de talentos logra incrementar la productividad y el rendimiento en los centros de trabajo.</p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                <img src="{{ asset('assets/images/gestion.png') }}" alt="" class="center-block img-responsive" >
+                <h4>Aqui va un punto</h4>
+                <p>Ayudamos a los lideres a descubrir su principales talentos y a gestionar adecuadamente el talento de sus equipos de trabajo.</p>
             </div>
         </div>
     </section><hr>
@@ -88,7 +119,39 @@
                 </div>
             </div>
         </div>
-    </section><hr>
+    </section>
+
+    <section class="quotes-slider">
+      <div class="container">
+        <div class="col-lg-12">
+          <div class="btn-bar text-center">
+            <div id="buttons">
+              <a id="prev" href="#">&lt;</a>
+              <a id="next" href="#">&gt;</a>
+            </div>
+          </div>
+          <div id="slides">
+            <ul>
+              <li class="slide"><i>"Una de las cosas que hemos aprendido tras analizar todos los datos de nuestro proceso de selección es que el
+                expediente académico y la puntuación de los candidatos en los test son inútiles como criterio de contratación".</i><br>
+                <b>- Laszlo Bock, vicepresidente de Recursos Humanos de Google</b></li>
+              <li class="slide"><i>"Las empresas necesitan dejar atrás sus prácticas actuales y aprender a contratar personas, no empleados".</i>
+                <b>- Jim Collins, Considerado uno de los pensadores de negocios más influyentes de la vida moderna, autor de“Empresas que sobresalen”</b></li>
+              <li class="slide"><i>"Brindar espacios para que la persona desarrolle, desde su consciencia, tareas fundadas en sus aptitudes innatas; esto es
+                lo único que lo hace fuerte, diferente y especial".</i>
+                <b>- Martin Seligman, psicólogo, educador y escritor, pionero de la psicología positiva.</b></li>
+              <li class="slide"><i>"Es necesario cambiar la forma como los empleados son reclutados, posicionados en sus roles, reconocidos y más aún,
+                como son liderados para asegurar que se involucren emocionalmente".</i>
+                <b>- John H. Fleming & Jim Asplund de la organización Gallup. Metodología Human Sigma</b></li>
+              <li class="slide"><i>"La gente obtiene mejores resultados si pone su esfuerzo en sus fortalezas en lugar de poner demasiado énfasisen
+                las carencias o deficiencias percibidas".</i>
+                <b>- Marcus Buckingham, escritor, investigador, orador motivacional y consultor de negocios, autor de “Primero, rompa todas las reglas”</b></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
     <section class="recent-opinion">
         <div class="container">
