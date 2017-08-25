@@ -7,12 +7,11 @@ following_unfollow:
     path: /unfollow
     defaults: { _controller: AppBundle:Following:unfollow }
     methods: [POST]
-    
+
 following_users:
-    path: /following/{email}
+    path: /siguiendo/{email}
     defaults: { _controller: AppBundle:Following:following, email:null }
 
 followed_users:
-    path: /followed/{email}
+    path: /seguidores/{email}
     defaults: { _controller: AppBundle:Following:followed, email:null }
-    
