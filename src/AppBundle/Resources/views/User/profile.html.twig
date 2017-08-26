@@ -37,7 +37,7 @@
                                     <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                                     Dejar de seguir
                                 </button>
-                            </div>      
+                            </div>
                         {% endif %}
                     </h1>
 
@@ -80,7 +80,7 @@
             </div>
         </div>
         <hr />
-        <!-- /.container --> 
+        <!-- /.container -->
     </section>
 
     {# con esto obtenemos el del usuario app.user.name #}
@@ -103,9 +103,9 @@
                         <h1 class="page-header">Opiniones</h1>
                     {% endif %}
                 </div>
-
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                 {% for opinions in pagination %}
-                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+
                         <div class="panel panel-default">
                             <div class="panel-heading ">
                                 <div class="row">
@@ -118,12 +118,12 @@
                                                     <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
                                                 {% endif %}
                                             </div>
-                                        </a> 
+                                        </a>
                                     </div>
                                     <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
                                         <h5 class="media-heading"><a href="{{ path('user_profile', {'id':opinions.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a></h5>
                                         <small class="text-muted">{{opinions.createdAt|long_time}}</small>
-                                    </div>   
+                                    </div>
                                     <div class="col-lg-6 col-md-3 col-sm-3 col-xs-3">
                                         {% if app.user != null %}
                                             {% if opinions.user.id == app.user.id %}
@@ -135,7 +135,7 @@
                                                         <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
 
                                                     </ul>
-                                                </div> 
+                                                </div>
                                             {% endif %}
                                         {% endif%}
                                     </div>
@@ -154,33 +154,33 @@
                                            {% if app.user|liked(opinions) == true%}
                                                hidden
                                            {% endif %}
-                                           btn-like fa fa-heart" 
-                                           aria-hidden="true" 
-                                           data-toggle="tooltip" 
-                                           data-placement="left" 
+                                           btn-like fa fa-heart"
+                                           aria-hidden="true"
+                                           data-toggle="tooltip"
+                                           data-placement="left"
                                            title="Me gusta">
-                                        </i> 
+                                        </i>
 
                                         <i data-id="{{opinions.id}}" class="
                                            {% if app.user|liked(opinions) == false%}
                                                hidden
                                            {% endif %}
-                                           btn-unlike active fa fa-heart" 
-                                           aria-hidden="true" 
-                                           data-toggle="tooltip" 
-                                           data-placement="left" 
+                                           btn-unlike active fa fa-heart"
+                                           aria-hidden="true"
+                                           data-toggle="tooltip"
+                                           data-placement="left"
                                            title="Ya no me gusta">
-                                        </i> 
+                                        </i>
                                     </div>
                                     <hr class="profiles-hr">
                                 {% endif %}
-                            </div> 
+                            </div>
                             <div class="panel-footer">
                                 {% for comments in comments%}
 
                                     {% if comments.opinion.id == opinions.id %}
                                         {% if comments.status != 'invalid'%}
-                                            <div class="row"> 
+                                            <div class="row">
                                                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 ">
                                                     <div class="avatar  ">
                                                         {% if comments.user.image == null%}
@@ -192,7 +192,7 @@
                                                                 <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
                                                             </a>
                                                         {% endif %}
-                                                    </div>  
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
                                                     <h5 class="media-heading "><a href="{{ path('user_profile', {'id':comments.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
@@ -216,25 +216,25 @@
                                                                 <ul class="dropdown-menu ">
                                                                     <li><a class="btn-delete-comment" data-id="{{ comments.id }}">Eliminar</a></li>
                                                                 </ul>
-                                                            </div> 
+                                                            </div>
                                                             <div class="clearfix"></div>
                                                         {% endif %}
                                                     {% endif%}
                                                 </div>
                                             </div>
-                                            <hr class="profiles-hr"> 
+                                            <hr class="profiles-hr">
                                         {% endif %}
                                     {% endif %}
 
 
-                                {% endfor %}  
+                                {% endfor %}
 
                                 {% if app.user != null%}
                                     <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate_user', {'opinion_id':opinions.id}) }}" >
                                         <div class="form-group">
                                             <label for="nameInput">Agregar comentario</label>
                                             <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
-                                            <button type="submit" class="btn btn-default btn-sm pull-right">Comentar</button> 
+                                            <button type="submit" class="btn btn-default btn-sm pull-right">Comentar</button>
 
                                             <label for="file" class="pull-right label-img"><i class="fa fa-file-image-o"></i></label>
                                             <input id="file" name="image" type="file" >
@@ -244,15 +244,17 @@
                                 {% endif %}
                             </div>
                         </div>
-                    </div>
 
                 {% endfor %}
-            </div>   
+                {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
-<div class="pagination">
-    {{ knp_pagination_render(pagination) }}
-</div>
+
+
+
 </div>
 {% endblock %}

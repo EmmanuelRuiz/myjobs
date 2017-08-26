@@ -77,6 +77,18 @@ body {
 
 /* end general*/
 
+/* following section */
+
+.following-section{
+  padding-top: 6%;
+}
+/* end following section */
+
+/* likes section */
+.like-section{
+  padding-top: 6%;
+}
+/* end likes section*/
 /* slide */
 
 .quotes-slider{
@@ -489,6 +501,11 @@ body {
 .edit-section{
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+.change-password-section{
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 /* fin edit user*/
@@ -953,6 +970,19 @@ input[id=file] {
     .people-section {
         margin-top: 15%;
     }
+
+    /* slide texto */
+    .quotes-slider{
+      background-color: #002F6D;
+      color: white;
+      font-size: 20px;
+      padding-top: 2%;
+    }
+
+    .quotes-slider b{
+      font-size: 15px;
+    }
+    /* end slide */
 }
 
 @media only screen and (max-width: 667px) {

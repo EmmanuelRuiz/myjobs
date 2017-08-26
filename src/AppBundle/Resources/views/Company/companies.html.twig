@@ -48,6 +48,7 @@
                                 {# enlace al perfil de la empresa #}
                                 {% set company_stats = company.id|company_stats%}
                                 <h4 class="media-heading"><a href="{{ path('company_profile', {'id':company.id})}}">{{ company.tradename }}</a> {% if company.status == 'valid' %} <i class="fa fa-check-circle text-info" aria-hidden="true"></i> {% endif %}  | {{company_stats.opinions}} opiniones</h4>
+                                <p><b>{{ company.localidad }}, {{ company.estado }}</b></p>
                                 <p id="company-description">{{ company.description }}</p>
                                 <a href="">{{ company.website }}</a>
                             </div>
