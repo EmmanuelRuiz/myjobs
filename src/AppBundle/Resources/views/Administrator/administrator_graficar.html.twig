@@ -22,7 +22,6 @@
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
-        <script src="{{ asset('assets/js/d3.min.js') }}"></script>
         <script src="{{ asset('assets/js/custom/grafica.js') }}"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -84,15 +83,13 @@
             </nav>
 
             <div id="page-wrapper">
-                <div id="div_piechart"></div>
-                <div id="div_histogram"></div>
+                <div id="chart_div"></div>
+                
             </div>
             <!-- /#page-wrapper -->
         </div>
         <!-- /#wrapper -->
-        <script type="text/javascript">
-            {{ gc_draw([piechart], ['div_piechart']) }}
-        </script>
+        
     </body>
 
 </html>

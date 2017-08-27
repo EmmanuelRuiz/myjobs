@@ -700,36 +700,69 @@ class AdministratorController extends Controller {
 
 	public function graficarAction(Request $request) {
 
+		return $this->render('AppBundle:Administrator:administrator_graficar.html.twig');
+	}
+
+	public function graficaAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
+		/*
+		  $query = $em->createQuery('SELECT u.age FROM BackendBundle:User u');
+
+		  $notification = $query->getResult();
+		 */
 
 		$db = $em->getConnection();
 
-		$query = "SELECT estado, count(estado) as cou FROM companies GROUP BY estado";
-		$stmt = $db->prepare($query);
+		$querye = "SELECT 
+					CASE WHEN (age BETWEEN 18 AND 25) THEN 'De 18 a 25' 
+						ELSE CASE WHEN(age BETWEEN 26 AND 30) THEN 'De 26 a 30' 
+								ELSE CASE WHEN(age BETWEEN 31 AND 35) THEN ' De 31 a 35' 
+									ELSE CASE WHEN(AGE BETWEEN 36 AND 40) THEN ' De 36 a 40' 
+										ELSE CASE WHEN(age BETWEEN 41 AND 45) THEN ' De 41 a 45' 
+											ELSE CASE WHEN(age BETWEEN 46 AND 50) THEN ' De 46 a 50'
+											END
+										END
+									END
+								END
+						END
+					END rango,
+				COUNT(*) total
+				FROM
+				  users
+				GROUP BY
+				  rango";
+		$stmt = $db->prepare($querye);
 		$params = array();
 		$stmt->execute($params);
 
-		$po = $stmt->fetchAll();
-		array_unshift($po, ['Title2', 'Title3']);
-		
-		
+		$notification = $stmt->fetchAll();
+		return new JsonResponse($notification);
 
-		$pieChart = new PieChart();
-		$pieChart->getData()->setArrayToDataTable(
-			$po
-		);
-		$pieChart->getOptions()->setTitle('Estadisticas de Empresas por Estados');
-		$pieChart->getOptions()->setHeight(500);
-		$pieChart->getOptions()->setWidth(900);
-		$pieChart->getOptions()->getTitleTextStyle()->setBold(true);
-		$pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
-		$pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
-		$pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
-		$pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
 
-		return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
-					'piechart' => $pieChart
-		));
+		/**
+		 * SELECT CASE WHEN (age BETWEEN 18 AND 28) THEN 'De 18 a 28' 
+		 * ELSE CASE WHEN(age BETWEEN 28 AND 38) THEN 'De 28 a 38' ELSE
+		 *  CASE WHEN(age BETWEEN 38 AND 48) THEN 'De 38 a 48' ELSE CASE
+		 *  WHEN(AGE BETWEEN 48 AND 58) THEN 'De 48 a 58' ELSE CASE 
+		 * WHEN(age BETWEEN 58 AND 68) THEN 'De 58 a 68' ELSE CASE
+		 *  WHEN(age BETWEEN 68 AND 78) THEN 'De 68 a 78' 
+		 * END END END END END END rango, COUNT(*) total FROM users GROUP BY rango 
+		 * 
+		 * 
+		 */
+		/*
+		  SELECT CASE WHEN
+		  (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29)
+		  THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más'
+		  END
+		  END
+		  END rango,
+		  COUNT(*) total
+		  FROM
+		  users
+		  GROUP BY
+		  rango;
+		 */
 	}
 
 }
