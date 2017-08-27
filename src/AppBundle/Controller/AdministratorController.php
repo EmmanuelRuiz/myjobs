@@ -706,31 +706,48 @@ class AdministratorController extends Controller {
         //SELECT CASE WHEN (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN
         //(age BETWEEN 20 AND 29) THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN
         // 'De 30 o más' END END END rango, COUNT(*) total FROM users GROUP BY rango
-        $querye = "SELECT CASE WHEN (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE"
-                . " CASE WHEN(age BETWEEN 20 AND 29) THEN 'De 20 a 29' ELSE CASE"
-                . " WHEN(age >= 20) THEN 'De 30 o más' END END END rango, COUNT(*) total FROM users GROUP BY rango";
+        $querye = "SELECT CASE WHEN (age BETWEEN 18 AND 28) THEN 'De 18 a 28' "
+                . "ELSE CASE WHEN(age BETWEEN 28 AND 38) THEN 'De 28 a 38' "
+                . "ELSE CASE WHEN(age BETWEEN 38 AND 48) THEN 'De 38 a 48'"
+                . " ELSE CASE WHEN(AGE BETWEEN 48 AND 58) THEN 'De 48 a 58'"
+                . " ELSE CASE WHEN(age BETWEEN 58 AND 68) THEN 'De 58 a 68' "
+                . "ELSE CASE WHEN(age BETWEEN 68 AND 78) THEN 'De 68 a 78'"
+                . " END END END END END END rango, COUNT(*) total FROM users GROUP BY rango; ";
         $stmt = $db->prepare($querye);
         $params = array();
         $stmt->execute($params);
 
         $notification = $stmt->fetchAll();
-        
-        
-        
+
         $pieChart = new PieChart();
         $pieChart->getData()->setArrayToDataTable(
-                $notification
+                
+                    $notification
+                
         );
-        $pieChart->getOptions()->setPieSliceText('label');
-        $pieChart->getOptions()->setTitle('Swiss Language Use (100 degree rotation)');
-        $pieChart->getOptions()->setPieStartAngle(100);
+        $pieChart->getOptions()->setTitle('My Daily Activities');
         $pieChart->getOptions()->setHeight(500);
         $pieChart->getOptions()->setWidth(900);
-        $pieChart->getOptions()->getLegend()->setPosition('none');
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+
+
+
+        /*
+         * 
+         * 
+         * 
+         */
+
+
 
         $histogram = new Histogram();
         $histogram->getData()->setArrayToDataTable($notification);
-        $histogram->getOptions()->setTitle('Country Populations');
+        $histogram->getOptions()->setTitle('Grafica con las edades de las personas');
         $histogram->getOptions()->setWidth(900);
         $histogram->getOptions()->setHeight(500);
         $histogram->getOptions()->getLegend()->setPosition('none');
@@ -739,8 +756,7 @@ class AdministratorController extends Controller {
         $histogram->getOptions()->getHistogram()->setBucketSize(20);
 
         return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
-            'piechart' => $pieChart, 
-            'histogram' => $histogram)
+                    'piechart' => $pieChart)
         );
     }
 
@@ -766,9 +782,22 @@ class AdministratorController extends Controller {
 
         return new JsonResponse($notification);
 
+
+        /**
+         * SELECT CASE WHEN (age BETWEEN 18 AND 28) THEN 'De 18 a 28' 
+         * ELSE CASE WHEN(age BETWEEN 28 AND 38) THEN 'De 28 a 38' ELSE
+         *  CASE WHEN(age BETWEEN 38 AND 48) THEN 'De 38 a 48' ELSE CASE
+         *  WHEN(AGE BETWEEN 48 AND 58) THEN 'De 48 a 58' ELSE CASE 
+         * WHEN(age BETWEEN 58 AND 68) THEN 'De 58 a 68' ELSE CASE
+         *  WHEN(age BETWEEN 68 AND 78) THEN 'De 68 a 78' 
+         * END END END END END END rango, COUNT(*) total FROM users GROUP BY rango 
+         * 
+         * 
+         */
         /*
           SELECT CASE WHEN
-          (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29) THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más'
+          (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29)
+          THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más'
           END
           END
           END rango,
