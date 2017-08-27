@@ -711,10 +711,13 @@ class AdministratorController extends Controller {
 
 		$po = $stmt->fetchAll();
 		array_unshift($po, ['Title2', 'Title3']);
+		
+		var_dump($po);
+		die();
 
 		$pieChart = new PieChart();
 		$pieChart->getData()->setArrayToDataTable(
-			$po
+			$array
 		);
 		$pieChart->getOptions()->setTitle('Estadisticas de Empresas por Estados');
 		$pieChart->getOptions()->setHeight(500);
