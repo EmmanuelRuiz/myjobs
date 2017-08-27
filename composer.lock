@@ -4,54 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ad8dbf200cafa8c5b48a77550d1729e",
+    "content-hash": "3f55bb1521e0baf3f996948093c0dde1",
     "packages": [
-        {
-            "name": "cmen/google-charts-bundle",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cmen/CMENGoogleChartsBundle.git",
-                "reference": "9019326f9b7a6be6447e3a29b67ae189e24437ac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cmen/CMENGoogleChartsBundle/zipball/9019326f9b7a6be6447e3a29b67ae189e24437ac",
-                "reference": "9019326f9b7a6be6447e3a29b67ae189e24437ac",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/framework-bundle": "~2.3|~3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "CMEN\\GoogleChartsBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christophe Meneses"
-                }
-            ],
-            "description": "This Bundle provides a Twig extension and PHP objects to display Google charts in your Symfony application.",
-            "keywords": [
-                "chart",
-                "charts",
-                "google",
-                "graph",
-                "graphs",
-                "map"
-            ],
-            "time": "2017-01-06T09:15:30+00:00"
-        },
         {
             "name": "composer/ca-bundle",
             "version": "1.0.7",
@@ -1735,16 +1689,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.20",
+            "version": "v5.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "4b019d4c0bd64438c42e4b6b0726085b409be8d9"
+                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/4b019d4c0bd64438c42e4b6b0726085b409be8d9",
-                "reference": "4b019d4c0bd64438c42e4b6b0726085b409be8d9",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/eb6266b3b472e4002538610b28a0a04bcf94891a",
+                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a",
                 "shasum": ""
             },
             "require": {
@@ -1783,7 +1737,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2017-05-11T16:21:03+00:00"
+            "time": "2017-08-25T16:55:44+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
