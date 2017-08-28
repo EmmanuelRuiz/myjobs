@@ -140,6 +140,47 @@ body {
     padding-top: 10%;
     padding-bottom: 5%;
 }
+
+.btn-contact{
+    color: #ffffff;
+    background-color: #002F6D;
+    border-color: #002F6D;
+}
+
+.btn-contact:hover{
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
+}
+
+.btn-contact:focus{
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
+}
+
+.btn-contact:active{
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
+}
+
+
+.btn-contact:active:focus{
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
+}
+
+.social-links{
+    color:#002F6D;
+}
+
+.social-links:hover{
+    text-decoration: underline;
+    background-color: transparent;
+    color: #E75402;
+}
 /* end section */
 
 /* slide */

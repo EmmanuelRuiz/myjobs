@@ -109,14 +109,14 @@
                                         <td>{{ claims.user.name }}</td>
                                         <td>{{ claims.user.plastname }}</td>
                                         <td>{{ claims.position }}</td>
-                                        <td>{{ claims.company.id }}</td>
+                                        <td>{{ claims.company.tradename }}</td>
                                         <td>{{ claims.businessemail }}</td>
                                         <td>{{ claims.officenumber }}</td>
                                         <td>{{ claims.personalnumber }}</td>
                                         <td>{{ claims.createdAt|date("D d M Y") }}</td>
                                         <td>
-                                            <a href="{{ path('administrator_asign', {'claim_id':claims.id, 'company_id':claims.company.id, 'id':claims.user.id}) }}" type="button" class="btn btn-xs btn-success ">Asignar</a>
-                                            <button type="button" class="btn btn-xs btn-danger">Eliminar</button>
+                                            <a href="{{ path('administrator_asign', {'claim_id':claims.id, 'company_id':claims.company.id, 'id':claims.user.id}) }}" type="button" class="btn btn-xs btn-success "><i class="fa fa-check" aria-hidden="true"></i></a>
+                                            
                                         </td>
                                     </tr>
                                 </tbody>

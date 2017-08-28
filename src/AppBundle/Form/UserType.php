@@ -97,7 +97,7 @@ class UserType extends AbstractType {
                 ))
                 ->add('Editar', SubmitType::class, array(
                     "attr" => array(
-                        "class" => "pull-right btn btn-success"
+                        "class" => "btn btn-success btn-block"
                     )
                 ))
         ;

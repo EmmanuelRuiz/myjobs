@@ -1,12 +1,14 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
-    encoders:
+    encoders:  
         Symfony\Component\Security\Core\User\User: plaintext
         
         BackendBundle\Entity\User:
             algorithm: bcrypt
             cost: 4
+            
+        
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
@@ -27,7 +29,7 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        
+            
         admin:
             pattern:   ^/admin
             anonymous: ~
@@ -39,12 +41,10 @@ security:
             logout:
                 path: /admin/logout
                 target: /admin/login
-
+                
         main:
             anonymous: ~
-                
             provider: user_db_provider
-            
             form_login:
                 login_path: /loginerror
                 check_path: /login
@@ -59,6 +59,10 @@ security:
                     - app.facebook_authenticator
                     - app.google_authenticator
                 entry_point: app.facebook_authenticator
+        
+        
+
+        
 
     access_control:
         - { path: ^/admin/panel, roles: ROLE_ADMIN }

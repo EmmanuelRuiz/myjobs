@@ -640,16 +640,20 @@ class AdministratorController extends Controller {
 
     public function reclamarAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
-
+		
+        $user_id = $request->query->get('user_id');
+		$id = $request->query->get('id');
+		
         $claim = new Claimcompany();
 
 
-        $id = $request->query->get('id');
+        
         $company_repo = $em->getRepository('BackendBundle:Company');
         $company = $company_repo->find($id);
 
-
+        $user_repo = $em->getRepository('BackendBundle:User');
+        $user = $user_repo->find($user_id);
+		
         $name = $request->request->get("name");
         $lastname = $request->request->get("lastname");
         $position = $request->request->get("position");

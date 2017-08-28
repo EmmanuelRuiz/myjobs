@@ -90,9 +90,12 @@
                                     <th>Nombre</th>
                                     <th>RFC</th>
                                     <th>Sector</th>
-                                    <th>Representante</th>
-                                    <th>Ext. Representante</th>
-                                    <th>Email de Representante</th>
+                                    <th class="info">Registrante</th>
+                                    <th class="info">N° de Registrante</th>
+                                    <th class="active">Representante</th>
+                                    <th class="active">Ext. Representante</th>
+                                    <th class="active">Email de Representante</th>
+                                    <th class="active">N° de Representante</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
@@ -106,9 +109,41 @@
                                         <td>{{ company.tradename }}</td>
                                         <td>{{ company.rfc }}</td>
                                         <td>{{ company.businesssector }}</td>
-                                        <td>{{ company.contacname }}</td>
-                                        <td>{{ company.telephoneext }}</td>
-                                        <td>{{ company.businessemail }}</td>
+                                        {% if company.representant == 'si' %}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.user.name }} {{ company.user.mlastname }}</td>
+                                        {% endif %}
+                                        {% if company.representant == 'si' %}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.user.telephone }}</td>
+                                        {% endif %}
+                                        
+                                        {% if company.contacname == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.contacname }}</td>
+                                        {% endif %}
+
+                                        {% if company.telephoneext == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.telephoneext }}</td>
+                                        {% endif %}
+
+                                        {% if company.businessemail == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.businessemail }}</td>
+                                        {% endif %}
+                                        
+                                        {% if company.personalnumber == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.personalnumber }}</td>
+                                        {% endif %}
+
                                         <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Validar" data-original-title=""><i class="fa fa-check" aria-hidden="true"></i></a></td>
                                     </tr>
                                 </tbody>

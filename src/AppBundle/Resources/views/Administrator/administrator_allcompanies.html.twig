@@ -110,7 +110,6 @@
                                         <td>{{ companies.createdAt|date("D d M Y") }}</td>
                                         <td>
                                             <a href="{{ path("company_profile", {"id":companies.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Ver" data-original-title=""><i class="fa fa-search" aria-hidden="true"></i></a>
-                                            <a href="{{ path("companies_edit", {"id":companies.id})}}" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="left" title="Editar" data-original-title=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>   
                                             <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>

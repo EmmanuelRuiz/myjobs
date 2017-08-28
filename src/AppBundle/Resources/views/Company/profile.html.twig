@@ -520,7 +520,7 @@
                     </div>
                     <hr>
 
-                    <form action="{{ path('administrator_claimcompany',{'id':company.id}) }}" method="post">
+                    <form action="{{ path('administrator_claimcompany',{'id':company.id, 'user_id':app.user.id}) }}" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
                         </div>
