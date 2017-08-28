@@ -23,18 +23,18 @@
                                 {#mostramos los datos del usuario#}
                                 {% if user.image == null%}
                                     <a href="{{ path('user_profile', {'id':user.id})}}">
-                                        <img class="company-pp-list" src="{{asset('assets/images/default.jpg')}}" />
+                                        <img class="company-pp-list img-circle" src="{{asset('assets/images/default.jpg')}}" />
                                     </a>
                                 {% else %}
                                     <a href="{{ path('user_profile', {'id':user.id})}}">
-                                        <img class="company-pp-list" src="{{asset('uploads/users/'~user.image)}}" /> 
+                                        <img class="company-pp-list img-circle" src="{{asset('uploads/users/'~user.image)}}" /> 
                                     </a>
                                 {%endif%}
                             </div>
 
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <a href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
+                                    <a class="links-search" href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
                                 </h4>
                                 
                                 <p>{{ user.biography}}<p>

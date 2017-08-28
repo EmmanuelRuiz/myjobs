@@ -33,21 +33,18 @@ body {
 }
 
 .recent-opinion .opinions{
-  color: #E75402;
+    color: #E75402;
 }
 
 .companies-from-myjobsadvisor .company{
-  color: #E75402;
+    color: #E75402;
 }
 
 .how-we-work-for-you-section .our-process{
-  color: #E75402;
+    color: #E75402;
 }
 
-.result-company-section{
-    margin-top: 6%;
 
-}
 
 .certify-sign{
     color: green;
@@ -74,26 +71,26 @@ body {
 }
 
 .btn-page{
-  color: #ffffff;
-  background-color: #002F6D;
-  border-color: #002F6D;
+    color: #ffffff;
+    background-color: #002F6D;
+    border-color: #002F6D;
 }
 
 .btn-page:hover{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 .btn-page:focus{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 .btn-page:active{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 .no-margin{
@@ -102,16 +99,38 @@ body {
 
 /* end general*/
 
+/* serch section */
+.result-company-section{
+    margin-top: 6%;
+}
+
+.links-search{
+    color: #002F6D;
+}
+
+.links-search:hover{
+    color: #FF9E1B;
+}
+
+.links-search-website{
+    color: #FF9E1B;
+}
+
+.links-search-website:hover{
+    color: #002F6D;
+}
+/* end search section*/
+
 /* following section */
 
 .following-section{
-  padding-top: 6%;
+    padding-top: 6%;
 }
 /* end following section */
 
 /* likes section */
 .like-section{
-  padding-top: 6%;
+    padding-top: 6%;
 }
 /* end likes section*/
 
@@ -126,38 +145,38 @@ body {
 /* slide */
 
 .quotes-slider{
-  background-color: #002F6D;
-  color: white;
-  font-size: 30px;
-  padding-top: 2%;
+    background-color: #002F6D;
+    color: white;
+    font-size: 30px;
+    padding-top: 2%;
 }
 
 .quotes-slider b{
-  font-size: 25px;
+    font-size: 25px;
 }
 .quotes-slider #slides {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  height: 250px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 250px;
 }
 
 .quotes-slider #slides ul {
-  list-style: none;
-  width: 100%;
-  height: 250px;
-  margin: 0;
-  padding: 0;
-  position: relative;
+    list-style: none;
+    width: 100%;
+    height: 250px;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
 .quotes-slider #slides li {
-  width: 100%;
-  height: 250px;
-  float: left;
-  text-align: center;
-  position: relative;
-  font-family: lato, sans-serif;
+    width: 100%;
+    height: 250px;
+    float: left;
+    text-align: center;
+    position: relative;
+    font-family: lato, sans-serif;
 }
 
 
@@ -303,15 +322,15 @@ body {
 }
 
 .btn-sign-in{
-  color: #ffffff;
-  background-color: #002F6D;
-  border-color: #002F6D;
+    color: #ffffff;
+    background-color: #002F6D;
+    border-color: #002F6D;
 }
 
 .btn-sign-in:hover{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 .btn-default:focus, .btn-default.focus {
@@ -321,49 +340,49 @@ body {
 }
 
 .open>.dropdown-toggle.btn-sign-in:focus{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 .btn-sign-in:active:hover{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 .btn-sign-in:active:focus{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 .btn-search{
-  color: #ffffff;
-  background-color: #002F6D;
-  border-color: #002F6D;
+    color: #ffffff;
+    background-color: #002F6D;
+    border-color: #002F6D;
 }
 
 .btn-search:hover{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 .btn-search:focus{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 .btn-search:active{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 .btn-search:active:focus{
-  color: #ffffff;
-  background-color: #194F91;
-  border-color: #194F91;
+    color: #ffffff;
+    background-color: #194F91;
+    border-color: #194F91;
 }
 
 
@@ -538,8 +557,8 @@ body {
 }
 
 .change-password-section{
-  margin-top: 5%;
-  margin-bottom: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 /* fin edit user*/
@@ -594,8 +613,8 @@ body {
 
 /* about section */
 .about-section{
-  padding-top: 2%;
-  padding-bottom: 3%;
+    padding-top: 2%;
+    padding-bottom: 3%;
 }
 /* end about section */
 
@@ -609,11 +628,11 @@ footer{
 }
 
 .links-footer{
-  color: #FF9E1B;
+    color: #FF9E1B;
 }
 
 .links-footer:hover{
-  color: #FF9E1B;
+    color: #FF9E1B;
 }
 
 /* end footer */
@@ -932,6 +951,17 @@ input[id=file] {
         padding-bottom: 0px;
     }
 
+
+    .form-contact {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .contact-section{
+        padding-top: 15%;
+        padding-bottom: 5%;
+    }
+
     /* profiles */
     .profile-company-header {
         background-color: #eee;
@@ -1007,14 +1037,14 @@ input[id=file] {
 
     /* slide texto */
     .quotes-slider{
-      background-color: #002F6D;
-      color: white;
-      font-size: 20px;
-      padding-top: 2%;
+        background-color: #002F6D;
+        color: white;
+        font-size: 20px;
+        padding-top: 2%;
     }
 
     .quotes-slider b{
-      font-size: 15px;
+        font-size: 15px;
     }
     /* end slide */
 }
