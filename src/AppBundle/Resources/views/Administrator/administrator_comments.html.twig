@@ -81,7 +81,7 @@
 
                 <div class="container-fluid">
 
-                    <h2 class="page-header">Comentarioss pendientes por validar</h2>
+                    <h2 class="page-header">Comentarios pendientes por validar</h2>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -103,7 +103,6 @@
                                         <td>{{ comment.createdAt|date("D d M Y") }}</td>
                                         <td>
                                             <a href="{{ path('administrator_validate_comment', {'id':comment.id}) }}" type="button" class="btn btn-xs btn-success "><i class="fa fa-check" aria-hidden="true"></i></a>
-                                            <a type="button" class="btn btn-xs btn-info"><i class="fa fa-edit" aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
