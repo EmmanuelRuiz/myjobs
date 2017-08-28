@@ -35,6 +35,11 @@ class PagesController extends Controller {
 		);
 
 		$this->get('mailer')->send($message);
+		
+		$this->addFlash(
+            'success',
+            'Tu mensaje se ha enviado correctamente. En breve nos comunicaremos contigo'
+        );
 
 		return $this->render('AppBundle:Pages:contact.html.twig');
 	}
