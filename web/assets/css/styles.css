@@ -75,6 +75,10 @@ body {
   border-color: #194F91;
 }
 
+.no-margin{
+    margin: 0;
+}
+
 /* end general*/
 
 /* following section */
@@ -89,6 +93,15 @@ body {
   padding-top: 6%;
 }
 /* end likes section*/
+
+/* contact section */
+
+.contact-section{
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+/* end section */
+
 /* slide */
 
 .quotes-slider{

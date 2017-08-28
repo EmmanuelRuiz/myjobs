@@ -29,6 +29,11 @@ app_facebook:
 app_google:
     resource: "@AppBundle/Resources/config/routing/google.yml"
     prefix: /
+    
+app_page:
+    resource: "@AppBundle/Resources/config/routing/pages.yml"
+    prefix: /
+
 
 app_homepage:
     path: /

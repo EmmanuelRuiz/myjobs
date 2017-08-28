@@ -1,0 +1,49 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+{% block content %}
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Envianos un mensaje</h4></div>
+                        <div class="panel-body">
+                            <form action="{{ path('pages_contact') }}" >
+                                <div class="form-group">
+                                    <label for="name">Nombre completo</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Nombre completo" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Correo electronico</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Correo electronico" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Asuntos</label>
+                                    <input type="text" class="form-control" id="subject" placeholder="Asunto" name="subject">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Tu mensaje</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="Tu mensaje" name="message"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default btn-block ">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="page-header no-margin">Información de contácto</h2>
+                    <p><b>N° de Teléfono 1:</b> 0000000000</p>
+                    <p><b>N° de Teléfono 2:</b> 0000000000</p>
+                    <p><b>Correo electronico:</b> contacto@myjobsadvisor.mx</p>
+                    <h3>Conectate con nosotros</h3>
+                    <p><b>Facebook:</b> <a href="#">@myjobsadvisor</a></p>
+                    <p><b>Twitter:</b> <a href="#">@myjobsadvisor</a></p>
+                    <p><b>Instagram:</b> <a href="#">@myjobsadvisor</a></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
