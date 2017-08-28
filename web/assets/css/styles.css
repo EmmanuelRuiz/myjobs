@@ -3,6 +3,27 @@ body {
     height: 100%;
 }
 
+/* pagination */
+
+.pager li>a, .pager li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #002F6D;
+    border: 1px solid transparent;
+    border-radius: 15px;
+}
+
+.pager li>a:hover, .pager li>a:focus {
+    text-decoration: none;
+    background-color: #194F91;
+}
+
+.pager .disabled>a, .pager .disabled>a:hover, .pager .disabled>a:focus, .pager .disabled>span {
+    background-color: grey;
+}
+
+/* end pagination*/
+
 /* general */
 .how-we-work-for-you-section,
 .companies-from-myjobsadvisor,
