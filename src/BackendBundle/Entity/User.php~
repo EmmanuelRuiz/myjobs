@@ -28,8 +28,6 @@ class User implements UserInterface, \Serializable
      */
     private $mlastname;
 
-
-
     /**
      * @var integer
      */
@@ -590,11 +588,6 @@ class User implements UserInterface, \Serializable
      */
     private $facebookId;
 
-    /**
-     * @var string
-     */
-    private $facebookaccesstoken;
-
 
     /**
      * Set facebookId
@@ -621,26 +614,32 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set facebookaccesstoken
+     * @var string
+     */
+    private $googleId;
+
+
+    /**
+     * Set googleId
      *
-     * @param string $facebookaccesstoken
+     * @param string $googleId
      *
      * @return User
      */
-    public function setFacebookaccesstoken($facebookaccesstoken)
+    public function setGoogleId($googleId)
     {
-        $this->facebookaccesstoken = $facebookaccesstoken;
+        $this->googleId = $googleId;
 
         return $this;
     }
 
     /**
-     * Get facebookaccesstoken
+     * Get googleId
      *
      * @return string
      */
-    public function getFacebookaccesstoken()
+    public function getGoogleId()
     {
-        return $this->facebookaccesstoken;
+        return $this->googleId;
     }
 }

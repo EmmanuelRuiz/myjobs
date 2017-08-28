@@ -1,0 +1,8 @@
+Obtener usuarios por rango de edades
+
+obtener empresas por estados
+ select estado, count(estado) from companines group by estado;
+
+es hombre o mujer
+
+rankin de empresas mas puntuadas

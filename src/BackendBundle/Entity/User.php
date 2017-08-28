@@ -642,4 +642,33 @@ class User implements UserInterface, \Serializable
     {
         return $this->googleId;
     }
+    /**
+     * @var string
+     */
+    private $gender;
+
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
 }

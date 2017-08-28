@@ -168,3 +168,6 @@ ALTER TABLE `companies` ADD `estado` VARCHAR(255) CHARACTER SET utf32 COLLATE ut
 ALTER TABLE `companies` ADD `municipio` VARCHAR(255) CHARACTER SET utf32 COLLATE utf32_spanish_ci NOT NULL AFTER `estado`
 
 ALTER TABLE `companies` ADD `localidad` VARCHAR(255) CHARACTER SET utf32 COLLATE utf32_spanish_ci NOT NULL AFTER `municipio`
+
+
+ALTER TABLE `users` ADD `gender` VARCHAR(3) NULL AFTER `age`;
