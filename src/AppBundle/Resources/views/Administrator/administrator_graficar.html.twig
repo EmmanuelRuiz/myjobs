@@ -158,6 +158,30 @@
                             </table>
                         </div>
                     </div>
+                                
+                                <div class="col-lg-6">
+                        <div class="panel panel-primary">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">Cantidad de usuarios por género</div>
+                            <!-- Table -->
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Masculino</th>
+                                        <th>Femenino</th>
+                                    </tr>
+                                    {%for genero in generos %}
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{genero.masculino}}</td>
+                                            <td>{{genero.femenino}} </td>                                          
+                                        </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /#page-wrapper -->

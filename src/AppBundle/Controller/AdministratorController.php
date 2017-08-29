@@ -728,6 +728,7 @@ class AdministratorController extends Controller {
         $preparaEstados->execute($paramsEstados);
         $estados = $preparaEstados->fetchAll();
         
+        /*obtener empresas más puntuadas por opiniones*/
         $queryPuntos = "SELECT company_id, companies.tradename, 
             SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) 
             as promedio FROM opinions INNER JOIN companies on opinions.company_id=companies.id
@@ -737,10 +738,17 @@ class AdministratorController extends Controller {
         $preparaPuntos->execute($paramsPuntos);
         $puntos = $preparaPuntos->fetchAll();
 
+        /*Obtener suma de usuarios por generos*/
+        $queryGenero = "SELECT  COUNT(IF(gender='M',gender,NULL)) masculino, COUNT(IF(gender='F',gender,NULL)) femenino FROM users ;";
+        $preparaG = $db->prepare($queryGenero);
+        $paramsG = array();
+        $preparaG->execute($paramsG);
+        $generos = $preparaG->fetchAll();
         return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
             'edades' => $edades,
             'estados' => $estados,
-            'puntos' => $puntos
+            'puntos' => $puntos,
+            'generos' => $generos
         ));
     }
 

@@ -50,6 +50,17 @@ class RegisterType extends AbstractType {
                         'class' => 'form-name form-control email-input'
                     )
                 ))
+                ->add('gender', ChoiceType::class, array(
+                    'label' => 'Genero',
+                    'choices' => array(
+                        'F' => 'F',
+                        'M' => 'M'
+                    ),
+                    'required' => 'true',
+                    'attr' => array(
+                        'class' => 'form-control'
+                    )
+                ))
                 ->add('password', PasswordType::class, array(
                     'label' => 'Contraseña',
                     'required' => 'required',
