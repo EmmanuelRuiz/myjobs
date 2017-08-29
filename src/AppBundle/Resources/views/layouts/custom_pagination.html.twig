@@ -1,27 +1,27 @@
 {% if pageCount > 1 %}
-<nav aria-label="...">
-    <ul class="pager">
+    <nav aria-label="...">
+        <ul class="pager">
 
-    {% if previous is defined %}
-        <li>
-            <a class="prev_link" rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ 'Atras'|trans }}</a>
-        </li>
-    {% else %}
-        <li class="disabled">
-            <span>&laquo;&nbsp;{{ 'Siguiente'|trans }}</span>
-        </li>
-    {% endif %}
+            {% if previous is defined %}
+                <li>
+                    <a class="prev_link" rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ 'Atras'|trans }}</a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <span>&laquo;&nbsp;{{ 'Siguiente'|trans }}</span>
+                </li>
+            {% endif %}
 
 
-    {% if next is defined %}
-        <li class="">
-            <a class="next_link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'Atras'|trans }}&nbsp;&raquo;</a>
-        </li>
-    {% else %}
-        <li class="disabled ">
-            <span class="">{{ 'Siguiente'|trans }}&nbsp;&raquo;</span>
-        </li>
-    {% endif %}
-    </ul>
-  </nav>
+            {% if next is defined %}
+                <li class="">
+                    <a class="next_link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'Atras'|trans }}&nbsp;&raquo;</a>
+                </li>
+            {% else %}
+                <li class="disabled ">
+                    <span class="">{{ 'Siguiente'|trans }}&nbsp;&raquo;</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 {% endif %}
