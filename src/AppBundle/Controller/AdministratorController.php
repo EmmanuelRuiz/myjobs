@@ -703,26 +703,46 @@ class AdministratorController extends Controller {
     }
 
     public function graficarAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $db = $em->getConnection();
+        $query = "SELECT CASE WHEN (age BETWEEN 18 AND 30) THEN 'De 18 a 30' " .
+                "ELSE CASE WHEN(age BETWEEN 30 AND 40) THEN 'De 30 a 40' " .
+                "ELSE CASE WHEN(age BETWEEN 40 AND 50) THEN 'De 40 a 50'" .
+                " ELSE CASE WHEN(AGE BETWEEN 50 AND 60) THEN 'De 50 a 60'" .
+                " ELSE CASE WHEN(age BETWEEN 60 AND 70) THEN 'De 60 a 70' " .
+                "ELSE CASE WHEN(age BETWEEN 70 AND 80) THEN 'De 70 a 80'" .
+                " END END END END END END rango, COUNT(*) total FROM users GROUP BY rango;";
+        $stmt = $db->prepare($query);
+        $params = array();
+        $stmt->execute($params);
 
-        return $this->render('AppBundle:Administrator:administrator_graficar.html.twig');
+        $edades = $stmt->fetchAll();
+        return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
+            'edades' => $edades
+        ));
     }
 
-    public function graficaAction(Request $request) {
+    
+    
+    
+    
+    
+    /*public function graficaAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        /*
+       
           $query = $em->createQuery('SELECT u.age FROM BackendBundle:User u');
 
           $notification = $query->getResult();
-         */
+       
 
         $db = $em->getConnection();
 
-        $querye = "SELECT CASE WHEN (age BETWEEN 18 AND 28) THEN 'De 18 a 28' " 
-                . "ELSE CASE WHEN(age BETWEEN 28 AND 38) THEN 'De 28 a 38' " 
-                . "ELSE CASE WHEN(age BETWEEN 38 AND 48) THEN 'De 38 a 48'" 
-                . " ELSE CASE WHEN(AGE BETWEEN 48 AND 58) THEN 'De 48 a 58'" 
-                . " ELSE CASE WHEN(age BETWEEN 58 AND 68) THEN 'De 58 a 68' " 
-                . "ELSE CASE WHEN(age BETWEEN 68 AND 78) THEN 'De 68 a 78'" 
+        $querye = "SELECT CASE WHEN (age BETWEEN 18 AND 30) THEN 'De 18 a 30' " 
+                . "ELSE CASE WHEN(age BETWEEN 30 AND 40) THEN 'De 30 a 40' " 
+                . "ELSE CASE WHEN(age BETWEEN 40 AND 50) THEN 'De 40 a 50'" 
+                . " ELSE CASE WHEN(AGE BETWEEN 50 AND 60) THEN 'De 50 a 60'" 
+                . " ELSE CASE WHEN(age BETWEEN 60 AND 70) THEN 'De 60 a 70' " 
+                . "ELSE CASE WHEN(age BETWEEN 70 AND 80) THEN 'De 70 a 80'" 
                 . " END END END END END END rango, COUNT(*) total FROM users GROUP BY rango;";
         $stmt = $db->prepare($querye);
         $params = array();
@@ -732,8 +752,6 @@ class AdministratorController extends Controller {
         
         return new JsonResponse($notification);
 
-
-        /**
          * SELECT CASE WHEN (age BETWEEN 18 AND 28) THEN 'De 18 a 28' 
          * ELSE CASE WHEN(age BETWEEN 28 AND 38) THEN 'De 28 a 38' ELSE
          *  CASE WHEN(age BETWEEN 38 AND 48) THEN 'De 38 a 48' ELSE CASE
@@ -741,10 +759,7 @@ class AdministratorController extends Controller {
          * WHEN(age BETWEEN 58 AND 68) THEN 'De 58 a 68' ELSE CASE
          *  WHEN(age BETWEEN 68 AND 78) THEN 'De 68 a 78' 
          * END END END END END END rango, COUNT(*) total FROM users GROUP BY rango 
-         * 
-         * 
-         */
-        /*
+         
           SELECT CASE WHEN
           (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29)
           THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más'
@@ -756,7 +771,6 @@ class AdministratorController extends Controller {
           users
           GROUP BY
           rango;
-         */
-    }
-
+         
+    }*/
 }
