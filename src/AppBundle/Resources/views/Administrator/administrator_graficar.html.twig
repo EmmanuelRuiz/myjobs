@@ -108,33 +108,10 @@
                             </table>
                         </div>
                     </div>
-                     <!-- usuarios por rango de edades-->
-                     <!-- empresas por estados-->
-                    <div class="col-lg-6">
-                        <div class="panel panel-primary">
-                            <!-- Default panel contents -->
-                            <div class="panel-heading">Cantidad de empresas, agrupación por estados</div>
-                            <!-- Table -->
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Estado</th>
-                                        <th>Total</th>
-                                    </tr>
-                                    {%for estado in estados %}
-                                    </thead>
-                                    <tbody>
-                                        <tr>                                            
-                                            <td>{{estado.estado}} </td>
-                                            <td>{{estado.total}} Registros</td>
-                                        </tr>
-                                    {%endfor%}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>  
+                    <!-- usuarios por rango de edades-->
+
                     <!-- empresas por estados-->
-                    
+
                     <div class="col-lg-6">
                         <div class="panel panel-primary">
                             <!-- Default panel contents -->
@@ -158,8 +135,34 @@
                             </table>
                         </div>
                     </div>
-                                
-                                <div class="col-lg-6">
+                </div>
+                <div class="container">
+                    <!-- empresas por estados-->
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">Cantidad de empresas, agrupación por estados</div>
+                            <!-- Table -->
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Estado</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    {%for estado in estados %}
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                            
+                                            <td>{{estado.estado}} </td>
+                                            <td>{{estado.total}} Registros</td>
+                                        </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>  
+
+                    <div class="col-lg-6">
                         <div class="panel panel-primary">
                             <!-- Default panel contents -->
                             <div class="panel-heading">Cantidad de usuarios por género</div>

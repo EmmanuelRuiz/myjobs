@@ -88,17 +88,23 @@ class CompanyController extends Controller {
                     $em->persist($company);
                     $flush = $em->flush();
                     if ($flush == null) {
-                        $status = "registro exitoso";
+                        $status = "La empresa se ha registrado con éxito.";
+                        $this->session->getFlashBag()->add("success", $status);
                         return $this->redirect("registrar");
                     } else {
-                        return $status = "registro fallido";
+                        $status = "Ha ocurrido un error al hacer el registro. Intente de nuevo.";
+                        $this->session->getFlashBag()->add("error", $status);
                     }
                 } else {
-                    $status = "La compañía ya existe";
+                    $status = "La empresa que estas intentando registrar ya existe.";
+                    $this->session->getFlashBag()->add("error", $status);
                 }
             } else {
-                $status = "La empresa no fue registrada correctamente";
+                $status = "La empresa no fue registrada correctamente. Intente de nuevo mas tarde.";
+                $this->session->getFlashBag()->add("error", $status);
             }
+            $status = "Ha ocurrido un error al hacer el registro. Intente de nuevo.";
+            $this->session->getFlashBag()->add("error", $status);
         }
 
         return $this->render('AppBundle:Company:register-company.html.twig', array(
@@ -132,10 +138,7 @@ class CompanyController extends Controller {
         $id = $request->get('id');
         $municipio_repo = $em->getRepository("BackendBundle:Municipio");
         $municipio = $municipio_repo->findBy(array("estadoId" => $id));
-
-
         $municipiotab = array();
-
         foreach ($municipio as $country) {
             $municipiotab[$country->getNombre()] = array(
                 "nombre" => $country->getNombre(),

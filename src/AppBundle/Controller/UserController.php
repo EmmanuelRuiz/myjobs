@@ -97,20 +97,23 @@ class UserController extends Controller {
                     $flush = $em->flush();
                     /* comprobar que se guarda */
                     if ($flush == null) {
-                        $status = "Te has registrado correctamente";
-
-                        $this->session->getFlashBag()->add("status", $status);
-                        return $this->redirectToRoute("user_register_login");
+                        $status = "Te has registrado con éxito.";
+                        $this->session->getFlashBag()->add("success", $status);
+                        return $this->redirect("registrar");
                     } else {
-                        $status = "No te has registrado correctamente";
+                        $status = "Ha ocurrido un error al hacer el registro. Intente de nuevo.";
+                        $this->session->getFlashBag()->add("error", $status);
                     }
                 } else {
-                    $status = "El usuario ya existe";
+                    $status = "El usuario que estas intentando registrar ya existe.";
+                    $this->session->getFlashBag()->add("error", $status);
                 }
             } else {
-                $status = "No te has registrado correctamente";
+                $status = "El usuario no fué registrado. Intente de nuevo mas tarde.";
+                $this->session->getFlashBag()->add("error", $status);
             }
-            $this->session->getFlashBag()->add("status", $status);
+            $status = "Ha ocurrido un error al hacer el registro. Intente de nuevo.";
+            $this->session->getFlashBag()->add("error", $status);
         }
 
         return $this->render('AppBundle:User:register.html.twig', array(
