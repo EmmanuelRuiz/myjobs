@@ -12,16 +12,16 @@
                     <div class=" opinion-item">
                         <div class="media-left ">
                             <a href="#">
-                              <div class="avatar">
-                                  {% if opinions.user.image == null%}
-                                      <img src="{{ asset('assets/images/default.jpg') }}"/>
-                                  {% else %}
-                                      <img src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
-                                  {% endif %}
-                              </div>
+                                <div class="avatar">
+                                    {% if opinions.user.image == null%}
+                                        <img src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% else %}
+                                        <img src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                    {% endif %}
+                                </div>
                             </a>
                         </div>
-                            
+
                         <div class="media-body">
                             <h5 class="media-heading"><a href="#">{{opinions.user.name}} {{opinions.user.plastname}}</a>
                                 {% if(opinions.user.id is defined) and (opinions.user.id == app.user.id) %}
@@ -30,28 +30,28 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                          <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
-                                          
+                                            <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+
                                         </ul>
                                     </div>
                                 {% endif %}
-                                
+
                                 <span class="pull-right">{{opinions.createdAt|long_time}}</span>
-                                
+
                             </h5>
                             <p>{{opinions.generalcomment}}</p>
-                            
-                            
+
+
                             {#  
                                 Esta condicion es para cuando en los comentarios publiquen imagenes o documentos
                                 Falta agregar a la base de datos el campo document y images.
                                 Necesitamos agregar igual la condicion para la imagen 
                             #}
-                            
+
                             {#{% if(opinions.document is defined ) and (opinions.document != null) %}
                                 <a href="{{ asset('assets/opinions/documment'~opinions.document)}}" class="btn-doc glyphicon glyphicon-save" aria-hidden="true" target="_blank"></a>
                             {% endif %}#}
-                            
+
                             <div class="like">
                                 <span data-id="{{opinions.id}}" class="
                                       {% if app.user|liked(opinions) == true%}
@@ -63,7 +63,7 @@
                                       data-placement="left" 
                                       title="Me gusta">
                                 </span>
-                                
+
                                 <span data-id="{{opinions.id}}" class="
                                       {% if app.user|liked(opinions) == false%}
                                           hidden
@@ -75,13 +75,13 @@
                                       title="Ya no me gusta">
                                 </span>
                             </div>
-                             
+
                         </div>
                         <hr />
                     </div>
-                    
+
                 {% endfor %}
-                
+
                 <div class="pagination">
                     {{ knp_pagination_render(pagination) }}
                 </div>
@@ -95,7 +95,7 @@
                     <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
                 {% endif %}
             </div>
-            
+
             <div class="name-surname">
                 <a href="#">{{ app.user.name }} {{ app.user.plastname }}</a>
                 <div class="clearfix"></div>
@@ -104,9 +104,9 @@
                 </span>
             </div>
             <div class="clearfix"></div>
-            
+
             {% set user_stats = app.user|user_stats%}
-            
+
             <div class="following-data">
                 <a href="{{ path('following_users', {'email':app.user.email})}}">
                     <span class="label-stat">Siguiendo</span>
@@ -125,7 +125,7 @@
                     <span class="number-stat">{{user_stats.opinions}}</span>
                 </a>
             </div>
-            
+
             <div class="following-data">
                 <a href="{{ path('user_likes', {'email':app.user.email})}}">
                     <span class="label-stat">Me gusta</span>
@@ -133,9 +133,9 @@
                 </a>
             </div>
         </div>
-                
+
         <div id="new-opinion" class="col-lg-4 box-default pull-left">
-            <h1 class="box-header">Crear publicacion</h1>
+            <h1 class="box-header">Crear publicación</h1>
             {{form_start(form, {action: '', 'method': 'POST' })}}
             {{form_end(form)}}
         </div>

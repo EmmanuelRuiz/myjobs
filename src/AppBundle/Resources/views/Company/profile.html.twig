@@ -42,7 +42,7 @@
 
                     <h5><b>Descripción</b></h5>
 
-                    <p>Totam nihil pariatur vitae cumque maxime suscipit asperiores quaerat quae ut veritatis quibusdam corrupti facere quisquam, excepturi, temporibus quidem autem, ducimus voluptatum.</p>
+                    <p>{{company.description}}</p>
 
                     <div class="row ">
                         {% set company_stats = company.id|company_stats%}
@@ -519,32 +519,33 @@
                         En breve nos comunicaremos contigo para corroborar la información.
                     </div>
                     <hr>
+                    {% if app.user != null %}
+                        <form action="{{ path('administrator_claimcompany',{'id':company.id, 'user_id':app.user.id}) }}" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="position" id="position" placeholder="Cargo en la empresa">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="companyemail" id="companyemail" placeholder="Email empresarial">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="rfc" id="companyemail" placeholder="RFC">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="officenumber" id="officenumber" placeholder="Telefono de oficina y/o extención">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="personalnumber" id="personalnumber" placeholder="Telefono personal">
+                            </div>
 
-                    <form action="{{ path('administrator_claimcompany',{'id':company.id, 'user_id':app.user.id}) }}" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="position" id="position" placeholder="Cargo en la empresa">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="companyemail" id="companyemail" placeholder="Email empresarial">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="rfc" id="companyemail" placeholder="RFC">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="officenumber" id="officenumber" placeholder="Telefono de oficina y/o extención">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="personalnumber" id="personalnumber" placeholder="Telefono personal">
-                        </div>
-
-                        <button type="submit" class="btn btn-success btn-block btn-lg">Enviar</button>
-                    </form>
+                            <button type="submit" class="btn btn-success btn-block btn-lg">Enviar</button>
+                        </form>
+                    {% endif %}
                 </div>
 
             </div>
