@@ -107,6 +107,30 @@
                             </table>
                         </div>
                     </div>
+                                
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">Empresas por estados</div>
+                            <!-- Table -->
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Rango de usuarios</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    {%for edad in edades %}
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{edad.rango}} años</td>
+                                            <td>{{edad.total}} usuarios</td>
+                                        </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>  
                 </div>
             </div>
             <!-- /#page-wrapper -->
