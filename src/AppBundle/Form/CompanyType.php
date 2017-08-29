@@ -98,7 +98,7 @@ class CompanyType extends AbstractType
                 )
             ))
             ->add('businessemail', TextType::class, array(
-                'label' => 'Correo electronico',
+                'label' => 'Correo electrónico',
                 'required' => 'required',
                 'attr' => array(
                     'class' => 'form-businessemail form-control'

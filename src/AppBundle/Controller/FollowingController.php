@@ -41,7 +41,7 @@ class FollowingController extends Controller {
 		$flush = $em->flush();
 		
 		if ($flush == null) {
-			$status = "Ahora estas siguiendo a este usuario";
+			$status = "Ahora estás siguiendo a este usuario";
 		} else {
 			$status = "No se ha podido seguir a este usuario";
 		}

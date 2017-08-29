@@ -44,14 +44,14 @@ class RegisterType extends AbstractType {
                     )
                 ))
                 ->add('email', EmailType::class, array(
-                    'label' => 'Correo electronico',
+                    'label' => 'Correo electrónico',
                     'required' => 'required',
                     'attr' => array(
                         'class' => 'form-name form-control email-input'
                     )
                 ))
                 ->add('gender', ChoiceType::class, array(
-                    'label' => 'Genero',
+                    'label' => 'Género',
                     'choices' => array(
                         'F' => 'F',
                         'M' => 'M'
@@ -76,7 +76,7 @@ class RegisterType extends AbstractType {
                     )
                 ))
                 ->add('telephone', TextType::class, array(
-                    'label' => 'Numero telefonico',
+                    'label' => 'Número de teléfono',
                     'required' => 'required',
                     'attr' => array(
                         'class' => 'form-control phone-input'

@@ -45,7 +45,7 @@ class UserType extends AbstractType {
                     )
                 ))
                 ->add('email', EmailType::class, array(
-                    'label' => 'Correo electronico',
+                    'label' => 'Correo electrónico',
                     'required' => 'required',
                     'attr' => array(
                         'class' => 'form-name form-control email-input'
@@ -53,7 +53,7 @@ class UserType extends AbstractType {
                 ))
                 // textarea para la biografia del usuario
                 ->add('biography', TextareaType::class, array(
-                    'label' => 'Biografia',
+                    'label' => 'Biografía',
                     'required' => false,
                     'attr' => array(
                         'class' => 'form-bio form-control '
@@ -77,7 +77,7 @@ class UserType extends AbstractType {
                     )
                 ))
                 ->add('telephone', TextType::class, array(
-                    'label' => 'Numero telefonico',
+                    'label' => 'Número de teléfono',
                     'required' => 'required',
                     'attr' => array(
                         'class' => 'form-control'

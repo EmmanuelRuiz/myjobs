@@ -43,7 +43,7 @@ class RegisterCompanyType extends AbstractType {
 					)
 				))
 				->add('description', TextareaType::class, array(
-					'label' => 'Descripcion',
+					'label' => 'Descripción',
 					'required' => 'required',
 					'attr' => array(
 						'class' => 'form-control'
@@ -78,7 +78,7 @@ class RegisterCompanyType extends AbstractType {
 					)
 				))
 				->add('telephoneext', TextType::class, array(
-					'label' => 'Telefono de oficina y/o extensión',
+					'label' => 'Teléfono de oficina y/o extensión',
 					'required' => null,
 					'attr' => array(
 						'class' => 'form-telefono form-control'
@@ -92,7 +92,7 @@ class RegisterCompanyType extends AbstractType {
 					)
 				))
 				->add('personalnumber', TextType::class, array(
-					'label' => 'Telefono personal',
+					'label' => 'Teléfono personal',
 					'required' => null,
 					'attr' => array(
 						'class' => 'form-telefono form-control'

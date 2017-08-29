@@ -43,7 +43,7 @@ class UserController extends Controller {
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $this->addFlash(
-                'error_login', 'Ha ocurrido un error al iniciar sesion. Compruebe su correo o contraseña'
+                'error_login', 'Ha ocurrido un error al iniciar sesión. Compruebe su correo o contraseña'
         );
 
         return $this->render('AppBundle:Index:index.html.twig', array(
@@ -200,12 +200,12 @@ class UserController extends Controller {
 
                     // mensajes de comprobación 
                     if ($flush == null) {
-                        $status = "Tu perfil se a actualizado con exito";
+                        $status = "Tu perfil se a actualizado con éxito";
                     } else {
                         $status = "No se han realizado cambios a tu perfil";
                     }
                 } else {
-                    $status = "El correo electronico ya esta en uso";
+                    $status = "El correo electrónico ya esta en uso";
                 }
             } else {
                 $status = "No se han realizado cambios a tu perfil";

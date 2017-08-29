@@ -24,7 +24,7 @@ class OpinionType extends AbstractType
 			
 			// textarea para la biografia del usuario
 			->add('generalcomment', TextareaType::class, array(
-				'label' => 'Opinion (ejemplo)',
+				'label' => 'Opinión (ejemplo)',
 				'required' => 'required',
 				'attr' => array(
 					'class' => 'form-control '
