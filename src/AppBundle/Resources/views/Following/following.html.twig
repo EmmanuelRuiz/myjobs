@@ -1,80 +1,80 @@
 {%extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 {% block javascripts %}
     {{ parent() }}
-     <script src="{{ asset('assets/js/custom/users.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/users.js') }}"></script>
 {% endblock %}
 {% block content %}
     <section class="following-section">
-      <div class="container">
-          <div class="col-lg-12 box-form">
-              {% if type == 'following'%}
-                  <h1 class="box-header">Personas a las que sigues</h1>
-              {% else %}
-                  <h1 class="box-header">Personas que te siguen</h1>
-              {% endif %}
-              <div class="count">
-                  <span class="label label-primary">
-                      Total de personas: {{ pagination.getTotalItemCount }}
-                  </span>
-              </div>
+        <div class="container">
+            <div class="col-lg-12 box-form">
+                {% if type == 'following'%}
+                    <h1 class="box-header">Personas a las que sigues</h1>
+                {% else %}
+                    <h1 class="box-header">Personas que te siguen</h1>
+                {% endif %}
+                <div class="count">
+                    <span class="label label-primary">
+                        Total de personas: {{ pagination.getTotalItemCount }}
+                    </span>
+                </div>
 
-              <hr />
+                <hr />
 
-              <div class="box-content box-users">
-                  {% for follow in pagination %}
+                <div class="box-content box-users">
+                    {% for follow in pagination %}
 
-                  {% if type == 'following'%}
-                      {% set user = follow.followed %}
-                  {% else %}
-                      {% set user = follow.user %}
-                  {% endif %}
-                  <div class="media">
-                      <div class="media-left">
-                          {#mostramos los datos del usuario#}
-                          {% if user.image == null%}
-                              <a href="">
-                                  <img class="company-pp-list" src="{{asset('assets/images/default.jpg')}}" />
-                              </a>
-                          {% else %}
-                              <a href="">
-                                 <img class="company-pp-list" src="{{asset('uploads/users/'~user.image)}}" />
-                              </a>
-                          {%endif%}
-                      </div>
+                        {% if type == 'following'%}
+                            {% set user = follow.followed %}
+                        {% else %}
+                            {% set user = follow.user %}
+                        {% endif %}
+                        <div class="media">
+                            <div class="media-left">
+                                {#mostramos los datos del usuario#}
+                                {% if user.image == null%}
+                                    <a href="">
+                                        <img class="company-pp-list" src="{{asset('assets/images/default.jpg')}}" />
+                                    </a>
+                                {% else %}
+                                    <a href="">
+                                        <img class="company-pp-list" src="{{asset('uploads/users/'~user.image)}}" />
+                                    </a>
+                                {%endif%}
+                            </div>
 
-                      <div class="media-body">
-                          <h4 class="media-heading">
-                              <a class="links-search" href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
-                          </h4>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a class="links-search" href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
+                                </h4>
 
-                          <p>{{ user.biography}}<p>
+                                <p>{{ user.biography}}<p>
 
-                          {% if app.user.id != user.id %}
-                              <div class="buttons-following" >
-                                  <button class=" btn btn-xs btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
-                                      <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                      Seguir
-                                  </button>
+                                    {% if app.user.id != user.id %}
+                                    <div class="buttons-following" >
+                                        <button class=" btn btn-xs btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
+                                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                            Seguir
+                                        </button>
 
-                                  <button class="btn btn-xs btn-default btn-unfollow {% if app.user|following(user) == false %} hidden {% endif %}" data-followed="{{ user.id }}">
-                                      <i class="fa fa-user-times" aria-hidden="true"></i>
-                                      Dejar de seguir
-                                  </button>
-                              </div>
-                          {% endif %}
-                      </div>
+                                        <button class="btn btn-xs btn-default btn-unfollow {% if app.user|following(user) == false %} hidden {% endif %}" data-followed="{{ user.id }}">
+                                            <i class="fa fa-user-times" aria-hidden="true"></i>
+                                            Dejar de seguir
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            </div>
 
-                      <div class="clearfix"></div>
-                      <hr>
-                  </div>
-                  {% endfor %}
-              </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                        </div>
+                    {% endfor %}
+                </div>
 
 
-              {{ knp_pagination_render(pagination) }}
+                {{ knp_pagination_render(pagination) }}
 
-              <div class="clearfix"></div>
-          </div>
-      </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </section>
 {% endblock %}
