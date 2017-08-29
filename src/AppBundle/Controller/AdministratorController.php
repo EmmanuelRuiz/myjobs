@@ -728,10 +728,19 @@ class AdministratorController extends Controller {
         $preparaEstados->execute($paramsEstados);
         $estados = $preparaEstados->fetchAll();
         
+        $queryPuntos = "SELECT company_id, companies.tradename, 
+            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) 
+            as promedio FROM opinions INNER JOIN companies on opinions.company_id=companies.id
+            GROUP BY company_id ORDER BY promedio DESC LIMIT 5;";
+        $preparaPuntos = $db->prepare($queryPuntos);
+        $paramsPuntos = array();
+        $preparaPuntos->execute($paramsPuntos);
+        $puntos = $preparaPuntos->fetchAll();
 
         return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
             'edades' => $edades,
-            'estados' => $estados
+            'estados' => $estados,
+            'puntos' => $puntos
         ));
     }
 

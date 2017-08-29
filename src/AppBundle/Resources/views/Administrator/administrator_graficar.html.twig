@@ -84,6 +84,7 @@
 
             <div id="page-wrapper">
                 <div class="container">
+                    <!-- usuarios por rango de edades-->
                     <div class="col-lg-6">
                         <div class="panel panel-primary">
                             <!-- Default panel contents -->
@@ -107,7 +108,8 @@
                             </table>
                         </div>
                     </div>
-                                
+                     <!-- usuarios por rango de edades-->
+                     <!-- empresas por estados-->
                     <div class="col-lg-6">
                         <div class="panel panel-primary">
                             <!-- Default panel contents -->
@@ -131,6 +133,31 @@
                             </table>
                         </div>
                     </div>  
+                    <!-- empresas por estados-->
+                    
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">5 empresas más puntuadas por opiniones</div>
+                            <!-- Table -->
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Empresas</th>
+                                        <th>Total de puntos en opiniones</th>
+                                    </tr>
+                                    {%for punto in puntos %}
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{punto.tradename}}</td>
+                                            <td>{{punto.promedio}} Puntos</td>                                          
+                                        </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /#page-wrapper -->
