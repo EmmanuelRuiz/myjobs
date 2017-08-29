@@ -100,7 +100,7 @@
                                     <tbody>
                                         <tr>
                                             <td>{{edad.rango}} años</td>
-                                            <td>{{edad.total}} usuarios</td>
+                                            <td>{{edad.total}} usuarios</td>                                          
                                         </tr>
                                     {%endfor%}
                                 </tbody>
@@ -111,20 +111,20 @@
                     <div class="col-lg-6">
                         <div class="panel panel-primary">
                             <!-- Default panel contents -->
-                            <div class="panel-heading">Empresas por estados</div>
+                            <div class="panel-heading">Cantidad de empresas, agrupación por estados</div>
                             <!-- Table -->
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Rango de usuarios</th>
+                                        <th>Estado</th>
                                         <th>Total</th>
                                     </tr>
-                                    {%for edad in edades %}
+                                    {%for estado in estados %}
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>{{edad.rango}} años</td>
-                                            <td>{{edad.total}} usuarios</td>
+                                        <tr>                                            
+                                            <td>{{estado.estado}} </td>
+                                            <td>{{estado.total}} Registros</td>
                                         </tr>
                                     {%endfor%}
                                 </tbody>

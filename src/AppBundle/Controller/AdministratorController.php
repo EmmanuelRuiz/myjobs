@@ -705,6 +705,9 @@ class AdministratorController extends Controller {
     public function graficarAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $db = $em->getConnection();
+        /*
+         * Sacar grupos de usuarios por edades
+         */
         $query = "SELECT CASE WHEN (age BETWEEN 18 AND 30) THEN 'De 18 a 30' " .
                 "ELSE CASE WHEN(age BETWEEN 30 AND 40) THEN 'De 30 a 40' " .
                 "ELSE CASE WHEN(age BETWEEN 40 AND 50) THEN 'De 40 a 50'" .
@@ -715,10 +718,20 @@ class AdministratorController extends Controller {
         $stmt = $db->prepare($query);
         $params = array();
         $stmt->execute($params);
-
         $edades = $stmt->fetchAll();
+        
+        
+        /*obtener cantidades de empresas por estado*/
+        $queryEstados = "select estado, count(estado) total from companies group by estado;";
+        $preparaEstados = $db->prepare($queryEstados);
+        $paramsEstados = array();
+        $preparaEstados->execute($paramsEstados);
+        $estados = $preparaEstados->fetchAll();
+        
+
         return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
-            'edades' => $edades
+            'edades' => $edades,
+            'estados' => $estados
         ));
     }
 
