@@ -97,7 +97,7 @@ class UserController extends Controller {
                     $flush = $em->flush();
                     /* comprobar que se guarda */
                     if ($flush == null) {
-                        $status = "Te has registrado con éxisto. Bienvenido.";
+                        $status = "Te has registrado con éxito. Bienvenido.";
                         $this->session->getFlashBag()->add("success", $status);
                         return $this->redirect("cuenta/login");
                     } else {
