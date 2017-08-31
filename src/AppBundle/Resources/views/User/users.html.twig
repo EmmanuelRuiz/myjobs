@@ -21,25 +21,36 @@
                         <div class="media">
                             <div class="media-left">
                                 {#mostramos los datos del usuario#}
-                                {% if user.image == null%}
+                                {% if user.image == null %}
                                     <a href="{{ path('user_profile', {'id':user.id})}}">
                                         <img class="company-pp-list img-circle" src="{{asset('assets/images/default.jpg')}}" />
                                     </a>
+                                {% elseif user.anonimo == 'Si' %}        
+                                    <img class="company-pp-list img-circle" src="{{asset('assets/images/default.jpg')}}" />
                                 {% else %}
                                     <a href="{{ path('user_profile', {'id':user.id})}}">
                                         <img class="company-pp-list img-circle" src="{{asset('uploads/users/'~user.image)}}" /> 
                                     </a>
-                                {%endif%}
+                                {% endif %}
                             </div>
 
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <a class="links-search" href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
+                                    {% if user.anonimo == 'Si' %}
+                                        <em>Anonimo</em>
+                                    {% else %}
+                                        <a class="links-search" href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
+                                    {% endif %}
+
                                 </h4>
-                                
-                                <p>{{ user.biography}}<p>
-                                    
-                                {% if app.user.id != user.id %}
+
+                                {% if user.anonimo == 'Si' %}
+                                    <em>Este usuario es privado, por lo tanto no puedes ver su información personal</em>
+                                {% else %}
+                                    <p>{{ user.biography}}<p>
+                                    {% endif %}
+
+                                    {% if app.user.id != user.id %}
                                     <div class="buttons-following" >
                                         <button class=" btn btn-xs btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
                                             <i class="fa fa-user-plus" aria-hidden="true"></i>
