@@ -36,6 +36,7 @@ class RateController extends Controller {
 		$var8 = $request->query->get("estrellas8");
 		$var9 = $request->query->get("estrellas9");
 		$var10 = $request->query->get("estrellas10");
+                $yesno = $request->query->get("yesno");
 		$generalcomment = $request->query->get("generalcomment");
 		
 		// seteamos los datos
@@ -50,6 +51,7 @@ class RateController extends Controller {
 		$opinion->setPoint8($var8);
 		$opinion->setPoint9($var9);
 		$opinion->setPoint10($var10);
+                $opinion->setYesno($yesno);
 		$opinion->setGeneralcomment($generalcomment);
 		$opinion->setCompany($company);
 		$opinion->setCreatedAt(new \DateTime("now"));

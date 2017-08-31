@@ -456,11 +456,19 @@
                             </p>
                         </fieldset>
                         <fieldset>
-                            <form >
                             <h5>¿Trabajas actualmente en esta empresa?</h5>
-                            <input type="radio" name="trabajas" value="si"> Si<br>
-                            <input type="radio" name="trabajas" value="no"> No<br>                          
-                            </form>
+                            <div class="radio">
+                                <label>
+                                    <input class="mostrarRadio" type="radio" name="yesno" id="optionsRadios1" value="si" checked>
+                                    Si
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input class="mostrarRadio" type="radio" name="yesno" id="optionsRadios2" value="no">
+                                    No
+                                </label>
+                            </div>
                         </fieldset><hr/>
                         <div class="form-group">
                             <label for="inputOpinion" class="control-label">Tomando todo en consideración, ¿cuál es tu opinión personal de esta empresa?</label>

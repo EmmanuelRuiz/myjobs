@@ -457,4 +457,33 @@ class Opinion
     {
         return $this->user;
     }
+    /**
+     * @var string
+     */
+    private $yesno;
+
+
+    /**
+     * Set yesno
+     *
+     * @param string $yesno
+     *
+     * @return Opinion
+     */
+    public function setYesno($yesno)
+    {
+        $this->yesno = $yesno;
+
+        return $this;
+    }
+
+    /**
+     * Get yesno
+     *
+     * @return string
+     */
+    public function getYesno()
+    {
+        return $this->yesno;
+    }
 }

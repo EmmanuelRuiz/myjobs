@@ -84,6 +84,12 @@ BackendBundle\Entity\Opinion:
             length: 250
             options:
                 fixed: false
+        yesno:
+            type: string
+            nullable: true
+            length: 6
+            options:
+                fixed: false
         createdAt:
             type: datetime
             nullable: true

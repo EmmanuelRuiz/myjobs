@@ -234,10 +234,13 @@ body {
     font-size: 25px;
 }
 
-.form-rating input[type="radio"] {
+.form-rating .clasificacion input[type="radio"] {
     display: none;
 }
 
+.mostrarRadio{
+    display: block;
+}
 .form-rating .label-star {
     color: grey;
 }

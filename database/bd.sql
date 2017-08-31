@@ -171,3 +171,6 @@ ALTER TABLE `companies` ADD `localidad` VARCHAR(255) CHARACTER SET utf32 COLLATE
 
 
 ALTER TABLE `users` ADD `gender` VARCHAR(3) NULL AFTER `age`;
+
+
+ALTER TABLE `opinions` ADD `yesno` VARCHAR(6) NULL AFTER `point10`; 
