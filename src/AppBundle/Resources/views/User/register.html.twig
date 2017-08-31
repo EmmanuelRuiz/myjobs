@@ -1,9 +1,8 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig" %}
 {% block javascripts %}
-    <script src="{{ asset('assets/js/custom/slider.js') }}"></script>
+
     {{ parent() }}
     <script src="{{asset('assets/js/custom/email-test.js')}}"></script>
-
 {% endblock %}
 
 {% block content %}
@@ -11,6 +10,15 @@
     <section class="register-section">
         <div class="container">
             <div class="row">
+                <div class="col-lg-6">
+                    <h2>Nuestros valores</h2>
+                    <ul>
+                        <li>Tratamos a los demás como nos gustaría ser tratados.</li>
+                        <li>Estamos agradecidos por la oportunidad de ser útiles a nuestra generación y
+                            tener talentos para compartir e impulsar a otros.</li>
+                        <li>Creemos en compartir como una forma de transformar el mundo.</li>
+                    </ul>
+                    
                     <img src="{{ asset('assets/images/myjobsadvisor-register.png')}}" class="img-responsive img-register" alt="">
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-register">
@@ -59,6 +67,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" data-toggle="popover" 
                                  data-placement="left"  data-content="Si eres un perfil privado, los demás usuarios no podrán ver tus datos">
                                 {{form_row(form.anonimo)}} 
+
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
                                 <br>
