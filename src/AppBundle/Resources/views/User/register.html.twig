@@ -57,13 +57,11 @@
                                 <label for="confirmpasswordInput">Confirmar contraseña</label>
                                 <input type="password" class="form-control" required id="confirmpasswordInput">
                             </div>
-                            
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" data-toggle="popover" 
+                                 data-placement="left"  data-content="Si eres un perfil privado, los demás usuarios no podrán ver tus datos">
                                 {{form_row(form.anonimo)}} 
                                 
-                                <div class="well">
-                                    <p>Si eres un perfil privado, los demas usuarios no podran ver tus datos</p>
-                                </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
                                 <br>
@@ -81,4 +79,9 @@
         </div>
         <!-- /.container -->
     </section>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
 {% endblock %}
