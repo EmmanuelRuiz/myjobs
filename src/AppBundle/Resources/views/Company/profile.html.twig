@@ -204,7 +204,7 @@
                                         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
                                             <a href="{{ path('user_profile', {'id':opinions.user.id})}}">
                                                 <div class="avatar">
-                                                    {% if opinions.user.image == null%}
+                                                    {% if opinions.user.image == null or opinions.user.anonimo == 'Si' %}
                                                         <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
                                                     {% else %}
                                                         <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
@@ -213,7 +213,14 @@
                                             </a>
                                         </div>
                                         <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
-                                            <h5 class="media-heading"><a href="{{ path('user_profile', {'id':opinions.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a></h5>
+                                            <h5 class="media-heading">
+                                                {% if opinions.user.anonimo == 'Si' %}
+                                                    <em>Anonimo</em>
+                                                {% else %}
+                                                    <a href="{{ path('user_profile', {'id':opinions.user.id}) }}">{{ opinions.user.name }} {{ opinions.user.plastname }}</a>
+                                                {% endif %}
+                                                
+                                            </h5>
                                             <small class="text-muted">{{opinions.createdAt|long_time}}</small>
                                         </div>
                                         <div class="col-lg-6 col-md-3 col-sm-3 col-xs-3">
@@ -271,11 +278,11 @@
                                     {% for comments in comments%}
 
                                         {% if comments.opinion.id == opinions.id %}
-                                            {% if comments.status != 'invalid'%}
+                                            {% if comments.status != 'invalid' %}
                                                 <div class="row" id="comment">
                                                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 ">
                                                         <div class="avatar  ">
-                                                            {% if comments.user.image == null%}
+                                                            {% if comments.user.image == null or comments.user.anonimo == 'Si' %}
                                                                 <a class="" href="{{ path('user_profile', {'id':comments.user.id})}}">
                                                                     <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
                                                                 </a>
@@ -287,7 +294,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
-                                                        <h5 class="media-heading "><a href="{{ path('user_profile', {'id':comments.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a>
+                                                        <h5 class="media-heading ">
+                                                            {% if comments.user.anonimo == 'Si' %}
+                                                                <em>Anonimo</em>
+                                                            {% else %}
+                                                                <a href="{{ path('user_profile', {'id':comments.user.id}) }}">{{ comments.user.name }} {{ comments.user.plastname }}</a>
+                                                            {% endif %}
+
                                                             - <small class="text-muted">{{comments.createdAt|long_time}}</small>
                                                         </h5>
 
