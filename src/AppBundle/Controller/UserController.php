@@ -90,6 +90,8 @@ class UserController extends Controller {
                     /* metodos set necesarios para guardar la informacion */
                     $user->setPassword($password);
                     $user->setRole("ROLE_USER");
+					$user->setCreatedAt(new \Datetime('now'));
+					$user->setTermscondition('ACEPTO');
                     $user->setImage(null);
                     /* volcar el objeto y persistir en doctrine */
                     $em->persist($user);
@@ -194,7 +196,10 @@ class UserController extends Controller {
                     } else {
                         $user->setImage($user_image);
                     }
-
+					
+					
+				
+					$user->setUpdatedAt(new \Datetime('now'));
                     /* volcar el objeto y persistir en doctrine */
                     $em->persist($user);
                     /* pasar los objetos persistidos a la bd */
