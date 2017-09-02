@@ -73,10 +73,10 @@ class UserController extends Controller {
                 //$user_repo = $em->getRepository("BackendBundle:User");
 
                 /*
-                 * usar entiti manager para consultas				
+                 * usar entiti manager para consultas
                  * hacer comprobacion de que el usuario se quiere registrar
-                 * no este en la bd	
-                 * :valor significa que es el parametro que recibimos			 
+                 * no este en la bd
+                 * :valor significa que es el parametro que recibimos
                  */
 
                 $query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email')
@@ -164,10 +164,10 @@ class UserController extends Controller {
                 $em = $this->getDoctrine()->getManager();
 
                 /*
-                 * usar entiti manager para consultas				
+                 * usar entiti manager para consultas
                  * hacer comprobacion de que el usuario se quiere registrar
-                 * no este en la bd	
-                 * valor significa que es el parametro que recibimos			 
+                 * no este en la bd
+                 * valor significa que es el parametro que recibimos
                  */
 
                 $query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email')
@@ -196,9 +196,9 @@ class UserController extends Controller {
                     } else {
                         $user->setImage($user_image);
                     }
-					
-					
-				
+
+
+
 					$user->setUpdatedAt(new \Datetime('now'));
                     /* volcar el objeto y persistir en doctrine */
                     $em->persist($user);
@@ -206,7 +206,7 @@ class UserController extends Controller {
                     $flush = $em->flush();
 
 
-                    // mensajes de comprobación 
+                    // mensajes de comprobación
                     if ($flush == null) {
                         $status = "Tu perfil se a actualizado con éxito";
                     } else {
@@ -295,35 +295,41 @@ class UserController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $user_repo = $em->getRepository('BackendBundle:User')->findOneBy(array("email" => $email));
+        $user_isset = count($user_repo);
+        if ($user_isset == 0) {
+          $status = "No hay ninguna cuenta vinculada a ese correo elctronico.";
+          $this->session->getFlashBag()->add("error", $status);
+        } else {
+          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          $charactersLength = strlen($characters);
+          $randomString = '';
+          for ($i = 0; $i < 16; $i++) {
+              $randomString .= $characters[rand(0, $charactersLength - 1)];
+          }
 
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < 16; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
+          $factory = $this->get("security.encoder_factory");
+          $encoder = $factory->getEncoder($user_repo);
+          $password = $encoder->encodePassword($randomString, $user_repo->getSalt());
+
+          $message = \Swift_Message::newInstance()
+                  ->setSubject('Hello Email')
+                  ->setFrom('contacto@crealab.com.mx')
+                  ->setTo($email)
+                  ->setBody(
+                  $this->renderView(
+                          // app/Resources/views/Emails/registration.html.twig
+                          'Emails/registration.html.twig', array('password' => $randomString, 'user' => $user_repo->getName())
+                  ), 'text/html'
+          );
+
+          $user_repo->setPassword($password);
+          $em->persist($user_repo);
+          $flush = $em->flush();
+
+          $this->get('mailer')->send($message);
+
         }
-
-        $factory = $this->get("security.encoder_factory");
-        $encoder = $factory->getEncoder($user_repo);
-        $password = $encoder->encodePassword($randomString, $user_repo->getSalt());
-
-        $message = \Swift_Message::newInstance()
-                ->setSubject('Hello Email')
-                ->setFrom('contacto@crealab.com.mx')
-                ->setTo($email)
-                ->setBody(
-                $this->renderView(
-                        // app/Resources/views/Emails/registration.html.twig
-                        'Emails/registration.html.twig', array('password' => $randomString)
-                ), 'text/html'
-        );
-
-        $user_repo->setPassword($password);
-        $em->persist($user_repo);
-        $flush = $em->flush();
-
-        $this->get('mailer')->send($message);
-
+        
         return $this->render('AppBundle:User:forget.html.twig');
     }
 

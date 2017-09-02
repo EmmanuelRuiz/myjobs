@@ -1,5 +1,34 @@
-<h3>Esta es tu nueva contraseña </h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 
-{{ password }}
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #eee;">
 
-Gracias
+  <div class="container" style="background-color: white; width: 700px;">
+    <img class="img-responsive img-desktop" width="250" src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial.png') }}"></img>
+    <br>
+    <h2>Hola, {{ user }}</h2><br>
+    <p>Parece que has olvidado la contraseña de tu cuenta, aqui podras encontrar un temporal. <br>Antes permitenos darte unas recomendaciones:</p>
+
+    <h3>Recomendaciones:</h3>
+    <p>La contraseña proporcionada por el equipo de MyJobsAdvisor es una contraseña temporal y poco segura, por lo que
+    recomendamos que hagas el cambio de esta misma lo mas pronto posible.</p>
+
+    <h3>¿Cómo hacer el cambio de contraseña?</h3>
+    <p>Al iniciar sesión, puedes dirigirte al menu despegable: Editar perfil>Cambiar contraseña.</p><br>
+
+    <p>Tu contraseña temporal es: <b>{{ password }}</b></p>
+
+    <p>Cualquier duda o aclaración no dudes en enviarnos un mensaje a: <b>contacto@myjobsadvisor.mx</b></p>
+
+    <p>Atentamente. <br> El equipo de MyJobsAdvisor</p>
+  </div>
+
+</body>
+</html>
