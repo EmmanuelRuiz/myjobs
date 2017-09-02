@@ -10,6 +10,10 @@
                         {{ message }}
                     </div>
                 {% endfor %}
+
+                <a href="{{ path('connect_facebook') }}" class="btn btn-fb btn-block"><i class="fa fa-facebook"></i> Facebook</a><br>
+                <a href="{{ path('connect_google') }}" class="btn btn-tw btn-block"><i class="fa fa-google"></i> Google</a><br>
+                <p class="text-muted text-center"> - o ingresa tus datos - </p>
                 <form action="{{path('user_login')}}" class="form-signin" role="form" method="post" accept-charset="UTF-8">
                     <h2 class="form-signin-heading">Iniciar sesión</h2>
                     <label for="inputEmail" class="sr-only">Email address</label>
@@ -22,7 +26,7 @@
 
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
                     <input type="hidden" name="_target_path" value="/perfil">
-                </form> 
+                </form>
             </div>
         </div>
     </section>

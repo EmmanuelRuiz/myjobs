@@ -62,20 +62,20 @@
                                                 <div class="col-md-12">
                                                     Entrar con
                                                     <div class="social-buttons">
-                                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                                        <a href="{{ path('connect_facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                        <a href="{{ path('connect_google') }}" class="btn btn-tw"><i class="fa fa-google"></i> Google</a>
                                                     </div>
                                                     o ingresa tus datos
                                                     <br />
                                                     <form action="{{path('user_login')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="inputEmail">Correo electronico</label>
-                                                            <input type="email" id="username" name="_username"  class="form-control">
+                                                            <input type="email" id="username" name="_username"  class="form-control" placeholder="Correo electronico">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="inputPassword">Contraseña</label>
-                                                            <input type="password" id="password" name="_password" class="form-control">
-                                                            <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
+                                                            <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña">
+                                                            <div class="help-block text-right"><a href="{{ path('user_forget') }}">¿Olvidaste tu contraseña?</a></div>
                                                         </div>
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
