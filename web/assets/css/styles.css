@@ -3,6 +3,14 @@ body {
     height: 100%;
 }
 
+/* error pages */
+
+.page-not-found{
+    margin-top: 15%;
+}
+
+/* error pages end */
+
 /* pagination */
 
 .pager li>a, .pager li>span {
