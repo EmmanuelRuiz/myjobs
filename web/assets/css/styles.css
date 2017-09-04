@@ -862,6 +862,13 @@ input[id=file] {
     margin-bottom: 5%;
 }
 
+/* reset password */
+.reset-password-view{
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+/* reset password end */
+
 
 
 /* responsive */
@@ -1100,6 +1107,22 @@ input[id=file] {
         font-size: 15px;
     }
     /* end slide */
+
+    /* footer */
+    .layout-footer{
+        background-color: #002F6D;
+        color: white;
+        padding-top: 5%;
+        padding-bottom: 1%;
+    }
+    /* end footer */
+    
+    /* reset password view */
+    .reset-password-view{
+        margin-top: 20%;
+        margin-bottom: 10%;
+    }
+    /* end reset password view*/
 }
 
 @media only screen and (max-width: 667px) {
