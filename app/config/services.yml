@@ -15,7 +15,7 @@ services:
                 clientId: %facebook_app_id%
                 clientSecret: %facebook_app_secret%
                 graphApiVersion: v2.3
-                redirectUri: "http://localhost/myjobs/web/app_dev.php/connect/facebook-check"
+                redirectUri: "http://www.myjobsadvisor.com/connect/facebook-check"
                 
     app.google_provider:
         class: League\OAuth2\Client\Provider\Google
@@ -23,7 +23,7 @@ services:
             -
                 clientId: %google_app_id%
                 clientSecret: %google_app_secret%
-                redirectUri: "http://localhost/myjobs/web/app_dev.php/connect/google-check"
+                redirectUri: "http://www.myjobsadvisor.com/connect/google-check"
                 
     app.google_authenticator:
         class: AppBundle\Security\GoogleAuthenticator

@@ -312,13 +312,13 @@ class UserController extends Controller {
           $password = $encoder->encodePassword($randomString, $user_repo->getSalt());
 
           $message = \Swift_Message::newInstance()
-                  ->setSubject('Hello Email')
-                  ->setFrom('contacto@crealab.com.mx')
+                  ->setSubject('Solicitud de Cambio de Contraseña ')
+                  ->setFrom('noreply@myjobsadvisor.com', 'MyJobsAdvisor')
                   ->setTo($email)
                   ->setBody(
                   $this->renderView(
                           // app/Resources/views/Emails/registration.html.twig
-                          'Emails/registration.html.twig', array('password' => $randomString, 'user' => $user_repo->getName())
+                          'Emails/forgot_password.html.twig', array('password' => $randomString, 'user' => $user_repo->getName())
                   ), 'text/html'
           );
 

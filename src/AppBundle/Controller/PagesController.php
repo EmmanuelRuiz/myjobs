@@ -19,9 +19,9 @@ class PagesController extends Controller {
 		$message_send = $request->get('message');
 
 		$message = \Swift_Message::newInstance()
-				->setSubject('Mensaje enviado desde MyJobsAdvisor')
-				->setFrom('contacto@crealab.com.mx')
-				->setTo('contacto@crealab.com.mx')
+				->setSubject('Contacto Desde Sitio Web')
+				->setFrom($email)
+				->setTo('contacto@myjobsadvisor.com')
 				->setBody(
 				$this->renderView(
 						// app/Resources/views/Emails/registration.html.twig

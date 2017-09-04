@@ -1,5 +1,25 @@
-<h3><b>Asunto: </b>{{ subject}}</h3><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 
-<b>Nombre: </b> {{ name }} <br>
-<b>Correo elctronico: </b> {{ email }}<br>
-<b>Mensaje: </b> {{ message }}
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #eee;">
+
+  <div class="container" style="background-color: white;">
+      <h2>Asunto: <em>{{ subject}}</em></h2>
+      
+      <h3>Mensaje:</h3>
+      <p>{{ message }}</p>
+      
+      <h3>Datos del usuario: </h3>
+      <p><b>Nombre: </b>{{ name }}</p>
+      <p><b>Correo electronico: </b> {{ email }}</p>
+  </div>
+
+</body>
+</html>
