@@ -37,7 +37,7 @@ class RegisterCompanyType extends AbstractType {
 				))
 				->add('rfc', TextType::class, array(
 					'label' => 'RFC',
-					'required' => 'required',
+					'required' => false,
 					'attr' => array(
 						'class' => 'form-rfc form-control'
 					)
