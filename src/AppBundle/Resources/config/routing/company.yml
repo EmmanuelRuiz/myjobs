@@ -12,7 +12,7 @@ companies_search:
     
 
 companies_edit:
-    path: /administrar/todas_empresas/editar
+    path: /empresa/editar
     defaults: { _controller: AppBundle:Company:edit }
 
     

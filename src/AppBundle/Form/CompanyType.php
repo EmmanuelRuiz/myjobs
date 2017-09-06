@@ -36,7 +36,7 @@ class CompanyType extends AbstractType
                 'required' => false,
                 'data_class' => null,
                 'attr' => array(
-                    'class' => ''
+                    'class' => 'form-control'
                 )
             ))
 				

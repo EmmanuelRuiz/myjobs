@@ -206,11 +206,15 @@
                                             <div class="avatar">
                                                 {% if opinions.user.image == null %}
                                                     <a href="{{ path('user_profile', {'id':opinions.user.id})}}"><img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/></a>
-                                                    {% elseif opinions.user.anonimo == 'Si' %}
+                                                {% elseif opinions.user.anonimo == 'Si' %}
                                                     <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% elseif opinions.user.facebookId != null %}
+                                                    <img class="user-logo-opinion img-circle" src="{{ opinions.user.image }}"/>
+                                                {% elseif opinions.user.googleId != null %}
+                                                    <img class="user-logo-opinion img-circle" src="{{ opinions.user.image }}"/>
                                                 {% else %}
                                                     <a href="{{ path('user_profile', {'id':opinions.user.id})}}"><img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/></a>
-                                                    {% endif %}
+                                                {% endif %}
                                             </div>
 
                                         </div>

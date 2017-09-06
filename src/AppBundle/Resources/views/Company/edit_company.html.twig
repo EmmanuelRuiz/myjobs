@@ -1,87 +1,94 @@
 {% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
+    <div class="edit-company-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
 
-                <h2 class="page-header">Opciones</h2>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">Editar perfil</a>
-                    <a href="#" class="list-group-item">Avanzado</a>
-                </div>
-
-            </div>
-            <div class="col-lg-9">
-                <h2 class="page-header">Datos de la empresa</h2>
-                {%for message in app.session.flashbag().get('status')%}
-                    <div class="alert alert-success">{{message}}</div>
-                {%endfor%}
-                {{form_start(form, {'enctype':'multipart/form-data'})}}
-
-                <div class="col-lg-12 form-group">
-                    <div class="media">
-                        <div class="media-left">
-                            <a>
-                                <img class="" width="80" height="80" src="{{ asset('uploads/company/'~company.logo) }}"/>
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ form_row(form.logo) }}</h4>
-
-                        </div>
+                    <h2 class="page-header">Opciones</h2>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">Editar perfil</a>
+                        <a class="list-group-item disabled">Avanzado</a>
                     </div>
 
                 </div>
+                <div class="col-lg-9">
+                    <h2 class="page-header">Datos de la empresa</h2>
+                    {%for message in app.session.flashbag().get('status')%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {%endfor%}
+                    {{form_start(form, {'enctype':'multipart/form-data'})}}
 
-                <div class="col-lg-6 form-group">
-                    {{ form_row(form.tradename) }}
-                </div>
+                    <div class="col-lg-12 form-group">
+                        <div class="media">
+                            <div class="media-left">
+                                <a>
+                                    {% if company.logo == null%}
+                                        <img class="" width="80" height="80" src="{{ asset('assets/images/company-logo.png') }}"/>
+                                    {% else %}
+                                        <img class="" width="80" height="80" src="{{ asset('uploads/company/'~company.logo) }}"/>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ form_row(form.logo) }}</h4>
 
-                <div class="col-lg-6 form-group">
-                    {{ form_row(form.rfc) }}
-                </div>
-                <div class="col-lg-6 form-group">
-                    {{ form_row(form.businesssector) }}
-                </div>
-                <div class="col-lg-12 form-group">
-                    {{ form_row(form.description) }}
-                </div>
+                            </div>
+                        </div>
 
-
-                <h3 class="col-lg-12 page-header">Datos del representante</h3>
-                <div class="clearfix"></div>
-
-                <div class="col-lg-12">
-                    <div class="alert alert-dismissible alert-info">
-                        <strong>¡No te preocupes!</strong> La información del representante nadie más puede verla, solo tú.
                     </div>
-                </div>
+
+                    <div class="col-lg-6 form-group">
+                        {{ form_row(form.tradename) }}
+                    </div>
+
+                    <div class="col-lg-6 form-group">
+                        {{ form_row(form.rfc) }}
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        {{ form_row(form.businesssector) }}
+                    </div>
+                    <div class="col-lg-12 form-group">
+                        {{ form_row(form.description) }}
+                    </div>
 
 
-                <div class="col-lg-6 form-group">
-                    {{ form_row(form.contacname) }}
-                </div>
+                    <h3 class="col-lg-12 page-header">Datos del representante</h3>
+                    <div class="clearfix"></div>
+
+                    <div class="col-lg-12">
+                        <div class="alert alert-dismissible alert-info">
+                            <strong>¡No te preocupes!</strong> La información del representante nadie más puede verla, solo tú.
+                        </div>
+                    </div>
 
 
-                <div class="col-lg-6 form-group">
-                    {{ form_row(form.businessemail) }}
-                </div>
-                <div class="col-lg-6 form-group">
-                    {{ form_row(form.position) }}
-                </div>
-                <div class="col-lg-6 form-group">
-                    {{ form_row(form.telephoneext) }}
-                </div>
+                    <div class="col-lg-6 form-group">
+                        {{ form_row(form.contacname) }}
+                    </div>
 
-                <div class="col-lg-12 form-group">
-                    {{form_row(form.Registrar, {'label':'Editar'})}}
+
+                    <div class="col-lg-6 form-group">
+                        {{ form_row(form.businessemail) }}
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        {{ form_row(form.position) }}
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        {{ form_row(form.telephoneext) }}
+                    </div>
+                    <div class="col-lg-12 form-group">
+                        {{ form_row(form.website) }}
+                    </div>
+
+                    <div class="col-lg-12 form-group">
+                        {{form_row(form.Registrar, {'label':'Editar'})}}
+                    </div>
+                    {{form_end(form)}}
+                    <div class="clearfix"></div>
                 </div>
-                {{form_end(form)}}
-                <div class="clearfix"></div>
             </div>
         </div>
-
     </div>
-    <br>
 
 {% endblock %}

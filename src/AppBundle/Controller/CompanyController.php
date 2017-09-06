@@ -70,6 +70,7 @@ class CompanyController extends Controller {
                     $updatedAt = new \Datetime('now');
                     $company->setUser($user);
                     $company->setLogo(null);
+					
                     if ($representant == 'no') {
                         $company->setStatus("invalid");
                         $company->setRepresentant($representant);
@@ -380,30 +381,10 @@ class CompanyController extends Controller {
         ));
     }
 
-    /* public function puntosAction(Request $request){
-      $em = $this->getDoctrine()->getEntityManager();
-      $db = $em->getConnection();
-
-      $query = "SELECT SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) / 10 AS promedio FROM opinions WHERE company_id = 6; ";
-      $stmt = $db->prepare($query);
-      $params = array();
-      $stmt->execute($params);
-
-      $po=$stmt->fetchAll();
-
-      foreach ($po as $p) {
-      $p["promedio"];
-      }
-
-      return $this->render('AppBundle:User:home.html.twig', array(
-      'puntos' => $p
-      ));
-      } */
-
     public function editAction(Request $request) {
-
+		$user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
+        
 
         $company = new Company();
 
@@ -411,10 +392,8 @@ class CompanyController extends Controller {
         $company_repo = $em->getRepository('BackendBundle:Company');
         $company = $company_repo->find($id);
 
-
         // guardamos la imagen por defecto
         $company_image = $company->getLogo();
-
 
         // creamos variable para la instancia del formulario
         $form = $this->createForm(CompanyType::class, $company);
@@ -424,13 +403,7 @@ class CompanyController extends Controller {
         /* comprobar si el formularion se ha enviado */
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                /*
-                 * usar entiti manager para consultas
-                 * hacer comprobacion de que el usuario se quiere registrar
-                 * no este en la bd
-                 * valor significa que es el parametro que recibimos
-                 */
-
+              
                 $query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename')
                         ->setParameter('tradename', $form->get("tradename")->getData());
 
@@ -480,8 +453,8 @@ class CompanyController extends Controller {
         }
 
         return $this->render('AppBundle:Company:edit_company.html.twig', array(
-                    'company' => $company,
-                    'form' => $form->createView()
+			'company' => $company,
+			'form' => $form->createView()
         ));
     }
 
@@ -490,8 +463,6 @@ class CompanyController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $id = $user->getId();
-
-
 
         $dql = "SELECT u FROM BackendBundle:Company u WHERE u.user = $id";
 

@@ -19,8 +19,13 @@
                     <div class="col-lg-12 form-group">
                         <div class="media">
                             <div class="media-left">
-                                <a>
-                                    <img class="" width="80" height="80" src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                <a> 
+                                    {% if app.user.image == null %}
+                                        <img class="" width="80" height="80" src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% else %}
+                                        <img class="" width="80" height="80" src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                    {% endif %}
+                                    
                                 </a>
                             </div>
                             <div class="media-body">

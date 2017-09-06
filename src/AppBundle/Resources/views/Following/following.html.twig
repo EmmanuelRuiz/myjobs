@@ -37,6 +37,10 @@
                                     </a>
                                 {% elseif user.anonimo == 'Si' %}        
                                     <img class="company-pp-list img-circle" src="{{asset('assets/images/default.jpg')}}" />
+                                {% elseif user.facebookId != null %}
+                                    <img class="company-pp-list img-circle" src="{{ user.image }}"/>
+                                {% elseif user.googleId != null %}
+                                    <img class="company-pp-list img-circle" src="{{ user.image }}"/>
                                 {% else %}
                                     <a href="{{ path('user_profile', {'id':user.id})}}">
                                         <img class="company-pp-list img-circle" src="{{asset('uploads/users/'~user.image)}}" /> 
@@ -56,8 +60,8 @@
                                     <em>Este usuario es privado, por lo tanto no puedes ver su información personal</em>
                                 {% else %}
                                     <p>{{ user.biography}}<p>
-                                {% endif %}
-                                
+                                    {% endif %}
+
 
                                     {% if app.user.id != user.id %}
                                     <div class="buttons-following" >

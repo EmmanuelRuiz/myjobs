@@ -869,6 +869,13 @@ input[id=file] {
 }
 /* reset password end */
 
+/* edit company section */
+.edit-company-section{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+/* edit company section end */
+
 
 
 /* responsive */
