@@ -55,22 +55,23 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li class="">
-                            <a href="{{ path('administrator_index') }}"><i class="fa fa-fw fa-building"></i> Empresas Sin Validar</a>
+                            <a href="{{ path('administrator_index') }}"><i class="fa fa-building" aria-hidden="true"></i> Empresas sin validar {% for empresas in empresas %} <span class="badge pull-right">{{empresas}}</span>{% endfor %}</a>
+                            
                         </li>
                         <li>
-                            <a href="{{ path('administrator_comment') }}"><i class="fa fa-comments"></i> Comentarios Sin Validar</a>
+                            <a href="{{ path('administrator_comment') }}"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios sin validar {% for comentarios in comentarios %} <span class="badge pull-right">{{comentarios}}</span>{% endfor %}</a>
                         </li>
                         <li>
-                            <a href="{{ path('administrator_claim') }}"><i class="fa fa-gavel"></i> Reclamaciones</a>
+                            <a href="{{ path('administrator_claim') }}"><i class="fa fa-gavel" aria-hidden="true"></i> Reclamaciones {% for claims in claims %} <span class="badge pull-right">{{claims}}</span>{% endfor %}</a>
                         </li>
                         <li>
-                            <a href="{{ path('administrator_user') }}"><i class="fa fa-users"></i> Administrar Usuarios</a>
+                            <a href="{{ path('administrator_user') }}"><i class="fa fa-users" aria-hidden="true"></i> Administrar usuarios {% for usuarios in usuarios %} <span class="badge pull-right">{{usuarios}}</span>{% endfor %}</a>
                         </li>
                         <li>
-                            <a href="{{ path('administrator_allcompanies') }}"><i class="fa fa-list-alt"></i> Administrar Empresas</a>
+                            <a href="{{ path('administrator_allcompanies') }}"><i class="fa fa-list-alt" aria-hidden="true"></i> Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge pull-right">{{todas_empresas}}</span>{% endfor %}</a>
                         </li>
                         <li>
-                            <a href="{{ path('administrator_graficar') }}"><i class="fa fa-bar-chart"></i> Estadísticas </a>
+                            <a href="{{ path('administrator_graficar') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Estadísticas </a>
                         </li>
                     </ul>
                 </div>
