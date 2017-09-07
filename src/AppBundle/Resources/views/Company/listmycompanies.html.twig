@@ -27,38 +27,39 @@
 
                     {# usamos la variable company para recorrer cada resultado y mostrarlos #}
                     {% for company in pagination %}
-                        <div class="media">
-                            <div class="media-left">
-                                {% if company.logo == null%}
-                                    <a href="{{ path('company_profile', {'id':company.id}) }}">
-                                        <img class="company-logo img-circle" src="{{ asset('assets/images/company-logo.png') }}"/>
-                                    </a>
-                                {% else %}
-                                    <a href="{{ path('company_profile', {'id':company.id}) }}">
-                                        <img class="company-logo img-circle" src="{{ asset('uploads/company/'~company.logo) }}"/>
-                                    </a>
-                                {% endif %}
-                            </div>
+                        {% if company.user.id == app.user.id and company.representant == 'si' %}
+                            <div class="media">
+                                <div class="media-left">
+                                    {% if company.logo == null%}
+                                        <a href="{{ path('company_profile', {'id':company.id}) }}">
+                                            <img class="company-logo img-circle" src="{{ asset('assets/images/company-logo.png') }}"/>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('company_profile', {'id':company.id}) }}">
+                                            <img class="company-logo img-circle" src="{{ asset('uploads/company/'~company.logo) }}"/>
+                                        </a>
+                                    {% endif %}
+                                </div>
 
-                            <div class="media-body">
-                                {# enlace al perfil de la empresa #}
-                                {% set company_stats = company.id|company_stats%}
-                                <h4 class="media-heading ">
-                                    <a href="{{ path('company_profile', {'id':company.id})}}" class="links-search ">{{ company.tradename }}</a> 
-                                    {% if company.status == 'valid' %} 
-                                        <i class="fa fa-check-circle text-info" aria-hidden="true"></i> 
-                                    {% endif %}  
-                                    | {{company_stats.opinions}} opiniones
-                                </h4>
-                                <p class="no-margin"><b>{{ company.localidad }}, {{ company.estado }}</b></p>
-                                <p class="no-margin" id="company-description">{{ company.description }}</p>
-                                <a href="#"  class="links-search-website" >{{ company.website }}</a>
+                                <div class="media-body">
+                                    {# enlace al perfil de la empresa #}
+                                    {% set company_stats = company.id|company_stats%}
+                                    <h4 class="media-heading ">
+                                        <a href="{{ path('company_profile', {'id':company.id})}}" class="links-search ">{{ company.tradename }}</a> 
+                                        {% if company.status == 'valid' %} 
+                                            <i class="fa fa-check-circle text-info" aria-hidden="true"></i> 
+                                        {% endif %}  
+                                        | {{company_stats.opinions}} opiniones
+                                    </h4>
+                                    <p class="no-margin"><b>{{ company.localidad }}, {{ company.estado }}</b></p>
+                                    <p class="no-margin" id="company-description">{{ company.description }}</p>
+                                    <a href="#"  class="links-search-website" >{{ company.website }}</a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr />
                             </div>
-                            <div class="clearfix"></div>
-                            <hr />
-                        </div>
+                        {% endif  %}
                     {% endfor %}
-
                     {# modificar el js para el scroll infinito #}
                     <div class="navigation">
                         {{ knp_pagination_render(pagination) }}

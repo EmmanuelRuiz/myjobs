@@ -64,14 +64,14 @@ class CompanyType extends AbstractType
             
             ->add('description', TextareaType::class, array(
                 'label' => 'Descripción de la empresa',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-description form-control'
                 )
             ))
             ->add('businesssector', TextType::class, array(
                 'label' => 'Sector empresarial',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-businesssector form-control'
                 )
@@ -104,46 +104,13 @@ class CompanyType extends AbstractType
                     'class' => 'form-businessemail form-control'
                 )
             ))
-            
-            /*->add('document', TextType::class, array(
-                'label' => 'document',
-                'required' => 'required',
-                'attr' => array(
-                    'class' => 'form-document form-control'
-                )
-            ))*/
-
+				
             ->add('Registrar', SubmitType::class, array(
                 "attr" => array(
                     "class" => "btn btn-success btn-block btn-lg"
                 )
             ))
-        ;
-    
-        /*        $builder
-            ->add('tradename')
-            ->add('businessname')
-            ->add('rfc')
-            ->add('logo')
-            ->add('description')
-            ->add('businesssector')
-            ->add('contacname')
-            ->add('position')
-            ->add('telephoneext')
-            ->add('businessemail')
-            ->add('status')
-            ->add('document')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('user')
-            ->add('Registrarse', SubmitType::class, array(
-                "attr" => array(
-                    "class" => "form-submit btn btn-success"
-                )
-            ))
-        ;
-    }*/
-        
+        ;     
     }
     
     /**

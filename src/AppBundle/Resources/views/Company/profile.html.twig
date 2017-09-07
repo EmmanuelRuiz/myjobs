@@ -198,25 +198,26 @@
                         <h1 class="page-header">Opiniones</h1>
 
                         {% for opinions in pagination %}
+
                             <div class="panel panel-default">
                                 <div class="panel-heading ">
                                     <div class="row">
                                         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
-
-                                            <div class="avatar">
-                                                {% if opinions.user.image == null %}
-                                                    <a href="{{ path('user_profile', {'id':opinions.user.id})}}"><img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/></a>
-                                                {% elseif opinions.user.anonimo == 'Si' %}
-                                                    <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                                {% elseif opinions.user.facebookId != null %}
-                                                    <img class="user-logo-opinion img-circle" src="{{ opinions.user.image }}"/>
-                                                {% elseif opinions.user.googleId != null %}
-                                                    <img class="user-logo-opinion img-circle" src="{{ opinions.user.image }}"/>
-                                                {% else %}
-                                                    <a href="{{ path('user_profile', {'id':opinions.user.id})}}"><img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/></a>
-                                                {% endif %}
-                                            </div>
-
+                                            <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
+                                                <div class="avatar">
+                                                    {% if opinions.user.image == null %}
+                                                        <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    {% elseif opinions.user.anonimo == 'Si' %}
+                                                        <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    {% elseif opinions.user.facebookId != null %}
+                                                        <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
+                                                    {% elseif opinions.user.googleId != null %}
+                                                        <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
+                                                    {% else %}
+                                                        <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                    {% endif %}
+                                                </div>
+                                            </a>
                                         </div>
                                         <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
                                             <h5 class="media-heading">

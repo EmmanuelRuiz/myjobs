@@ -20,12 +20,18 @@
                         <div class="media">
                             <div class="media-left">
                                 <a> 
+
                                     {% if app.user.image == null %}
-                                        <img class="" width="80" height="80" src="{{ asset('assets/images/default.jpg') }}"/>
-                                    {% else %}
-                                        <img class="" width="80" height="80" src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                        <img width="80" height="80" src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% elseif app.user.image != null %}
+                                        <img width="80" height="80" src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                    {% elseif app.user.anonimo == 'Si' %}
+                                        <img width="80" height="80" src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% elseif app.user.facebookId != null %}
+                                        <img width="80" height="80" src="{{ app.user.image }}"/>
+                                    {% elseif app.user.googleId != null %}
+                                        <img width="80" height="80" src="{{ app.user.image }}"/>
                                     {% endif %}
-                                    
                                 </a>
                             </div>
                             <div class="media-body">

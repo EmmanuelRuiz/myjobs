@@ -9,14 +9,15 @@
         <div class="container ">
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
-                    {% if user.image == null or user.anonimo == 'Si'%}
+                    {% if user.image == null %}
                         <img class="profile-picture-company center-block" src="{{ asset('assets/images/default.jpg') }}"/>
+                    {% elseif user.image != null %}
+                        <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
                     {% elseif user.facebookId != null %}
                         <img class="profile-picture-company center-block" src="{{ user.image }}"/>
                     {% elseif user.googleId != null %}
                         <img class="profile-picture-company center-block" src="{{ user.image }}"/>
-                    {% else %}
-                        <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
+                    
                     {% endif %}
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" id="user-card">
@@ -126,12 +127,19 @@
                                 <div class="panel-heading ">
                                     <div class="row">
                                         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
-                                            <a href="{{ path('user_profile', {'id':opinions.user.id})}}">
+                                            <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
                                                 <div class="avatar">
-                                                    {% if opinions.user.image == null%}
+                                                    {% if opinions.user.image == null %}
                                                         <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                                    {% else %}
+                                                    {% elseif opinions.user.image != null %}
                                                         <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                    {% elseif opinions.user.anonimo == 'Si' %}
+                                                        <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                    {% elseif opinions.user.facebookId != null %}
+                                                        <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
+                                                    {% elseif opinions.user.googleId != null %}
+                                                        <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
+
                                                     {% endif %}
                                                 </div>
                                             </a>
@@ -205,6 +213,10 @@
                                                                 </a>
                                                             {% elseif comments.user.anonimo == 'Si' %}
                                                                 <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                            {% elseif user.facebookId != null %}
+                                                                <img class="user-logo-opinion-comment" src="{{ comments.user.image }}"/>
+                                                            {% elseif user.googleId != null %}
+                                                                <img class="user-logo-opinion-comment" src="{{ comments.user.image }}"/>
                                                             {% else %}
                                                                 <a href="{{ path('user_profile', {'id':comments.user.id})}}">
                                                                     <img class="user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>

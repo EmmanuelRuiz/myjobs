@@ -482,7 +482,9 @@ class AdministratorController extends Controller {
         $company->setStatus('valid');
         $em->persist($company);
         $em->flush(); //ejecturamos
-
+		
+		$this->addFlash('msg', 'La empresa se ha validado con éxito');
+		
         return $this->redirectToRoute('administrator_index');
     }
 

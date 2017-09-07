@@ -157,13 +157,6 @@ class UserController extends Controller {
 				/* conseguir el entitiManager */
 				$em = $this->getDoctrine()->getManager();
 
-				/*
-				 * usar entiti manager para consultas
-				 * hacer comprobacion de que el usuario se quiere registrar
-				 * no este en la bd
-				 * valor significa que es el parametro que recibimos
-				 */
-
 				$query = $em->createQuery('SELECT u FROM BackendBundle:User u WHERE u.email = :email')
 						->setParameter('email', $form->get("email")->getData());
 

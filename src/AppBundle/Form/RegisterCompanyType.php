@@ -44,7 +44,7 @@ class RegisterCompanyType extends AbstractType {
 				))
 				->add('description', TextareaType::class, array(
 					'label' => 'Descripción',
-					'required' => 'required',
+					'required' => false,
 					'attr' => array(
 						'class' => 'form-control'
 					)
@@ -100,7 +100,7 @@ class RegisterCompanyType extends AbstractType {
 				))
 				->add('Registrar', SubmitType::class, array(
 					"attr" => array(
-						"class" => "form-submit btn btn-success"
+						"class" => "form-submit btn btn-success btn-block"
 					)
 				))
 		;

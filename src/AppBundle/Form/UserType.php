@@ -25,28 +25,28 @@ class UserType extends AbstractType {
         $builder
                 ->add('name', TextType::class, array(
                     'label' => 'Nombre',
-                    'required' => 'required',
+                    'required' => false,
                     'attr' => array(
                         'class' => 'form-name form-control'
                     )
                 ))
                 ->add('plastname', TextType::class, array(
                     'label' => 'Apellido Paterno',
-                    'required' => 'required',
+                    'required' => false,
                     'attr' => array(
                         'class' => 'form-lastname form-control'
                     )
                 ))
                 ->add('mlastname', TextType::class, array(
                     'label' => 'Apellido Materno',
-                    'required' => 'required',
+                    'required' => false,
                     'attr' => array(
                         'class' => 'form-lastname form-control'
                     )
                 ))
                 ->add('email', EmailType::class, array(
                     'label' => 'Correo electrónico',
-                    'required' => 'required',
+                    'required' => false,
                     'attr' => array(
                         'class' => 'form-name form-control email-input'
                     )
@@ -71,14 +71,14 @@ class UserType extends AbstractType {
                 ))
                 ->add('age', IntegerType::class, array(
                     'label' => 'Edad',
-                    'required' => 'required',
+                    'required' => false,
                     'attr' => array(
                         'class' => 'form-control'
                     )
                 ))
                 ->add('telephone', TextType::class, array(
                     'label' => 'Número de teléfono',
-                    'required' => 'required',
+                    'required' => false,
                     'attr' => array(
                         'class' => 'form-control'
                     )

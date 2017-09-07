@@ -113,20 +113,22 @@
 
                             <li id="nav-movil"><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
 
-                                {% if app.user != null %}
+                            {% if app.user != null %}
                                 <li class="user-logged-in">
                                     <div class="dropdown">
                                         <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                             <div class="avatar">
-                                                {% if app.user.image == null%}
-                                                    <img src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% if app.user.image == null %}
+                                                    <img  src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% elseif app.user.image != null %}
+                                                    <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                                {% elseif app.user.anonimo == 'Si' %}
+                                                    <img  src="{{ asset('assets/images/default.jpg') }}"/>
                                                 {% elseif app.user.facebookId != null %}
-                                                    <img src="{{ app.user.image }}"/>
+                                                    <img  src="{{ app.user.image }}"/>
                                                 {% elseif app.user.googleId != null %}
                                                     <img src="{{ app.user.image }}"/>
-                                                {% else %}
-                                                    <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
                                                 {% endif %}
                                             </div>
 
@@ -237,66 +239,66 @@
                     </div>
                     <div class="col-md-4">
                         <div class="single-footer">
-                          <h4>Conéctate con nosotros</h4>
-                          <div class="footer-links">
-                              <ul class="list-unstyled">
-                                  <li><a class="links-footer" href="https://www.facebook.com/myjobsadvisor" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
-                                  <li><a class="links-footer" href="https://twitter.com/Myjobsadvisor/" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-                                  <li><a class="links-footer" href="https://www.instagram.com/Myjobsadvisor/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
-                              </ul>
-                          </div>
+                            <h4>Conéctate con nosotros</h4>
+                            <div class="footer-links">
+                                <ul class="list-unstyled">
+                                    <li><a class="links-footer" href="https://www.facebook.com/myjobsadvisor" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+                                    <li><a class="links-footer" href="https://twitter.com/Myjobsadvisor/" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+                                    <li><a class="links-footer" href="https://www.instagram.com/Myjobsadvisor/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
                 </div>
                 <hr>
                 <div class="row footer-copy">
-                  <div class="col-lg-6">
-                    <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span> </p>
-                  </div>
-                  <div class="col-lg-6 ">
-                    <p class="pull-right"><span> Creado con <i class="fa fa-heart" aria-hidden="true"></i> por <a class="links-footer" href="https://www.crealab.com.mx">CreaLab</a></span> </p>
-                  </div>
+                    <div class="col-lg-6">
+                        <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span> </p>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <p class="pull-right"><span> Creado con <i class="fa fa-heart" aria-hidden="true"></i> por <a class="links-footer" href="https://www.crealab.com.mx">CreaLab</a></span> </p>
+                    </div>
                 </div>
             </div>
         </footer>
 
 
         {% for message in app.session.flashbag().get('notice') %}
-          <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header text-center">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h3>¿Te vas tan pronto?</h3>
-                          <img class="img-responsive center-block" src="{{ asset('assets/images/logout.png') }}" width="100">
-                          <p>Está bien. No tardes en regresar</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
+            <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3>¿Te vas tan pronto?</h3>
+                            <img class="img-responsive center-block" src="{{ asset('assets/images/logout.png') }}" width="100">
+                            <p>Está bien. No tardes en regresar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
 
 
         {% for error in app.session.flashbag().get('error_login') %}
-          <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header text-center">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h3>¡Ups! Ah ocurrido un error al iniciar sesión. Inténtelo de nuevo</h3>
-                          <img class="img-responsive center-block" src="{{ asset('assets/images/login-error.png') }}" width="100">
-                      </div>
-                  </div>
-              </div>
-          </div>
+            <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3>¡Ups! Ah ocurrido un error al iniciar sesión. Inténtelo de nuevo</h3>
+                            <img class="img-responsive center-block" src="{{ asset('assets/images/login-error.png') }}" width="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
 
         <script>
-          $(document).ready(function ()
-          {
-              $("#mostrarmodal").modal("show");
-          });
+                $(document).ready(function ()
+                {
+                    $("#mostrarmodal").modal("show");
+                });
         </script>
     </body>
 </html>

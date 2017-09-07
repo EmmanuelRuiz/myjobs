@@ -123,14 +123,17 @@
                                 <li class="user-logged-in">
                                     <button class="btn btn-link  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="avatar">
-                                            {% if app.user.image == null%}
-                                                <img src="{{ asset('assets/images/default.jpg') }}"/>
+                                            {% if app.user.image == null %}
+                                                <img  src="{{ asset('assets/images/default.jpg') }}"/>
+                                            {% elseif app.user.image != null %}
+                                                <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                            {% elseif app.user.anonimo == 'Si' %}
+                                                <img  src="{{ asset('assets/images/default.jpg') }}"/>
                                             {% elseif app.user.facebookId != null %}
-                                                <img src="{{ app.user.image }}"/>
+                                                <img  src="{{ app.user.image }}"/>
                                             {% elseif app.user.googleId != null %}
                                                 <img src="{{ app.user.image }}"/>
-                                            {% else %}
-                                                <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
+
                                             {% endif %}
                                         </div>
 
@@ -199,26 +202,26 @@
                     </div>
                     <div class="col-md-4">
                         <div class="single-footer">
-                          <h4>Conéctate con nosotros</h4>
-                          <div class="footer-links">
-                              <ul class="list-unstyled">
-                                  <li><a class="links-footer" href="https://www.facebook.com/myjobsadvisor" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
-                                  <li><a class="links-footer" href="https://twitter.com/Myjobsadvisor/" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-                                  <li><a class="links-footer" href="https://www.instagram.com/Myjobsadvisor/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
-                              </ul>
-                          </div>
+                            <h4>Conéctate con nosotros</h4>
+                            <div class="footer-links">
+                                <ul class="list-unstyled">
+                                    <li><a class="links-footer" href="https://www.facebook.com/myjobsadvisor" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+                                    <li><a class="links-footer" href="https://twitter.com/Myjobsadvisor/" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+                                    <li><a class="links-footer" href="https://www.instagram.com/Myjobsadvisor/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
                 </div>
                 <hr>
                 <div class="row footer-copy">
-                  <div class="col-lg-6">
-                    <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span> </p>
-                  </div>
-                  <div class="col-lg-6 ">
-                    <p class="pull-right"><span> Creado con <i class="fa fa-heart" aria-hidden="true"></i> por <a class="links-footer" href="https://www.crealab.com.mx">CreaLab</a></span> </p>
-                  </div>
+                    <div class="col-lg-6">
+                        <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span> </p>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <p class="pull-right"><span> Creado con <i class="fa fa-heart" aria-hidden="true"></i> por <a class="links-footer" href="https://www.crealab.com.mx">CreaLab</a></span> </p>
+                    </div>
                 </div>
             </div>
         </footer>
