@@ -60,7 +60,6 @@ security:
        
     access_control:
         - { path: ^/admin/panel, roles: ROLE_ADMIN }
-        - { path: ^/administrar, roles: ROLE_ADMIN }
         - { path: ^/createcomment, roles: ROLE_USER }
         - { path: ^/createcommentuser, roles: ROLE_USER }
         - { path: ^/empresas/registrar, roles: ROLE_USER }
@@ -73,8 +72,6 @@ security:
         - { path: ^/seguidores, roles: ROLE_USER }
         - { path: ^/likes, roles: ROLE_USER }
         - { path: ^/logout, roles: ROLE_USER }        
-        - { path: ^/perfil, roles: ROLE_USER }
-        - { path: ^/cuenta, roles: ROLE_USER }
         - { path: ^/usuarios, roles: ROLE_USER }
         
             # activate different ways to authenticate

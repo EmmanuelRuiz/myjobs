@@ -23,16 +23,16 @@
                                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
                                     <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
                                         <div class="avatar">
-                                            {% if opinions.user.image == null %}
+                                            {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}    
+                                                {% if opinions.user.anonimo == 'Si' %}
+                                                    <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% elseif opinions.user.image != null %}
+                                                    <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                {% endif %}
+                                            {% elseif opinions.user.image | split('.') | last == null %}
                                                 <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                            {% elseif opinions.user.anonimo == 'Si' %}
-                                                <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                            {% elseif opinions.user.facebookId != null %}
-                                                <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
-                                            {% elseif opinions.user.googleId != null %}
-                                                <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
                                             {% else %}
-                                                <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
                                             {% endif %}
                                         </div>
                                     </a>

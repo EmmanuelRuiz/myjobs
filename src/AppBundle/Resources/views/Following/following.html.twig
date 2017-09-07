@@ -31,20 +31,16 @@
                         <div class="media">
                             <div class="media-left">
                                 {#mostramos los datos del usuario#}
-                                {% if user.image == null %}
-                                    <a href="{{ path('user_profile', {'id':user.id})}}">
-                                        <img class="company-pp-list img-circle" src="{{asset('assets/images/default.jpg')}}" />
-                                    </a>
-                                {% elseif user.anonimo == 'Si' %}        
-                                    <img class="company-pp-list img-circle" src="{{asset('assets/images/default.jpg')}}" />
-                                {% elseif user.facebookId != null %}
-                                    <img class="company-pp-list img-circle" src="{{ user.image }}"/>
-                                {% elseif user.googleId != null %}
-                                    <img class="company-pp-list img-circle" src="{{ user.image }}"/>
+                                {% if user.image | split('.') | last == 'png' or user.image | split('.') | last == 'jpg' or user.image | split('.') | last == 'jpeg' or user.image | split('.') | last == 'gif' %}    
+                                    {% if user.anonimo == 'Si' %}
+                                        <img class="company-pp-list img-circle"  src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% elseif user.image != null %}
+                                        <img class="company-pp-list img-circle" src="{{ asset('uploads/users/'~user.image) }}"/>
+                                    {% endif %}
+                                {% elseif user.image | split('.') | last == null %}
+                                    <img class="company-pp-list img-circle" src="{{ asset('assets/images/default.jpg') }}"/>
                                 {% else %}
-                                    <a href="{{ path('user_profile', {'id':user.id})}}">
-                                        <img class="company-pp-list img-circle" src="{{asset('uploads/users/'~user.image)}}" /> 
-                                    </a>
+                                    <img class="company-pp-list img-circle" src="{{ user.image }}"/>
                                 {% endif %}
                             </div>
 

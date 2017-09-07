@@ -19,18 +19,17 @@
                     <div class="col-lg-12 form-group">
                         <div class="media">
                             <div class="media-left">
-                                <a> 
-
-                                    {% if app.user.image == null %}
-                                        <img width="80" height="80" src="{{ asset('assets/images/default.jpg') }}"/>
-                                    {% elseif app.user.image != null %}
-                                        <img width="80" height="80" src="{{ asset('uploads/users/'~app.user.image) }}"/>
-                                    {% elseif app.user.anonimo == 'Si' %}
-                                        <img width="80" height="80" src="{{ asset('assets/images/default.jpg') }}"/>
-                                    {% elseif app.user.facebookId != null %}
-                                        <img width="80" height="80" src="{{ app.user.image }}"/>
-                                    {% elseif app.user.googleId != null %}
-                                        <img width="80" height="80" src="{{ app.user.image }}"/>
+                                <a>  
+                                    {% if app.user.image | split('.') | last == 'png' or app.user.image | split('.') | last == 'jpg' or app.user.image | split('.') | last == 'jpeg' or app.user.image | split('.') | last == 'gif' %}    
+                                        {% if app.user.anonimo == 'Si' %}
+                                            <img width="80" height="80"  src="{{ asset('assets/images/default.jpg') }}"/>
+                                        {% elseif app.user.image != null %}
+                                            <img width="80" height="80"  src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                        {% endif %}
+                                    {% elseif app.user.image | split('.') | last == null %}
+                                        <img width="80" height="80"  src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% else %}
+                                        <img width="80" height="80"  src="{{ app.user.image }}"/>
                                     {% endif %}
                                 </a>
                             </div>

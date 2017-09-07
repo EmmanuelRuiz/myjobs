@@ -468,7 +468,7 @@ class CompanyController extends Controller {
 		$user = $this->getUser();
 		$id = $user->getId();
 
-		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.user = $id";
+		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.user = $id and u.representant = 'si'";
 
 		$query = $em->createQuery($dql);
 
