@@ -123,16 +123,26 @@ class AdministratorController extends Controller {
                 ->getQuery();
 
         $general_avg = $query_avg->getResult();
+		
+		$queryPuntos = "SELECT company_id, companies.tradename, 
+            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) 
+            as promedio FROM opinions INNER JOIN companies on opinions.company_id=companies.id
+            GROUP BY company_id ORDER BY promedio DESC;";
+        $preparaPuntos = $db->prepare($queryPuntos);
+        $paramsPuntos = array();
+        $preparaPuntos->execute($paramsPuntos);
+        $puntos = $preparaPuntos->fetchAll();
 
         return $this->render('AppBundle:Administrator:administrator.html.twig', array(
-                    'empresas' => $e,
-                    'comentarios' => $c,
-                    'usuarios' => $u,
-                    'todas_empresas' => $te,
-                    'claims' => $re,
-                    'pagination' => $pagination,
-                    'companies' => $pag_company,
-                    'general_avg' => $general_avg
+			'empresas' => $e,
+			'comentarios' => $c,
+			'usuarios' => $u,
+			'todas_empresas' => $te,
+			'claims' => $re,
+			'pagination' => $pagination,
+			'companies' => $pag_company,
+			'general_avg' => $general_avg,
+			'puntos' => $puntos
         ));
     }
 
@@ -710,13 +720,14 @@ class AdministratorController extends Controller {
         /*
          * Sacar grupos de usuarios por edades
          */
-        $query = "SELECT CASE WHEN (age BETWEEN 18 AND 30) THEN 'De 18 a 30' " .
-                "ELSE CASE WHEN(age BETWEEN 30 AND 40) THEN 'De 30 a 40' " .
-                "ELSE CASE WHEN(age BETWEEN 40 AND 50) THEN 'De 40 a 50'" .
-                " ELSE CASE WHEN(AGE BETWEEN 50 AND 60) THEN 'De 50 a 60'" .
-                " ELSE CASE WHEN(age BETWEEN 60 AND 70) THEN 'De 60 a 70' " .
-                "ELSE CASE WHEN(age BETWEEN 70 AND 80) THEN 'De 70 a 80'" .
-                " END END END END END END rango, COUNT(*) total FROM users GROUP BY rango;";
+        $query = "SELECT CASE WHEN (age BETWEEN 0 AND 17) THEN 'POR REDES SOCIALES SIN ACTUALIZAR EDAD'".
+				"ELSE CASE WHEN (age BETWEEN 18 AND 30) THEN 'De 18 a 30 años' " .
+                "ELSE CASE WHEN(age BETWEEN 30 AND 40) THEN 'De 30 a 40 años' " .
+                "ELSE CASE WHEN(age BETWEEN 40 AND 50) THEN 'De 40 a 50 años'" .
+                "ELSE CASE WHEN(AGE BETWEEN 50 AND 60) THEN 'De 50 a 60 años'" .
+                "ELSE CASE WHEN(age BETWEEN 60 AND 70) THEN 'De 60 a 70 años' " .
+                "ELSE CASE WHEN(age BETWEEN 70 AND 80) THEN 'De 70 a 80 años'" .
+                " END END END END END END END rango, COUNT(*) total FROM users GROUP BY rango;";
         $stmt = $db->prepare($query);
         $params = array();
         $stmt->execute($params);
@@ -746,58 +757,83 @@ class AdministratorController extends Controller {
         $paramsG = array();
         $preparaG->execute($paramsG);
         $generos = $preparaG->fetchAll();
+		
+		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
+        $query = $em->createQuery($dql);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $query, $request->query->getInt('page', 1), 5
+        );
+
+        $querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
+        $stmt = $db->prepare($querye);
+        $params = array();
+        $stmt->execute($params);
+
+        $po = $stmt->fetchAll();
+
+        foreach ($po as $e) {
+            $e["empresas"];
+        }
+
+        // sacar cantidad de comentarios
+        $queryc = "SELECT COUNT(id) AS comentarios FROM comments WHERE status = 'invalid';";
+        $stmt = $db->prepare($queryc);
+        $params = array();
+        $stmt->execute($params);
+
+        $po = $stmt->fetchAll();
+
+        foreach ($po as $c) {
+            $c["comentarios"];
+        }
+
+        // sacar cantidad de usuarios
+        $queryu = "SELECT COUNT(id) AS usuarios FROM users;";
+        $stmt = $db->prepare($queryu);
+        $params = array();
+        $stmt->execute($params);
+
+        $po = $stmt->fetchAll();
+
+        foreach ($po as $u) {
+            $u["usuarios"];
+        }
+
+        // sacar cantidad de empresas
+        $queryte = "SELECT COUNT(id) AS todas_empresas FROM companies;";
+        $stmt = $db->prepare($queryte);
+        $params = array();
+        $stmt->execute($params);
+
+        $po = $stmt->fetchAll();
+
+        foreach ($po as $te) {
+            $te["todas_empresas"];
+        }
+
+        // sacar cantidad de reclamos
+        $queryte = "SELECT COUNT(id) AS claims FROM claimcompany;";
+        $stmt = $db->prepare($queryte);
+        $params = array();
+        $stmt->execute($params);
+
+        $po = $stmt->fetchAll();
+
+        foreach ($po as $re) {
+            $re["claims"];
+        }
         return $this->render('AppBundle:Administrator:administrator_graficar.html.twig', array(
-                    'edades' => $edades,
-                    'estados' => $estados,
-                    'puntos' => $puntos,
-                    'generos' => $generos
+				'edades' => $edades,
+				'estados' => $estados,
+				'puntos' => $puntos,
+				'generos' => $generos,
+				'empresas' => $e,
+				'comentarios' => $c,
+				'usuarios' => $u,
+				'todas_empresas' => $te,
+				'claims' => $re
         ));
     }
-
-    /* public function graficaAction(Request $request) {
-      $em = $this->getDoctrine()->getManager();
-
-      $query = $em->createQuery('SELECT u.age FROM BackendBundle:User u');
-
-      $notification = $query->getResult();
-
-
-      $db = $em->getConnection();
-
-      $querye = "SELECT CASE WHEN (age BETWEEN 18 AND 30) THEN 'De 18 a 30' "
-      . "ELSE CASE WHEN(age BETWEEN 30 AND 40) THEN 'De 30 a 40' "
-      . "ELSE CASE WHEN(age BETWEEN 40 AND 50) THEN 'De 40 a 50'"
-      . " ELSE CASE WHEN(AGE BETWEEN 50 AND 60) THEN 'De 50 a 60'"
-      . " ELSE CASE WHEN(age BETWEEN 60 AND 70) THEN 'De 60 a 70' "
-      . "ELSE CASE WHEN(age BETWEEN 70 AND 80) THEN 'De 70 a 80'"
-      . " END END END END END END rango, COUNT(*) total FROM users GROUP BY rango;";
-      $stmt = $db->prepare($querye);
-      $params = array();
-      $stmt->execute($params);
-
-      $notification = $stmt->fetchAll();
-
-      return new JsonResponse($notification);
-
-     * SELECT CASE WHEN (age BETWEEN 18 AND 28) THEN 'De 18 a 28' 
-     * ELSE CASE WHEN(age BETWEEN 28 AND 38) THEN 'De 28 a 38' ELSE
-     *  CASE WHEN(age BETWEEN 38 AND 48) THEN 'De 38 a 48' ELSE CASE
-     *  WHEN(AGE BETWEEN 48 AND 58) THEN 'De 48 a 58' ELSE CASE 
-     * WHEN(age BETWEEN 58 AND 68) THEN 'De 58 a 68' ELSE CASE
-     *  WHEN(age BETWEEN 68 AND 78) THEN 'De 68 a 78' 
-     * END END END END END END rango, COUNT(*) total FROM users GROUP BY rango 
-
-      SELECT CASE WHEN
-      (age BETWEEN 10 AND 19) THEN 'De 10 a 19' ELSE CASE WHEN(age BETWEEN 20 AND 29)
-      THEN 'De 20 a 29' ELSE CASE WHEN(age >= 20) THEN 'De 30 o más'
-      END
-      END
-      END rango,
-      COUNT(*) total
-      FROM
-      users
-      GROUP BY
-      rango;
-
-      } */
 }

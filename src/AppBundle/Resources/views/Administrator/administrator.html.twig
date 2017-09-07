@@ -172,7 +172,13 @@
                                             {% if company.id == avg.company %}
                                                 <td>{{ company.id }}</td>
                                                 <td>{{ company.tradename }}</td>
-                                                <td>0</td>
+                                                <td>
+                                                    {% for puntuacion in puntos %} 
+                                                        {% if puntuacion.company_id == company.id %}
+                                                            {{ puntuacion.promedio }} 
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
                                                 <td>{{ avg.promedio }}</td>
                                             {% endif %}
                                         </tr>

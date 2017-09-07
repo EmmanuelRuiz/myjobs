@@ -43,13 +43,8 @@ administrator_claimcompany:
     defaults: { _controller: AppBundle:Administrator:reclamar }
 
 administrator_graficar:
-    path: /graficar
+    path: /administrar/estadisticas
     defaults: { _controller: AppBundle:Administrator:graficar }
-
-administrator_grafica:
-    path: /administrar/grafica
-    defaults: { _controller: AppBundle:Administrator:grafica }
-    methods: [POST]
 
 administrator_login:
     path: /admin/login
@@ -60,8 +55,3 @@ administrador_login_check:
 
 administrador_logout:
    path: /admin/logout
-
-
-administrator_panel:
-    path: /admin/panel
-    defaults: { _controller: AppBundle:Administrator:panel }

@@ -21,10 +21,7 @@
         </script>
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/grafica.js') }}"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+        <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>   
     </head>
 
     <body>
@@ -60,8 +57,8 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li class="">
-                            <a href="{{ path('administrator_index') }}"><i class="fa fa-building" aria-hidden="true"></i> Empresas sin validar {% for empresas in empresas %} <span class="badge pull-right">{{empresas}}</span>{% endfor %}</a>
-                            
+                            <a href="{{ path('administrator_index') }}"><i class="fa fa-building" aria-hidden="true"></i> Empresas sin validar {% for empresas in empresas %} <span class="badge pull-right">{{ empresas }}</span>{% endfor %}</a>
+
                         </li>
                         <li>
                             <a href="{{ path('administrator_comment') }}"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios sin validar {% for comentarios in comentarios %} <span class="badge pull-right">{{comentarios}}</span>{% endfor %}</a>
@@ -84,13 +81,13 @@
             </nav>
 
             <div id="page-wrapper">
-                <div class="container">
-                    <!-- usuarios por rango de edades-->
+
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="panel panel-primary">
-                            <!-- Default panel contents -->
+
                             <div class="panel-heading">Usuarios por rango de edades</div>
-                            <!-- Table -->
+
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -101,7 +98,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{edad.rango}} años</td>
+                                            <td>{{edad.rango}}</td>
                                             <td>{{edad.total}} usuarios</td>                                          
                                         </tr>
                                     {%endfor%}
@@ -109,10 +106,6 @@
                             </table>
                         </div>
                     </div>
-                    <!-- usuarios por rango de edades-->
-
-                    <!-- empresas por estados-->
-
                     <div class="col-lg-6">
                         <div class="panel panel-primary">
                             <!-- Default panel contents -->
@@ -137,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="row">
                     <!-- empresas por estados-->
                     <div class="col-lg-6">
                         <div class="panel panel-primary">
@@ -187,6 +180,10 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
             </div>
             <!-- /#page-wrapper -->
         </div>
