@@ -80,25 +80,25 @@ body {
 
 .btn-page{
     color: #ffffff;
-    background-color: #002F6D;
-    border-color: #002F6D;
+    background-color: #E35205;
+    border-color: #E35205;
 }
 
 .btn-page:hover{
     color: #ffffff;
-    background-color: #194F91;
-    border-color: #194F91;
+    background-color: #E35205;
+    border-color: #E35205;
 }
 .btn-page:focus{
     color: #ffffff;
-    background-color: #194F91;
-    border-color: #194F91;
+    background-color: #E35205;
+    border-color: #E35205;
 }
 
 .btn-page:active{
     color: #ffffff;
-    background-color: #194F91;
-    border-color: #194F91;
+    background-color: #E35205;
+    border-color: #E35205;
 }
 
 .no-margin{
@@ -114,18 +114,25 @@ body {
 }
 
 .links-search{
-    color: #002F6D;
+    color: #E35205;
 }
 
 .links-search:hover{
-    color: #FF9E1B;
+    color: #E35205;
+}
+
+.links-search:focus{
+    color: #E35205;
 }
 
 .links-search-website{
-    color: #FF9E1B;
+    color: #E35205;
 }
 
 .links-search-website:hover{
+    color: #002F6D;
+}
+.links-search-website:focus{
     color: #002F6D;
 }
 /* end search section*/
@@ -875,6 +882,30 @@ input[id=file] {
     margin-bottom: 5%;
 }
 /* edit company section end */
+
+/* stats company and users */
+
+.heart-stats{
+    color: red;
+}
+
+.star-stats{
+    color: orange;
+}
+
+.comment-stats{
+    color: #194F91;
+}
+
+.follwing-stats{
+    color: #0f7864;
+}
+
+.followers-stats{
+    color: #08C;
+}
+
+/* end stats*/
 
 
 

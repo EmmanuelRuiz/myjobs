@@ -148,6 +148,7 @@
                                             <td>{{ users.telephone }}</td>
                                             <td>{{ users.createdAt|date("D d M Y") }}</td>
                                             <td>
+                                                <a href="{{ path('user_profile', {'id':users.id })}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Ver" data-original-title=""><i class="fa fa-search" aria-hidden="true"></i></a>
                                                 <a href="{{path('administrator_delete_user', {'id':users.id})}}" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-trash" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>

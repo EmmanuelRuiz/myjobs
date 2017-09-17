@@ -25,6 +25,10 @@ administrator_delete_user:
 administrator_validate_company:
     path: /administrar/empresas/validar
     defaults: { _controller: AppBundle:Administrator:validateCompanies }
+    
+administrator_edit_company:
+    path: /administrar/empresas/editar
+    defaults: { _controller: AppBundle:Administrator:editCompanies }
 
 administrator_validate_comment:
     path: /administrar/comentarios/validar

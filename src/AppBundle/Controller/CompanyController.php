@@ -86,15 +86,17 @@ class CompanyController extends Controller {
 						$company->setLocalidad($nombre_localidad);
 
 						$company->setCreatedAt($createdAt);
-						$company->setUpdatedAt($updatedAt);
+						//$company->setUpdatedAt($updatedAt);
 
-
+						
 						$em->persist($company);
+						
 						$flush = $em->flush();
+						
 						if ($flush == null) {
-							$status = "La empresa se ha registrado con éxito.";
+							$status = "¡Genial! La empresa se ha registrado con éxito. Ahora puedes calificarla con base en tu experiencia como trabajador o extrabajador.";
 							$this->session->getFlashBag()->add("success", $status);
-							return $this->redirect("registrar");
+							return $this->redirectToRoute('company_profile', array('id' => $company->getId()));
 						} else {
 							$status = "Ha ocurrido un error al hacer el registro. Intente de nuevo.";
 							$this->session->getFlashBag()->add("error", $status);

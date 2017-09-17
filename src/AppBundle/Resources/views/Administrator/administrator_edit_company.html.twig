@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Panel de Administración</title>
+
+
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
+
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            
+            <a href="{{ path('administrator_allcompanies') }}" type="button" class="btn btn-warning" style="margin-top: 20px;"><- Regresar</a>
+
+            <h2 class="page-header">Datos de la empresa</h2>
+            {%for message in app.session.flashbag().get('status')%}
+                <div class="alert alert-success">{{message}}</div>
+            {%endfor%}
+            {{form_start(form, {'enctype':'multipart/form-data'})}}
+
+            <div class="col-lg-12 form-group">
+                <div class="media">
+                    <div class="media-left">
+                        <a>
+                            {% if company.logo == null%}
+                                <img class="" width="80" height="80" src="{{ asset('assets/images/company-logo.png') }}"/>
+                            {% else %}
+                                <img class="" width="80" height="80" src="{{ asset('uploads/company/'~company.logo) }}"/>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ form_row(form.logo) }}</h4>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 form-group">
+                {{ form_row(form.tradename) }}
+            </div>
+
+            <div class="col-lg-6 form-group">
+                {{ form_row(form.rfc) }}
+            </div>
+            <div class="col-lg-6 form-group">
+                {{ form_row(form.businesssector) }}
+            </div>
+            <div class="col-lg-12 form-group">
+                {{ form_row(form.description) }}
+            </div>
+
+
+            <h3 class="col-lg-12 page-header">Datos del representante</h3>
+            <div class="clearfix"></div>
+
+            <div class="col-lg-6 form-group">
+                {{ form_row(form.contacname) }}
+            </div>
+
+
+            <div class="col-lg-6 form-group">
+                {{ form_row(form.businessemail) }}
+            </div>
+            <div class="col-lg-6 form-group">
+                {{ form_row(form.position) }}
+            </div>
+            <div class="col-lg-6 form-group">
+                {{ form_row(form.telephoneext) }}
+            </div>
+            <div class="col-lg-12 form-group">
+                {{ form_row(form.website) }}
+            </div>
+
+            <div class="col-lg-12 form-group">
+                {{form_row(form.Registrar, {'label':'Editar'})}}
+            </div>
+            {{form_end(form)}}
+
+        </div>
+    </body>
+
+</html>

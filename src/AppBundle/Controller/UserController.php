@@ -43,7 +43,7 @@ class UserController extends Controller {
 		$lastUsername = $authenticationUtils->getLastUsername();
 
 		$this->addFlash(
-				'error_login', 'Ha ocurrido un error al iniciar sesión. Compruebe su correo o contraseña'
+			'error_login', 'Algunos datos no se ingresaron correctamente. Compruebe que su correo o contraseña sean correctos e inténtelo de nuevo'
 		);
 
 		return $this->render('AppBundle:Index:index.html.twig', array(

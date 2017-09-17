@@ -7,6 +7,28 @@
 {% endblock %}
 
 {% block content %}
+
+    <section class="about-section">
+        <div class="container">
+            <div class="col-lg-12 text-center">
+                <h2 class="our-process">¿Cómo funciona MyJobsAdvisor?</h2><br>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <h3>¿Quiénes somos?</h3>
+                    <p>MyJobsAdvisor es <b>una plataforma confiable</b> y auténtica basada en comentarios verdaderos
+                        provenientes de los trabajadores y extrabajadores: ofrecemos una plataforma única donde los trabajadores intercambian
+                        experiencias y <b>logran</b> reconocer los mejores lugares de trabajo.</p> <br>
+                    <p>MyJobsAdvisor <b>suma el talento de profesionales en la gestión de relaciones laborales,</b> formación empresarial y
+                        adquisición de talento.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial-movil.png') }}" alt="" class="center-block img-responsive" width="350"/>
+                </div>
+            </div>
+        </div>
+    </section><hr>
+
     <section class="about-section">
         <div class="container">
             <div class="row ">
@@ -206,7 +228,7 @@
                 <p>Eres representante de una empresa, regístrala ahora mismo</p>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <a href="{% if app.user == null %} {{ path('user_register_login')}} {% else %} {{ path('register-company')}} {% endif %}" type="button" class="btn btn-info btn-page">¡Registrarla ahora!</a>
+                <a href="{% if app.user == null %} {{ path('user_register_login')}} {% else %} {{ path('register-company')}} {% endif %}" type="button" class="btn btn-page">¡Registrarla ahora!</a>
             </div>
         </div>
     </section>

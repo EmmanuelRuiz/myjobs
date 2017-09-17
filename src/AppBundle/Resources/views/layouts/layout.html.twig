@@ -13,7 +13,7 @@
             <!-- estilos css -->
             <!--<link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">-->
             <link href="{{ asset('assets/css/bootswatch.css')}}" type="text/css" rel="stylesheet">
-            <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
+            <link href="{{ asset('assets/css/styles1.css')}}" type="text/css" rel="stylesheet">
 
         {%endblock%}
 
@@ -188,10 +188,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!-- /.container -->
-
         </div>
 
         <div class="container">
@@ -280,13 +278,13 @@
         {% endfor %}
 
 
-        {% for error in app.session.flashbag().get('error_login') %}
+        {% for message in app.session.flashbag().get('error_login') %}
             <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header text-center">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h3>¡Ups! Ah ocurrido un error al iniciar sesión. Inténtelo de nuevo</h3>
+                            <h3 class="text-danger">{{ message }}</h3>
                             <img class="img-responsive center-block" src="{{ asset('assets/images/login-error.png') }}" width="100">
                         </div>
                     </div>

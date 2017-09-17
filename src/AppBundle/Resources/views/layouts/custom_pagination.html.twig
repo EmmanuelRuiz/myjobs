@@ -8,14 +8,14 @@
                 </li>
             {% else %}
                 <li class="disabled">
-                    <span>&laquo;&nbsp;{{ 'Siguiente'|trans }}</span>
+                    <span>&laquo;&nbsp;{{ 'Atras'|trans }}</span>
                 </li>
             {% endif %}
 
 
             {% if next is defined %}
                 <li class="">
-                    <a class="next_link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'Atras'|trans }}&nbsp;&raquo;</a>
+                    <a class="next_link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'Siguiente'|trans }}&nbsp;&raquo;</a>
                 </li>
             {% else %}
                 <li class="disabled ">

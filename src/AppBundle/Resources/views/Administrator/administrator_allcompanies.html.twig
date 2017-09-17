@@ -96,6 +96,7 @@
                                     <th>Sector</th>
                                     <th>Sitio Web</th>
                                     <th>Creado</th>
+                                    <th>Calificación</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
@@ -109,7 +110,9 @@
                                         <td>{{ companies.businesssector }}</td>
                                         <td>{{ companies.website}}</td>
                                         <td>{{ companies.createdAt|date("D d M Y") }}</td>
+                                        <td></td>
                                         <td>
+                                            <a href="{{path("administrator_edit_company", {"id":companies.id})}}" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-edit" aria-hidden="true"></i></a>
                                             <a href="{{ path("company_profile", {"id":companies.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Ver" data-original-title=""><i class="fa fa-search" aria-hidden="true"></i></a>
                                             <a href="{{path("administrator_delete_companies", {"id":companies.id})}}" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>

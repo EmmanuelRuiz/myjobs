@@ -42,7 +42,7 @@ class CompanyType extends AbstractType
 				
             ->add('tradename', TextType::class, array(
                 'label' => 'Nombre comercial',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-tradename form-control'
                 )
@@ -56,7 +56,7 @@ class CompanyType extends AbstractType
             ))*/
             ->add('rfc', TextType::class, array(
                 'label' => 'RFC',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-rfc form-control'
                 )
@@ -78,28 +78,28 @@ class CompanyType extends AbstractType
             ))
             ->add('contacname', TextType::class, array(
                 'label' => 'Nombre',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-contacname form-control'
                 )
             ))
             ->add('position', TextType::class, array(
                 'label' => 'Cargo',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-position form-control'
                 )
             ))
             ->add('telephoneext', TextType::class, array(
                 'label' => 'No° de Extensión',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-telefono form-control'
                 )
             ))
             ->add('businessemail', TextType::class, array(
                 'label' => 'Correo electrónico',
-                'required' => 'required',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-businessemail form-control'
                 )

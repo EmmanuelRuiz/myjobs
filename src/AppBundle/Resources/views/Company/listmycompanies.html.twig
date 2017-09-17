@@ -8,10 +8,10 @@
                     {% if pagination.getTotalItemCount == 0 %}
                         <div class="search-result">
                             <h1 class="text-muted text-center">No has registrado ninguna empresa</h1>
-                            <h4 class="text-center">¿Deseas dar de alta alguna empresa?</h4>
+                            <h4 class="text-center">Si eres trabajador o extrabajador de alguna empresa, anímate, regístrala ahora y califícala.</h4>
 
                             <div class="col-lg-12 text-center">
-                                <a href="{{ path('register-company')}}" type="button" class="btn btn-info">¡Regístrarla ahora!</a>
+                                <a href="{% if app.user == null %} {{ path('user_register_login')}} {% else %} {{ path('register-company')}} {% endif %}" type="button" class="btn btn-page">¡Registrar una empresa ahora!</a>    
                             </div>
                         </div>
 
