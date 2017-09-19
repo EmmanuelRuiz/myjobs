@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegisterCompanyType extends AbstractType {
 
@@ -26,7 +27,6 @@ class RegisterCompanyType extends AbstractType {
 						'class' => 'form-tradename form-control'
 					)
 				))
-				
 				->add('website', TextType::class, array(
 					'label' => 'Sitio Web de la empresa',
 					'required' => false,
@@ -49,8 +49,13 @@ class RegisterCompanyType extends AbstractType {
 						'class' => 'form-control'
 					)
 				))
-				->add('businesssector', TextType::class, array(
+				->add('businesssector', ChoiceType::class, array(
 					'label' => 'Sector empresarial',
+					'choices' => array(
+						'Maybe' => null,
+						'Yes' => true,
+						'No' => false,
+					),
 					'required' => 'required',
 					'attr' => array(
 						'class' => 'form-businesssector form-control'
