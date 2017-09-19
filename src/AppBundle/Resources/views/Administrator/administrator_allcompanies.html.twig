@@ -56,7 +56,7 @@
                     <ul class="nav navbar-nav side-nav">
                         <li class="">
                             <a href="{{ path('administrator_index') }}"><i class="fa fa-building" aria-hidden="true"></i> Empresas sin validar {% for empresas in empresas %} <span class="badge pull-right">{{empresas}}</span>{% endfor %}</a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ path('administrator_comment') }}"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios sin validar {% for comentarios in comentarios %} <span class="badge pull-right">{{comentarios}}</span>{% endfor %}</a>
@@ -102,6 +102,7 @@
                             </thead>
                             {# usamos la variable company para recorrer cada resultado y mostrarlos #}
                             {% for companies in pagination %}
+                                
                                 <tbody>
                                     <tr>
                                         <td>{{ companies.id }}</td>
@@ -109,8 +110,14 @@
                                         <td>{{ companies.rfc }}</td>
                                         <td>{{ companies.businesssector }}</td>
                                         <td>{{ companies.website}}</td>
-                                        <td>{{ companies.createdAt|date("D d M Y") }}</td>
-                                        <td></td>
+                                        <td>{{ companies.createdAt|date("D d M Y") }}</td>  
+                                        
+                                        {% for avg in general_avg %}
+                                            {% if companies.id == avg.company %}
+                                                <td>{{ avg.promedio }}</td>
+                                            {% endif %}
+                                         
+                                        {% endfor %}
                                         <td>
                                             <a href="{{path("administrator_edit_company", {"id":companies.id})}}" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-edit" aria-hidden="true"></i></a>
                                             <a href="{{ path("company_profile", {"id":companies.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Ver" data-original-title=""><i class="fa fa-search" aria-hidden="true"></i></a>

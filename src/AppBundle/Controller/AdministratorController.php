@@ -471,14 +471,29 @@ class AdministratorController extends Controller {
         $pagination = $paginator->paginate(
                 $query, $request->query->getInt('page', 1), 5
         );
+		
+		
+		$opinion_repo = $em->getRepository('BackendBundle:Opinion');
 
+        $query_avg = $opinion_repo->createQueryBuilder('o')
+                ->select('(o.company) as company', 'AVG(CASE WHEN o.createdAt > :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) WHEN o.createdAt < :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication ELSE 0 END) AS promedio')
+                ->groupBy('o.company')
+                ->orderBy('promedio', 'DESC')
+                ->setParameter('date', new \DateTime('-365 day'))
+                ->setParameter('multiplication', .60)
+                ->getQuery();
+
+        $general_avg = $query_avg->getResult();
+		
+	
         return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
-                    'empresas' => $e,
-                    'comentarios' => $c,
-                    'usuarios' => $u,
-                    'todas_empresas' => $te,
-                    'claims' => $re,
-                    'pagination' => $pagination
+			'empresas' => $e,
+			'comentarios' => $c,
+			'usuarios' => $u,
+			'todas_empresas' => $te,
+			'claims' => $re,
+			'general_avg' => $general_avg,
+			'pagination' => $pagination
         ));
     }
 
