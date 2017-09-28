@@ -52,9 +52,33 @@ class RegisterCompanyType extends AbstractType {
 				->add('businesssector', ChoiceType::class, array(
 					'label' => 'Sector empresarial',
 					'choices' => array(
-						'Maybe' => null,
-						'Yes' => true,
-						'No' => false,
+						'Agronegocios' => 'Agronegocios',
+						'Automotriz' => 'Automotriz',
+						'Comercio' => 'Comercio',
+						'Comunicaciones' => 'Comunicaciones',
+						'Construcción' => 'Construcción',
+						'Educación' => 'Educación',
+						'Energia' => 'Energia',
+						'Petroquimico' => 'Petroquimico',
+						'Minero' => 'Minero',
+						'Entretenimiento' => 'Entretenimiento',
+						'Farmaceutico' => 'Farmaceutico',
+						'Salud' => 'Salud',
+						'Gubernamental' => 'Gubernamental',
+						'Hoteleles y Restaurantes' => 'Hoteleles y Restaurantes',
+						'Logistica y Transporte' => 'Logistica y Transporte',
+						'Mercado Inmobiliario' => 'Mercado Inmobiliario',
+						'Mueblera, Madera' => 'Mueblera, Madera',
+						'ONG´S' => 'ONG´S',
+						'Servicios Financieros' => 'Servicios Financieros',
+						'Servicios Profesionales, Empresariales' => 'Servicios Profesionales, Empresariales',
+						'Tabacalera ' => 'Tabacalera ',
+						'Tecnología, Internet' => 'Tecnología, Internet',
+						'Otros servicios' => 'Otros servicios',
+						'No conozco el sector' => 'No conozco el sector',
+						
+						
+						
 					),
 					'required' => 'required',
 					'attr' => array(
