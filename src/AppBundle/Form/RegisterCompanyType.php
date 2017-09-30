@@ -76,9 +76,7 @@ class RegisterCompanyType extends AbstractType {
 						'Tecnología, Internet' => 'Tecnología, Internet',
 						'Otros servicios' => 'Otros servicios',
 						'No conozco el sector' => 'No conozco el sector',
-						
-						
-						
+
 					),
 					'required' => 'required',
 					'attr' => array(
