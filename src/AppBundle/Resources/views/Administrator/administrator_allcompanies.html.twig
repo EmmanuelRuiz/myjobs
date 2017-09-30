@@ -85,7 +85,7 @@
                     <h2 class="page-header">Administrar empresas</h2>
                     {%for message in app.session.flashbag().get('msg')%}
                         <div class="alert alert-success">{{message}}</div>
-                    {%endfor%}        
+                    {%endfor%}
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -101,9 +101,9 @@
                                 </tr>
                             </thead>
                             {# usamos la variable company para recorrer cada resultado y mostrarlos #}
-                            
+
                             {% for companies in pagination %}
-                                
+
                                 <tbody>
                                     <tr>
                                         <td>{{ companies.id }}</td>
@@ -111,13 +111,13 @@
                                         <td>{{ companies.rfc }}</td>
                                         <td>{{ companies.businesssector }}</td>
                                         <td>{{ companies.website}}</td>
-                                        <td>{{ companies.createdAt|date("D d M Y") }}</td>  
-                                        
+                                        <td>{{ companies.createdAt|date("D d M Y") }}</td>
+
                                         {% for avg in general_avg %}
                                             {% if companies.id == avg.company %}
                                                 <td>{{ avg.promedio }}</td>
                                             {% endif %}
-                                         
+
                                         {% endfor %}
                                         <td>
                                             <a href="{{path("administrator_edit_company", {"id":companies.id})}}" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="left" title="Eliminar" data-original-title=""><i class="fa fa-edit" aria-hidden="true"></i></a>

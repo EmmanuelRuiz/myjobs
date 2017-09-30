@@ -72,7 +72,7 @@ class CompanyType extends AbstractType {
 						'Agronegocios' => 'Agronegocios',
 						'Automotriz' => 'Automotriz',
 						'Comercio' => 'Comercio',
-						'Comunicaciones' => 'Comunicaciones',
+						'Comunicaciones' => 'Comunic6aciones',
 						'Construcción' => 'Construcción',
 						'Educación' => 'Educación',
 						'Energia' => 'Energia',

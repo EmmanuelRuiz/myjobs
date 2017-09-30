@@ -39,7 +39,7 @@ body {
 
     #page-wrapper {
         padding: 10px;
-        height: 95vh;
+        height: 150vh;
     }
 }
 
@@ -244,8 +244,8 @@ text {
 
 /*
 
-    display: block; 
-    -webkit-transform: rotate(-90deg); 
+    display: block;
+    -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
 
     */

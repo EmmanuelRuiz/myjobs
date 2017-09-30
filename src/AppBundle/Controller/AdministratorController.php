@@ -43,9 +43,9 @@ class AdministratorController extends Controller {
         $dql = "SELECT u FROM BackendBundle:Company u";
         $query_company = $em->createQuery($dql);
 
-        $paginator = $this->get('knp_paginator');
-        $pag_company = $paginator->paginate(
-                $query_company, $request->query->getInt('page', 1), 5
+        $paginator_all = $this->get('knp_paginator');
+        $pag_company = $paginator_all->paginate(
+                $query_company, $request->query->getInt('page', 1), 1
         );
 
         // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company que no estan verificadas
@@ -54,7 +54,7 @@ class AdministratorController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+                $query, $request->query->getInt('page', 1), 1
         );
 
         $querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
@@ -127,9 +127,9 @@ class AdministratorController extends Controller {
                 ->getQuery();
 
         $general_avg = $query_avg->getResult();
-		
-		$queryPuntos = "SELECT company_id, companies.tradename, 
-            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) 
+
+		    $queryPuntos = "SELECT company_id, companies.tradename,
+            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)
             as promedio FROM opinions INNER JOIN companies on opinions.company_id=companies.id
             GROUP BY company_id ORDER BY promedio DESC;";
         $preparaPuntos = $db->prepare($queryPuntos);
@@ -137,16 +137,18 @@ class AdministratorController extends Controller {
         $preparaPuntos->execute($paramsPuntos);
         $puntos = $preparaPuntos->fetchAll();
 
+
         return $this->render('AppBundle:Administrator:administrator.html.twig', array(
-			'empresas' => $e,
-			'comentarios' => $c,
-			'usuarios' => $u,
-			'todas_empresas' => $te,
-			'claims' => $re,
-			'pagination' => $pagination,
-			'companies' => $pag_company,
-			'general_avg' => $general_avg,
-			'puntos' => $puntos
+    			'empresas' => $e,
+    			'comentarios' => $c,
+    			'usuarios' => $u,
+    			'todas_empresas' => $te,
+    			'claims' => $re,
+    			'pagination' => $pagination,
+          'otro' => $paginator_all,
+    			'companies' => $pag_company,
+    			'general_avg' => $general_avg,
+    			'puntos' => $puntos
         ));
     }
 
@@ -471,12 +473,14 @@ class AdministratorController extends Controller {
         $pagination = $paginator->paginate(
                 $query, $request->query->getInt('page', 1), 5
         );
-		
-		
-		$opinion_repo = $em->getRepository('BackendBundle:Opinion');
+
+
+		    $opinion_repo = $em->getRepository('BackendBundle:Opinion');
 
         $query_avg = $opinion_repo->createQueryBuilder('o')
-                ->select('(o.company) as company', 'AVG(CASE WHEN o.createdAt > :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) WHEN o.createdAt < :date THEN (o.point1 + o.point2 + o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication ELSE 0 END) AS promedio')
+                ->select('(o.company) as company', 'AVG(CASE WHEN o.createdAt > :date THEN (o.point1 + o.point2 + o.point3 + o.point4 +
+                o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10) WHEN o.createdAt < :date THEN (o.point1 + o.point2 +
+                o.point3 + o.point4 + o.point5 + o.point6 + o.point7 + o.point8 + o.point9 + o.point10)*:multiplication ELSE 0 END) AS promedio')
                 ->groupBy('o.company')
                 ->orderBy('promedio', 'DESC')
                 ->setParameter('date', new \DateTime('-365 day'))
@@ -484,16 +488,16 @@ class AdministratorController extends Controller {
                 ->getQuery();
 
         $general_avg = $query_avg->getResult();
-		
-	
+
+
         return $this->render('AppBundle:Administrator:administrator_allcompanies.html.twig', array(
-			'empresas' => $e,
-			'comentarios' => $c,
-			'usuarios' => $u,
-			'todas_empresas' => $te,
-			'claims' => $re,
-			'general_avg' => $general_avg,
-			'pagination' => $pagination
+    			'empresas' => $e,
+    			'comentarios' => $c,
+    			'usuarios' => $u,
+    			'todas_empresas' => $te,
+    			'claims' => $re,
+    			'general_avg' => $general_avg,
+    			'pagination' => $pagination
         ));
     }
 
@@ -511,9 +515,9 @@ class AdministratorController extends Controller {
         $company->setStatus('valid');
         $em->persist($company);
         $em->flush(); //ejecturamos
-		
+
 		$this->addFlash('msg', 'La empresa se ha validado con éxito');
-		
+
         return $this->redirectToRoute('administrator_index');
     }
 
@@ -761,8 +765,8 @@ class AdministratorController extends Controller {
         $estados = $preparaEstados->fetchAll();
 
         /* obtener empresas más puntuadas por opiniones */
-        $queryPuntos = "SELECT company_id, companies.tradename, 
-            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) 
+        $queryPuntos = "SELECT company_id, companies.tradename,
+            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)
             as promedio FROM opinions INNER JOIN companies on opinions.company_id=companies.id
             GROUP BY company_id ORDER BY promedio DESC LIMIT 5;";
         $preparaPuntos = $db->prepare($queryPuntos);
@@ -776,7 +780,7 @@ class AdministratorController extends Controller {
         $paramsG = array();
         $preparaG->execute($paramsG);
         $generos = $preparaG->fetchAll();
-		
+
 		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
         $query = $em->createQuery($dql);
 
@@ -855,7 +859,7 @@ class AdministratorController extends Controller {
 				'claims' => $re
         ));
     }
-	
+
 	public function editCompaniesAction(Request $request) {
 		$user = $this->getUser();
 		$em = $this->getDoctrine()->getManager();
