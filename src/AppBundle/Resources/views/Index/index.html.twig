@@ -198,27 +198,31 @@
                         </tr>
                     </thead>
                     {% for opinions in pagination %}
-                        <tbody>
-                            <tr>
-                                <td>
-                                    {% if opinions.company.logo == null %}
-                                        <img class="center-block" src="{{ asset('assets/images/company-logo.png') }}" width="50"/>
-                                    {% else %}
-                                        <img class="center-block" src="{{ asset('uploads/company/'~opinions.company.logo) }}" width="50"/>
-                                    {% endif %}
-                                </td>
-                                <td>{{ opinions.company.tradename}}</td>
-                                <td>
-                                    {% if opinions.user.anonimo == 'Si'%}
-                                        <em>Anónimo</em>
-                                    {% else %}
-                                        {{ opinions.user.name}} {{ opinions.user.plastname}}
-                                    {% endif %}
+                        {% if opinions.company.status == "valid" %}
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {% if opinions.company.logo == null %}
+                                            <img class="center-block" src="{{ asset('assets/images/company-logo.png') }}" width="50"/>
+                                        {% else %}
+                                            <img class="center-block" src="{{ asset('uploads/company/'~opinions.company.logo) }}" width="50"/>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ opinions.company.tradename}}</td>
+                                    <td>
+                                        {% if opinions.user.anonimo == 'Si'%}
+                                            <em>Anónimo</em>
+                                        {% else %}
+                                            {{ opinions.user.name}} {{ opinions.user.plastname}}
+                                        {% endif %}
 
-                                </td>
-                                <td>{{opinions.generalcomment}}</td>
-                            </tr>
-                        </tbody>
+                                    </td>
+                                    <td>{{opinions.generalcomment}}</td>
+                                </tr>
+                            </tbody>
+                        {% endif %}
+
+
                     {% endfor %}
                 </table>
             </div>
