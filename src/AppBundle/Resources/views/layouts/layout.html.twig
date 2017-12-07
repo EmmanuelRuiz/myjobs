@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>{% block title %} MyJobsAdvisor | Sitio Oficial {%endblock%}</title>
+        <title>{% block title %} MyJobsAdvisor | Sitio Oficial {% endblock %}</title>
 
         {% block stylesheet %}
             <!-- estilos css -->
@@ -119,7 +119,7 @@
                                         <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                             <div class="avatar">
-                                                {% if app.user.image | split('.') | last == 'png' or app.user.image | split('.') | last == 'jpg' or app.user.image | split('.') | last == 'jpeg' or app.user.image | split('.') | last == 'gif' %}    
+                                                {% if app.user.image | split('.') | last == 'png' or app.user.image | split('.') | last == 'jpg' or app.user.image | split('.') | last == 'jpeg' or app.user.image | split('.') | last == 'gif' %}
                                                     {% if app.user.anonimo == 'Si' %}
                                                         <img  src="{{ asset('assets/images/default.jpg') }}"/>
                                                     {% elseif app.user.image != null %}
@@ -172,7 +172,7 @@
                             {% else %}
                                 <h1>Bienvenido</h1>
                             {% endif %}
-                            <h4>Encuentra opiniones de las empresas en Playa del Carmen y el mundo</h4>
+                            <h4>Conoce a las empresas a traves de las personas que ahi trabajan</h4>
                             <hr class="intro-divider">
                             <div class="col-lg-6 col-lg-offset-3">
                                 <form action="{{ path('companies_search') }}">

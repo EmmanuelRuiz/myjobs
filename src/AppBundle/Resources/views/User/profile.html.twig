@@ -10,11 +10,9 @@
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
                     {% if user.image | split('.') | last == 'png' or user.image | split('.') | last == 'jpg' or user.image | split('.') | last == 'jpeg' or user.image | split('.') | last == 'gif' %}    
-                        {% if user.anonimo == 'Si' %}
-                            <img class="profile-picture-company center-block"  src="{{ asset('assets/images/default.jpg') }}"/>
-                        {% elseif user.image != null %}
-                            <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
-                        {% endif %}
+
+                        <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
+
                     {% elseif user.image | split('.') | last == null %}
                         <img class="profile-picture-company center-block" src="{{ asset('assets/images/default.jpg') }}"/>
                     {% else %}
@@ -130,7 +128,7 @@
                                         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
                                             <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
                                                 <div class="avatar">
-                                                    {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}    
+                                                    {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}
                                                         {% if opinions.user.anonimo == 'Si' %}
                                                             <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
                                                         {% elseif opinions.user.image != null %}
@@ -207,7 +205,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 ">
                                                         <div class="avatar  ">
-                                                            {% if comments.user.image | split('.') | last == 'png' or comments.user.image | split('.') | last == 'jpg' or comments.user.image | split('.') | last == 'jpeg' or comments.user.image | split('.') | last == 'gif' %}    
+                                                            {% if comments.user.image | split('.') | last == 'png' or comments.user.image | split('.') | last == 'jpg' or comments.user.image | split('.') | last == 'jpeg' or comments.user.image | split('.') | last == 'gif' %}
                                                                 {% if comments.user.anonimo == 'Si' %}
                                                                     <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
                                                                 {% elseif comments.user.image != null %}
