@@ -9,18 +9,18 @@ parameters:
     google_app_id: 43785180861-hmi257jor14qp192g1ei0l63tuens5gt.apps.googleusercontent.com
     google_app_secret: BQlu4FyhQT_DFkRn8ByqsANM
 
-    database_host:     127.0.0.1
+    database_host:     localhost
     database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_name:     myjobsa1_myjobsadvisor
+    database_user:     myjobsa1_admin
+    database_password: bdmja2017
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_host:       vm13.digitalserver.org
+    mailer_user:       _mainaccount@myjobsadvisor.com
+    mailer_password:   iO82w9nXj4
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt

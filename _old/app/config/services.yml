@@ -1,0 +1,86 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.facebook_provider:
+        class: League\OAuth2\Client\Provider\Facebook
+        arguments:
+            -
+                clientId: %facebook_app_id%
+                clientSecret: %facebook_app_secret%
+                graphApiVersion: v2.3
+                redirectUri: "http://localhost/myjobs/web/app_dev.php/connect/facebook-check"
+                
+    app.google_provider:
+        class: League\OAuth2\Client\Provider\Google
+        arguments:
+            -
+                clientId: %google_app_id%
+                clientSecret: %google_app_secret%
+                redirectUri: "http://localhost/myjobs/web/app_dev.php/connect/google-check"
+                
+    app.google_authenticator:
+        class: AppBundle\Security\GoogleAuthenticator
+        arguments: ["@service_container"]
+                
+    app.facebook_authenticator:
+        class: AppBundle\Security\FacebookAuthenticator
+        arguments: ["@service_container"]
+        
+
+    
+    following.twig_extension:
+        class: AppBundle\Twig\FollowingExtension   
+        public: false
+        arguments:
+            doctrine: "@doctrine"
+        tags: 
+            - { name: twig.extension }
+            
+    long_time.twig_extension:
+        class: AppBundle\Twig\LongTimeExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+            
+    user_stats.twig_extension:
+        class: AppBundle\Twig\UserStatsExtension
+        public: false
+        arguments:
+            doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }
+            
+    liked.twig_extension:
+        class: AppBundle\Twig\LikedExtension   
+        public: false
+        arguments:
+            doctrine: "@doctrine"
+        tags: 
+            - { name: twig.extension }
+    
+    company_stats.twig_extension:
+        class: AppBundle\Twig\CompanyStatsExtension   
+        public: false
+        arguments:
+            doctrine: "@doctrine"
+        tags: 
+            - { name: twig.extension }
+    
+    logout_success_handler:
+        class: AppBundle\Controller\LogoutSuccessHandler
+        arguments: ['@security.http_utils']
+        
+        
+
+    twig.extension.sortbyfield:
+        class: Snilius\Twig\SortByFieldExtension
+        tags:
+            - { name: twig.extension }
+            

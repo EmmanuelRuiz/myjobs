@@ -1,0 +1,59 @@
+register-company:
+    path: /empresas/registrar
+    defaults: { _controller: AppBundle:Company:register }
+
+companies_list:
+    path: /empresas
+    defaults: { _controller: AppBundle:Company:companies }
+    
+companies_search:
+    path: /busqueda
+    defaults: { _controller: AppBundle:Company:search }
+    
+
+companies_edit:
+    path: /empresa/editar
+    defaults: { _controller: AppBundle:Company:edit }
+
+    
+companies_points:
+    path: /prueba
+    defaults: { _controller: AppBundle:Company:puntos }
+    
+company_profile:
+    path: /empresas/perfil
+    defaults: { _controller: AppBundle:Company:profile }
+    
+companies_mycompanies:
+    path: /empresas/mis_empresas
+    defaults: { _controller: AppBundle:Company:myCompanies }
+    
+companies_state:
+    path: /estados
+    defaults: { _controller: AppBundle:Company:findState }
+ 
+       
+companies_muni:
+    path: /municipio
+    defaults: { _controller: AppBundle:Company:findMunicipio }
+
+       
+companies_loca:
+    path: /localidad
+    defaults: { _controller: AppBundle:Company:findLocalidad }
+    
+    
+# estas rutas deben pertenecer a otro yml
+remove_opinion:
+    path: /opinion/remove/{id}
+    defaults: { _controller: AppBundle:Company:removeOpinion, id:null }
+
+remove_comment:
+    path: /comment/remove/{id}
+    defaults: { _controller: AppBundle:Company:removeComment, id:null }
+     
+rate:
+    path: /rate/{id}
+    defaults: { _controller: AppBundle:Rate:rate, id:null}
+    
+

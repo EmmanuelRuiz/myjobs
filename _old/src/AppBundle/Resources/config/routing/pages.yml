@@ -1,0 +1,7 @@
+pages_view_contact:
+    path: /contacto
+    defaults: { _controller: AppBundle:Pages:viewContact }
+    
+pages_contact:
+    path: /contacto/enviar
+    defaults: { _controller: AppBundle:Pages:contact }

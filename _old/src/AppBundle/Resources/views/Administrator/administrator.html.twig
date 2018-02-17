@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Panel de Administración</title>
+
+
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/css/admin1.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
+
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+
+    </head>
+
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">MyJobsAdvisor</a>
+                </div>
+                <!-- Top Menu Items -->
+                <ul class="nav navbar-right top-nav">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrador <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="{{ path('administrador_logout') }}"><i class="fa fa-fw fa-power-off"></i> Salir </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li class="">
+                            <a href="{{ path('administrator_index') }}"><i class="fa fa-building" aria-hidden="true"></i> Empresas sin validar {% for empresas in empresas %} <span class="badge pull-right">{{empresas}}</span>{% endfor %}</a>
+
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_comment') }}"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios sin validar {% for comentarios in comentarios %} <span class="badge pull-right">{{comentarios}}</span>{% endfor %}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_claim') }}"><i class="fa fa-gavel" aria-hidden="true"></i> Reclamaciones {% for claims in claims %} <span class="badge pull-right">{{claims}}</span>{% endfor %}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_user') }}"><i class="fa fa-users" aria-hidden="true"></i> Administrar usuarios {% for usuarios in usuarios %} <span class="badge pull-right">{{usuarios}}</span>{% endfor %}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_allcompanies') }}"><i class="fa fa-list-alt" aria-hidden="true"></i> Administrar empresas {% for todas_empresas in todas_empresas %} <span class="badge pull-right">{{todas_empresas}}</span>{% endfor %}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('administrator_graficar') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Estadísticas </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    <h2 class="page-header">Empresas pendientes por validar</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>RFC</th>
+                                    <th>Sector</th>
+                                    <th class="info">Registrante</th>
+                                    <th class="info">N° de Registrante</th>
+                                    <th class="active">Representante</th>
+                                    <th class="active">Ext. Representante</th>
+                                    <th class="active">Email de Representante</th>
+                                    <th class="active">N° de Representante</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+
+
+                            {# usamos la variable company para recorrer cada resultado y mostrarlos #}
+                            {% for company in pagination  %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ company.id }}</td>
+                                        <td>{{ company.tradename }}</td>
+                                        <td>{{ company.rfc }}</td>
+                                        <td>{{ company.businesssector }}</td>
+                                        {% if company.representant == 'si' %}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.user.name }} {{ company.user.mlastname }}</td>
+                                        {% endif %}
+                                        {% if company.representant == 'si' %}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.user.telephone }}</td>
+                                        {% endif %}
+
+                                        {% if company.contacname == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.contacname }}</td>
+                                        {% endif %}
+
+                                        {% if company.telephoneext == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.telephoneext }}</td>
+                                        {% endif %}
+
+                                        {% if company.businessemail == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.businessemail }}</td>
+                                        {% endif %}
+
+                                        {% if company.personalnumber == null%}
+                                            <td>NULL</td>
+                                        {% else %}
+                                            <td>{{ company.personalnumber }}</td>
+                                        {% endif %}
+
+                                        <td><a href="{{path('administrator_validate_company', {'id':company.id})}}" type="button" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="left" title="Validar" data-original-title=""><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                        <div class="navigation text-center">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+
+
+                    <h2 class="page-header">Empresas destacadas</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Opiniones Totales</th>
+                                    <th>Puntos Totales</th>
+                                    <th>Calificacion General</th>
+                                </tr>
+                            </thead>
+
+                            {% for avg in general_avg %}
+                                {% for company in companies %}
+                                    <tbody>
+                                        <tr>
+                                            {% if company.id == avg.company %}
+                                                <td>{{ company.id }}</td>
+                                                <td>{{ company.tradename }}</td>
+                                                <td>
+                                                    {% for puntuacion in puntos %}
+                                                        {% if puntuacion.company_id == company.id %}
+                                                            {{ puntuacion.promedio }}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                                <td>{{ avg.promedio }}</td>
+                                            {% endif %}
+                                        </tr>
+                                    </tbody>
+                                {% endfor %}
+                            {% endfor %}
+                            <div class="clearfix"></div>
+                        </table>
+
+                    </div>
+
+                    <div class="navigation text-center">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+    </body>
+
+</html>

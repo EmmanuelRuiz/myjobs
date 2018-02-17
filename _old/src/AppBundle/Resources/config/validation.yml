@@ -1,0 +1,28 @@
+BackendBundle\Entity\User:
+    properties:
+        name:
+            - NotBlank: {message: "El nombre no puede estar vacio"}
+        plastname:
+            - NotBlank: {message: "El apellido paterno no puede estar vacio"}
+        age:
+            - NotBlank: {message: "Por favor rellena este campo"}
+        email:
+            - NotBlank: {message: "El email no puede estar vacio"}
+            - Email:
+                message: El email {{ value }} no es valido
+                checkMX: false
+        
+        password:
+            - NotBlank: {message: "Debes agregar una contraseña"}
+            - Length:
+                min: 6
+                minMessage: "La contraseña debe tener almenos 6 caracteres"
+
+BackendBundle\Entity\Company:
+    properties:
+        tradename:
+            - NotBlank: {message: "el tradename no puede estar vacío"}
+        description:
+            - NotBlank: {message: "Este campo no puede estar vacío"}
+        businesssector:
+            - NotBlank: {message: "Este campo no puede estar vacío"}

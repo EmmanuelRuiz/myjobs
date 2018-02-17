@@ -1,0 +1,103 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{ asset('assets/js/custom/home.js') }}"></script>
+{% endblock javascripts %}
+{% block content %}
+    <section class="like-section">
+        <div class="container">
+            <div id="timeline" class="col-lg-12 box-default pull-left">
+                <h1 class="box-header">Publicaciones que le gustan a {{ user.name }}</h1>
+
+                <div class="count">
+                    <span class="label label-primary">
+                        Total de opiniones que te gustan: {{pagination.getTotalItemCount}}
+                    </span>
+                </div>
+                <hr>
+                {% for like in pagination %}
+                    {% set opinions = like.opinions %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <div class="row">
+                                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                                    <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
+                                        <div class="avatar">
+                                            {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}    
+                                                {% if opinions.user.anonimo == 'Si' %}
+                                                    <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% elseif opinions.user.image != null %}
+                                                    <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                {% endif %}
+                                            {% elseif opinions.user.image | split('.') | last == null %}
+                                                <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                            {% else %}
+                                                <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
+                                            {% endif %}
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
+                                    <h5 class="media-heading"><a href="{{ path('user_profile', {'id':opinions.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a></h5>
+                                    <small class="text-muted">{{opinions.createdAt|long_time}}</small>
+                                </div>
+                                <div class="col-lg-6 col-md-3 col-sm-3 col-xs-3">
+                                    {% if app.user != null %}
+                                        {% if opinions.user.id == app.user.id %}
+                                            <div class="btn-group pull-right">
+                                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-cog" aria-hidden="true"></i> <i class="fa fa-caret-down caret-opinioncomment"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    {% endif%}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <p>{{opinions.generalcomment}}</p>
+
+                            {% if app.user != null%}
+                                <hr class="profiles-hr">
+                                <div class="like">
+
+                                    <i data-id="{{opinions.id}}" class="
+                                       {% if app.user|liked(opinions) == true%}
+                                           hidden
+                                       {% endif %}
+                                       btn-like fa fa-heart"
+                                       aria-hidden="true"
+                                       data-toggle="tooltip"
+                                       data-placement="left"
+                                       title="Me gusta">
+                                    </i>
+
+                                    <i data-id="{{opinions.id}}" class="
+                                       {% if app.user|liked(opinions) == false%}
+                                           hidden
+                                       {% endif %}
+                                       btn-unlike active fa fa-heart"
+                                       aria-hidden="true"
+                                       data-toggle="tooltip"
+                                       data-placement="left"
+                                       title="Ya no me gusta">
+                                    </i>
+                                </div>
+                                <hr class="profiles-hr">
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {{ knp_pagination_render(pagination) }}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -13,22 +13,15 @@
             <!-- estilos css -->
             <!--<link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">-->
             <link href="{{ asset('assets/css/bootswatch.css')}}" type="text/css" rel="stylesheet">
-            <link href="{{ asset('assets/css/styles1.css')}}" type="text/css" rel="stylesheet">
+            <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
         {%endblock%}
 
         {% block fonts %}
             <!-- fonts -->
             <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
-        {%endblock%}
-
-        {% block javascripts %}
-            <script type="text/javascript">
-				var URL = "{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/app_dev.php";
-            </script>
-            <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
         {% endblock %}
+
+
     </head>
     <body>
 
@@ -123,7 +116,7 @@
                                 <li class="user-logged-in">
                                     <button class="btn btn-link  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="avatar">
-                                            {% if app.user.image | split('.') | last == 'png' or app.user.image | split('.') | last == 'jpg' or app.user.image | split('.') | last == 'jpeg' or app.user.image | split('.') | last == 'gif' %}    
+                                            {% if app.user.image | split('.') | last == 'png' or app.user.image | split('.') | last == 'jpg' or app.user.image | split('.') | last == 'jpeg' or app.user.image | split('.') | last == 'gif' %}
                                                 {% if app.user.anonimo == 'Si' %}
                                                     <img  src="{{ asset('assets/images/default.jpg') }}"/>
                                                 {% elseif app.user.image != null %}
@@ -185,8 +178,8 @@
                             <h4>Enlaces</h4>
                             <div class="footer-links">
                                 <ul class="list-unstyled">
-                                    <li><a class="links-footer" href="{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/downloads/AvisoPrivacidadMyJobsAdvisor.pdf" target="_blank">Aviso de privacidad</a></li>
-                                    <li><a class="links-footer" href="{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/downloads/TerminosCondicionesMyJobsAdvisor.pdf" target="_blank">Términos y condiciones</a></li>
+                                    <li><a class="links-footer" href="{{ app.request.getSchemeAndHttpHost() }}/downloads/AvisoPrivacidadMyJobsAdvisor.pdf" target="_blank">Aviso de privacidad</a></li>
+                                    <li><a class="links-footer" href="{{ app.request.getSchemeAndHttpHost() }}/downloads/TerminosCondicionesMyJobsAdvisor.pdf" target="_blank">Términos y condiciones</a></li>
                                 </ul>
                             </div>
                             <h4>Contacto</h4>
@@ -224,6 +217,38 @@
                 </div>
             </div>
         </footer>
+        {% block javascripts %}
+            <script type="text/javascript">
+				         var URL = "{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/app_dev.php";
+            </script>
+            <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
 
+            <script>
+        		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        		  ga('create', 'UA-106048583-1', 'auto');
+        		  ga('send', 'pageview');
+
+
+
+      	    </script>
+
+            {% for message in app.session.flashbag().get('success') %}
+              <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#ratingModal").modal("show");
+
+                    $("#ratingModal .modal-body .alert-register").append("<div class='alert alert-dismissible alert-success'>{{ message }} <button type='button' class='close' data-dismiss='alert'>&times;</button></div>");
+
+                });
+              </script>
+            {% endfor %}
+
+        {% endblock %}
     </body>
 </html>

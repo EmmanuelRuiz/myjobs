@@ -1,0 +1,42 @@
+BackendBundle\Entity\Localidad:
+    type: entity
+    table: localidades
+    indexes:
+        municipio_id:
+            columns:
+                - municipio_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        municipioId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'Relación con municipios'
+            column: municipio_id
+        clave:
+            type: string
+            nullable: false
+            length: 4
+            options:
+                fixed: false
+        nombre:
+            type: string
+            nullable: false
+            length: 110
+            options:
+                fixed: false
+        activo:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

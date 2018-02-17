@@ -1,0 +1,84 @@
+{%extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/custom/users.js') }}"></script>
+{% endblock %}
+{% block content %}
+    <section class="people-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 box-form">
+                    <h1 id="user-result">Usuarios registrados</h1>
+                    <div class="count">
+                        <span class="label label-primary">
+                            Total de personas: {{ pagination.getTotalItemCount }}
+                        </span>
+                    </div>
+
+                    <hr />
+
+                    {% for user in pagination %}
+                        <div class="media">
+                            <div class="media-left">
+                                {#mostramos los datos del usuario#}
+                                
+                                {% if user.image | split('.') | last == 'png' or user.image | split('.') | last == 'jpg' or user.image | split('.') | last == 'jpeg' or user.image | split('.') | last == 'gif' %}    
+                                    {% if user.anonimo == 'Si' %}
+                                        <img class="company-pp-list img-circle"  src="{{ asset('assets/images/default.jpg') }}"/>
+                                    {% elseif user.image != null %}
+                                        <img class="company-pp-list img-circle" src="{{ asset('uploads/users/'~user.image) }}"/>
+                                    {% endif %}
+                                {% elseif user.image | split('.') | last == null %}
+                                    <img class="company-pp-list img-circle" src="{{ asset('assets/images/default.jpg') }}"/>
+                                {% else %}
+                                    <img class="company-pp-list img-circle" src="{{ user.image }}"/>
+                                {% endif %}
+                            </div>
+
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    {% if user.anonimo == 'Si' %}
+                                        <em>Anonimo</em>
+                                    {% else %}
+                                        <a class="links-search" href="{{ path('user_profile', {'id':user.id})}}">{{user.name}} {{user.plastname}}</a>
+                                    {% endif %}
+
+                                </h4>
+
+                                {% if user.anonimo == 'Si' %}
+                                    <em>Este usuario es privado, por lo tanto no puedes ver su información personal</em>
+                                {% else %}
+                                    <p>{{ user.biography}}<p>
+                                    {% endif %}
+
+                                    {% if app.user.id != user.id %}
+                                    <div class="buttons-following" >
+                                        <button class=" btn btn-xs btn-success btn-follow {% if app.user|following(user) == true%} hidden {% endif %}" data-followed="{{ user.id }}">
+                                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                            Seguir
+                                        </button>
+
+                                        <button class="btn btn-xs btn-default btn-unfollow {% if app.user|following(user) == false %} hidden {% endif %}" data-followed="{{ user.id }}">
+                                            <i class="fa fa-user-times" aria-hidden="true"></i>
+                                            Dejar de seguir
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                        </div>
+                    {% endfor%}
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+{%endblock%}

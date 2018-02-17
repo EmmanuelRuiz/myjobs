@@ -1,0 +1,54 @@
+BackendBundle\Entity\Like:
+    type: entity
+    table: likes
+    indexes:
+        fk_like_opinion:
+            columns:
+                - opinions_id
+        fk_likes_company:
+            columns:
+                - company
+        fk_likes_users:
+            columns:
+                - user
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        opinions:
+            targetEntity: Opinion
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                opinions_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        company:
+            targetEntity: Company
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                company:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -9,10 +9,12 @@
         <div class="container ">
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
-                    {% if user.image | split('.') | last == 'png' or user.image | split('.') | last == 'jpg' or user.image | split('.') | last == 'jpeg' or user.image | split('.') | last == 'gif' %}    
-
-                        <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
-
+                    {% if user.image | split('.') | last == 'png' or user.image | split('.') | last == 'jpg' or user.image | split('.') | last == 'jpeg' or user.image | split('.') | last == 'gif' %}
+                        {% if user.anonimo == 'Si' %}
+                            <img class="profile-picture-company center-block"  src="{{ asset('assets/images/default.jpg') }}"/>
+                        {% elseif user.image != null %}
+                            <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
+                        {% endif %}
                     {% elseif user.image | split('.') | last == null %}
                         <img class="profile-picture-company center-block" src="{{ asset('assets/images/default.jpg') }}"/>
                     {% else %}
@@ -52,7 +54,11 @@
                     <h5><b>Biografía</b></h5>
 
                     {% if user.anonimo == 'Si' %}
+                      {% if user.id != app.user.id %}
                         <p><em>Este usuario es un usuario privado, por lo tanto no puedes ver su información personal</em></p>
+                      {% else %}
+                          <p>{{ user.biography }}</p>
+                      {% endif %}
                     {% else %}
                         <p>{{ user.biography }}</p>
                     {% endif %}
@@ -73,18 +79,52 @@
                             </a>
                         </div>
 
-                        <div class="following-data">
-                            <a href="#">
-                                <i class="fa fa-commenting fa-2x comment-stats" aria-hidden="true"></i>
-                                <span class="number-stat">{{user_stats.opinions}}</span>
-                            </a>
-                        </div>
-                        <div class="following-data">
-                            <a href="{{ path('user_likes', {'email':user.email})}}">
-                                <i class="fa fa-heart fa-2x heart-stats" aria-hidden="true"></i>
-                                <span class="number-stat">{{user_stats.likes}}</span>
-                            </a>
-                        </div>
+                        {% if user.anonimo == 'Si' %}
+                          {% if user.id != app.user.id %}
+                            <div class="following-data">
+                                <a href="#" hidden>
+                                    <i class="fa fa-commenting fa-2x comment-stats" aria-hidden="true"></i>
+                                    <span class="number-stat">{{user_stats.opinions}}</span>
+                                </a>
+                            </div>
+
+                            <div class="following-data">
+                                <a href="{{ path('user_likes', {'email':user.email})}}" hidden>
+                                    <i class="fa fa-heart fa-2x heart-stats" aria-hidden="true"></i>
+                                    <span class="number-stat">{{user_stats.likes}}</span>
+                                </a>
+                            </div>
+                          {% else %}
+                            <div class="following-data">
+                                <a href="#" >
+                                    <i class="fa fa-commenting fa-2x comment-stats" aria-hidden="true"></i>
+                                    <span class="number-stat">{{user_stats.opinions}}</span>
+                                </a>
+                            </div>
+                            <div class="following-data">
+                                <a href="{{ path('user_likes', {'email':user.email})}}" >
+                                    <i class="fa fa-heart fa-2x heart-stats" aria-hidden="true"></i>
+                                    <span class="number-stat">{{user_stats.likes}}</span>
+                                </a>
+                            </div>
+                          {% endif %}
+                        {% else %}
+                          <div class="following-data">
+                              <a href="#" >
+                                  <i class="fa fa-commenting fa-2x comment-stats" aria-hidden="true"></i>
+                                  <span class="number-stat">{{user_stats.opinions}}</span>
+                              </a>
+                          </div>
+                          <div class="following-data">
+                              <a href="{{ path('user_likes', {'email':user.email})}}" >
+                                  <i class="fa fa-heart fa-2x heart-stats" aria-hidden="true"></i>
+                                  <span class="number-stat">{{user_stats.likes}}</span>
+                              </a>
+                          </div>
+                        {% endif %}
+
+
+
 
                     </div>
 
@@ -108,9 +148,179 @@
                 {%endfor%}
 
                 {% if user.anonimo == 'Si'%}
+                  {% if user.id != app.user.id %}
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h2 class="text-muted text-center">Este usuario es privado, por lo tanto no puedes ver sus opiniones</h2>
                     </div>
+                  {% else %}
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      {% if user_stats.opinions == 0 %}
+                          <h2 class="text-muted text-center">{{user.name}} aún no ha realizado alguna opinión</h2>
+                      {% else %}
+                          <h1 class="page-header">Opiniones</h1>
+                      {% endif %}
+                  </div>
+                  <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                      {% for opinions in pagination %}
+
+                          <div class="panel panel-default">
+                              <div class="panel-heading ">
+                                  <div class="row">
+                                      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                                          <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
+                                              <div class="avatar">
+                                                  {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}
+                                                      {% if opinions.user.anonimo == 'Si' %}
+                                                          <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                      {% elseif opinions.user.image != null %}
+                                                          <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                      {% endif %}
+                                                  {% elseif opinions.user.image | split('.') | last == null %}
+                                                      <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                  {% else %}
+                                                      <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
+                                                  {% endif %}
+                                              </div>
+                                          </a>
+                                      </div>
+                                      <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
+                                          <h5 class="media-heading"><a href="{{ path('user_profile', {'id':opinions.user.id})}}">{{opinions.user.name}} {{opinions.user.plastname}}</a></h5>
+                                          <small class="text-muted">{{opinions.createdAt|long_time}}</small>
+                                      </div>
+                                      <div class="col-lg-6 col-md-3 col-sm-3 col-xs-3">
+                                          {% if app.user != null %}
+                                              {% if opinions.user.id == app.user.id %}
+                                                  <div class="btn-group pull-right">
+                                                      <button class="btn btn-link btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                          <i class="fa fa-cog" aria-hidden="true"></i> <i class="fa fa-caret-down caret-opinioncomment"></i>
+                                                      </button>
+                                                      <ul class="dropdown-menu">
+                                                          <li><a class="btn-delete-pub" data-id="{{ opinions.id }}">Eliminar</a></li>
+
+                                                      </ul>
+                                                  </div>
+                                              {% endif %}
+                                          {% endif%}
+                                      </div>
+                                  </div>
+                              </div>
+
+
+                              <div class="panel-body">
+                                  <p>{{opinions.generalcomment}}</p>
+
+                                  {% if app.user != null%}
+                                      <hr class="profiles-hr">
+                                      <div class="like">
+
+                                          <i data-id="{{opinions.id}}" class="
+                                             {% if app.user|liked(opinions) == true%}
+                                                 hidden
+                                             {% endif %}
+                                             btn-like fa fa-heart"
+                                             aria-hidden="true"
+                                             data-toggle="tooltip"
+                                             data-placement="left"
+                                             title="Me gusta">
+                                          </i>
+
+                                          <i data-id="{{opinions.id}}" class="
+                                             {% if app.user|liked(opinions) == false%}
+                                                 hidden
+                                             {% endif %}
+                                             btn-unlike active fa fa-heart"
+                                             aria-hidden="true"
+                                             data-toggle="tooltip"
+                                             data-placement="left"
+                                             title="Ya no me gusta">
+                                          </i>
+                                      </div>
+                                      <hr class="profiles-hr">
+                                  {% endif %}
+                              </div>
+                              <div class="panel-footer">
+                                  {% for comments in comments%}
+
+                                      {% if comments.opinion.id == opinions.id %}
+                                          {% if comments.status != 'invalid'%}
+                                              <div class="row">
+                                                  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 ">
+                                                      <div class="avatar  ">
+                                                          {% if comments.user.image | split('.') | last == 'png' or comments.user.image | split('.') | last == 'jpg' or comments.user.image | split('.') | last == 'jpeg' or comments.user.image | split('.') | last == 'gif' %}
+                                                              {% if comments.user.anonimo == 'Si' %}
+                                                                  <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                              {% elseif comments.user.image != null %}
+                                                                  <img class=" user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                              {% endif %}
+                                                          {% elseif comments.user.image | split('.') | last == null %}
+                                                              <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                          {% else %}
+                                                              <img class=" user-logo-opinion-comment"src="{{ comments.user.image }}"/>
+                                                          {% endif %}
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-lg-5 col-md-7 col-sm-7 col-xs-7">
+                                                      <h5 class="media-heading ">
+                                                          {% if comments.user.anonimo == 'Si' %}
+                                                              <em>Anonimo</em>
+                                                          {% else %}
+                                                              <a href="{{ path('user_profile', {'id':comments.user.id}) }}">{{ comments.user.name }} {{ comments.user.plastname }}</a>
+                                                          {% endif %}
+                                                          - <small class="text-muted">{{comments.createdAt|long_time}}</small>
+                                                      </h5>
+
+                                                      <p >{{ comments.body }}</p>
+
+
+                                                      {% if comments.image != null%}
+                                                          <img class="center-block comment-img" width="200" src="{{ asset('uploads/comments/images/'~comments.image) }}"/>
+                                                      {% endif %}
+                                                  </div>
+                                                  <div class="col-lg-6 col-md-3 col-sm-3 col-xs-3">
+                                                      {% if app.user != null %}
+                                                          {% if comments.user.id == app.user.id %}
+                                                              <div class=" btn-group pull-right  ">
+                                                                  <button class="btn btn-link btn-xs dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                      <i class="fa fa-cog" aria-hidden="true"></i> <i class="fa fa-caret-down caret-opinioncomment"></i>
+                                                                  </button>
+                                                                  <ul class="dropdown-menu ">
+                                                                      <li><a class="btn-delete-comment" data-id="{{ comments.id }}">Eliminar</a></li>
+                                                                  </ul>
+                                                              </div>
+                                                              <div class="clearfix"></div>
+                                                          {% endif %}
+                                                      {% endif%}
+                                                  </div>
+                                              </div>
+                                              <hr class="profiles-hr">
+                                          {% endif %}
+                                      {% endif %}
+
+
+                                  {% endfor %}
+
+                                  {% if app.user != null%}
+                                      <form method="post" enctype="multipart/form-data" class="comment-form" action="{{ path('comment_crate_user', {'opinion_id':opinions.id}) }}" >
+                                          <div class="form-group">
+                                              <label for="nameInput">Agregar comentario</label>
+                                              <textarea type="text" class="form-control" id="nameInput" placeholder="Escribe tu comentario..." name="comment" rows="2" cols="80"></textarea>
+                                              <button type="submit" class="btn btn-default btn-sm pull-right">Comentar</button>
+
+                                              <label for="file" class="pull-right label-img"><i class="fa fa-file-image-o"></i></label>
+                                              <input id="file" name="image" type="file" >
+                                          </div>
+                                          <div class="clearfix"></div>
+                                      </form>
+                                  {% endif %}
+                              </div>
+                          </div>
+
+                      {% endfor %}
+                      {{ knp_pagination_render(pagination) }}
+                  </div>
+
+                  {% endif %}
+
                 {% else %}
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         {% if user_stats.opinions == 0 %}

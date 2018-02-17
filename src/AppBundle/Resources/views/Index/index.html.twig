@@ -34,6 +34,55 @@
         </div>
     </section><hr>
 
+    <section class="recent-opinion">
+        <div class="container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <h4 class="opinions">Opiniones</h4>
+                <h1>Se parte de cientos de opiniones</h1>
+                <p>Estas son las últimas opiniones que los usuarios han hecho a estas empresas</p>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Logo</th>
+                            <th>Empresa</th>
+                            <th>Opinado por</th>
+                            <th>Opinión</th>
+                        </tr>
+                    </thead>
+                    {% for opinions in pagination %}
+                        {% if opinions.company.status == "valid" %}
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {% if opinions.company.logo == null %}
+                                            <img class="center-block" src="{{ asset('assets/images/company-logo.png') }}" width="50"/>
+                                        {% else %}
+                                            <img class="center-block" src="{{ asset('uploads/company/'~opinions.company.logo) }}" width="50"/>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ opinions.company.tradename}}</td>
+                                    <td>
+                                        {% if opinions.user.anonimo == 'Si'%}
+                                            <em>Anónimo</em>
+                                        {% else %}
+                                            {{ opinions.user.name}} {{ opinions.user.plastname}}
+                                        {% endif %}
+
+                                    </td>
+                                    <td>{{opinions.generalcomment}}</td>
+                                </tr>
+                            </tbody>
+                        {% endif %}
+
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section><hr>
+
     <section class="about-section">
         <div class="container">
             <div class="row ">
@@ -175,56 +224,7 @@
         </div>
     </section>
 
-    <section class="recent-opinion">
-        <div class="container">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <h4 class="opinions">Opiniones</h4>
-                <h1>Se parte de cientos de opiniones</h1>
-                <p>Estas son las últimas opiniones que los usuarios han hecho a estas empresas</p>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Logo</th>
-                            <th>Empresa</th>
-                            <th>Opinado por</th>
-                            <th>Opinión</th>
-                        </tr>
-                    </thead>
-                    {% for opinions in pagination %}
-                        {% if opinions.company.status == "valid" %}
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        {% if opinions.company.logo == null %}
-                                            <img class="center-block" src="{{ asset('assets/images/company-logo.png') }}" width="50"/>
-                                        {% else %}
-                                            <img class="center-block" src="{{ asset('uploads/company/'~opinions.company.logo) }}" width="50"/>
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ opinions.company.tradename}}</td>
-                                    <td>
-                                        {% if opinions.user.anonimo == 'Si'%}
-                                            <em>Anónimo</em>
-                                        {% else %}
-                                            {{ opinions.user.name}} {{ opinions.user.plastname}}
-                                        {% endif %}
-
-                                    </td>
-                                    <td>{{opinions.generalcomment}}</td>
-                                </tr>
-                            </tbody>
-                        {% endif %}
-
-
-                    {% endfor %}
-                </table>
-            </div>
-        </div>
-    </section><hr>
-
-    <section class="register-company-section-index">
+    <section class="register-company-section-index" style="padding:5% 0 5% 0;">
         <div class="container">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <h4></h4>

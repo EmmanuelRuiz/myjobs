@@ -27,6 +27,7 @@ class RegisterCompanyType extends AbstractType {
 						'class' => 'form-tradename form-control'
 					)
 				))
+				
 				->add('website', TextType::class, array(
 					'label' => 'Sitio Web de la empresa',
 					'required' => false,
@@ -56,8 +57,8 @@ class RegisterCompanyType extends AbstractType {
 						'Automotriz' => 'Automotriz',
 						'Comercio' => 'Comercio',
 						'Comunicaciones' => 'Comunicaciones',
-						'Construcción' => 'Construcción',
-						'Educación' => 'Educación',
+						'Construccion' => 'Construccion',
+						'Educacion' => 'Educacion',
 						'Energia' => 'Energia',
 						'Petroquimico' => 'Petroquimico',
 						'Minero' => 'Minero',
@@ -65,18 +66,18 @@ class RegisterCompanyType extends AbstractType {
 						'Farmaceutico' => 'Farmaceutico',
 						'Salud' => 'Salud',
 						'Gubernamental' => 'Gubernamental',
-						'Hoteleles y Restaurantes' => 'Hoteleles y Restaurantes',
+						'Hoteles y Restaurantes' => 'Hoteles y Restaurantes',
 						'Logistica y Transporte' => 'Logistica y Transporte',
 						'Mercado Inmobiliario' => 'Mercado Inmobiliario',
 						'Mueblera, Madera' => 'Mueblera, Madera',
-						'ONG´S' => 'ONG´S',
+						'ONGS' => 'ONGS',
 						'Servicios Financieros' => 'Servicios Financieros',
 						'Servicios Profesionales, Empresariales' => 'Servicios Profesionales, Empresariales',
 						'Tabacalera ' => 'Tabacalera ',
-						'Tecnología, Internet' => 'Tecnología, Internet',
+						'Tecnologia, Internet' => 'Tecnologia, Internet',
 						'Otros servicios' => 'Otros servicios',
 						'No conozco el sector' => 'No conozco el sector',
-
+	
 					),
 					'required' => 'required',
 					'attr' => array(

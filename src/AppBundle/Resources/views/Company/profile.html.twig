@@ -87,7 +87,7 @@
                         {% if app.user == null%} {# Si no hay una sesión iniciada #}
                             {# El boton para opinar debe invitar a iniciar sesión#}
                             <div class="following-data btn-opinion-desktop">
-                                <button type="button" class="btn btn-page" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
+                               <button type="button" class="btn btn-page" data-toggle="modal" data-target="#ratingModalOffline" data-whatever="@mdo">Calificar empresa</button>
                             </div>
                         {% else %}
                             {# Si no, muestrame el boton, pero...#}
@@ -206,7 +206,7 @@
                                             <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
                                                 <div class="avatar">
 
-                                                    {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}    
+                                                    {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}
                                                         {% if opinions.user.anonimo == 'Si' %}
                                                             <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
                                                         {% elseif opinions.user.image != null %}
@@ -290,7 +290,7 @@
                                                 <div class="row" id="comment">
                                                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 ">
                                                         <div class="avatar  ">
-                                                            {% if comments.user.image | split('.') | last == 'png' or comments.user.image | split('.') | last == 'jpg' or comments.user.image | split('.') | last == 'jpeg' or comments.user.image | split('.') | last == 'gif' %}    
+                                                            {% if comments.user.image | split('.') | last == 'png' or comments.user.image | split('.') | last == 'jpg' or comments.user.image | split('.') | last == 'jpeg' or comments.user.image | split('.') | last == 'gif' %}
                                                                 {% if comments.user.anonimo == 'Si' %}
                                                                     <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
                                                                 {% elseif comments.user.image != null %}
@@ -366,7 +366,100 @@
             </div>
         </div>
     </section>
-    <div class="modal fade bs-example-modal-lg" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
+
+
+
+
+
+    <div class="modal fade " id="ratingModalOffline" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <form action="{{path('user_login')}}" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <a href="{{ path('connect_facebook') }}" class="btn btn-fb btn-block"><i class="fa fa-facebook"></i> Facebook</a><br>
+                        <a href="{{ path('connect_google') }}" class="btn btn-tw btn-block"><i class="fa fa-google"></i> Google</a><br>
+                        <p class="text-muted text-center"> - o ingresa tus datos - </p>
+                        <div class="form-group">
+                            <label class="sr-only" for="inputEmail">Correo electrónico</label>
+                            <input type="email" id="username" name="_username"  class="form-control" placeholder="Corre electronico">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="inputPassword">Contraseña</label>
+                            <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña">
+                            <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                        </div>
+                        <input type="hidden" name="_target_path" value="/perfil">
+
+                        <div class="bottom text-center">
+                            ¿No tienes una cuenta? <a href="{{path("user_register")}}"><b>Regístrate</b></a>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalReclamar" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Reclamar esta empresa</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <strong>Información: </strong> Para lograr la reclamación de esta empresa
+                        es necesario que nos ayudes con algunos datos.
+                        En breve nos comunicaremos contigo para corroborar la información.
+                    </div>
+                    <hr>
+                    {% if app.user != null %}
+                        <form action="{{ path('administrator_claimcompany',{'id':company.id, 'user_id':app.user.id}) }}" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="position" id="position" placeholder="Cargo en la empresa">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="companyemail" id="companyemail" placeholder="Email empresarial">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="rfc" id="companyemail" placeholder="RFC">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="officenumber" id="officenumber" placeholder="Telefono de oficina y/o extención">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="personalnumber" id="personalnumber" placeholder="Telefono personal">
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-block btn-lg">Enviar</button>
+                        </form>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--<div class="modal fade bs-example-modal-lg" id="ratingModalSuccess" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -374,7 +467,10 @@
                     <h3 class="modal-title" id="exampleModalLabel"><b>Tu opinión es importante</b></h3>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
 
+                    </div>
                     <form class="form-rating" action="{{ path('rate', {'id':company.id}) }}">
                         <div class="row">
                             <div class="col-lg-6">
@@ -542,284 +638,187 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-    </div>
-
-    {% for message in app.session.flashbag().get('success') %}
-        <div class="modal fade bs-example-modal-lg" id="ratingModalSuccess" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="exampleModalLabel"><b>Tu opinión es importante</b></h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-dismissible alert-success">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            {{ message }}
-                        </div>
-                        <form class="form-rating" action="{{ path('rate', {'id':company.id}) }}">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>La empresa considera importante mi punto de vista en el desarrollo de mis actividades</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques1" name="estrellas" value="1" type="radio"><label class="label-star" for="radio-ques1" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest2" name="estrellas" value="1" type="radio"><label class="label-star" for="radio-quest2"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest3" name="estrellas" value="0.5" type="radio"><label class="label-star" for="radio-quest3"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest4" name="estrellas" value="0" type="radio"><label class="label-star" for="radio-quest4"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest5" name="estrellas" value="0" type="radio"><label class="label-star" for="radio-quest5"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>En definitiva, laborar aquí me ha permitido ser una mejor persona</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques6" name="estrellas2" value="1" type="radio"><label class="label-star" for="radio-ques6" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest7" name="estrellas2" value="1" type="radio"><label class="label-star" for="radio-quest7"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest8" name="estrellas2" value="0.5" type="radio"><label class="label-star" for="radio-quest8"><i class="fa fa-star" aria-hidden="true"></i></i></label>
-                                            <input id="radio-quest9" name="estrellas2" value="0" type="radio"><label class="label-star" for="radio-quest9"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest10" name="estrellas2" value="0" type="radio"><label class="label-star" for="radio-quest10"><i class="fa fa-star" aria-hidden="true"></i></i></label>
-                                        </p>
-
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>Los valores de la empresa, como respeto y honestidad, son predicados con el ejemplo</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques11" name="estrellas3" value="1" type="radio"><label class="label-star" for="radio-ques11" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest12" name="estrellas3" value="1" type="radio"><label class="label-star" for="radio-quest12"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest13" name="estrellas3" value="0.5" type="radio"><label class="label-star" for="radio-quest13"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest14" name="estrellas3" value="0" type="radio"><label class="label-star" for="radio-quest14"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest15" name="estrellas3" value="0" type="radio"><label class="label-star" for="radio-quest15"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>Me siento satisfecho con mi crecimiento profesional en la organización</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques16" name="estrellas4" value="1" type="radio"><label class="label-star" for="radio-ques16" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest17" name="estrellas4" value="1" type="radio"><label class="label-star" for="radio-quest17"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest18" name="estrellas4" value="0.5" type="radio"><label class="label-star" for="radio-quest18"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest19" name="estrellas4" value="0" type="radio"><label class="label-star" for="radio-quest19"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest20" name="estrellas4" value="0" type="radio"><label class="label-star" for="radio-quest20"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>Mis talentos y habilidades corresponden a las tareas y responsabilidades asignadas</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques21" name="estrellas5" value="1" type="radio"><label class="label-star" for="radio-ques21" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest22" name="estrellas5" value="1" type="radio"><label class="label-star" for="radio-quest22"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest23" name="estrellas5" value="0.5" type="radio"><label class="label-star" for="radio-quest23"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest24" name="estrellas5" value="0" type="radio"><label class="label-star" for="radio-quest24"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest25" name="estrellas5" value="0" type="radio"><label class="label-star" for="radio-quest25"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>Se me ha brindado la oportunidad de contribuir con mi talento de manera excepcional en beneficio de la organización</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques26" name="estrellas6" value="1" type="radio"><label class="label-star" for="radio-ques26" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest27" name="estrellas6" value="1" type="radio"><label class="label-star" for="radio-quest27"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest28" name="estrellas6" value="0.5" type="radio"><label class="label-star" for="radio-quest28"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest29" name="estrellas6" value="0" type="radio"><label class="label-star" for="radio-quest29"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest30" name="estrellas6" value="0" type="radio"><label class="label-star" for="radio-quest30"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>He logrado mis metas personales trabajando en esta organización</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques31" name="estrellas7" value="1" type="radio"><label class="label-star" for="radio-ques31" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest32" name="estrellas7" value="1" type="radio"><label class="label-star" for="radio-quest32"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest33" name="estrellas7" value="0.5" type="radio"><label class="label-star" for="radio-quest33"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest34" name="estrellas7" value="0" type="radio"><label class="label-star" for="radio-quest34"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest35" name="estrellas7" value="0" type="radio"><label class="label-star" for="radio-quest35"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>Considero que formo parte de un gran equipo de trabajo</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques36" name="estrellas8" value="1" type="radio"><label class="label-star" for="radio-ques36" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest37" name="estrellas8" value="1" type="radio"><label class="label-star" for="radio-quest37"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest38" name="estrellas8" value="0.5" type="radio"><label class="label-star" for="radio-quest38"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest39" name="estrellas8" value="0" type="radio"><label class="label-star" for="radio-quest39"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest40" name="estrellas8" value="0" type="radio"><label class="label-star" for="radio-quest40"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>Los compañeros facilitan que cualquier persona se adapte rápidamente a la organización</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques41" name="estrellas9" value="1" type="radio"><label class="label-star" for="radio-ques41" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest42" name="estrellas9" value="1" type="radio"><label class="label-star" for="radio-quest42"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest43" name="estrellas9" value="0.5" type="radio"><label class="label-star" for="radio-quest43"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest44" name="estrellas9" value="0" type="radio"><label class="label-star" for="radio-quest44"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest45" name="estrellas9" value="0" type="radio"><label class="label-star" for="radio-quest45"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <h5>Esta organización brinda las mejores oportunidades de desarrollar el talento de su gente</h5>
-                                        <p class="clasificacion">
-                                            <input id="radio-ques46" name="estrellas10" value="1" type="radio"><label class="label-star" for="radio-ques46" ><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest47" name="estrellas10" value="1" type="radio"><label class="label-star" for="radio-quest47"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest48" name="estrellas10" value="0.5" type="radio"><label class="label-star" for="radio-quest48"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest49" name="estrellas10" value="0" type="radio"><label class="label-star" for="radio-quest49"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                            <input id="radio-quest50" name="estrellas10" value="0" type="radio"><label class="label-star" for="radio-quest50"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                        </p>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <fieldset>
-                                        <h5>¿Trabajas actualmente en esta empresa?</h5>
-                                        <div class="radio">
-                                            <label>
-                                                <input class="mostrarRadio" type="radio" name="yesno" id="optionsRadios1" value="si" checked>
-                                                Si
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input class="mostrarRadio" type="radio" name="yesno" id="optionsRadios2" value="no">
-                                                No
-                                            </label>
-                                        </div>
-                                    </fieldset><hr/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="inputOpinion" class="control-label">Tomando todo en consideración, ¿cuál es tu opinión personal de esta empresa?</label>
-                                        <textarea name="generalcomment" class="form-control" rows="2" maxlength="150" placeholder="Una buena opinión debería incluir aspectos positivos y negativos."></textarea>
-                                        <p class="help-block text-info pull-right">No más de 150 caracteres</p>
-                                    </div>
-                                    <button type="submit" class="pull-right btn btn-page btn-block">Opinar</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-
-    <div class="modal fade " id="ratingModalOffline" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-                <form action="{{path('user_login')}}" method="post">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <a href="{{ path('connect_facebook') }}" class="btn btn-fb btn-block"><i class="fa fa-facebook"></i> Facebook</a><br>
-                        <a href="{{ path('connect_google') }}" class="btn btn-tw btn-block"><i class="fa fa-google"></i> Google</a><br>
-                        <p class="text-muted text-center"> - o ingresa tus datos - </p>
-                        <div class="form-group">
-                            <label class="sr-only" for="inputEmail">Correo electrónico</label>
-                            <input type="email" id="username" name="_username"  class="form-control" placeholder="Corre electronico">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="inputPassword">Contraseña</label>
-                            <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña">
-                            <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                        </div>
-                        <input type="hidden" name="_target_path" value="/perfil">
-
-                        <div class="bottom text-center">
-                            ¿No tienes una cuenta? <a href="{{path("user_register")}}"><b>Regístrate</b></a>
-                        </div>
-
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div id="modalReclamar" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
+    </div>-->
+    <div class="modal fade bs-example-modal-lg" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModal">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Reclamar esta empresa</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="exampleModalLabel"><b>Tu opinión es importante</b></h3>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-info">
-                        <strong>Información: </strong> Para lograr la reclamación de esta empresa
-                        es necesario que nos ayudes con algunos datos.
-                        En breve nos comunicaremos contigo para corroborar la información.
+                    <div class="alert-register">
+
                     </div>
-                    <hr>
-                    {% if app.user != null %}
-                        <form action="{{ path('administrator_claimcompany',{'id':company.id, 'user_id':app.user.id}) }}" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                    <form class="form-rating" action="{{ path('rate', {'id':company.id}) }}">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>La empresa considera importante mi punto de vista en el desarrollo de mis actividades</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques1" name="estrellas" value="1" type="radio"><label class="label-star" for="radio-ques1" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest2" name="estrellas" value="1" type="radio"><label class="label-star" for="radio-quest2"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest3" name="estrellas" value="0.5" type="radio"><label class="label-star" for="radio-quest3"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest4" name="estrellas" value="0" type="radio"><label class="label-star" for="radio-quest4"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest5" name="estrellas" value="0" type="radio"><label class="label-star" for="radio-quest5"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="position" id="position" placeholder="Cargo en la empresa">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="companyemail" id="companyemail" placeholder="Email empresarial">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="rfc" id="companyemail" placeholder="RFC">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="officenumber" id="officenumber" placeholder="Telefono de oficina y/o extención">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="personalnumber" id="personalnumber" placeholder="Telefono personal">
-                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>En definitiva, laborar aquí me ha permitido ser una mejor persona</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques6" name="estrellas2" value="1" type="radio"><label class="label-star" for="radio-ques6" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest7" name="estrellas2" value="1" type="radio"><label class="label-star" for="radio-quest7"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest8" name="estrellas2" value="0.5" type="radio"><label class="label-star" for="radio-quest8"><i class="fa fa-star" aria-hidden="true"></i></i></label>
+                                        <input id="radio-quest9" name="estrellas2" value="0" type="radio"><label class="label-star" for="radio-quest9"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest10" name="estrellas2" value="0" type="radio"><label class="label-star" for="radio-quest10"><i class="fa fa-star" aria-hidden="true"></i></i></label>
+                                    </p>
 
-                            <button type="submit" class="btn btn-success btn-block btn-lg">Enviar</button>
-                        </form>
-                    {% endif %}
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>Los valores de la empresa, como respeto y honestidad, son predicados con el ejemplo</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques11" name="estrellas3" value="1" type="radio"><label class="label-star" for="radio-ques11" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest12" name="estrellas3" value="1" type="radio"><label class="label-star" for="radio-quest12"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest13" name="estrellas3" value="0.5" type="radio"><label class="label-star" for="radio-quest13"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest14" name="estrellas3" value="0" type="radio"><label class="label-star" for="radio-quest14"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest15" name="estrellas3" value="0" type="radio"><label class="label-star" for="radio-quest15"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>Me siento satisfecho con mi crecimiento profesional en la organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques16" name="estrellas4" value="1" type="radio"><label class="label-star" for="radio-ques16" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest17" name="estrellas4" value="1" type="radio"><label class="label-star" for="radio-quest17"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest18" name="estrellas4" value="0.5" type="radio"><label class="label-star" for="radio-quest18"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest19" name="estrellas4" value="0" type="radio"><label class="label-star" for="radio-quest19"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest20" name="estrellas4" value="0" type="radio"><label class="label-star" for="radio-quest20"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>Mis talentos y habilidades corresponden a las tareas y responsabilidades asignadas</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques21" name="estrellas5" value="1" type="radio"><label class="label-star" for="radio-ques21" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest22" name="estrellas5" value="1" type="radio"><label class="label-star" for="radio-quest22"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest23" name="estrellas5" value="0.5" type="radio"><label class="label-star" for="radio-quest23"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest24" name="estrellas5" value="0" type="radio"><label class="label-star" for="radio-quest24"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest25" name="estrellas5" value="0" type="radio"><label class="label-star" for="radio-quest25"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>Se me ha brindado la oportunidad de contribuir con mi talento de manera excepcional en beneficio de la organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques26" name="estrellas6" value="1" type="radio"><label class="label-star" for="radio-ques26" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest27" name="estrellas6" value="1" type="radio"><label class="label-star" for="radio-quest27"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest28" name="estrellas6" value="0.5" type="radio"><label class="label-star" for="radio-quest28"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest29" name="estrellas6" value="0" type="radio"><label class="label-star" for="radio-quest29"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest30" name="estrellas6" value="0" type="radio"><label class="label-star" for="radio-quest30"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>He logrado mis metas personales trabajando en esta organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques31" name="estrellas7" value="1" type="radio"><label class="label-star" for="radio-ques31" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest32" name="estrellas7" value="1" type="radio"><label class="label-star" for="radio-quest32"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest33" name="estrellas7" value="0.5" type="radio"><label class="label-star" for="radio-quest33"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest34" name="estrellas7" value="0" type="radio"><label class="label-star" for="radio-quest34"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest35" name="estrellas7" value="0" type="radio"><label class="label-star" for="radio-quest35"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>Considero que formo parte de un gran equipo de trabajo</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques36" name="estrellas8" value="1" type="radio"><label class="label-star" for="radio-ques36" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest37" name="estrellas8" value="1" type="radio"><label class="label-star" for="radio-quest37"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest38" name="estrellas8" value="0.5" type="radio"><label class="label-star" for="radio-quest38"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest39" name="estrellas8" value="0" type="radio"><label class="label-star" for="radio-quest39"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest40" name="estrellas8" value="0" type="radio"><label class="label-star" for="radio-quest40"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>Los compañeros facilitan que cualquier persona se adapte rápidamente a la organización</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques41" name="estrellas9" value="1" type="radio"><label class="label-star" for="radio-ques41" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest42" name="estrellas9" value="1" type="radio"><label class="label-star" for="radio-quest42"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest43" name="estrellas9" value="0.5" type="radio"><label class="label-star" for="radio-quest43"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest44" name="estrellas9" value="0" type="radio"><label class="label-star" for="radio-quest44"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest45" name="estrellas9" value="0" type="radio"><label class="label-star" for="radio-quest45"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <h5>Esta organización brinda las mejores oportunidades de desarrollar el talento de su gente</h5>
+                                    <p class="clasificacion">
+                                        <input id="radio-ques46" name="estrellas10" value="1" type="radio"><label class="label-star" for="radio-ques46" ><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest47" name="estrellas10" value="1" type="radio"><label class="label-star" for="radio-quest47"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest48" name="estrellas10" value="0.5" type="radio"><label class="label-star" for="radio-quest48"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest49" name="estrellas10" value="0" type="radio"><label class="label-star" for="radio-quest49"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input id="radio-quest50" name="estrellas10" value="0" type="radio"><label class="label-star" for="radio-quest50"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                    </p>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <h5>¿Trabajas actualmente en esta empresa?</h5>
+                                    <div class="radio">
+                                        <label>
+                                            <input class="mostrarRadio" type="radio" name="yesno" id="optionsRadios1" value="si" checked>
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input class="mostrarRadio" type="radio" name="yesno" id="optionsRadios2" value="no">
+                                            No
+                                        </label>
+                                    </div>
+                                </fieldset><hr/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="inputOpinion" class="control-label">Tomando todo en consideración, ¿cuál es tu opinión personal de esta empresa?</label>
+                                    <textarea name="generalcomment" class="form-control" rows="2" maxlength="150" placeholder="Una buena opinión debería incluir aspectos positivos y negativos." required></textarea>
+                                    <p class="help-block text-info pull-right">No más de 150 caracteres</p>
+                                </div>
+                                <button type="submit" class="pull-right btn btn-page btn-block">Opinar</button>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
-
+                <div class="clearfix"></div>
             </div>
-
         </div>
     </div>
-    <script>
-		$(document).ready(function () {
-			$("#ratingModalSuccess").modal("show");
-		});
-    </script>
+
 
 
 

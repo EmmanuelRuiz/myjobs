@@ -1,0 +1,26 @@
+[21-Nov-2017 02:11:13 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'myjobsa1_admin'@'localhost' (using password: YES)' in /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:43
+Stack trace:
+#0 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(43): PDO->__construct('mysql:host=loca...', 'myjobsa1_admin', 'bdmja2017', Array)
+#1 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOMySql/Driver.php(45): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=loca...', 'myjobsa1_admin', 'bdmja2017', Array)
+#2 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(360): Doctrine\DBAL\Driver\PDOMySql\Driver->connect(Array, 'myjobsa1_admin', 'bdmja2017', Array)
+#3 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(429): Doctrine\DBAL\Connection->connect()
+#4 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connect in /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractMySQLDriver.php on line 103
+[21-Nov-2017 03:13:49 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'myjobsa1_admin'@'localhost' (using password: YES)' in /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:43
+Stack trace:
+#0 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(43): PDO->__construct('mysql:host=loca...', 'myjobsa1_admin', 'bdmja2017', Array)
+#1 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOMySql/Driver.php(45): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=loca...', 'myjobsa1_admin', 'bdmja2017', Array)
+#2 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(360): Doctrine\DBAL\Driver\PDOMySql\Driver->connect(Array, 'myjobsa1_admin', 'bdmja2017', Array)
+#3 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(429): Doctrine\DBAL\Connection->connect()
+#4 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connect in /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractMySQLDriver.php on line 103
+[21-Nov-2017 03:44:48 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'myjobsa1_admin'@'localhost' (using password: YES)' in /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:43
+Stack trace:
+#0 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(43): PDO->__construct('mysql:host=loca...', 'myjobsa1_admin', 'bdmja2017', Array)
+#1 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOMySql/Driver.php(45): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=loca...', 'myjobsa1_admin', 'bdmja2017', Array)
+#2 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(360): Doctrine\DBAL\Driver\PDOMySql\Driver->connect(Array, 'myjobsa1_admin', 'bdmja2017', Array)
+#3 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(429): Doctrine\DBAL\Connection->connect()
+#4 /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connect in /home/myjobsa1/public_html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractMySQLDriver.php on line 103
+[21-Nov-2017 04:24:38 UTC] PHP Fatal error:  Class 'AppBundle\Security\CustomAuthenticationException' not found in /home/myjobsa1/public_html/src/AppBundle/Security/FacebookAuthenticator.php on line 40
+[21-Nov-2017 04:28:02 UTC] PHP Fatal error:  Class 'AppBundle\Security\CustomAuthenticationException' not found in /home/myjobsa1/public_html/src/AppBundle/Security/FacebookAuthenticator.php on line 40
+[21-Nov-2017 04:34:08 UTC] PHP Fatal error:  Class 'AppBundle\Security\CustomAuthenticationException' not found in /home/myjobsa1/public_html/src/AppBundle/Security/FacebookAuthenticator.php on line 40
+[21-Nov-2017 04:34:20 UTC] PHP Fatal error:  Class 'AppBundle\Security\CustomAuthenticationException' not found in /home/myjobsa1/public_html/src/AppBundle/Security/FacebookAuthenticator.php on line 40
+[21-Nov-2017 04:37:12 UTC] PHP Fatal error:  Class 'AppBundle\Security\CustomAuthenticationException' not found in /home/myjobsa1/public_html/src/AppBundle/Security/FacebookAuthenticator.php on line 40

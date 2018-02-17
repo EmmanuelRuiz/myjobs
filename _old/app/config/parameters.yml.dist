@@ -1,0 +1,28 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+
+    facebook_app_id: 1841494202832876
+    facebook_app_secret: 8e4f4ed400ebe6bb4b6a8df7e36a20bb
+
+    google_app_id: 43785180861-hmi257jor14qp192g1ei0l63tuens5gt.apps.googleusercontent.com
+    google_app_secret: BQlu4FyhQT_DFkRn8ByqsANM
+
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+    # You should uncomment this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    

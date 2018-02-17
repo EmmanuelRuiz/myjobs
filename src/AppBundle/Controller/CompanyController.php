@@ -86,13 +86,11 @@ class CompanyController extends Controller {
 						$company->setLocalidad($nombre_localidad);
 
 						$company->setCreatedAt($createdAt);
-						//$company->setUpdatedAt($updatedAt);
+						$company->setUpdatedAt($updatedAt);
 
-						
+
 						$em->persist($company);
-						
 						$flush = $em->flush();
-						
 						if ($flush == null) {
 							$status = "¡Genial! La empresa se ha registrado con éxito. Ahora puedes calificarla con base en tu experiencia como trabajador o extrabajador.";
 							$this->session->getFlashBag()->add("success", $status);

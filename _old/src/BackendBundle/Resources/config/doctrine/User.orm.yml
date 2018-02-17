@@ -1,0 +1,135 @@
+BackendBundle\Entity\User:
+    type: entity
+    table: users
+    uniqueConstraints:
+        users_uniques_fields:
+            columns:
+                - email
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        plastname:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        mlastname:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        age:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        gender:
+            type: string
+            nullable: true
+            length: 3
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        telephone:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        connection:
+            type: datetime
+            nullable: true
+        biography:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        termscondition:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+        datejob:
+            type: datetime
+            nullable: true
+        privacy:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+        role:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        anonimo:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: false
+        active:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        facebookId:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: facebook_id
+        googleId:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: google_id
+    lifecycleCallbacks: {  }

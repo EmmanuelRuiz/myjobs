@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %} MyJobsAdvisor | Sitio Oficial {%endblock%}</title>
+
+        {% block stylesheet %}
+            <!-- estilos css -->
+            <!--<link href="{{ asset('assets/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet">-->
+            <link href="{{ asset('assets/css/bootswatch.css')}}" type="text/css" rel="stylesheet">
+            <link href="{{ asset('assets/css/styles1.css')}}" type="text/css" rel="stylesheet">
+        {%endblock%}
+
+        {% block fonts %}
+            <!-- fonts -->
+            <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
+        {%endblock%}
+
+        {% block javascripts %}
+            <script type="text/javascript">
+				var URL = "{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/app_dev.php";
+            </script>
+            <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+        {% endblock %}
+    </head>
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default-alternative navbar-fixed-top topnav" role="navigation">
+            <div class="container topnav">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand topnav" href="{{ path('app_homepage') }}"><img class="img-responsive img-desktop" width="250" src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial.png') }}"></img></a>
+                    <a class="navbar-brand topnav" href="{{ path('app_homepage') }}"><img class="img-responsive img-movil" width="60" src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial-movil.png') }}"></img></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if app.user == null %}
+                            <li class="signin-movil"><a href="{{path("user_register_login")}}">Entrar</a></li>
+                            <li><a href="{{path("user_register")}}">Registrarse</a></li>
+                            <li><a href="{{ path('pages_view_contact') }}">Contacto</a></li>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-login navbar-btn btn-sign-in" data-toggle="dropdown">Iniciar sesion</button>
+                                    <ul id="login-dp" class="dropdown-menu">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    Entrar con
+                                                    <div class="social-buttons">
+                                                        <a href="{{ path('connect_facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                        <a href="{{ path('connect_google') }}" class="btn btn-tw"><i class="fa fa-google"></i> Google</a>
+                                                    </div>
+                                                    o ingresa tus datos
+                                                    <br />
+                                                    <form action="{{path('user_login')}}" class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="inputEmail">Correo electronico</label>
+                                                            <input type="email" id="username" name="_username"  class="form-control" placeholder="Correo electronico">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="inputPassword">Contraseña</label>
+                                                            <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña">
+                                                            <div class="help-block text-right"><a href="{{ path('user_forget') }}">¿Olvidaste tu contraseña?</a></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                                                            <input type="hidden" name="_target_path" value="/perfil">
+
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Recuerdame
+                                                            </label>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="bottom text-center">
+                                                    ¿No tienes una cuenta? <a href="{{path("user_register")}}"><b>Regístrate</b></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        {% else %}
+
+                            <form action="{{ path('companies_search') }}" id="navbar-form-alternative" class="navbar-form navbar-left">
+                                <div class="form-group">
+                                    <input type="text"  class="form-control-alternative" placeholder="Buscar empresa..." name="search">
+                                </div>
+                                <button type="submit" class="btn btn-default">Buscar</button>
+                            </form>
+
+
+                            <li id="nav-desktop"><a href="{{path("register-company")}}">Registrar empresa</a></li>
+
+                            <li id="nav-desktop"><a href="{{path("user_list")}}" >Usuarios</a></li>
+
+                            <li id="nav-movil" ><a href="{{ path('user_profile') }}"><i class="fa fa-user "></i>&nbsp;Perfil</a></li>
+                            <li id="nav-movil"><a href="{{path('companies_mycompanies')}}"><i class="fa fa-bookmark "></i>&nbsp;Mis empresas</a></li>
+                            <li id="nav-movil"><a href="{{path("register-company")}}"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Registrar empresa</a></li>
+                                {% if app.user.role == 'ROLE_ADMIN'%}
+                                <li id="nav-movil"><a href="{{path('administrator_index')}}"><i class="fa fa-lock "></i>&nbsp;Panel de administrador</a></li>
+                                {% endif %}
+
+                            <li id="nav-movil"><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
+                                {% if app.user != null %}
+                                <li class="user-logged-in">
+                                    <button class="btn btn-link  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="avatar">
+                                            {% if app.user.image | split('.') | last == 'png' or app.user.image | split('.') | last == 'jpg' or app.user.image | split('.') | last == 'jpeg' or app.user.image | split('.') | last == 'gif' %}    
+                                                {% if app.user.anonimo == 'Si' %}
+                                                    <img  src="{{ asset('assets/images/default.jpg') }}"/>
+                                                {% elseif app.user.image != null %}
+                                                    <img  src="{{ asset('uploads/users/'~app.user.image) }}"/>
+                                                {% endif %}
+                                            {% elseif app.user.image | split('.') | last == null %}
+                                                <img  src="{{ asset('assets/images/default.jpg') }}"/>
+                                            {% else %}
+                                                <img  src="{{ app.user.image }}"/>
+                                            {% endif %}
+                                        </div>
+
+                                        {{app.user.name}} {{app.user.plastname}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('user_profile') }}"><i class="fa fa-user "></i>&nbsp;Perfil</a></li>
+                                        <li><a href="{{path('user_edit')}}"><i class="fa fa-pencil-square "></i>&nbsp;Editar perfil</a></li>
+                                            {% if app.user.role == 'ROLE_ADMIN'%}
+                                            <li><a href="{{path('administrator_index')}}"><i class="fa fa-lock "></i>&nbsp;Panel de administrador</a></li>
+                                            {% endif %}
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{{path('companies_mycompanies')}}"><i class="fa fa-bookmark "></i>&nbsp;Mis empresas</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{{path('user_logout')}}"><i class="fa fa-sign-out "></i>&nbsp;Salir</a></li>
+                                        <li><a href=""><i class="fa fa-question-circle"></i>&nbsp;Ayuda</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+
+
+        {% block content %}
+            <!-- todo el contenido de la web -->
+            Content default
+        {% endblock %}
+
+
+        <footer class="layout-footer">
+            <div class="container">
+                <div class="row footer">
+                    <div class="col-md-4">
+                        <div class="single-footer">
+                            <img class="img-responsive" src="{{ asset('assets/images/myjobsadvisor-footer.png') }}" width="350"><br>
+                            <p>MyJobsAdvisor suma el talento de profesionales en la gestión de relaciones laborales, formación empresarial y adquisición de talento.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="single-footer">
+                            <h4>Enlaces</h4>
+                            <div class="footer-links">
+                                <ul class="list-unstyled">
+                                    <li><a class="links-footer" href="{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/downloads/AvisoPrivacidadMyJobsAdvisor.pdf" target="_blank">Aviso de privacidad</a></li>
+                                    <li><a class="links-footer" href="{{ app.request.getSchemeAndHttpHost() }}/myjobs/web/downloads/TerminosCondicionesMyJobsAdvisor.pdf" target="_blank">Términos y condiciones</a></li>
+                                </ul>
+                            </div>
+                            <h4>Contacto</h4>
+                            <div class="footer-links">
+                                <ul class="list-unstyled">
+                                    <li>Email: <b>contacto@myjobsadvisor.com</b></li>
+                                    <li>Número telefónico 1: <b>+52 1 984 164 3269</b></li>
+                                    <li>Número telefónico 2: <b>+52 1 984 168 4082</b></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="single-footer">
+                            <h4>Conéctate con nosotros</h4>
+                            <div class="footer-links">
+                                <ul class="list-unstyled">
+                                    <li><a class="links-footer" href="https://www.facebook.com/myjobsadvisor" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+                                    <li><a class="links-footer" href="https://twitter.com/Myjobsadvisor/" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+                                    <li><a class="links-footer" href="https://www.instagram.com/Myjobsadvisor/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="row footer-copy">
+                    <div class="col-lg-6">
+                        <p><span>&copy; 2017 MyJobsAdvisor. Todos los derechos reservados</span> </p>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <p class="pull-right"><span> Creado con <i class="fa fa-heart" aria-hidden="true"></i> por <a class="links-footer" href="https://www.crealab.com.mx">CreaLab</a></span> </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>

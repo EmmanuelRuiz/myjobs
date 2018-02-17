@@ -1,0 +1,40 @@
+app_user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix: /
+    
+app_company:
+    resource: "@AppBundle/Resources/config/routing/company.yml"
+    prefix: /
+    
+app_following:
+    resource: "@AppBundle/Resources/config/routing/following.yml"
+    prefix: /
+    
+app_like:
+    resource: "@AppBundle/Resources/config/routing/like.yml"
+    prefix: /
+    
+app_comment:
+    resource: "@AppBundle/Resources/config/routing/comment.yml"
+    prefix: /
+
+app_administrator:
+    resource: "@AppBundle/Resources/config/routing/administrator.yml"
+    prefix: /
+    
+app_facebook:
+    resource: "@AppBundle/Resources/config/routing/facebook.yml"
+    prefix: /
+    
+app_google:
+    resource: "@AppBundle/Resources/config/routing/google.yml"
+    prefix: /
+    
+app_page:
+    resource: "@AppBundle/Resources/config/routing/pages.yml"
+    prefix: /
+
+
+app_homepage:
+    path: /
+    defaults: { _controller: AppBundle:Default:index }

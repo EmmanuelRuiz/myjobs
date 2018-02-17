@@ -1,0 +1,37 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/custom/users.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <section class="change-password-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="page-header">Opciones</h2>
+                    <div class="list-group">
+                        <a href="{{ path('user_edit') }}" class="list-group-item ">Editar perfil</a>
+                        <a href="{{ path('user_change_password') }}" class="list-group-item active">Cambiar contraseña</a>
+                    </div>
+                </div>
+                <div class="col-lg-9 ">
+                    <form action="{{ path('user_change_password') }}">
+                        <h2 class="page-header">Cambiar contraseña</h2>
+                        <div class="form-group">
+                            <label for="newPassword" >Contraseña nueva</label>
+                            <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Contraseña nueva" required autofocus>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmNewPassword" >Repetir contraseña nueva</label>
+                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control" placeholder="Confirmar nueva contraseña" required autofocus>
+                        </div>
+                        <button type="submit"  class="btn btn-page btn-block btnvalidar">Guardar nueva contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

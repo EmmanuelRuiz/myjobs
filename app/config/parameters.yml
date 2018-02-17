@@ -1,0 +1,18 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: myjobsadvisor
+    database_user: root
+    database_password: 
+
+    mailer_transport: smtp
+    mailer_host: vm13.digitalserver.org
+    mailer_user: _mainaccount@myjobsadvisor.com
+    mailer_password: iO82w9nXj4
+    secret: ThisTokenIsNotSoSecretChangeIt
+
+    facebook_app_id: 1841494202832876
+    facebook_app_secret: 8e4f4ed400ebe6bb4b6a8df7e36a20bb
+    google_app_id: 43785180861-hmi257jor14qp192g1ei0l63tuens5gt.apps.googleusercontent.com
+    google_app_secret: BQlu4FyhQT_DFkRn8ByqsANM

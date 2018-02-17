@@ -1,0 +1,42 @@
+BackendBundle\Entity\Municipio:
+    type: entity
+    table: municipios
+    indexes:
+        estado_id:
+            columns:
+                - estado_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        estadoId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'Relación con estados'
+            column: estado_id
+        clave:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: false
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        activo:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

@@ -1,0 +1,138 @@
+{% extends "AppBundle:Layouts:layoutprofiles.html.twig"%}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset('assets/js/custom/companies1.js') }}"></script>
+{% endblock javascripts %}
+{% block content %}
+    <section class="register-company-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+
+                    <img src="{{ asset('assets/images/myjobsadvisor-registrar-empresa.png')}}" class="img-responsive img-register" widthalt="">
+                </div> 
+                <div class="col-lg-6 box-form-register-company">
+                    <h2 class="page-header">Ingresa los datos de la empresa</h2>
+
+                    {% for message in app.session.flashbag().get('error') %}
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            {{form_start(form, {'action':'', 'method':'POST'})}}
+                            {{form_errors(form)}}
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                {{form_row(form.tradename)}}
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                {{form_row(form.businesssector)}}
+                            </div>
+
+
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                {{form_row(form.website)}}
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                {{form_row(form.description)}}
+                            </div>
+
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label>Estado</label>
+                                <select class="form-control" name="estado" id="select-estados">
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label>Municipios</label>
+                                <select class="form-control" name="municipio" id="select-municipio">
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label>Ciudad</label>
+                                <select class="form-control" name="localidad" id="select-localidad">
+                                </select>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label>¿Eres representante de la empresa?</label> <i class="fa fa-question-circle text-info" aria-hidden="true" role="button" data-toggle="popover" title="¿Qué es ser representante?" data-placement="bottom" data-content="Para MyJobsAdvisor un representante puede ser el representante legal, el gerente general, gerente de recursos humanos o la persona destinada por la empresa para representarla en nuestra plataforma."></i><br>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="mostrar" value="si">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="ocultar" value="no" checked>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="repdiv">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <h4 class="">Datos del  representante</h4>
+                                    <hr>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    {{form_row(form.contacname)}}
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    {{form_row(form.contactlastname)}}
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    {{form_row(form.position)}}
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    {{form_row(form.businessemail)}}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    {{form_row(form.rfc)}}
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    {{form_row(form.telephoneext)}}
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 form-group">
+                                    {{form_row(form.personalnumber)}}
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                {{form_row(form.Registrar)}}
+                            </div> 
+
+
+                            {{form_end(form)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
+
+
+{% endblock %}

@@ -33,6 +33,83 @@ class AdministratorController extends Controller {
     public function loginAction(Request $request) {
         return $this->render('AppBundle:Administrator:login.html.twig');
     }
+    
+    public function editCompaniesAction(Request $request) {
+		$user = $this->getUser();
+		$em = $this->getDoctrine()->getManager();
+
+
+		$company = new Company();
+
+		$id = $request->query->get('id');
+		$company_repo = $em->getRepository('BackendBundle:Company');
+		$company = $company_repo->find($id);
+
+		// guardamos la imagen por defecto
+		$company_image = $company->getLogo();
+
+		// creamos variable para la instancia del formulario
+		$form = $this->createForm(CompanyType::class, $company);
+
+		/* recoger la request del formulario */
+		$form->handleRequest($request);
+		/* comprobar si el formularion se ha enviado */
+		if ($form->isSubmitted()) {
+			if ($form->isValid()) {
+
+				$query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename')
+						->setParameter('tradename', $form->get("tradename")->getData());
+
+				// almacenamos el usuario existente
+				$company_isset = $query->getResult();
+
+				/* si user_isset es = 0 crea el usuario, si no no se registra por que ya existe */
+				if ((count($company_isset) == 0 || $company->getTradename() == $company_isset[0]->getTradename())) {
+
+					// upload archivo
+					$file = $form["logo"]->getData();
+
+					if (!empty($file) && $file != null) {
+						// comprobamos que sea un formato de imagen
+						$ext = $file->guessExtension();
+						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
+							// creamos el nombre del archivo nuevo
+							$file_name = $company->getId() . time() . '.' . $ext;
+							//carpeta en la que se guardara
+							$file->move("uploads/company", $file_name);
+							$company->setLogo($file_name);
+						}
+					} else {
+						$company->setLogo($company_image);
+					}
+
+					/* volcar el objeto y persistir en doctrine */
+					$em->persist($company);
+					/* pasar los objetos persistidos a la bd */
+					$flush = $em->flush();
+
+
+					// mensajes de comprobación
+					if ($flush == null) {
+						$status = "La información de la empresa se a actualizado correctamente";
+					} else {
+						$status = "No se ha realizado ninguna actualización";
+					}
+				} else {
+					$status = "La empresa ya existe en nuestra base de datos";
+				}
+			} else {
+				$status = "No se ha realizado ninguna actualización";
+			}
+			$this->session->getFlashBag()->add("status", $status);
+			return $this->redirectToRoute('administrator_edit_company', array('id' => $id));
+		}
+
+		return $this->render('AppBundle:Administrator:administrator_edit_company.html.twig', array(
+					'company' => $company,
+					'form' => $form->createView()
+		));
+	}
 
     public function indexAction(Request $request) {
 
@@ -43,9 +120,9 @@ class AdministratorController extends Controller {
         $dql = "SELECT u FROM BackendBundle:Company u";
         $query_company = $em->createQuery($dql);
 
-        $paginator_all = $this->get('knp_paginator');
-        $pag_company = $paginator_all->paginate(
-                $query_company, $request->query->getInt('page', 1), 1
+        $paginator = $this->get('knp_paginator');
+        $pag_company = $paginator->paginate(
+                $query_company, $request->query->getInt('page', 1), 12
         );
 
         // Hacemos una consulta a la entidad Company para que nos saque los objetos de tipo Company que no estan verificadas
@@ -54,7 +131,7 @@ class AdministratorController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 1
+                $query, $request->query->getInt('page', 1), 12
         );
 
         $querye = "SELECT COUNT(id) AS empresas FROM companies WHERE status = 'invalid';";
@@ -127,9 +204,9 @@ class AdministratorController extends Controller {
                 ->getQuery();
 
         $general_avg = $query_avg->getResult();
-
-		    $queryPuntos = "SELECT company_id, companies.tradename,
-            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)
+		
+		$queryPuntos = "SELECT company_id, companies.tradename, 
+            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) 
             as promedio FROM opinions INNER JOIN companies on opinions.company_id=companies.id
             GROUP BY company_id ORDER BY promedio DESC;";
         $preparaPuntos = $db->prepare($queryPuntos);
@@ -137,18 +214,16 @@ class AdministratorController extends Controller {
         $preparaPuntos->execute($paramsPuntos);
         $puntos = $preparaPuntos->fetchAll();
 
-
         return $this->render('AppBundle:Administrator:administrator.html.twig', array(
-    			'empresas' => $e,
-    			'comentarios' => $c,
-    			'usuarios' => $u,
-    			'todas_empresas' => $te,
-    			'claims' => $re,
-    			'pagination' => $pagination,
-          'otro' => $paginator_all,
-    			'companies' => $pag_company,
-    			'general_avg' => $general_avg,
-    			'puntos' => $puntos
+			'empresas' => $e,
+			'comentarios' => $c,
+			'usuarios' => $u,
+			'todas_empresas' => $te,
+			'claims' => $re,
+			'pagination' => $pagination,
+			'companies' => $pag_company,
+			'general_avg' => $general_avg,
+			'puntos' => $puntos
         ));
     }
 
@@ -305,7 +380,7 @@ class AdministratorController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+                $query, $request->query->getInt('page', 1), 10
         );
 
         return $this->render('AppBundle:Administrator:administrator_comments.html.twig', array(
@@ -388,7 +463,7 @@ class AdministratorController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+                $query, $request->query->getInt('page', 1), 10
         );
 
         return $this->render('AppBundle:Administrator:administrator_users.html.twig', array(
@@ -471,7 +546,7 @@ class AdministratorController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $query, $request->query->getInt('page', 1), 5
+                $query, $request->query->getInt('page', 1), 10
         );
 
 
@@ -515,9 +590,9 @@ class AdministratorController extends Controller {
         $company->setStatus('valid');
         $em->persist($company);
         $em->flush(); //ejecturamos
-
+		
 		$this->addFlash('msg', 'La empresa se ha validado con éxito');
-
+		
         return $this->redirectToRoute('administrator_index');
     }
 
@@ -765,8 +840,8 @@ class AdministratorController extends Controller {
         $estados = $preparaEstados->fetchAll();
 
         /* obtener empresas más puntuadas por opiniones */
-        $queryPuntos = "SELECT company_id, companies.tradename,
-            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10)
+        $queryPuntos = "SELECT company_id, companies.tradename, 
+            SUM(point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) 
             as promedio FROM opinions INNER JOIN companies on opinions.company_id=companies.id
             GROUP BY company_id ORDER BY promedio DESC LIMIT 5;";
         $preparaPuntos = $db->prepare($queryPuntos);
@@ -780,7 +855,7 @@ class AdministratorController extends Controller {
         $paramsG = array();
         $preparaG->execute($paramsG);
         $generos = $preparaG->fetchAll();
-
+		
 		$dql = "SELECT u FROM BackendBundle:Company u WHERE u.status = 'invalid'";
         $query = $em->createQuery($dql);
 
@@ -859,81 +934,4 @@ class AdministratorController extends Controller {
 				'claims' => $re
         ));
     }
-
-	public function editCompaniesAction(Request $request) {
-		$user = $this->getUser();
-		$em = $this->getDoctrine()->getManager();
-
-
-		$company = new Company();
-
-		$id = $request->query->get('id');
-		$company_repo = $em->getRepository('BackendBundle:Company');
-		$company = $company_repo->find($id);
-
-		// guardamos la imagen por defecto
-		$company_image = $company->getLogo();
-
-		// creamos variable para la instancia del formulario
-		$form = $this->createForm(CompanyType::class, $company);
-
-		/* recoger la request del formulario */
-		$form->handleRequest($request);
-		/* comprobar si el formularion se ha enviado */
-		if ($form->isSubmitted()) {
-			if ($form->isValid()) {
-
-				$query = $em->createQuery('SELECT u FROM BackendBundle:Company u WHERE u.tradename = :tradename')
-						->setParameter('tradename', $form->get("tradename")->getData());
-
-				// almacenamos el usuario existente
-				$company_isset = $query->getResult();
-
-				/* si user_isset es = 0 crea el usuario, si no no se registra por que ya existe */
-				if ((count($company_isset) == 0 || $company->getTradename() == $company_isset[0]->getTradename())) {
-
-					// upload archivo
-					$file = $form["logo"]->getData();
-
-					if (!empty($file) && $file != null) {
-						// comprobamos que sea un formato de imagen
-						$ext = $file->guessExtension();
-						if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif') {
-							// creamos el nombre del archivo nuevo
-							$file_name = $company->getId() . time() . '.' . $ext;
-							//carpeta en la que se guardara
-							$file->move("uploads/company", $file_name);
-							$company->setLogo($file_name);
-						}
-					} else {
-						$company->setLogo($company_image);
-					}
-
-					/* volcar el objeto y persistir en doctrine */
-					$em->persist($company);
-					/* pasar los objetos persistidos a la bd */
-					$flush = $em->flush();
-
-
-					// mensajes de comprobación
-					if ($flush == null) {
-						$status = "La información de la empresa se a actualizado correctamente";
-					} else {
-						$status = "No se ha realizado ninguna actualización";
-					}
-				} else {
-					$status = "La empresa ya existe en nuestra base de datos";
-				}
-			} else {
-				$status = "No se ha realizado ninguna actualización";
-			}
-			$this->session->getFlashBag()->add("status", $status);
-			return $this->redirectToRoute('companies_edit', array('id' => $id));
-		}
-
-		return $this->render('AppBundle:Company:administrator_edit_company.html.twig', array(
-					'company' => $company,
-					'form' => $form->createView()
-		));
-	}
 }

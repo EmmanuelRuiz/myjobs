@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %} MyJobsAdvisor | Sitio Oficial {% endblock %}</title>
+
+        {% block stylesheet %}
+            <!-- estilos css -->
+            <link href="{{ asset('assets/css/bootswatch.css')}}" type="text/css" rel="stylesheet">
+            <link href="{{ asset('assets/css/styles.css')}}" type="text/css" rel="stylesheet">
+        {%endblock%}
+
+        {% block fonts %}
+            <!-- fonts -->
+            <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
+        {%endblock%}
+    </head>
+    <body>
+        <nav class="navbar navbar-default-alternative navbar-fixed-top topnav" role="navigation">
+            <div class="container topnav">
+                <div class="navbar-header">
+                    <a class="navbar-brand topnav" href="{{ path('app_homepage') }}"><img class="img-responsive img-desktop" width="250" src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial.png') }}"></img></a>
+                    <a class="navbar-brand topnav" href="{{ path('app_homepage') }}"><img class="img-responsive img-movil" width="60" src="{{ asset('assets/images/myjobsadvisor-logotipo-oficial-movil.png') }}"></img></a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="jumbotron page-not-found text-center">
+                <h1>¡Ups! Error 404</h1>
+                <p>Ha occurido un error y no hemos podido encontrar la página que estabas buscando :(</p>
+                <p><a class="btn btn-info " href="{{ path('app_homepage') }}" role="button">Volver a la página de inicio</a></p>
+            </div>
+        </div>
+    </body>
+</html>

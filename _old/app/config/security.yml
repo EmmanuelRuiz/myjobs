@@ -1,0 +1,83 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:  
+        Symfony\Component\Security\Core\User\User: plaintext
+        
+        BackendBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 4
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: admin
+                        roles: 'ROLE_ADMIN'
+        
+        user_db_provider:
+            entity:
+                class: BackendBundle:User
+                property: email
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        admin:
+            pattern:   ^/admin
+            anonymous: ~
+            provider: in_memory
+            form_login:
+                login_path: /admin/login
+                check_path: /admin/login_check
+                default_target_path: /admin/panel
+            logout:
+                path: /admin/logout
+                target: /admin/login
+                
+        main:
+            anonymous: ~
+            provider: user_db_provider
+            form_login:
+                login_path: /loginerror
+                check_path: /login
+            logout:
+                invalidate_session: false
+                path: /logout
+                success_handler: logout_success_handler
+                
+                
+            guard:
+                authenticators:
+                    - app.facebook_authenticator
+                    - app.google_authenticator
+                entry_point: app.facebook_authenticator
+       
+    access_control:
+        - { path: ^/admin/panel, roles: ROLE_ADMIN }
+        - { path: ^/createcomment, roles: ROLE_USER }
+        - { path: ^/createcommentuser, roles: ROLE_USER }
+        - { path: ^/empresas/registrar, roles: ROLE_USER }
+        - { path: ^/empresa/editar, roles: ROLE_USER }
+        - { path: ^/opinion/remove, roles: ROLE_USER }
+        - { path: ^/comment/remove, roles: ROLE_USER }
+        - { path: ^/follow, roles: ROLE_USER }
+        - { path: ^/unfollow, roles: ROLE_USER }
+        - { path: ^/siguiendo, roles: ROLE_USER }
+        - { path: ^/seguidores, roles: ROLE_USER }
+        - { path: ^/likes, roles: ROLE_USER }
+        - { path: ^/logout, roles: ROLE_USER }        
+        - { path: ^/usuarios, roles: ROLE_USER }
+        
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
