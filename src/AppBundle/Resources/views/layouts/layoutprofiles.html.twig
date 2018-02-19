@@ -116,17 +116,17 @@
                                 <li class="user-logged-in">
                                     <button class="btn btn-link  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="avatar">
+                                          {% if app.user.anonimo == 'Si' %}
+                                            <img  src="{{ asset('assets/images/default.jpg') }}"/>
+                                          {% else %}
                                             {% if app.user.image | split('.') | last == 'png' or app.user.image | split('.') | last == 'jpg' or app.user.image | split('.') | last == 'jpeg' or app.user.image | split('.') | last == 'gif' %}
-                                                {% if app.user.anonimo == 'Si' %}
-                                                    <img  src="{{ asset('assets/images/default.jpg') }}"/>
-                                                {% elseif app.user.image != null %}
-                                                    <img  src="{{ asset('uploads/users/'~app.user.image) }}"/>
-                                                {% endif %}
+                                              <img src="{{ asset('uploads/users/'~app.user.image) }}"/>
                                             {% elseif app.user.image | split('.') | last == null %}
-                                                <img  src="{{ asset('assets/images/default.jpg') }}"/>
+                                              <img src="{{ asset('assets/images/default.jpg') }}"/>
                                             {% else %}
-                                                <img  src="{{ app.user.image }}"/>
+                                              <img src="{{  app.user.image }}"/>
                                             {% endif %}
+                                          {% endif %}
                                         </div>
 
                                         {{app.user.name}} {{app.user.plastname}}

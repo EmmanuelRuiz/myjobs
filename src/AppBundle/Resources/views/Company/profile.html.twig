@@ -206,17 +206,18 @@
                                             <a href="{{ path('user_profile',{'id':opinions.user.id}) }}">
                                                 <div class="avatar">
 
-                                                    {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}
-                                                        {% if opinions.user.anonimo == 'Si' %}
-                                                            <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                                        {% elseif opinions.user.image != null %}
-                                                            <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                      {% if opinions.user.anonimo == 'Si' %}
+                                                        <img class="user-logo-opinion"  src="{{ asset('assets/images/default.jpg') }}"/>
+                                                      {% else %}
+                                                        {% if opinions.user.image | split('.') | last == 'png' or opinions.user.image | split('.') | last == 'jpg' or opinions.user.image | split('.') | last == 'jpeg' or opinions.user.image | split('.') | last == 'gif' %}
+                                                          <img class="user-logo-opinion" src="{{ asset('uploads/users/'~opinions.user.image) }}"/>
+                                                        {% elseif opinions.user.image | split('.') | last == null %}
+                                                          <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                        {% else %}
+                                                          <img class="user-logo-opinion" src="{{  opinions.user.image }}"/>
                                                         {% endif %}
-                                                    {% elseif opinions.user.image | split('.') | last == null %}
-                                                        <img class="user-logo-opinion" src="{{ asset('assets/images/default.jpg') }}"/>
-                                                    {% else %}
-                                                        <img class="user-logo-opinion" src="{{ opinions.user.image }}"/>
-                                                    {% endif %}
+                                                      {% endif %}
+
                                                 </div>
                                             </a>
                                         </div>
@@ -289,17 +290,17 @@
                                             {% if comments.status != 'invalid' %}
                                                 <div class="row" id="comment">
                                                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 ">
-                                                        <div class="avatar  ">
-                                                            {% if comments.user.image | split('.') | last == 'png' or comments.user.image | split('.') | last == 'jpg' or comments.user.image | split('.') | last == 'jpeg' or comments.user.image | split('.') | last == 'gif' %}
-                                                                {% if comments.user.anonimo == 'Si' %}
-                                                                    <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
-                                                                {% elseif comments.user.image != null %}
-                                                                    <img class=" user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
-                                                                {% endif %}
-                                                            {% elseif comments.user.image | split('.') | last == null %}
-                                                                <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                        <div class="avatar ">
+                                                            {% if comments.user.anonimo == 'Si' %}
+                                                              <img class=" user-logo-opinion-comment"  src="{{ asset('assets/images/default.jpg') }}"/>
                                                             {% else %}
-                                                                <img class=" user-logo-opinion-comment"src="{{ comments.user.image }}"/>
+                                                              {% if comments.user.image | split('.') | last == 'png' or comments.user.image | split('.') | last == 'jpg' or comments.user.image | split('.') | last == 'jpeg' or comments.user.image | split('.') | last == 'gif' %}
+                                                                <img class=" user-logo-opinion-comment" src="{{ asset('uploads/users/'~comments.user.image) }}"/>
+                                                              {% elseif comments.user.image | split('.') | last == null %}
+                                                                <img class=" user-logo-opinion-comment" src="{{ asset('assets/images/default.jpg') }}"/>
+                                                              {% else %}
+                                                                <img class=" user-logo-opinion-comment" src="{{  comments.user.image }}"/>
+                                                              {% endif %}
                                                             {% endif %}
                                                         </div>
                                                     </div>

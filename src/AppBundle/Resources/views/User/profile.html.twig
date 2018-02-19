@@ -8,7 +8,21 @@
     <section class="profile-company-header">
         <div class="container ">
             <div class="row">
-                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
+
+              <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
+                {% if user.anonimo == 'Si' %}
+                  <img class="profile-picture-company center-block"  src="{{ asset('assets/images/default.jpg') }}"/>
+                {% else %}
+                  {% if user.image | split('.') | last == 'png' or user.image | split('.') | last == 'jpg' or user.image | split('.') | last == 'jpeg' or user.image | split('.') | last == 'gif' %}
+                    <img class="profile-picture-company center-block" src="{{ asset('uploads/users/'~user.image) }}"/>
+                  {% elseif user.image | split('.') | last == null %}
+                    <img class="profile-picture-company center-block"  src="{{ asset('assets/images/default.jpg') }}"/>
+                  {% else %}
+                    <img class="profile-picture-company center-block" src="{{ user.image }}"/>
+                  {% endif %}
+                {% endif %}
+              </div>
+                <!--<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
                     {% if user.image | split('.') | last == 'png' or user.image | split('.') | last == 'jpg' or user.image | split('.') | last == 'jpeg' or user.image | split('.') | last == 'gif' %}
                         {% if user.anonimo == 'Si' %}
                             <img class="profile-picture-company center-block"  src="{{ asset('assets/images/default.jpg') }}"/>
@@ -20,7 +34,7 @@
                     {% else %}
                         <img class="profile-picture-company center-block" src="{{ user.image }}"/>
                     {% endif %}
-                </div>
+                </div>-->
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" id="user-card">
                     <h1 id="profile-username ">
 
